@@ -18,6 +18,7 @@
     "luxury_hero": {
       "type": "luxury-hero",
       "settings": {
+        "hero_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.19PM_2.jpg",
         "headline": "Royal Skincare Elegance",
         "subheadline": "Experience Luxury Beyond Compare",
         "cta_text": "Discover Collection",
@@ -54,6 +55,7 @@
         "product_name": "Royal Cream Luxe",
         "product_description": "Our signature cream infused with the finest botanicals. Whipped at low temperature, layered like petit fours. Experience luxury in every application.",
         "product_price": "$222",
+        "product_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.15PM_1.jpg",
         "product_link": "",
         "cta_text": "Shop Now"
       }
@@ -113,6 +115,7 @@
       "type": "luxury-pricing-cta",
       "settings": {
         "title": "Limited Time Offer",
+        "product_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.19PM_3.jpg",
         "original_price": "$222",
         "sale_price": "$111",
         "discount_text": "50% OFF",
@@ -126,7 +129,7 @@
         "cta_title": "Ready to Transform Your Skin?",
         "cta_subtitle": "Get your royal collection today",
         "cta_text": "Shop Now",
-        "cta_link": "/collections/all"
+        "cta_link": "shopify://products/7-step-glow-repair-kit"
       }
     },
     "luxury_footer": {
