@@ -85,10 +85,15 @@
     "luxury_texture": {
       "type": "luxury-texture",
       "settings": {
+        "show_eyebrow": false,
+        "eyebrow_text": "",
+        "headline_text": "Softness",
         "em_text": "you can feel",
         "em_font_family": "Italiana",
         "em_font_size": 96,
-        "em_text_color": "#5b4a7a"
+        "em_text_color": "#5b4a7a",
+        "show_subtitle": false,
+        "subtitle_text": ""
       }
     },
     "luxury_testimonials": {
