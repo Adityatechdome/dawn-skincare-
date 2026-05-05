@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "luxury_nav": {
@@ -23,10 +32,16 @@
     },
     "luxury_ribbon": {
       "type": "luxury-ribbon",
-      "settings": {}
+      "settings": {
+        "item_1_text": "Free BB Cream — Today Only",
+        "item_2_text": "Glow Like Royalty",
+        "item_3_text": "50% Off The Full Ritual",
+        "item_4_text": "Ships in Velvet, Always"
+      }
     },
     "luxury_marquee": {
       "type": "luxury-marquee",
+      "disabled": true,
       "settings": {
         "marquee_text": "✨ Royal Elegance Meets Modern Skincare ✨"
       }
@@ -35,26 +50,44 @@
       "type": "luxury-products",
       "settings": {
         "section_title": "Our Signature Collection",
-        "section_subtitle": "Handpicked products for radiant, luxurious skin"
+        "section_subtitle": "Handpicked products for radiant, luxurious skin",
+        "product_name": "Royal Cream Luxe",
+        "product_description": "Our signature cream infused with the finest botanicals. Whipped at low temperature, layered like petit fours. Experience luxury in every application.",
+        "product_price": "$222",
+        "product_link": "",
+        "cta_text": "Shop Now"
       }
     },
     "luxury_benefits": {
       "type": "luxury-benefits",
       "settings": {
         "section_title": "Why Choose Dawn",
+        "benefit_1_icon": "",
         "benefit_1_title": "Premium Ingredients",
         "benefit_1_desc": "Sourced from the finest botanical gardens worldwide",
+        "benefit_2_icon": "",
         "benefit_2_title": "Dermatologist Tested",
         "benefit_2_desc": "Approved by leading skincare experts",
+        "benefit_3_icon": "",
         "benefit_3_title": "Cruelty Free",
         "benefit_3_desc": "Never tested on animals, always ethical",
+        "benefit_4_icon": "",
         "benefit_4_title": "Luxury Packaging",
-        "benefit_4_desc": "Beautiful presentation perfect for gifting"
+        "benefit_4_desc": "Beautiful presentation perfect for gifting",
+        "title_font_family": "Cormorant Garamond",
+        "title_font_size": 20,
+        "description_font_family": "Inter",
+        "description_font_size": 14
       }
     },
     "luxury_texture": {
       "type": "luxury-texture",
-      "settings": {}
+      "settings": {
+        "em_text": "you can feel",
+        "em_font_family": "Italiana",
+        "em_font_size": 96,
+        "em_text_color": "#5b4a7a"
+      }
     },
     "luxury_testimonials": {
       "type": "luxury-testimonials",
@@ -103,20 +136,32 @@
         "brand_description": "Luxury skincare for the modern royal. Handcrafted botanical formulations for radiant, luminous skin.",
         "shop_heading": "Shop",
         "shop_link_1_text": "The Bundle",
+        "shop_link_1_url": "",
         "shop_link_2_text": "Cleansers",
+        "shop_link_2_url": "",
         "shop_link_3_text": "Serums",
+        "shop_link_3_url": "",
         "shop_link_4_text": "Creams",
+        "shop_link_4_url": "",
         "atelier_heading": "Atelier",
         "atelier_link_1_text": "The Ritual",
+        "atelier_link_1_url": "",
         "atelier_link_2_text": "Luxury Kits",
+        "atelier_link_2_url": "",
         "atelier_link_3_text": "Gift Sets",
+        "atelier_link_3_url": "",
         "court_heading": "The Court",
         "court_link_1_text": "About",
+        "court_link_1_url": "",
         "court_link_2_text": "Contact",
+        "court_link_2_url": "",
         "court_link_3_text": "Reviews",
+        "court_link_3_url": "",
         "copyright_text": "© 2024 Dawn Skincare. All rights reserved.",
         "privacy_text": "Privacy",
-        "terms_text": "Terms"
+        "privacy_link": "",
+        "terms_text": "Terms",
+        "terms_link": ""
       }
     }
   },
