@@ -9,13 +9,13 @@
     </div>
 
     <div class="pricing-content-side">
-      <h2>{{ section.settings.title }}</h2>
-      <div class="pricing-box">
-        <p class="original-price"><s>{{ section.settings.original_price }}</s></p>
-        <p class="sale-price">{{ section.settings.sale_price }}</p>
-        <p class="discount-badge">{{ section.settings.discount_text }}</p>
+      <h2 style="color: {{ section.settings.title_color }}; font-size: {{ section.settings.title_font_size }}px;">{{ section.settings.title }}</h2>
+      <div class="pricing-box" style="background: {{ section.settings.box_background_color }}; padding: {{ section.settings.box_padding }}px;">
+        <p class="original-price" style="color: {{ section.settings.original_price_color }}; font-size: {{ section.settings.original_price_font_size }}px;"><s>{{ section.settings.original_price }}</s></p>
+        <p class="sale-price" style="color: {{ section.settings.sale_price_color }}; font-size: {{ section.settings.sale_price_font_size }}px;">{{ section.settings.sale_price }}</p>
+        <p class="discount-badge" style="background: {{ section.settings.badge_background_color }}; color: {{ section.settings.badge_text_color }}; font-size: {{ section.settings.badge_font_size }}px;">{{ section.settings.discount_text }}</p>
       </div>
-      <a href="{{ section.settings.cta_link }}" class="pricing-cta">{{ section.settings.cta_text }}</a>
+      <a href="{{ section.settings.cta_link }}" class="pricing-cta" style="background: {{ section.settings.button_background_color }}; color: {{ section.settings.button_text_color }}; border-color: {{ section.settings.button_background_color }}; font-size: {{ section.settings.button_font_size }}px; padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px;">{{ section.settings.cta_text }}</a>
     </div>
   </div>
 </section>
@@ -160,15 +160,59 @@
   "name": "Luxury Pricing CTA",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "heading",
+      "content": "Title Settings"
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "Title",
       "default": "Limited Time Offer"
     },
     {
-      "type": "image_picker",
-      "id": "product_image",
-      "label": "Product Image"
+      "type": "range",
+      "id": "title_font_size",
+      "min": 24,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#2A2438"
+    },
+    {
+      "type": "heading",
+      "content": "Price Box Settings"
+    },
+    {
+      "type": "color",
+      "id": "box_background_color",
+      "label": "Box Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "box_padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Box Padding",
+      "default": 40
+    },
+    {
+      "type": "heading",
+      "content": "Original Price Settings"
     },
     {
       "type": "text",
@@ -177,16 +221,82 @@
       "default": "$222"
     },
     {
+      "type": "range",
+      "id": "original_price_font_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Original Price Font Size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "original_price_color",
+      "label": "Original Price Color",
+      "default": "#8E7AAB"
+    },
+    {
+      "type": "heading",
+      "content": "Sale Price Settings"
+    },
+    {
       "type": "text",
       "id": "sale_price",
       "label": "Sale Price",
       "default": "$111"
     },
     {
+      "type": "range",
+      "id": "sale_price_font_size",
+      "min": 24,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Sale Price Font Size",
+      "default": 56
+    },
+    {
+      "type": "color",
+      "id": "sale_price_color",
+      "label": "Sale Price Color",
+      "default": "#B8945A"
+    },
+    {
+      "type": "heading",
+      "content": "Discount Badge Settings"
+    },
+    {
       "type": "text",
       "id": "discount_text",
       "label": "Discount Text",
       "default": "50% OFF"
+    },
+    {
+      "type": "color",
+      "id": "badge_background_color",
+      "label": "Badge Background Color",
+      "default": "#B07A82"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#E8C9CC"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 12
+    },
+    {
+      "type": "heading",
+      "content": "Button Settings"
     },
     {
       "type": "text",
@@ -198,6 +308,48 @@
       "type": "url",
       "id": "cta_link",
       "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#B8945A"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 16
     }
   ]
 }

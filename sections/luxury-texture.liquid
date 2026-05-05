@@ -1,13 +1,17 @@
 <section class="section texture">
-  <div class="section-eyebrow reveal">
-    <span>04 / Sensorium</span>
-  </div>
+  {% if section.settings.show_eyebrow %}
+    <div class="section-eyebrow reveal">
+      <span>{{ section.settings.eyebrow_text }}</span>
+    </div>
+  {% endif %}
   <h2 class="texture-headline reveal">
-    Softness <em style="font-family: {{ section.settings.em_font_family }}; font-size: {{ section.settings.em_font_size }}px; color: {{ section.settings.em_text_color }};">{{ section.settings.em_text }}</em>
+    {{ section.settings.headline_text }} <em style="font-family: {{ section.settings.em_font_family }}; font-size: {{ section.settings.em_font_size }}px; color: {{ section.settings.em_text_color }};">{{ section.settings.em_text }}</em>
   </h2>
-  <p class="section-sub reveal" style="margin-bottom: 60px;">
-    Whipped at low temperature, layered like petit fours. The texture is the proof.
-  </p>
+  {% if section.settings.show_subtitle %}
+    <p class="section-sub reveal" style="margin-bottom: 60px;">
+      {{ section.settings.subtitle_text }}
+    </p>
+  {% endif %}
   <div class="texture-grid">
     <div class="texture-tile tall reveal ph">
       <div class="cream-swirl">
@@ -145,6 +149,24 @@
   "name": "Luxury Texture",
   "settings": [
     {
+      "type": "checkbox",
+      "id": "show_eyebrow",
+      "label": "Show Section Eyebrow",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "04 / Sensorium"
+    },
+    {
+      "type": "text",
+      "id": "headline_text",
+      "label": "Headline Text",
+      "default": "Softness"
+    },
+    {
       "type": "text",
       "id": "em_text",
       "label": "Emphasized Text",
@@ -177,6 +199,18 @@
       "id": "em_text_color",
       "label": "Emphasized Text Color",
       "default": "#5B4A7A"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtitle",
+      "label": "Show Subtitle",
+      "default": false
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle_text",
+      "label": "Subtitle Text",
+      "default": "Whipped at low temperature, layered like petit fours. The texture is the proof."
     }
   ]
 }
