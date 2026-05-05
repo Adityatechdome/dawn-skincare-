@@ -1,0 +1,195 @@
+{% schema %}
+{
+  "name": "Top Announcement Bar",
+  "tag": "section",
+  "class": "top-announcement-bar-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "rotation_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Rotation Speed",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Announcement Text",
+          "default": "Free shipping on orders over $50"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top Announcement Bar",
+      "category": "Header",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over $50"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "Shop now and get 10% off your first order"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "New arrivals just landed - Shop the collection"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% if section.blocks.size > 0 %}
+<div class="top-announcement-bar">
+  <div class="announcement-container">
+    {% for block in section.blocks %}
+      <div class="announcement-item {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }} data-block-id="{{ block.id }}">
+        {{ block.settings.text }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    const announcementBar = document.querySelector('.top-announcement-bar');
+    if (!announcementBar) return;
+
+    const items = announcementBar.querySelectorAll('.announcement-item');
+    if (items.length <= 1) return;
+
+    let currentIndex = 0;
+    const rotationSpeed = {{ section.settings.rotation_speed | times: 1000 }};
+
+    function rotateAnnouncements() {
+      items[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % items.length;
+      items[currentIndex].classList.add('active');
+    }
+
+    setInterval(rotateAnnouncements, rotationSpeed);
+  })();
+</script>
+
+<style>
+  .top-announcement-bar-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 101;
+  }
+
+  .top-announcement-bar {
+    background: #1c1b19;
+    padding: 8px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 0.5px solid #eeeae1;
+  }
+
+  .announcement-container {
+    position: relative;
+    min-height: 24px;
+  }
+
+  .announcement-item {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #eeeae1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    text-decoration:underline;
+  }
+
+  .announcement-item.active {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+    pointer-events: auto;
+  }
+
+  /* Adjust body padding to account for announcement bar */
+  body {
+    padding-top: 126px !important;
+  }
+
+  .site-header {
+    top: 40px !important;
+  }
+
+  @media (max-width: 900px) {
+    .top-announcement-bar {
+      padding: 10px 15px;
+    }
+
+    .announcement-item {
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    .announcement-container {
+      min-height: 20px;
+    }
+
+    body {
+      padding-top: 120px !important;
+    }
+
+    .site-header {
+      top: 40px !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .top-announcement-bar {
+      padding: 8px 10px;
+    }
+
+    .announcement-item {
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .announcement-container {
+      min-height: 18px;
+    }
+
+    body {
+      padding-top: 90px !important;
+    }
+
+    .site-header {
+      top: 34px !important;
+    }
+  }
+</style>
+{% endif %}

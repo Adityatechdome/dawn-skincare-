@@ -1,0 +1,272 @@
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Want to know more?"
+    },
+    {
+      "type": "paragraph",
+      "content": "On product pages, FAQs are loaded from the product metafield: namespace = custom, key = faq (type: list.metaobject_reference → FAQ Item metaobject). Blocks are used on all other pages or as fallback."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "question",
+          "label": "Question",
+          "default": "Is it safe?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Yes, it is completely safe & FSSAI approved product."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "FAQ",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="faq-section" id="productFaqSection">
+  <div class="faq-wrapper">
+    <h2 class="faq-headline">{{ section.settings.headline }}</h2>
+
+<ul class="faq-list" id="faq">
+      {% if product and product.metafields.custom.faq != blank %}
+        {% assign faq_items = product.metafields.custom.faq.value %}
+        {% for item in faq_items %}
+          <li class="faq-item {% if forloop.first %}open{% endif %}">
+            <button class="faq-toggle">
+              {% if forloop.index < 10 %}{% assign index = forloop.index | prepend: '0' %}{% else %}{% assign index = forloop.index %}{% endif %}
+              <span>{{ index }}.</span>
+              <span>{{ item.question.value }}</span>
+            </button>
+            <div
+              class="faq-answer"
+              {% unless forloop.first %}
+                style="display: none;"
+              {% endunless %}
+            >
+              {% assign answer_lines = item.answer.value | newline_to_br | split: '<br />' %}
+              {% for line in answer_lines %}
+                {% assign trimmed = line | strip %}
+                {% if trimmed != blank %}
+                  {% assign first_char = trimmed | slice: 0 %}
+                  {% if first_char == '-' %}
+                    <span class="faq-bullet-item">{{ trimmed | remove_first: '-' | strip }}</span>
+                  {% else %}
+                    <span class="faq-text-line">{{ trimmed }}</span>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </li>
+        {% endfor %}
+      {% else %}
+        {% for block in section.blocks %}
+          <li class="faq-item {% if forloop.first %}open{% endif %}">
+            <button class="faq-toggle">
+              {% if forloop.index < 10 %}{% assign index = forloop.index | prepend: '0' %}{% else %}{% assign index = forloop.index %}{% endif %}
+              <span>{{ index }}.</span>
+              <span>{{ block.settings.question }}</span>
+            </button>
+            <div
+              class="faq-answer"
+              {% unless forloop.first %}
+                style="display: none;"
+              {% endunless %}
+            >
+              {% assign answer_lines = block.settings.answer | newline_to_br | split: '<br />' %}
+              {% for line in answer_lines %}
+                {% assign trimmed = line | strip %}
+                {% if trimmed != blank %}
+                  {% assign first_char = trimmed | slice: 0 %}
+                  {% if first_char == '-' %}
+                    <span class="faq-bullet-item">{{ trimmed | remove_first: '-' | strip }}</span>
+                  {% else %}
+                    <span class="faq-text-line">{{ trimmed }}</span>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+    <div></div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.faq-toggle').forEach((button) => {
+      button.addEventListener('click', function () {
+        const item = this.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.faq-item').forEach((el) => {
+          el.classList.remove('open');
+          el.querySelector('.faq-answer').style.display = 'none';
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: 60px 20px;
+    background-color: #eeeae1;
+  }
+
+  .faq-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-headline {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #1d2939;
+    margin: 0 0 40px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .faq-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1.5px solid #c6c6c6;
+    padding: 20px 0;
+  }
+
+  .faq-toggle {
+    background: none;
+    border: none;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 36px;
+    letter-spacing: 0;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #1d2939;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .faq-toggle span {
+    color: #1d2939;
+  }
+
+  .faq-toggle::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    font-weight: 300;
+  }
+
+  .faq-item.open .faq-toggle::after {
+    content: '−';
+  }
+
+  .faq-answer {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 36px;
+    letter-spacing: 0;
+    margin: 0 0 0 42px;
+    color: #667085;
+  }
+
+  .faq-text-line,
+  .faq-bullet-item {
+    display: block;
+  }
+
+  .faq-bullet-item {
+    padding-left: 26px;
+  }
+
+  .faq-bullet-item::before {
+    content: '•';
+    margin-right: 6px;
+    color: #1d2939;
+  }
+
+  @media (max-width: 1000px) {
+    .faq-section{
+      padding: 40px 20px;
+    }
+    .faq-headline {
+      font-size: 30px;
+      margin: 0 0 20px;
+    }
+
+    .faq-toggle {
+      font-size: 13px;
+      line-height: 120%;
+    }
+
+    .faq-toggle span{
+      max-width: 80%;
+    }
+
+    .faq-answer {
+      font-size: 12px;
+      line-height: 134%;
+      margin-top: 10px;
+    }
+  }
+</style>

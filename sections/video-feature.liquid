@@ -1,0 +1,165 @@
+{% schema %}
+{
+  "name": "Video Feature",
+  "tag": "section",
+  "class": "video-feature",
+  "settings": [
+    {
+      "type": "video",
+      "id": "promo_video",
+      "label": "Promotional Video"
+    },
+    {
+      "type": "video",
+      "id": "promo_video_mobile",
+      "label": "Promotional Video"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Label",
+      "default": "DISCOVER ALL SKINCARE"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Feature",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="video-feature-section">
+  <div class="video-feature-wrapper">
+    <div class="video-placeholder">
+      {% if section.settings.promo_video %}
+        {{
+          section.settings.promo_video
+          | video_tag: autoplay: true, loop: true, controls: false, class: 'promo-video'
+        }}
+      {% else %}
+        <div class="video-box">Video Placeholder</div>
+      {% endif %}
+      {% if section.settings.cta_link != blank %}
+        <div class="video-feature-cta">
+          <a href="{{ section.settings.cta_link }}" class="cta-button">
+            {{ section.settings.cta_label }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="video-placeholder-mobile">
+      {% if section.settings.promo_video_mobile %}
+        {{
+          section.settings.promo_video_mobile
+          | video_tag: autoplay: true, loop: true, controls: false, class: 'promo-video-mobile'
+        }}
+      {% else %}
+        <div class="video-box">Video Placeholder</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  body {
+    padding: 0;
+  }
+  .video-feature-section {
+    background-color: #d0cdc5;
+    text-align: center;
+  }
+
+  .video-feature-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+  }
+
+  .promo-video {
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-placeholder-mobile {
+    display: none;
+  }
+
+  .video-box {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 142px;
+    line-height: 142px;
+    letter-spacing: 0%;
+    color: #333;
+    opacity: 0.5;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 20px 19px;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.8px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #000;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 51px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 500px) {
+    .video-placeholder {
+      display: none;
+    }
+
+    .video-placeholder-mobile {
+      width: 100%;
+      max-width: 100vw;
+      display: block;
+    }
+
+    .promo-video-mobile {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-box {
+      height: 100vh;
+      font-size: 50px;
+    }
+
+    .cta-button {
+      display: none;
+    }
+  }
+</style>

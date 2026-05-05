@@ -1,0 +1,230 @@
+{% schema %}
+{
+  "name": "Collection Carousel",
+  "tag": "section",
+  "class": "collection-product-carousel",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Product Collection"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Featured Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Carousel",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="collection-carousel-section" data-section-id="{{ section.id }}">
+  <div class="carousel-wrapper">
+    <div class="carousel-content">
+      <h2 class="carousel-headline">{{ section.settings.headline }}</h2>
+    </div>
+
+    <!-- Desktop Swiper -->
+    <div class="swiper collection-swiper collection-swiper-desktop">
+      <div class="swiper-wrapper">
+        {% for product in collections[section.settings.collection].products %}
+          <div class="swiper-slide">
+            {% render 'card-product-carousel', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-progress">
+        <div class="swiper-progress-bar" data-bar-id="desktop-{{ section.id }}"></div>
+      </div>
+    </div>
+
+    <!-- Mobile Grid (2x2) -->
+    <div class="collection-grid collection-grid-mobile">
+      {% for product in collections[section.settings.collection].products limit: 4 %}
+        <div class="grid-item">
+          {% render 'card-product-carousel', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- All Products link -->
+    <div class="carousel-link">
+      <a href="{{ routes.all_products_collection_url }}" class="all-products-link">
+        <span>All Products</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.collection-carousel-section').forEach((section) => {
+      const sectionId = section.dataset.sectionId;
+      const desktopSwiperEl = section.querySelector('.collection-swiper-desktop');
+      const desktopProgressBar = section.querySelector(`[data-bar-id="desktop-${sectionId}"]`);
+
+      // Initialize desktop swiper only
+      if (desktopSwiperEl && window.innerWidth > 600) {
+        const desktopSwiper = new Swiper(desktopSwiperEl, {
+          slidesPerView: 'auto',
+          spaceBetween: 10,
+          on: {
+            init: function () {
+              updateProgress(this, desktopProgressBar);
+            },
+            slideChange: function () {
+              updateProgress(this, desktopProgressBar);
+            },
+          },
+        });
+      }
+
+      function updateProgress(swiperInstance, barEl) {
+        if (!swiperInstance || !barEl) return;
+
+        const swiperRect = swiperInstance.el.getBoundingClientRect();
+        const totalSlides = swiperInstance.slides.length;
+        let visibleSlides = 0;
+
+        swiperInstance.slides.forEach((slide) => {
+          const slideRect = slide.getBoundingClientRect();
+          const isFullyVisible =
+            slideRect.left >= swiperRect.left && slideRect.right <= swiperRect.right && slideRect.width > 0;
+
+          if (isFullyVisible) {
+            visibleSlides++;
+          }
+        });
+
+        // Hide progress bar if all slides visible
+        if (visibleSlides >= totalSlides) {
+          barEl.parentElement.style.display = 'none';
+          return;
+        }
+
+        barEl.parentElement.style.display = 'block';
+
+        const viewedSlides = swiperInstance.activeIndex + visibleSlides;
+        const progressRatio = Math.min(viewedSlides / totalSlides, 1);
+        barEl.style.width = `${Math.round(progressRatio * 100)}%`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .collection-carousel-section {
+    padding: 50px 32px 100px;
+    background-color: #eeeae1;
+  }
+
+  .carousel-wrapper {
+    max-width: 1340px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .carousel-content {
+    margin: 0 0 32px;
+    max-width: 850px;
+  }
+
+  .carousel-headline {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: 0%;
+    margin: 0 0 32px;
+    text-transform: capitalize;
+  }
+
+  .collection-swiper .swiper-wrapper {
+    display: flex;
+  }
+
+  .collection-swiper .swiper-slide {
+    width: auto;
+  }
+
+  .swiper-progress {
+    position: relative;
+    height: 2px;
+    background: #cdcbc0;
+    margin-top: 32px;
+    overflow: hidden;
+  }
+
+  .swiper-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #333333;
+    transition: width 0.3s ease;
+  }
+
+  .carousel-link {
+    margin-top: 32px;
+    text-align: left;
+  }
+
+  .all-products-link {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23.8px;
+    letter-spacing: -1%;
+    color: #000;
+  }
+
+  .all-products-link:hover{
+    color:#333;
+  }
+
+  .collection-grid-mobile {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .collection-carousel-section {
+      padding: 50px 20px 100px;
+    }
+
+    .collection-swiper-desktop {
+      display: none !important;
+    }
+
+    .collection-grid-mobile {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .grid-item {
+      display: flex;
+      justify-content: center;
+    }
+
+    .carousel-content {
+      margin: 0 0 50px;
+    }
+
+    .carousel-headline {
+      text-align: center;
+    }
+
+    .all-products-link {
+      justify-content: center;
+    }
+  }
+</style>

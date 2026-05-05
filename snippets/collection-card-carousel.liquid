@@ -1,0 +1,206 @@
+<div class="product-card">
+  <a href="{{ product.url }}">
+    <div class="product-image" style="position:relative;overflow:hidden;aspect-ratio:1 / 1;width:100%;">
+      {{
+        product.featured_image
+        | image_url: width: 600
+        | image_tag:
+          alt: product.title,
+          loading: 'lazy',
+          decoding: 'async',
+          class: 'product-card-image',
+          style: 'display:block;width:100%;height:100%;object-fit:cover;',
+          widths: '220, 280, 326, 420, 600',
+          sizes: '(max-width: 600px) 255px, 326px',
+          width: 600,
+          height: 600
+      }}
+      {% assign badges = product.metafields.custom.label.value %}
+      {% for badge in badges %}
+        <div class="product-badge" style="position:absolute;top:16px;right:16px;z-index:2;">{{ badge }}</div>
+      {% endfor %}
+    </div>
+  </a>
+  <a class="product_headings" href="{{ product.url }}">
+    <h3 class="product-title">{{ product.title }}</h3>
+    <p class="product-subtitle">{{ product.metafields.custom.single_line_description }}</p>
+  </a>
+  <div class="product-info">
+    <p class="variant">{{ product.variants[0].title }}</p>
+    <div class="product-prices">
+      <p class="price">{{ product.price | money_without_trailing_zeros }}</p>
+      <p class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</p>
+    </div>
+  </div>
+  <form method="post" action="/cart/add">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+    <button type="submit" class="add-to-cart">Add to cart</button>
+  </form>
+</div>
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    max-width: 326.5px;
+    width: 100%;
+  }
+  .product-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    text-align: right;
+    text-transform: uppercase;
+    z-index: 2;
+    color: #333333;
+  }
+
+  .wishlist-icon {
+    display: none;
+  }
+
+  .product-image {
+    width: 326.5px;
+    aspect-ratio: 1 / 1;
+    height: 288px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product_headings {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    color: #333333;
+  }
+
+  .product-title {
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .product-subtitle {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    text-align: center;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .product-info .variant {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    text-align: center;
+    margin: 0;
+    color: #333333;
+  }
+
+  .product-prices {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-content:center;
+  }
+
+  .product-prices .price {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    color: #333333;
+    margin:0;
+  }
+
+  .product-prices .compare-price {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    text-align: center;
+    text-decoration: line-through;
+    color: #6F6F6F;
+    margin:0;
+  }
+
+  .product-card form {
+    display: flex;
+    justify-content: center;
+  }
+
+  .add-to-cart {
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    padding: 19px 83px;
+    width: 100%;
+    max-width: 288px;
+    margin: 0 auto;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -1%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .product-card {
+      max-width: 255px !important;
+      width: 100%;
+      gap: 20px !important;
+      padding: 0 0 20px !important;
+    }
+
+    .product-image {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    {% comment %} .product_headings {
+      justify-content: space-between !important;
+      min-height: 78px;
+      height: 100%;
+    } {% endcomment %}
+
+    .add-to-cart {
+      padding: 10px 23px !important;
+      max-width: 200px;
+    }
+  }
+</style>

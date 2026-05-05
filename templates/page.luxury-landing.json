@@ -1,0 +1,137 @@
+{
+  "sections": {
+    "luxury_nav": {
+      "type": "luxury-nav",
+      "settings": {
+        "brand_name": "Dawn Skincare"
+      }
+    },
+    "luxury_hero": {
+      "type": "luxury-hero",
+      "settings": {
+        "headline": "Royal Skincare Elegance",
+        "subheadline": "Experience Luxury Beyond Compare",
+        "cta_text": "Discover Collection",
+        "cta_link": "/collections/all",
+        "stat_1_number": "50%",
+        "stat_1_label": "More Radiant",
+        "stat_2_number": "+7",
+        "stat_2_label": "Days Glow",
+        "stat_3_number": "100%",
+        "stat_3_label": "Natural"
+      }
+    },
+    "luxury_ribbon": {
+      "type": "luxury-ribbon",
+      "settings": {}
+    },
+    "luxury_marquee": {
+      "type": "luxury-marquee",
+      "settings": {
+        "marquee_text": "✨ Royal Elegance Meets Modern Skincare ✨"
+      }
+    },
+    "luxury_products": {
+      "type": "luxury-products",
+      "settings": {
+        "section_title": "Our Signature Collection",
+        "section_subtitle": "Handpicked products for radiant, luxurious skin"
+      }
+    },
+    "luxury_benefits": {
+      "type": "luxury-benefits",
+      "settings": {
+        "section_title": "Why Choose Dawn",
+        "benefit_1_title": "Premium Ingredients",
+        "benefit_1_desc": "Sourced from the finest botanical gardens worldwide",
+        "benefit_2_title": "Dermatologist Tested",
+        "benefit_2_desc": "Approved by leading skincare experts",
+        "benefit_3_title": "Cruelty Free",
+        "benefit_3_desc": "Never tested on animals, always ethical",
+        "benefit_4_title": "Luxury Packaging",
+        "benefit_4_desc": "Beautiful presentation perfect for gifting"
+      }
+    },
+    "luxury_texture": {
+      "type": "luxury-texture",
+      "settings": {}
+    },
+    "luxury_testimonials": {
+      "type": "luxury-testimonials",
+      "settings": {
+        "section_title": "Stories From Our Clients",
+        "testimonial_1_text": "The best skincare I have ever used. My skin has never looked more radiant and luminous!",
+        "testimonial_1_author": "Sarah Johnson",
+        "testimonial_2_text": "Absolutely luxurious and effective. The packaging is stunning and the results are undeniable.",
+        "testimonial_2_author": "Emily Williams",
+        "testimonial_3_text": "I love the elegant presentation and the wonderful, visible results. Highly recommended!",
+        "testimonial_3_author": "Jessica Brown"
+      }
+    },
+    "luxury_story": {
+      "type": "luxury-story",
+      "settings": {
+        "story_title": "Our Story",
+        "story_text": "Founded in the heart of luxury, our brand combines ancient botanical wisdom with modern skincare science. Every product is crafted with intention, infused with the finest ingredients from around the world. We believe that true beauty comes from within, and our mission is to help you achieve radiant, healthy skin that reflects your inner glow.",
+        "story_signature": "With love, The Founder"
+      }
+    },
+    "luxury_pricing_cta": {
+      "type": "luxury-pricing-cta",
+      "settings": {
+        "title": "Limited Time Offer",
+        "original_price": "$222",
+        "sale_price": "$111",
+        "discount_text": "50% OFF",
+        "cta_text": "Claim Your Offer",
+        "cta_link": "/collections/all"
+      }
+    },
+    "luxury_sticky_cta": {
+      "type": "luxury-sticky-cta",
+      "settings": {
+        "cta_title": "Ready to Transform Your Skin?",
+        "cta_subtitle": "Get your royal collection today",
+        "cta_text": "Shop Now",
+        "cta_link": "/collections/all"
+      }
+    },
+    "luxury_footer": {
+      "type": "luxury-footer",
+      "settings": {
+        "brand_name": "Dawn Skincare",
+        "brand_description": "Luxury skincare for the modern royal. Handcrafted botanical formulations for radiant, luminous skin.",
+        "shop_heading": "Shop",
+        "shop_link_1_text": "The Bundle",
+        "shop_link_2_text": "Cleansers",
+        "shop_link_3_text": "Serums",
+        "shop_link_4_text": "Creams",
+        "atelier_heading": "Atelier",
+        "atelier_link_1_text": "The Ritual",
+        "atelier_link_2_text": "Luxury Kits",
+        "atelier_link_3_text": "Gift Sets",
+        "court_heading": "The Court",
+        "court_link_1_text": "About",
+        "court_link_2_text": "Contact",
+        "court_link_3_text": "Reviews",
+        "copyright_text": "© 2024 Dawn Skincare. All rights reserved.",
+        "privacy_text": "Privacy",
+        "terms_text": "Terms"
+      }
+    }
+  },
+  "order": [
+    "luxury_nav",
+    "luxury_hero",
+    "luxury_ribbon",
+    "luxury_marquee",
+    "luxury_products",
+    "luxury_benefits",
+    "luxury_texture",
+    "luxury_testimonials",
+    "luxury_story",
+    "luxury_pricing_cta",
+    "luxury_sticky_cta",
+    "luxury_footer"
+  ]
+}

@@ -1,0 +1,91 @@
+{%- comment -%}
+  Cart Recommendation Card
+  Renders a single product recommendation card in horizontal layout
+{%- endcomment -%}
+
+<div class="custom-cart-recommendation" 
+     data-product-id="{{ product.id }}"
+     {% if is_combo %}
+       data-is-combo="true" 
+       data-combo-components="{{ combo_component_ids }}"
+     {% endif %}>
+  <div class="custom-cart-recommendation__image">
+    {%- if product.featured_image -%}
+      <a href="{{ product.url }}">
+        <img
+          src="{{ product.featured_image | image_url: width: 200 }}"
+          alt="{{ product.title | escape }}"
+          loading="lazy"
+          width="120"
+          height="120"
+        >
+      </a>
+    {%- endif -%}
+  </div>
+
+  <div class="custom-cart-recommendation__details">
+    <h4 class="custom-cart-recommendation__title">
+      <a href="{{ product.url }}">
+        {% if is_combo %}<span class="combo-badge">COMBO</span>{% endif %}
+        {{ product.title }}
+      </a>
+    </h4>
+
+    <div class="custom-cart-recommendation__price-row">
+      <div class="custom-cart-recommendation__price">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="custom-cart-recommendation__price-sale">
+            {{ product.price | money }}
+          </span>
+          <s class="custom-cart-recommendation__price-compare">
+            {{ product.compare_at_price | money }}
+          </s>
+        {%- else -%}
+          <span class="custom-cart-recommendation__price-regular">
+            {{ product.price | money }}
+          </span>
+        {%- endif -%}
+      </div>
+
+      {%- if product.compare_at_price > product.price -%}
+        {%- assign discount_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        <span class="custom-cart-recommendation__discount">
+          You save {{ discount_percentage }}%
+        </span>
+      {%- endif -%}
+    </div>
+
+    <div class="custom-cart-recommendation__actions">
+      {%- comment -%} Variant Selector {%- endcomment -%}
+      {%- if product.has_only_default_variant == false -%}
+        <div class="custom-cart-recommendation__variant">
+          <label class="custom-cart-recommendation__variant-label">
+            size:
+          </label>
+          <select 
+            class="custom-cart-recommendation__variant-select"
+            data-product-handle="{{ product.handle }}"
+          >
+            {%- for variant in product.variants -%}
+              <option 
+                value="{{ variant.id }}"
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }}
+              </option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endif -%}
+
+      <button
+        class="custom-cart-recommendation__add-btn"
+        type="button"
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+        data-product-id="{{ product.id }}"
+      >
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>

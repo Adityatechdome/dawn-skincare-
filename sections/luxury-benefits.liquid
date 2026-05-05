@@ -1,0 +1,231 @@
+<section class="luxury-benefits" style="--title-font: {{ section.settings.title_font_family }}; --title-size: {{ section.settings.title_font_size }}px; --desc-font: {{ section.settings.description_font_family }}; --desc-size: {{ section.settings.description_font_size }}px;">
+  <div class="benefits-header">
+    <h2>{{ section.settings.section_title }}</h2>
+  </div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">{{ section.settings.benefit_1_icon }}</div>
+      <h3>{{ section.settings.benefit_1_title }}</h3>
+      <p>{{ section.settings.benefit_1_desc }}</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">{{ section.settings.benefit_2_icon }}</div>
+      <h3>{{ section.settings.benefit_2_title }}</h3>
+      <p>{{ section.settings.benefit_2_desc }}</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">{{ section.settings.benefit_3_icon }}</div>
+      <h3>{{ section.settings.benefit_3_title }}</h3>
+      <p>{{ section.settings.benefit_3_desc }}</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">{{ section.settings.benefit_4_icon }}</div>
+      <h3>{{ section.settings.benefit_4_title }}</h3>
+      <p>{{ section.settings.benefit_4_desc }}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .luxury-benefits {
+    padding: 80px 56px;
+    background: #3D3158;
+  }
+
+  .benefits-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .benefits-header h2 {
+    font-family: "Italiana", serif;
+    font-size: 54px;
+    color: #D9BA82;
+    margin: 0;
+    letter-spacing: 0.08em;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .benefit-card {
+    background: rgba(248, 241, 231, 0.05);
+    border: 1px solid rgba(217, 186, 130, 0.2);
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  .benefit-card h3 {
+    font-family: var(--title-font, "Cormorant Garamond"), serif;
+    font-size: var(--title-size, 20px);
+    color: #D9BA82;
+    margin: 0 0 15px 0;
+  }
+
+  .benefit-card p {
+    font-family: var(--desc-font, "Inter"), sans-serif;
+    font-size: var(--desc-size, 14px);
+    color: #C8D4E3;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .luxury-benefits {
+      padding: 40px 20px;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits-header h2 {
+      font-size: 36px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Benefits",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Why Choose Dawn"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_icon",
+      "label": "Benefit 1 Icon",
+      "default": "✨"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Benefit 1 Title",
+      "default": "Premium Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_desc",
+      "label": "Benefit 1 Description",
+      "default": "Sourced from the finest botanical gardens worldwide"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_icon",
+      "label": "Benefit 2 Icon",
+      "default": "👑"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Benefit 2 Title",
+      "default": "Dermatologist Tested"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_desc",
+      "label": "Benefit 2 Description",
+      "default": "Approved by leading skincare experts"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_icon",
+      "label": "Benefit 3 Icon",
+      "default": "🌸"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Benefit 3 Title",
+      "default": "Cruelty Free"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_desc",
+      "label": "Benefit 3 Description",
+      "default": "Never tested on animals, always ethical"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_icon",
+      "label": "Benefit 4 Icon",
+      "default": "💎"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_title",
+      "label": "Benefit 4 Title",
+      "default": "Luxury Packaging"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_desc",
+      "label": "Benefit 4 Description",
+      "default": "Beautiful presentation perfect for gifting"
+    },
+    {
+      "type": "select",
+      "id": "title_font_family",
+      "label": "Title Font Family",
+      "options": [
+        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
+        { "value": "Italiana", "label": "Italiana" },
+        { "value": "Inter", "label": "Inter" }
+      ],
+      "default": "Cormorant Garamond"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "description_font_family",
+      "label": "Description Font Family",
+      "options": [
+        { "value": "Inter", "label": "Inter" },
+        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
+        { "value": "Italiana", "label": "Italiana" }
+      ],
+      "default": "Inter"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 14
+    }
+  ]
+}
+{% endschema %}

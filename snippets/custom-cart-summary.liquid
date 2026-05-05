@@ -1,0 +1,158 @@
+{%- comment -%}
+  Custom Cart Summary - Subtotal, checkout button, and continue shopping link
+{%- endcomment -%}
+
+<div class="custom-cart-summary">
+  {%- comment -%} Calculate total discount {%- endcomment -%}
+  {%- liquid
+    assign total_discount = 0
+    for item in cart.items
+      if item.original_price > item.final_price
+        assign item_discount = item.original_price | minus: item.final_price | times: item.quantity
+        assign total_discount = total_discount | plus: item_discount
+      elsif item.variant.compare_at_price > item.original_price
+        assign item_discount = item.variant.compare_at_price | minus: item.original_price | times: item.quantity
+        assign total_discount = total_discount | plus: item_discount
+      endif
+    endfor
+    
+    for discount in cart.cart_level_discount_applications
+      assign total_discount = total_discount | plus: discount.total_allocated_amount
+    endfor
+  -%}
+
+  {%- comment -%} Discounts Row {%- endcomment -%}
+  {%- if total_discount > 0 -%}
+    <div class="custom-cart-summary__row custom-cart-summary__discount">
+      <span class="custom-cart-summary__label">Discounts</span>
+      <span class="custom-cart-summary__value">-{{ total_discount | money }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Subtotal {%- endcomment -%}
+  <div class="custom-cart-summary__row custom-cart-summary__subtotal">
+    <span class="custom-cart-summary__label">Subtotal</span>
+    <text-component
+      ref="cartTotal"
+      value="{{ cart.total_price | money | strip_html }}"
+      class="custom-cart-summary__value"
+      data-cart-subtotal
+    >
+      {{ cart.total_price | money }}
+    </text-component>
+  </div>
+
+  {%- comment -%} Checkout Button {%- endcomment -%}
+  <div class="custom-cart-summary__actions">
+    <button
+      type="submit"
+      class="custom-cart-summary__checkout-btn"
+      name="checkout"
+      {% if cart == empty %}disabled{% endif %}
+      form="cart-form"
+    >
+      Checkout • {{ cart.total_price | money }}
+    </button>
+  </div>
+
+  {%- comment -%} Continue Shopping Link {%- endcomment -%}
+  <div class="custom-cart-summary__continue">
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="custom-cart-summary__continue-link"
+      on:click="cart-drawer-component/close"
+    >
+      continue shopping
+    </a>
+  </div>
+</div>
+
+{% stylesheet %}
+  .custom-cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .custom-cart-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .custom-cart-summary__discount {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .custom-cart-summary__discount .custom-cart-summary__label {
+    font-size: 15px;
+    color: #000;
+    font-weight: 400;
+  }
+
+  .custom-cart-summary__discount .custom-cart-summary__value {
+    font-size: 15px;
+    color: #000;
+    font-weight: 400;
+  }
+
+  .custom-cart-summary__label {
+    font-size: 16px;
+    color: #000;
+    font-weight: 600;
+  }
+
+  .custom-cart-summary__value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .custom-cart-summary__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .custom-cart-summary__checkout-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: #7c3aed;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-align: center;
+  }
+
+  .custom-cart-summary__checkout-btn:hover:not(:disabled) {
+    background: #6d28d9;
+  }
+
+  .custom-cart-summary__checkout-btn:disabled {
+    background: #e5e5e5;
+    color: #999;
+    cursor: not-allowed;
+  }
+
+  .custom-cart-summary__continue {
+    text-align: center;
+    padding-top: 4px;
+  }
+
+  .custom-cart-summary__continue-link {
+    font-size: 14px;
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .custom-cart-summary__continue-link:hover {
+    color: #666;
+  }
+{% endstylesheet %}

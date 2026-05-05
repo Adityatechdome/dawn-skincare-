@@ -1,0 +1,457 @@
+<section class="reviews-section">
+  <div class="reviews-container">
+    <h2 class="reviews-heading">Reviews & Rating</h2>
+
+    <div class="reviews-wrap">
+      <div class="swiper reviews-swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide review-card">
+              <div class="review-header">
+                <div class="review-avatar">
+                  {% if block.settings.avatar %}
+                    <img src="{{ block.settings.avatar | image_url: width: 100 }}" alt="{{ block.settings.name }}">
+                  {% else %}
+                    <div class="avatar-placeholder"></div>
+                  {% endif %}
+                </div>
+                <div class="review-info">
+                  <h4 class="review-name">{{ block.settings.name }}</h4>
+                  <p class="review-date">{{ block.settings.date }}</p>
+                </div>
+                <div class="review-rating">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_244_1007)">
+                    <path d="M6.30269 5.61181L1.42437 6.31909L1.33797 6.33668C1.20717 6.3714 1.08793 6.44022 0.992428 6.53609C0.896924 6.63197 0.828577 6.75148 0.794367 6.88241C0.760156 7.01335 0.761308 7.15101 0.797705 7.28136C0.834101 7.4117 0.904438 7.53004 1.00153 7.62431L4.53564 11.0644L3.7022 15.9236L3.69226 16.0077C3.68425 16.143 3.71234 16.2779 3.77365 16.3988C3.83496 16.5197 3.92729 16.622 4.04118 16.6955C4.15508 16.7689 4.28644 16.8108 4.42182 16.8167C4.55721 16.8227 4.69175 16.7926 4.81167 16.7295L9.17464 14.4356L13.5277 16.7295L13.6041 16.7647C13.7303 16.8144 13.8675 16.8296 14.0015 16.8088C14.1356 16.788 14.2617 16.732 14.3669 16.6464C14.4721 16.5607 14.5527 16.4487 14.6003 16.3217C14.6479 16.1947 14.6609 16.0573 14.6379 15.9236L13.8037 11.0644L17.3393 7.62355L17.399 7.55855C17.4842 7.45362 17.54 7.32798 17.5609 7.19443C17.5817 7.06089 17.5667 6.9242 17.5176 6.79831C17.4684 6.67241 17.3867 6.56181 17.2808 6.47776C17.175 6.39372 17.0487 6.33923 16.915 6.31986L12.0366 5.61181L9.85592 1.19226C9.79282 1.06422 9.69513 0.956388 9.57392 0.880987C9.4527 0.805587 9.3128 0.765625 9.17005 0.765625C9.0273 0.765625 8.88739 0.805587 8.76618 0.880987C8.64497 0.956388 8.54728 1.06422 8.48418 1.19226L6.30269 5.61181Z" fill="#FFB30F"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_244_1007">
+                    <rect width="18.3511" height="18.3511" fill="white"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+                  <span>{{ block.settings.rating }}</span>
+                </div>
+              </div>
+              <p class="review-text">{{ block.settings.review }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="reviews-pagination-wrapper">
+        <button class="pagination-btn pagination-prev-btn" aria-label="Previous">
+          <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_244_1047" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="23" height="23">
+            <rect width="22.6629" height="22.6629" fill="#B44D27"/>
+            </mask>
+            <g mask="url(#mask0_244_1047)">
+            <path d="M15.1084 20.7744L5.66553 11.3315L15.1084 1.88867L16.7845 3.56478L9.01774 11.3315L16.7845 19.0983L15.1084 20.7744Z" fill="#9D86DA"/>
+            </g>
+          </svg>
+        </button>
+        <div class="custom-pagination"></div>
+        <div class="swiper-pagination"></div>
+        <button class="pagination-btn pagination-next-btn" aria-label="Next">
+          <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_244_1063" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="0" width="24" height="23">
+            <rect width="22.6629" height="22.6629" transform="matrix(-1 0 0 1 22.6629 0)" fill="#B44D27"/>
+            </mask>
+            <g mask="url(#mask0_244_1063)">
+            <path d="M7.55447 20.7744L16.9973 11.3315L7.55447 1.88867L5.87836 3.56478L13.6451 11.3315L5.87836 19.0983L7.55447 20.7744Z" fill="#9D86DA"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+
+      <div class="review-btn swiper-button-prev">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_244_995" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="40">
+          <rect width="40" height="40" fill="#B44D27"/>
+          </mask>
+          <g mask="url(#mask0_244_995)">
+          <path d="M26.6672 36.6673L10.0005 20.0007L26.6672 3.33398L29.6255 6.29232L15.9172 20.0007L29.6255 33.709L26.6672 36.6673Z" fill="#737373"/>
+          </g>
+        </svg>
+      </div>
+      <div class="review-btn swiper-button-next">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_244_1043" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="40">
+          <rect width="40" height="40" transform="matrix(-1 0 0 1 40 0)" fill="#B44D27"/>
+          </mask>
+          <g mask="url(#mask0_244_1043)">
+          <path d="M13.3328 36.6673L29.9995 20.0007L13.3328 3.33398L10.3745 6.29232L24.0828 20.0007L10.3745 33.709L13.3328 36.6673Z" fill="#737373"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .reviews-section {
+    background-color: #f2f3ec;
+    padding: 80px 30px;
+    text-align: center;
+  }
+
+  .reviews-heading {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 48px;
+    letter-spacing: 0%;
+    margin-bottom: 60px;
+    color: #222;
+  }
+
+  .reviews-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .reviews-swiper {
+    margin: 0 45px;
+  }
+
+  .swiper-controls {
+    position: relative;
+    margin: 60px 0 0;
+  }
+
+  .review-card {
+    background: #eeeae1;
+    border-radius: 18px;
+    padding: 22px;
+    text-align: left;
+    max-width: 320px;
+    min-height: 292px;
+    width: auto;
+    border: 0.92px solid #d0d5dd;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+
+  .review-avatar img {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .avatar-placeholder {
+    width: 37px;
+    height: 37px;
+    background-color: #ccc;
+    border-radius: 50%;
+  }
+
+  .review-info {
+    flex: 1;
+    margin-left: 12px;
+  }
+
+  .review-name {
+    margin: 0 0 3px;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18.35px;
+    letter-spacing: 0%;
+    color: #1d2939;
+  }
+
+  .review-date {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 12.45px;
+    line-height: 18.35px;
+    letter-spacing: 0%;
+    color: #667085;
+    margin: 0;
+  }
+
+  .review-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .review-rating span {
+    font-family: Poppins;
+    font-weight: 600;
+    color: #1d2939;
+    font-size: 14.68px;
+    line-height: 18.35px;
+    letter-spacing: 0%;
+  }
+
+  .review-text {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 12.45px;
+    line-height: 23.86px;
+    letter-spacing: 0%;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    color: #475467;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    content: unset;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 36px;
+    height: 36px;
+  }
+
+  .swiper-button-prev {
+    left: 0;
+  }
+
+  .swiper-button-next {
+    right: 0;
+  }
+
+  .reviews-pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .custom-pagination {
+    display: flex;
+    gap: 7px;
+    align-items: end;
+  }
+
+  .pagination-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #9a7cf7;
+    cursor: pointer;
+    padding: 4px 10px;
+    transition: color 0.3s ease;
+  }
+
+  .pagination-btn:hover {
+    color: #7c5fe0;
+  }
+  .pagination-number {
+    background-color: #dddcdf;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 12px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-number.active {
+    background-color: #9a7cf7;
+    color: #fff;
+  }
+
+  .pagination-dots {
+    color: #dddcdf;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  @media (max-width: 600px){
+    .reviews-section{
+      padding: 80px 0 50px;
+    }
+
+    .reviews-heading{
+      font-size: 30px;
+      margin: 0 0 60px;
+    }
+
+    .reviews-swiper{
+      margin: 0 45px;
+    }
+
+    .review-card{
+      max-width: unset;
+    }
+
+    .pagination-btn{
+      display:none;
+    }
+
+    .reviews-pagination-wrapper{
+      margin: 45px 0 0;
+    }
+
+    .swiper-pagination-bullet{
+      width: 11px;
+      height: 11px;
+      background: #d2d2d2ff;
+    }
+
+    .swiper-pagination-bullet-active{
+      background: #9D86DA;
+    }
+  }
+</style>
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    const isMobile = window.innerWidth < 600;
+
+    const swiper = new Swiper('.reviews-swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+      loop: false,
+      navigation: {
+        nextEl: '.review-btn.swiper-button-next',
+        prevEl: '.review-btn.swiper-button-prev',
+      },
+      pagination: isMobile
+        ? {
+            el: '.swiper-pagination',
+            clickable: true,
+          }
+        : false,
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        600: { slidesPerView: 'auto' },
+      },
+      on: {
+        init: function () {
+          if (!isMobile) {
+            createCustomPagination(this);
+            updateCustomPagination(this);
+          }
+        },
+        slideChange: function () {
+          if (!isMobile) updateCustomPagination(this);
+        },
+      },
+    });
+
+    if (!isMobile) {
+      const prevBtn = document.querySelector('.pagination-prev-btn');
+      const nextBtn = document.querySelector('.pagination-next-btn');
+
+      prevBtn?.addEventListener('click', () => swiper.slidePrev());
+      nextBtn?.addEventListener('click', () => swiper.slideNext());
+    }
+
+    function createCustomPagination(swiper) {
+      const pagination = document.querySelector('.custom-pagination');
+      pagination.innerHTML = '';
+      for (let i = 0; i < swiper.slides.length; i++) {
+        const btn = document.createElement('button');
+        btn.classList.add('pagination-number');
+        btn.textContent = i + 1;
+        btn.addEventListener('click', () => swiper.slideTo(i));
+        pagination.appendChild(btn);
+      }
+    }
+
+    function updateCustomPagination(swiper) {
+      const pagination = document.querySelector('.custom-pagination');
+      const total = swiper.slides.length;
+      const current = swiper.activeIndex + 1;
+      pagination.innerHTML = '';
+
+      const visibleCount = 3;
+      for (let i = 1; i <= Math.min(visibleCount, total); i++) {
+        const btn = document.createElement('button');
+        btn.classList.add('pagination-number');
+        btn.textContent = i;
+        if (i === current) btn.classList.add('active');
+        btn.addEventListener('click', () => swiper.slideTo(i - 1));
+        pagination.appendChild(btn);
+      }
+
+      if (total > visibleCount + 1) {
+        const dots = document.createElement('span');
+        dots.classList.add('pagination-dots');
+        let dot = `<svg width="5" height="5" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="2.5" cy="2.5" r="2.5" fill="#DDDCDF"/>
+        </svg>`;
+        dots.innerHTML = dot.repeat(3);
+        pagination.appendChild(dots);
+
+        const lastBtn = document.createElement('button');
+        lastBtn.classList.add('pagination-number');
+        lastBtn.textContent = total;
+        if (current === total) lastBtn.classList.add('active');
+        lastBtn.addEventListener('click', () => swiper.slideTo(total - 1));
+        pagination.appendChild(lastBtn);
+      }
+    }
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": "Reviews & Ratings",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Customer Avatar"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer Name",
+          "default": "Aspen Siphron"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Review Date",
+          "default": "May 12, 2024"
+        },
+        {
+          "type": "text",
+          "id": "rating",
+          "label": "Rating (e.g. 4.9)",
+          "default": "4.9"
+        },
+        {
+          "type": "textarea",
+          "id": "review",
+          "label": "Review Text",
+          "default": "I've been using Nature’s Best Vitamin C 1000 mg tablets for six months, and the results are fantastic. My immune system feels stronger—I haven’t had a single cold this flu season. I’ve also noticed a boost in my energy levels throughout the day."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews & Ratings",
+      "category": "Testimonials"
+    }
+  ]
+}
+{% endschema %}

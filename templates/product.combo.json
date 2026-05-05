@@ -1,0 +1,514 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 1,
+            "large_first_image": true,
+            "icons_style": "none",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 44,
+            "aspect_ratio": "1",
+            "constrain_to_viewport": false,
+            "media_fit": "cover",
+            "media_radius": 0,
+            "extend_media": true,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "custom",
+            "custom_width": 90,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 12,
+            "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 16,
+            "padding-block-end": 36,
+            "padding-inline-start": 12,
+            "padding-inline-end": 12
+          },
+          "blocks": {
+            "text_tefwj7": {
+              "type": "text",
+              "name": "t:names.title",
+              "settings": {
+                "text": "<h1>{{ closest.product.title }}</h1>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "reviews": {
+              "type": "review",
+              "settings": {
+                "stars_style": "shaded",
+                "show_number": true,
+                "rating_color": "primary",
+                "type_preset": "paragraph",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "price_a7krng": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": true,
+                "show_tax_info": true,
+                "type_preset": "h4",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_gXMUag": {
+              "type": "text",
+              "name": "Product description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": true,
+                "alignment": "left",
+                "padding-block-start": 12,
+                "padding-block-end": 24,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": false,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "text_tefwj7",
+            "reviews",
+            "price_a7krng",
+            "text_gXMUag",
+            "variant_picker_R3rGDr",
+            "buy_buttons_eYQEYi"
+          ]
+        }
+      },
+      "disabled": true,
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 8,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "combo_product_info_GdR4KD": {
+      "type": "combo-product-info",
+      "name": "Combo Product Info",
+      "settings": {}
+    },
+    "feature_icon_bar_X3DtPE": {
+      "type": "feature-icon-bar",
+      "blocks": {
+        "feature_93FT6V": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/eco.png",
+            "label": "Vegan Friendly"
+          }
+        },
+        "feature_aT7b3f": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/verified.png",
+            "label": "Expert Approved"
+          }
+        },
+        "feature_6caAbQ": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/science_off.png",
+            "label": "No Harsh Chemicals"
+          }
+        },
+        "feature_C6TcAJ": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/lab_research.png",
+            "label": "Clinically tested"
+          }
+        }
+      },
+      "block_order": [
+        "feature_93FT6V",
+        "feature_aT7b3f",
+        "feature_6caAbQ",
+        "feature_C6TcAJ"
+      ],
+      "name": "Feature Icons Bar",
+      "settings": {
+        "background_color": "#333333",
+        "text_color": "#ffffff"
+      }
+    },
+    "aplus_banners_jAP4yW": {
+      "type": "aplus-banners",
+      "name": "A+ Banners",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_banner_xrUMW9": {
+      "type": "custom-banner",
+      "disabled": true,
+      "custom_css": [
+        ".custom-banner {margin: 0 0 90px;}",
+        "@media (max-width: 600px) {.custom-banner {margin: 0 0 90px; }}"
+      ],
+      "name": "Custom Banner",
+      "settings": {}
+    },
+    "review_carousel_QxtCch": {
+      "type": "review-carousel",
+      "blocks": {
+        "review_APEWEA": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/user.png",
+            "name": "Aspen Siphron",
+            "date": "May 12, 2024",
+            "rating": "4.9",
+            "review": "I've been using Nature’s Best Vitamin C 1000 mg tablets for six months, and the results are fantastic. My immune system feels stronger—I haven’t had a single cold this flu season. I’ve also noticed a boost in my energy levels throughout the day."
+          }
+        },
+        "review_TpBwi4": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/profile-2.png",
+            "name": "Aspen Siphron",
+            "date": "May 12, 2024",
+            "rating": "4.9",
+            "review": "I've been using Nature’s Best Vitamin C 1000 mg tablets for six months, and the results are fantastic. My immune system feels stronger—I haven’t had a single cold this flu season. I’ve also noticed a boost in my energy levels throughout the day."
+          }
+        },
+        "review_nHhYAX": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/profile-1.png",
+            "name": "Aspen Siphron",
+            "date": "May 12, 2024",
+            "rating": "4.9",
+            "review": "I've been using Nature’s Best Vitamin C 1000 mg tablets for six months, and the results are fantastic. My immune system feels stronger—I haven’t had a single cold this flu season. I’ve also noticed a boost in my energy levels throughout the day."
+          }
+        },
+        "review_i6pFYb": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/profile-2.png",
+            "name": "Aspen Siphron",
+            "date": "May 12, 2024",
+            "rating": "4.9",
+            "review": "I've been using Nature’s Best Vitamin C 1000 mg tablets for six months, and the results are fantastic. My immune system feels stronger—I haven’t had a single cold this flu season. I’ve also noticed a boost in my energy levels throughout the day."
+          }
+        },
+        "review_tDeaTQ": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/profile-1.png",
+            "name": "Aspen Siphron",
+            "date": "May 12, 2024",
+            "rating": "4.9",
+            "review": "I've been using Nature’s Best Vitamin C 1000 mg tablets for six months, and the results are fantastic. My immune system feels stronger—I haven’t had a single cold this flu season. I’ve also noticed a boost in my energy levels throughout the day."
+          }
+        },
+        "review_94mFRk": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/profile-2.png",
+            "name": "Aspen Siphron",
+            "date": "May 12, 2024",
+            "rating": "4.9",
+            "review": "I've been using Nature’s Best Vitamin C 1000 mg tablets for six months, and the results are fantastic. My immune system feels stronger—I haven’t had a single cold this flu season. I’ve also noticed a boost in my energy levels throughout the day."
+          }
+        }
+      },
+      "block_order": [
+        "review_APEWEA",
+        "review_TpBwi4",
+        "review_nHhYAX",
+        "review_i6pFYb",
+        "review_tDeaTQ",
+        "review_94mFRk"
+      ],
+      "disabled": true,
+      "name": "Reviews & Ratings",
+      "settings": {}
+    },
+    "176527289237a0cad0": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_review_widget_4Ffz9D": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_4Ffz9D"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "dawn_faq_XewJhq": {
+      "type": "dawn-faq",
+      "blocks": {
+        "faq_item_m7UVUE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products suitable for all skin types?",
+            "answer": "Yes. Each formula is thoughtfully crafted with gentle, dermatologist-tested ingredients to ensure compatibility with all skin types — including sensitive, dry, combination, and mature skin."
+          }
+        },
+        "faq_item_N9Q4j7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products cruelty-free?",
+            "answer": "Absolutely. We are committed to ethical beauty and do not test on animals at any stage of product development."
+          }
+        },
+        "faq_item_af3Lht": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will I start seeing visible results?",
+            "answer": "Most customers begin to notice improved hydration, radiance, and smoother texture within 7–14 days of consistent use, while deeper benefits such as reduced fine lines and improved firmness become more noticeable over 4–6 weeks."
+          }
+        },
+        "faq_item_Vdtzht": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I layer your products with other skincare brands?",
+            "answer": "Yes. Our formulations are designed to integrate seamlessly into any routine. For optimal results, layer lighter serums first, followed by creams or oils, and always finish with sunscreen during daytime use."
+          }
+        },
+        "faq_item_tDGdmc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products safe for sensitive skin?",
+            "answer": "Yes. Our products are formulated with soothing botanical extracts, non-irritating actives, and balanced concentrations to minimize sensitivity. However, we always recommend a patch test when introducing a new product."
+          }
+        },
+        "faq_item_gk6kWc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the best order to follow in my skincare routine?",
+            "answer": "A refined and effective routine follows this sequence:\nCleanser → Toner → Serum → Treatment (Capsule creams/oils) → Moisturizer → Sunscreen (AM only)\nThis ensures your skin receives maximum nourishment and protection."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_m7UVUE",
+        "faq_item_N9Q4j7",
+        "faq_item_af3Lht",
+        "faq_item_Vdtzht",
+        "faq_item_tDGdmc",
+        "faq_item_gk6kWc"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "headline": "Want to know more?"
+      }
+    },
+    "feel_inspired_gallery_eTJwii": {
+      "type": "feel-inspired-gallery",
+      "name": "Feel Inspired Gallery",
+      "settings": {
+        "headline": "Feel Inspired",
+        "description": "Share how you use our products for a chance to be featured. Tag @lumera or upload your photo.",
+        "gallery_link": "",
+        "image_1": "shopify://shop_images/image1.png",
+        "image_2": "shopify://shop_images/image2.png",
+        "image_3": "shopify://shop_images/image3.png",
+        "image_4": "shopify://shop_images/image4.png",
+        "image_5": "shopify://shop_images/image5.png",
+        "image_6": "shopify://shop_images/image6.png",
+        "more_link": "shopify://pages/contact",
+        "more_label": "More"
+      }
+    },
+    "newsletter_banner_zKnCq8": {
+      "type": "newsletter-banner",
+      "disabled": true,
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/newsletter-bg.png",
+        "background_image_mobile": "shopify://shop_images/newsletter-bg-mobile.png",
+        "heading": "Stay Connected, Stay Informed",
+        "subheading": "Subscribe to receive exclusive updates, tips, and promotions straight to your inbox. Join our community for expert advice and resources to support your care journey.",
+        "placeholder": "Enter your email address here"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "combo_product_info_GdR4KD",
+    "feature_icon_bar_X3DtPE",
+    "aplus_banners_jAP4yW",
+    "custom_banner_xrUMW9",
+    "review_carousel_QxtCch",
+    "176527289237a0cad0",
+    "dawn_faq_XewJhq",
+    "feel_inspired_gallery_eTJwii",
+    "newsletter_banner_zKnCq8"
+  ]
+}

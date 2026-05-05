@@ -1,0 +1,250 @@
+{% schema %}
+{
+  "name": "Dawn Blog Carousel",
+  "tag": "section",
+  "class": "dawn-blog-carousel",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blogs",
+      "label": "Blog Collection"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Featured Products"
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Explore our curated selection of top-rated products, handpicked for quality and value."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dawn Blog Carousel",
+      "category": "Blogs"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="blog-carousel-section" data-section-id="{{ section.id }}">
+  <div class="blog-carousel-wrapper">
+    <div class="blog-carousel-content">
+      <h2 class="blog-carousel-headline">{{ section.settings.headline }}</h2>
+      <h3 class="blog-carousel-subheadline">{{ section.settings.subheadline }}</h3>
+      {% if section.settings.description %}
+        <p class="blog-carousel-description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+    <!-- Desktop Blog Swiper -->
+    <div class="swiper blog-swiper blog-swiper-desktop">
+      <div class="swiper-wrapper">
+        {% assign selected_blog = blogs[section.settings.blogs] %}
+        {% for article in selected_blog.articles %}
+          <div class="swiper-slide">
+            {% render 'card-blog-carousel', article: article %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-progress">
+        <div class="swiper-progress-bar" data-bar-id="desktop-{{ section.id }}"></div>
+      </div>
+    </div>
+
+    <!-- Mobile Blog Swiper -->
+    <div class="swiper blog-swiper blog-swiper-mobile">
+      <div class="swiper-wrapper">
+        {% assign selected_blog = blogs[section.settings.blogs] %}
+        {% for article in selected_blog.articles %}
+          <div class="swiper-slide">
+            {% render 'card-blog-carousel', article: article %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-progress">
+        <div class="swiper-progress-bar" data-bar-id="mobile-{{ section.id }}"></div>
+      </div>
+    </div>
+
+    <!-- All Products link -->
+    <div class="blog-carousel-link">
+      <a href="/blogs" class="all-products-link">
+        <span>All Blogs</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.blog-swiper-desktop, .blog-swiper-mobile').forEach((swiperEl) => {
+      const section = swiperEl.closest('[data-section-id]');
+      const sectionId = section?.dataset.sectionId;
+      const barId = swiperEl.classList.contains('blog-swiper-desktop') ? `desktop-${sectionId}` : `mobile-${sectionId}`;
+      const progressBar = swiperEl.querySelector(`[data-bar-id="${barId}"]`);
+
+      const swiper = new Swiper(swiperEl, {
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        on: {
+          init: function () {
+            updateProgress(this, progressBar);
+          },
+          slideChange: function () {
+            updateProgress(this, progressBar);
+          },
+        },
+      });
+
+      function updateProgress(swiperInstance, barEl) {
+        if (!swiperInstance || !barEl) return;
+
+        const swiperRect = swiperInstance.el.getBoundingClientRect();
+        const totalSlides = swiperInstance.slides.length;
+        let visibleSlides = 0;
+
+        swiperInstance.slides.forEach((slide) => {
+          const slideRect = slide.getBoundingClientRect();
+          const isFullyVisible =
+            slideRect.left >= swiperRect.left && slideRect.right <= swiperRect.right && slideRect.width > 0;
+
+          if (isFullyVisible) {
+            visibleSlides++;
+          }
+        });
+
+        // If all slides are visible, hide the progress bar
+        if (visibleSlides >= totalSlides) {
+          barEl.parentElement.style.display = 'none';
+          return;
+        }
+
+        barEl.parentElement.style.display = 'block';
+
+        // Calculate progress based on visible + scrolled slides
+        const viewedSlides = swiperInstance.activeIndex + visibleSlides;
+        const progressRatio = Math.min(viewedSlides / totalSlides, 1);
+        barEl.style.width = `${Math.round(progressRatio * 100)}%`;
+      }
+    });
+  });
+</script>
+<style>
+  .blog-carousel-section {
+    padding: 60px 32px;
+    background-color: #fff;
+  }
+
+  .blog-carousel-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .blog-carousel-content {
+    margin: 0 0 32px;
+    max-width: 850px;
+  }
+
+  .blog-carousel-headline {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    color: #333333;
+    margin: 0 0 5px;
+    text-transform: capitalize;
+  }
+
+  .blog-carousel-subheadline {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: 0%;
+    color: #333333;
+    margin: 0 0 20px;
+    text-transform: capitalize;
+  }
+
+  .blog-carousel-description {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    color: #333333;
+  }
+
+  .blog-swiper .swiper-wrapper {
+    display: flex;
+  }
+
+  .blog-swiper .swiper-slide {
+    width: auto;
+  }
+
+  .swiper-progress {
+    position: relative;
+    height: 2px;
+    background: #cdcbc0;
+    margin-top: 32px;
+    overflow: hidden;
+  }
+
+  .swiper-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #333333;
+    transition: width 0.3s ease;
+  }
+
+  .blog-carousel-link {
+    margin-top: 32px;
+    text-align: left;
+  }
+
+  .all-products-link {
+    display: flex;
+    justify-content:center;
+    gap: 10px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23.8px;
+    letter-spacing: -1%;
+    color: #000;
+  }
+
+  .all-products-link:hover{
+    color:#333;
+  }
+
+  .blog-swiper-mobile {
+    display: none !important;
+  }
+
+  @media (max-width: 600px) {
+    .blog-carousel-section {
+      padding: 40px 20px;
+    }
+
+    .blog-swiper-desktop {
+      display: none !important;
+    }
+    .blog-swiper-mobile {
+      display: block !important;
+    }
+  }
+</style>

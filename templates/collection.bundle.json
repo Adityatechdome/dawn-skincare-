@@ -1,0 +1,465 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "filters": {
+          "type": "filters",
+          "static": true,
+          "settings": {
+            "enable_filtering": true,
+            "filter_style": "horizontal",
+            "filter_width": "full-width",
+            "text_label_case": "default",
+            "show_swatch_label": false,
+            "show_filter_label": false,
+            "enable_sorting": true,
+            "enable_grid_density": false,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-4",
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40,
+            "facets_margin_bottom": 0,
+            "facets_margin_right": 0
+          },
+          "blocks": {}
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 0,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-2",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_68C7TN": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "square",
+                "border": "solid",
+                "border_width": 0,
+                "border_opacity": 0,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "group_JNegy4": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "space-between",
+                "gap": 4,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": false,
+                "color_scheme": "scheme-2",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 12,
+                "padding-block-end": 12,
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
+              },
+              "blocks": {
+                "group_i9KeQ7": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "space-between",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "flex-start",
+                    "gap": 8,
+                    "width": "fill",
+                    "custom_width": 75,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 75,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "product_title_X4Hxci": {
+                      "type": "product-title",
+                      "name": "t:names.product_title",
+                      "settings": {
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "h5",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "price_r3D933": {
+                      "type": "price",
+                      "name": "t:names.product_price",
+                      "settings": {
+                        "show_sale_price_first": true,
+                        "show_installments": false,
+                        "show_tax_info": false,
+                        "type_preset": "paragraph",
+                        "width": "fit-content",
+                        "alignment": "right",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "product_title_X4Hxci",
+                    "price_r3D933"
+                  ]
+                },
+                "group_HnURV7": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "flex-start",
+                    "gap": 12,
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 25,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "text_yYkK7E": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.metafields.descriptors.subtitle.value }}</p>",
+                        "width": "fit-content",
+                        "max_width": "none",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "var(--font-size--body-md)",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_yYkK7E"
+                  ]
+                }
+              },
+              "block_order": [
+                "group_i9KeQ7",
+                "group_HnURV7"
+              ]
+            }
+          },
+          "block_order": [
+            "product_card_gallery_68C7TN",
+            "group_JNegy4"
+          ]
+        }
+      },
+      "disabled": true,
+      "settings": {
+        "layout_type": "grid",
+        "product_card_size": "large",
+        "mobile_product_card_size": "small",
+        "enable_infinite_scroll": true,
+        "products_per_page": 24,
+        "product_grid_width": "full-width",
+        "full_width_on_mobile": true,
+        "columns_gap_horizontal": 1,
+        "columns_gap_vertical": 1,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 1
+      }
+    },
+    "video_feature_MfKPkW": {
+      "type": "video-feature",
+      "name": "Video Feature",
+      "settings": {
+        "cta_label": "DISCOVER ALL SKINCARE",
+        "cta_link": "shopify://pages/contact"
+      }
+    },
+    "skin_concern_RAQbL3": {
+      "type": "skin-concern",
+      "blocks": {
+        "concern_bundle_tWMhy9": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "ANTI-AGING",
+            "tag_img": "shopify://shop_images/Picture_concern-categ1_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "gentle-balancing-toner",
+            "product_3": "lucent-facial-concentrate"
+          }
+        },
+        "concern_bundle_jMYPBJ": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "WRINKLES",
+            "tag_img": "shopify://shop_images/Picture_concern-categ2_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "gentle-balancing-toner",
+            "product_3": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_bundle_MYDCJC": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "DULLNESS",
+            "tag_img": "shopify://shop_images/Picture_concern-categ3_png.png",
+            "product_1": "gentle-balancing-toner",
+            "product_2": "lucent-facial-concentrate",
+            "product_3": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_bundle_HV9bKz": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "HYDRATION",
+            "tag_img": "shopify://shop_images/Picture_concern-categ4_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "lucent-facial-concentrate",
+            "product_3": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_bundle_HyizL9": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "SKIN TONE",
+            "tag_img": "shopify://shop_images/Picture_concern-categ5_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "sublime-replenishing-night-masque",
+            "product_3": "lucent-facial-concentrate"
+          }
+        },
+        "concern_product_fTGWWL": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "cleanser",
+            "product_1": "cellular-protection-hand-cream"
+          }
+        },
+        "concern_product_fQgpdg": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "DAY CREAMS",
+            "product_1": "lucent-facial-concentrate"
+          }
+        },
+        "concern_product_EpFBqJ": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "EYE CARE",
+            "product_1": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_product_p4tF9b": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "SUN CARE",
+            "product_1": "gentle-balancing-toner"
+          }
+        },
+        "concern_product_AgXzmL": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "WRINKLES",
+            "product_1": "cellular-protection-hand-cream"
+          }
+        }
+      },
+      "block_order": [
+        "concern_bundle_tWMhy9",
+        "concern_bundle_jMYPBJ",
+        "concern_bundle_MYDCJC",
+        "concern_bundle_HV9bKz",
+        "concern_bundle_HyizL9",
+        "concern_product_fTGWWL",
+        "concern_product_fQgpdg",
+        "concern_product_EpFBqJ",
+        "concern_product_p4tF9b",
+        "concern_product_AgXzmL"
+      ],
+      "name": "Skin Concern Bundles",
+      "settings": {
+        "heading": "SKINCARE FAVORITES",
+        "tag_header": "WHAT’S YOUR SKIN CONCERNS?",
+        "cta_label": "SHOP ALL SKINCARE",
+        "cta_link": ""
+      }
+    },
+    "collection_product_carousel_6QwcGY": {
+      "type": "collection-product-carousel",
+      "name": "Collection Carousel",
+      "settings": {
+        "collection": "sample",
+        "headline": "Cleansers"
+      }
+    },
+    "collection_product_carousel_aak4Qy": {
+      "type": "collection-product-carousel",
+      "name": "Collection Carousel",
+      "settings": {
+        "collection": "sample",
+        "headline": "Day Creams"
+      }
+    },
+    "collection_product_carousel_A7Dmp9": {
+      "type": "collection-product-carousel",
+      "name": "Collection Carousel",
+      "settings": {
+        "collection": "sample",
+        "headline": "Eye Care"
+      }
+    },
+    "dawn_blog_carousel_ChtGNf": {
+      "type": "dawn-blog-carousel",
+      "name": "Dawn Blog Carousel",
+      "settings": {
+        "blogs": "skin-care",
+        "headline": "Insights into Health and Well-being",
+        "subheadline": "Our Journal",
+        "description": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "video_feature_MfKPkW",
+    "skin_concern_RAQbL3",
+    "collection_product_carousel_6QwcGY",
+    "collection_product_carousel_aak4Qy",
+    "collection_product_carousel_A7Dmp9",
+    "dawn_blog_carousel_ChtGNf"
+  ]
+}

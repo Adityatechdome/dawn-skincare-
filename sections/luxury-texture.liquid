@@ -1,0 +1,183 @@
+<section class="section texture">
+  <div class="section-eyebrow reveal">
+    <span>04 / Sensorium</span>
+  </div>
+  <h2 class="texture-headline reveal">
+    Softness <em style="font-family: {{ section.settings.em_font_family }}; font-size: {{ section.settings.em_font_size }}px; color: {{ section.settings.em_text_color }};">{{ section.settings.em_text }}</em>
+  </h2>
+  <p class="section-sub reveal" style="margin-bottom: 60px;">
+    Whipped at low temperature, layered like petit fours. The texture is the proof.
+  </p>
+  <div class="texture-grid">
+    <div class="texture-tile tall reveal ph">
+      <div class="cream-swirl">
+        <svg class="cream-swirl-glyph" viewBox="0 0 200 200" fill="none" stroke="#B07A82" stroke-width="1.2" opacity="0.5">
+          <path d="M100 100 m -60 0 a 60 60 0 1 1 120 0 a 50 50 0 1 0 -100 0 a 40 40 0 1 1 80 0 a 30 30 0 1 0 -60 0 a 20 20 0 1 1 40 0 a 10 10 0 1 0 -20 0" />
+          <path d="M100 100 m -75 -10 a 75 70 0 1 1 150 0" opacity="0.5" />
+        </svg>
+      </div>
+      <div class="ph-label" style="position: absolute;">
+        MACRO · CREAM SWIRL ON IVORY MARBLE<br/>
+        piped frosting peak — top-down — soft diffused light
+      </div>
+    </div>
+    <div class="texture-tile reveal ph" style="aspect-ratio: 4/5.4;">
+      <div style="
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse at 60% 40%, rgba(248,241,231,0.5), transparent 60%), linear-gradient(135deg, #E8C9CC, #C9B8DC)
+      "></div>
+      <div class="ph-label" style="position: absolute;">
+        MACRO · FINGERTIP PRESS<br/>
+        single fingertip dipping into cream — extreme close-up — backlit glow
+      </div>
+    </div>
+  </div>
+
+  <div class="texture-grid" style="margin-top: 24px;">
+    <div class="texture-tile wide reveal ph" style="grid-column: span 2; aspect-ratio: 16/7;">
+      <div style="
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse at 20% 50%, rgba(232,201,204,0.7), transparent 60%),
+          radial-gradient(ellipse at 80% 50%, rgba(228,217,238,0.7), transparent 60%),
+          linear-gradient(90deg, #FBF6EE, #F8F1E7)
+      "></div>
+      <div class="ph-label" style="position: absolute;">
+        EDITORIAL · CHEEK GLOW<br/>
+        model in profile — diffused window light — golden hour key — barely-there cream highlight on cheekbone
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .texture {
+    background: linear-gradient(180deg, #FBF6EE 0%, #E4D9EE 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .texture-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .texture-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .texture-tile {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .texture-tile.tall {
+    aspect-ratio: 4/5.4;
+  }
+
+  .texture-tile.wide {
+    aspect-ratio: 4/3.2;
+  }
+
+  .texture-headline {
+    font-family: "Italiana", serif;
+    font-size: clamp(48px, 7vw, 110px);
+    line-height: 0.9;
+    text-align: center;
+    margin: 80px auto 24px;
+    max-width: 16ch;
+    color: #2A2438;
+  }
+
+  .texture-headline em {
+    font-family: "Pinyon Script", cursive;
+    font-style: normal;
+    color: #5B4A7A;
+    font-size: 1.05em;
+  }
+
+  .cream-swirl {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(ellipse at 30% 40%, #E8C9CC 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, #C9B8DC 0%, transparent 50%),
+      linear-gradient(135deg, #FBF6EE, #EFE4D2);
+  }
+
+  .cream-swirl-glyph {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    animation: swirl-spin 24s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes swirl-spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .texture {
+      padding: 90px 24px;
+    }
+
+    .texture-headline {
+      margin-top: 60px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Texture",
+  "settings": [
+    {
+      "type": "text",
+      "id": "em_text",
+      "label": "Emphasized Text",
+      "default": "you can feel"
+    },
+    {
+      "type": "select",
+      "id": "em_font_family",
+      "label": "Emphasized Text Font",
+      "options": [
+        { "value": "Pinyon Script", "label": "Pinyon Script" },
+        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
+        { "value": "Italiana", "label": "Italiana" },
+        { "value": "Inter", "label": "Inter" }
+      ],
+      "default": "Pinyon Script"
+    },
+    {
+      "type": "range",
+      "id": "em_font_size",
+      "min": 20,
+      "max": 120,
+      "step": 1,
+      "unit": "px",
+      "label": "Emphasized Text Font Size",
+      "default": 105
+    },
+    {
+      "type": "color",
+      "id": "em_text_color",
+      "label": "Emphasized Text Color",
+      "default": "#5B4A7A"
+    }
+  ]
+}
+{% endschema %}

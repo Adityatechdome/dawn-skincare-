@@ -1,0 +1,98 @@
+{%- comment -%}
+  LEARNING NOTE:
+  This is a Shopify section file. Think of it as a reusable "block" you can add to pages.
+  - Everything between {%- and -%} is Liquid code (Shopify's templating language)
+  - Everything between {{ and }} is a variable (gets replaced with actual content)
+  - Everything else is HTML (the structure of the page)
+{%- endcomment -%}
+
+<nav class="luxury-nav">
+  {%- comment -%} This is the header with logo and menu {%- endcomment -%}
+  <div class="nav-container">
+    {%- comment -%} Logo / Brand name {%- endcomment -%}
+    <div class="nav-brand">
+      <h1>{{ section.settings.brand_name }}</h1>
+    </div>
+
+    {%- comment -%} Shopping cart icon (placeholder) {%- endcomment -%}
+    <div class="nav-cart">
+      <a href="/cart" title="Shopping Cart">
+        🛒 Cart
+      </a>
+    </div>
+  </div>
+</nav>
+
+{%- comment -%}
+  STYLING: This creates the visual appearance
+  Everything between <style> and </style> is CSS
+{%- endcomment -%}
+
+<style>
+  /* Navigation Container */
+  .luxury-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(248, 241, 231, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(184, 148, 90, 0.18);
+    padding: 18px 56px;
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Brand Name Styling */
+  .nav-brand h1 {
+    font-family: "Italiana", serif;
+    font-size: 22px;
+    letter-spacing: 0.32em;
+    color: #2A2438;
+    margin: 0;
+  }
+
+  /* Cart Link */
+  .nav-cart a {
+    color: #2A2438;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 480px) {
+    .luxury-nav {
+      padding: 12px 24px;
+    }
+
+    .nav-brand h1 {
+      font-size: 18px;
+    }
+  }
+</style>
+
+{%- comment -%}
+  SCHEMA: This tells Shopify what settings to show in the admin
+  Users can change these values without editing code!
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Luxury Navigation",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Dawn Skincare"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,91 @@
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="{{ routes.root_url }}">Home</a></li>
+
+    {% if template.name == 'collection' %}
+      <div>/</div>
+      <li aria-current="page">{{ collection.title }}</li>
+
+    {% elsif template.name == 'product' %}
+      {% if collection %}
+        <div>/</div>
+        <li>
+          <a href="{{ collection.url }}">{{ collection.title }}</a>
+        </li>
+      {% endif %}
+      <div>/</div>
+      <li aria-current="page">{{ product.title }}</li>
+
+    {% elsif template.name == 'blog' %}
+      <div>/</div>
+      <li aria-current="page">{{ blog.title }}</li>
+
+    {% elsif template.name == 'article' %}
+      <div>/</div>
+      <li>
+        <a href="{{ blog.url }}"> {{ blog.title }}</a>
+      </li>
+      <div>/</div>
+      <li aria-current="page">{{ article.title }}</li>
+
+    {% elsif template.name == 'page' %}
+      <div>/</div>
+      <li aria-current="page">{{ page.title }}</li>
+
+    {% elsif template.name == 'search' %}
+      <div>/</div>
+      <li aria-current="page">Search results</li>
+
+    {% else %}
+      <div>/</div>
+      <li aria-current="page">/ {{ page_title }}</li>
+    {% endif %}
+  </ul>
+</nav>
+<style>
+  .breadcrumb {
+    margin-bottom: 30px;
+  }
+
+  .breadcrumb ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 11px;
+    flex-wrap: wrap;
+    margin:0;
+  }
+
+  .breadcrumb li {
+    color: #666;
+  }
+
+  .breadcrumb a,
+  .breadcrumb div {
+    font-family: Jost;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #878787;
+  }
+
+  .breadcrumb li[aria-current='page'] {
+    font-family: Jost;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px){
+    .breadcrumb{
+      display:none;
+    }
+  }
+</style>

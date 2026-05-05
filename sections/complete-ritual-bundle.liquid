@@ -1,0 +1,224 @@
+{% schema %}
+{
+  "name": "Complete Ritual Bundle",
+  "tag": "section",
+  "class": "complete-ritual-bundle",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bundle_title",
+      "label": "Bundle Title"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "limit": 4
+    },
+    {
+      "type": "text",
+      "id": "bundle_label",
+      "label": "Bundle Label",
+      "default": "ADD TO CART"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Complete Ritual Bundle",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="ritual-bundle-section" data-section-id="{{ section.id }}">
+  <div class="ritual-wrapper">
+    <h3 class="ritual-bundle-title">{{ section.settings.bundle_title }}</h3>
+
+    <!-- Desktop Swiper -->
+    <div class="swiper dawn-swiper dawn-swiper-desktop">
+      <div class="swiper-wrapper">
+        {% assign total_price = 0 %}
+        {% for product in section.settings.products %}
+          {% assign variant = product.variants.first %}
+          {% assign total_price = total_price | plus: variant.price %}
+          <div class="swiper-slide">
+            {% render 'card-product-carousel', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-progress">
+        <div class="swiper-progress-bar" data-bar-id="desktop-{{ section.id }}"></div>
+      </div>
+    </div>
+
+    <!-- Mobile Grid (2x2) -->
+    <div class="dawn-grid dawn-grid-mobile">
+      {% for product in section.settings.products %}
+        <div class="grid-item">
+          {% render 'card-product-carousel', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% comment %} <!-- Bundle Summary -->
+    <div class="ritual-bundle-summary">
+      <form method="post" action="{{ routes.cart_add_url }}">
+        {% for product in section.settings.products %}
+          <input type="hidden" name="items[][id]" value="{{ product.variants.first.id }}">
+          <input type="hidden" name="items[][quantity]" value="1">
+        {% endfor %}
+        <button type="submit" class="ritual-bundle-button">
+          <span>{{ section.settings.bundle_label }}</span>
+          <span>{{ total_price | money_without_trailing_zeros }}</span>
+        </button>
+      </form>
+    </div> {% endcomment %}
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.ritual-bundle-section').forEach((section) => {
+      const sectionId = section.dataset.sectionId;
+      const desktopSwiperEl = section.querySelector('.dawn-swiper-desktop');
+      const desktopProgressBar = section.querySelector(`[data-bar-id="desktop-${sectionId}"]`);
+
+      if (desktopSwiperEl && window.innerWidth > 600) {
+        const desktopSwiper = new Swiper(desktopSwiperEl, {
+          slidesPerView: 'auto',
+          spaceBetween: 10,
+          on: {
+            init: function () {
+              updateProgress(this, desktopProgressBar);
+            },
+            slideChange: function () {
+              updateProgress(this, desktopProgressBar);
+            },
+          },
+        });
+      }
+
+      function updateProgress(swiperInstance, barEl) {
+        if (!swiperInstance || !barEl) return;
+
+        const swiperRect = swiperInstance.el.getBoundingClientRect();
+        const totalSlides = swiperInstance.slides.length;
+        let visibleSlides = 0;
+
+        swiperInstance.slides.forEach((slide) => {
+          const slideRect = slide.getBoundingClientRect();
+          const isFullyVisible =
+            slideRect.left >= swiperRect.left && slideRect.right <= swiperRect.right && slideRect.width > 0;
+
+          if (isFullyVisible) {
+            visibleSlides++;
+          }
+        });
+
+        // If all slides are visible, hide the progress bar
+        if (visibleSlides >= totalSlides) {
+          barEl.parentElement.style.display = 'none';
+          return;
+        }
+
+        barEl.parentElement.style.display = 'block';
+
+        // Calculate progress based on visible + scrolled slides
+        const viewedSlides = swiperInstance.activeIndex + visibleSlides;
+        const progressRatio = Math.min(viewedSlides / totalSlides, 1);
+        barEl.style.width = `${Math.round(progressRatio * 100)}%`;
+      }
+    });
+  });
+</script>
+<style>
+  .ritual-bundle-section {
+    padding: 0px 32px 60px;
+    {% if template == 'product' %}
+      padding: 60px 32px 60px;
+    {% endif %}
+    background-color: #eeeae1;
+  }
+
+  .ritual-wrapper {
+    max-width: 1340px;
+    margin: 0 auto;
+  }
+
+  .dawn-swiper .swiper-slide {
+    width: auto;
+  }
+
+  .ritual-bundle-title {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin: 0 0 40px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #1e1e1e;
+  }
+
+  .ritual-bundle-summary {
+    margin: 40px 0 0;
+  }
+  .ritual-bundle-summary form {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ritual-bundle-button {
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    width: 372px;
+    padding: 20px 23px;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .dawn-grid-mobile {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .ritual-bundle-section {
+      padding: 0px 20px 30px;
+      {% if template == 'product' %}
+      padding: 30px 20px 30px;
+    {% endif %}
+    }
+    .ritual-bundle-title {
+      font-size: 30px;
+      margin: 0 0 32px;
+      text-align: left;
+    }
+    .ritual-bundle-summary {
+      margin: 32px 0 0;
+    }
+
+    .dawn-swiper-desktop {
+      display: none !important;
+    }
+
+    .dawn-grid-mobile {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .grid-item {
+      display: flex;
+      justify-content: center;
+    }
+  }
+</style>

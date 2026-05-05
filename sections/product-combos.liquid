@@ -1,0 +1,668 @@
+<section class="product-combos-section">
+  <div class="product-combos-wrapper">
+    <!-- Header -->
+    <div class="product-combos-header">
+      <h2 class="product-combos-title">{{ section.settings.title }}</h2>
+      {% if section.settings.description %}
+        <p class="product-combos-description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Combos Grid -->
+    <div class="combos-grid" data-columns="{{ section.settings.columns }}">
+      {% comment %} Get products from the 'combo' collection {% endcomment %}
+      {% assign combo_products = collections.combo.products %}
+      
+      {% for product in combo_products %}
+        <div class="combo-card">
+          <a href="{{ product.url }}" class="combo-card-link">
+            <!-- Combo Images Carousel -->
+            <div class="combo-carousel-wrapper">
+              <div class="swiper combo-swiper" data-combo-id="{{ forloop.index }}">
+                <div class="swiper-wrapper">
+                  {% for image in product.images %}
+                    <div class="swiper-slide combo-image-slide">
+                      <img
+                        src="{{ image | image_url: width: 500 }}"
+                        alt="{{ product.title }} - Image {{ forloop.index }}"
+                        loading="lazy"
+                        width="500"
+                        height="500"
+                      >
+                    </div>
+                  {% endfor %}
+                  {% if product.images.size == 0 %}
+                    <div class="swiper-slide combo-image-slide">
+                      <div class="combo-image-placeholder">
+                        <svg
+                          width="60"
+                          height="60"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" fill="currentColor"/>
+                        </svg>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="combo-carousel-controls">
+                <button class="combo-carousel-btn combo-carousel-prev" data-combo-id="{{ forloop.index }}" type="button">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <div class="combo-carousel-dots" data-combo-id="{{ forloop.index }}"></div>
+                <button class="combo-carousel-btn combo-carousel-next" data-combo-id="{{ forloop.index }}" type="button">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Combo Header -->
+            <div class="combo-header">
+              <h3 class="combo-title">{{ product.title }}</h3>
+              
+              <!-- Products in Combo -->
+              {% assign combo_products_meta = product.metafields.custom.combo_products %}
+              {% if combo_products_meta %}
+                <div class="combo-products-list">
+                  {% if combo_products_meta.type == 'list.product_reference' %}
+                    {% for combo_product in combo_products_meta.value %}
+                      <div class="combo-product-item">
+                        <span class="combo-product-name">{{ combo_product.title }}</span>
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    {% assign combo_product_handles = combo_products_meta.value %}
+                    {% for handle in combo_product_handles %}
+                      {% assign combo_product = all_products[handle] %}
+                      {% if combo_product %}
+                        <div class="combo-product-item">
+                          <span class="combo-product-name">{{ combo_product.title }}</span>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              {% endif %}
+            
+            </div>
+          </a>
+
+          <!-- Combo Footer -->
+          <div class="combo-footer">
+            <div class="combo-pricing-wrapper">
+              <div class="combo-pricing">
+                <span class="combo-total-price">{{ product.price | money_without_trailing_zeros }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="combo-compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                  {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+                  <span class="combo-save-badge">Save {{ discount_percentage }}%</span>
+                {% endif %}
+              </div>
+            </div>
+            <form method="post" action="{{ routes.cart_add_url }}" class="combo-form">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="combo-add-btn" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+                {% if product.selected_or_first_available_variant.available %}
+                  Add Combo to Cart
+                {% else %}
+                  Sold Out
+                {% endif %}
+              </button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if combo_products.size == 0 %}
+      <div class="combos-empty">
+        <p>No products found in the 'combo' collection. Please add products to the collection.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swipers = {};
+
+    document.querySelectorAll('.combo-swiper').forEach((swiperEl) => {
+      const comboId = swiperEl.dataset.comboId;
+
+      const swiper = new Swiper(swiperEl, {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        navigation: {
+          nextEl: `.combo-carousel-next[data-combo-id="${comboId}"]`,
+          prevEl: `.combo-carousel-prev[data-combo-id="${comboId}"]`,
+        },
+        on: {
+          init: function () {
+            updateDots(this, comboId);
+          },
+          slideChange: function () {
+            updateDots(this, comboId);
+          },
+        },
+      });
+
+      swipers[comboId] = swiper;
+    });
+
+    function updateDots(swiper, comboId) {
+      const dotsContainer = document.querySelector(`.combo-carousel-dots[data-combo-id="${comboId}"]`);
+      if (!dotsContainer) return;
+
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < swiper.slides.length; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('combo-carousel-dot');
+        if (i === swiper.activeIndex) {
+          dot.classList.add('active');
+        }
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          swiper.slideTo(i);
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    // Prevent card link navigation when clicking carousel controls
+    document.querySelectorAll('.combo-carousel-btn, .combo-carousel-controls').forEach(element => {
+      element.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    });
+
+    // Handle combo form submissions
+    document.querySelectorAll('.combo-form').forEach(form => {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const button = this.querySelector('.combo-add-btn');
+        const originalText = button.textContent;
+        
+        if (button.disabled) return;
+        
+        button.textContent = 'Adding...';
+        button.disabled = true;
+        
+        try {
+          const formData = new FormData(this);
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData
+          });
+          
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.description || 'Failed to add to cart');
+          }
+          
+          const data = await response.json();
+          button.textContent = 'Added!';
+          
+          // Open cart drawer
+          const cartDrawer = document.querySelector('cart-drawer-component');
+          if (cartDrawer && typeof cartDrawer.open === 'function') {
+            cartDrawer.open();
+          }
+          
+          // Refresh cart content
+          await window.refreshCartContent();
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+          }, 2000);
+          
+        } catch (error) {
+          console.error('Error:', error);
+          button.textContent = error.message.includes('stock') ? 'Out of stock' : 'Error';
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+          }, 2000);
+        }
+      });
+    });
+  });
+</script>
+
+{% stylesheet %}
+  .product-combos-section {
+    padding: 60px 32px;
+    background-color: #eeeae1;
+  }
+
+  .product-combos-wrapper {
+    max-width: 1340px;
+    margin: 0 auto;
+  }
+
+  .product-combos-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .product-combos-title {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 48px;
+    letter-spacing: 0%;
+    margin: 0 0 16px 0;
+    color: #333333;
+  }
+
+  .product-combos-description {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -1%;
+    color: #666666;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .combos-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns, 2), 1fr);
+    gap: 32px;
+    width: 100%;
+    max-width: 1000px;
+    justify-items: center;
+    margin: 0 auto;
+  }
+
+  .combo-card {
+    display: flex;
+    flex-direction: column;
+    background: #EBEBEB;
+    padding: 12px;
+    border: 1px solid #C9CBCB;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+  }
+
+  .combo-card-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+  }
+
+  .combo-card:hover {
+    border-color: #d0d0d0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .combo-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .combo-swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .combo-image-slide {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+
+  .combo-image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .combo-card:hover .combo-image-slide img {
+    transform: scale(1.05);
+  }
+
+  .combo-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%);
+    color: #cccccc;
+  }
+
+  .combo-carousel-controls {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+  }
+
+  .combo-carousel-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .combo-carousel-btn:hover {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .combo-carousel-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .combo-carousel-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .combo-carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .combo-carousel-dot.active {
+    background-color: #ffffff;
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .combo-header {
+    padding: 15px;
+  }
+
+  .combo-title {
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -1%;
+    margin: 0 0 8px 0;
+    color: #333333;
+  }
+
+  .combo-products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 12px 0;
+  }
+
+  .combo-product-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .combo-product-item::before {
+    content: "•";
+    color: #333333;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .combo-product-name {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -1%;
+    color: #333333;
+  }
+
+  .combo-description {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -1%;
+    color: #666666;
+    margin: 0;
+  }
+
+  .combo-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 15px;
+    margin-top: auto;
+  }
+
+  .combo-pricing-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .combo-label {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -1%;
+    color: #666666;
+  }
+
+  .combo-pricing {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .combo-compare-price {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -1%;
+    color: #333;
+    text-decoration: line-through;
+  }
+
+  .combo-save-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #dcfae6;
+    color: #0f9d58;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    border-radius: 4px;
+  }
+
+  .combo-total-price {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -1%;
+    color: #333333;
+  }
+
+  .combo-form {
+    display: flex;
+    width: 100%;
+  }
+
+  .combo-add-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -1%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .combo-add-btn:hover {
+    background-color: #1a1a1a;
+    transform: translateY(-2px);
+  }
+
+  .combos-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999999;
+    font-family: Poppins;
+    font-size: 16px;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 1024px) {
+    .combos-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .product-combos-title {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .product-combos-section {
+      padding: 40px 16px;
+    }
+
+    .product-combos-header {
+      margin-bottom: 40px;
+    }
+
+    .combos-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .product-combos-title {
+      font-size: 28px;
+      line-height: 32px;
+      margin-bottom: 12px;
+    }
+
+    .product-combos-description {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .combo-card {
+      padding: 8px;
+    }
+
+    .combo-title {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .combo-product-item {
+      padding: 10px;
+    }
+
+    .combo-product-image {
+      width: 70px;
+      height: 70px;
+    }
+    .combo-products-list{
+      gap:0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Combos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Product Combos"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Curated product combinations for the perfect routine"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Maximum Products to Show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "info": "Shows products from the 'combo' collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Combos",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

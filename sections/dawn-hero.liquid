@@ -1,0 +1,390 @@
+{% schema %}
+{
+  "name": "Dawn Hero",
+  "tag": "section",
+  "class": "dawn-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_mobile",
+      "label": "Main Mobile Image"
+    },
+    {
+      "type": "textarea",
+      "id": "headline",
+      "label": "Headline",
+      "default": "The New <span>Skin Care</span>"
+    },
+    {
+      "type": "text",
+      "id": "magic_word",
+      "label": "Magic Word",
+      "default": "Essentials"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "image_picker",
+      "id": "corner_image_top_left",
+      "label": "Corner Image Top Left"
+    },
+    {
+      "type": "image_picker",
+      "id": "corner_image_bottom_right",
+      "label": "Corner Image Bottom Right"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image_bottle",
+      "label": "center Image bottle"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dawn Hero",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="dawn-hero-section">
+  <div class="hero-wrapper">
+    <div class="hero-search">
+      <form action="/search" method="get" role="search">
+        <div class="search-input-wrapper">
+          <span class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M21.5299 20.4686L16.8358 15.7755C18.1963 14.1421 18.8748 12.047 18.73 9.92618C18.5852 7.80531 17.6283 5.82191 16.0584 4.38859C14.4885 2.95526 12.4264 2.18235 10.3012 2.23065C8.1759 2.27895 6.15108 3.14474 4.64791 4.64791C3.14474 6.15108 2.27895 8.1759 2.23065 10.3012C2.18235 12.4264 2.95526 14.4885 4.38859 16.0584C5.82191 17.6283 7.80531 18.5852 9.92618 18.73C12.047 18.8748 14.1421 18.1963 15.7755 16.8358L20.4686 21.5299C20.5383 21.5995 20.621 21.6548 20.7121 21.6925C20.8031 21.7302 20.9007 21.7497 20.9992 21.7497C21.0978 21.7497 21.1954 21.7302 21.2864 21.6925C21.3775 21.6548 21.4602 21.5995 21.5299 21.5299C21.5995 21.4602 21.6548 21.3775 21.6925 21.2864C21.7302 21.1954 21.7497 21.0978 21.7497 20.9992C21.7497 20.9007 21.7302 20.8031 21.6925 20.7121C21.6548 20.621 21.5995 20.5383 21.5299 20.4686ZM3.74924 10.4992C3.74924 9.16421 4.14512 7.85917 4.88682 6.74914C5.62852 5.63911 6.68272 4.77394 7.91612 4.26305C9.14953 3.75216 10.5067 3.61849 11.8161 3.87894C13.1255 4.13939 14.3282 4.78226 15.2722 5.72627C16.2162 6.67027 16.8591 7.87301 17.1195 9.18238C17.38 10.4917 17.2463 11.849 16.7354 13.0824C16.2245 14.3158 15.3594 15.37 14.2493 16.1117C13.1393 16.8534 11.8343 17.2492 10.4992 17.2492C8.70964 17.2473 6.9939 16.5355 5.72846 15.27C4.46302 14.0046 3.75122 12.2888 3.74924 10.4992Z" fill="#85837D"/>
+            </svg>
+          </span>
+          <input
+            type="search"
+            name="q"
+            placeholder="Search"
+            class="search-input"
+            aria-label="Search"
+          >
+        </div>
+      </form>
+    </div>
+    {% if section.settings.corner_image_top_left %}
+      <img
+        src="{{ section.settings.corner_image_top_left | image_url: width: 800 }}"
+        class="corner-image top-left"
+        alt="Corner Image Top Left"
+      >
+    {% endif %}
+
+    {% if section.settings.corner_image_bottom_right %}
+      <img
+        src="{{ section.settings.corner_image_bottom_right | image_url: width: 800 }}"
+        class="corner-image bottom-right"
+        alt="Corner Image Bottom Right"
+      >
+    {% endif %}
+
+    {% if section.settings.center_image_bottle %}
+      <img
+        src="{{ section.settings.center_image_bottle | image_url: width: 800 }}"
+        class="model-image left"
+        alt="Model Left"
+      >
+    {% endif %}
+
+    <div class="hero-content">
+      <h2 class="hero-headline">{{ section.settings.headline }}</h2>
+      <p class="magic_word">{{ section.settings.magic_word }}</p>
+      {% if section.settings.main_image %}
+        <img
+          src="{{ section.settings.main_image | image_url: width: 2500 }}"
+          class="main-image hero-desktop"
+          alt="Main Product"
+        >
+      {% endif %}
+      {% if section.settings.main_image_mobile %}
+        <img
+          src="{{ section.settings.main_image_mobile | image_url: width: 2500 }}"
+          class="main-image-mobile hero-mobile"
+          alt="Main Product"
+        >
+      {% endif %}
+
+      <a href="{{ section.settings.cta_link }}" class="hero-cta">{{ section.settings.cta_label }}</a>
+    </div>
+  </div>
+</section>
+<style>
+  .dawn-hero-section {
+    position: relative;
+    background-color: #eeeae1;
+    padding: 20px 0 20px;
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-wrapper {
+    position: relative;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-headline {
+    color: #201e1c;
+    font-family: Valky;
+    font-size: 92px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 650px;
+    text-transform: capitalize;
+    margin: 0 auto;
+  }
+
+  .hero-headline span {
+    font-size: 150px;
+    letter-spacing: -3px;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    border-radius: 50px;
+    background: #1c1b19;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 21px 103px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    margin: 23px 0 0;
+  }
+  .hero-cta:after {
+    content: '';
+    border-radius: 50px;
+    border: 1px solid #1c1b19;
+    left: 0;
+    top: 10%;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 70px;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+  }
+
+  .magic_word {
+    margin: 0;
+    color: #201e1c;
+    font-family: Valky;
+    font-size: 92px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: inline-flex;
+    padding: 5px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background: #eeeae1;
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .main-image {
+    max-width: 1000px;
+    margin: -3% auto 0;
+    height: auto;
+  }
+
+  .corner-image {
+    position: absolute;
+    width: 600px;
+    height: auto;
+    z-index: 1;
+  }
+
+  .corner-image.top-left {
+    top: 0%;
+    left: 0;
+  }
+
+  .corner-image.bottom-right {
+    width: 500px;
+    bottom: 25%;
+    right: 0;
+  }
+
+  .model-image {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    z-index: 1;
+  }
+
+  .model-image.left {
+    top: 5%;
+    right: 25%;
+  }
+
+  .hero-search {
+    margin-bottom: 62px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-radius: 120px;
+    border: 1px solid rgba(28, 27, 25, 0.5);
+    width: 80vw;
+    max-width: 858px;
+    padding: 14px 16px;
+  }
+
+  .search-icon {
+    font-size: 18px;
+  }
+
+  .search-input {
+    background: transparent;
+    color: rgba(28, 27, 25, 0.5);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 100%;
+    padding: 0;
+  }
+
+  .hero-mobile {
+    display: none;
+  }
+
+  @media (max-width: 1000px) and (min-width: 601px) {
+    .corner-image.top-left,
+    .corner-image.bottom-right,
+    .model-image.left {
+      display: none;
+    }
+
+    .hero-headline {
+      font-size: 42.07px;
+      letter-spacing: 0%;
+      max-width: 300px;
+    }
+    .hero-headline span {
+      font-size: 68.59px;
+      letter-spacing: -2%;
+    }
+
+    .magic_word {
+      top: 22%;
+      font-size: 42px;
+    }
+
+    .main-image {
+      max-width: 600px;
+    }
+
+    .search-input-wrapper{
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .dawn-hero-section {
+      padding: 20px 0 14px;
+    }
+    .hero-mobile {
+      display: block;
+    }
+
+    .hero-desktop {
+      display: none;
+    }
+
+    .corner-image.top-left,
+    .corner-image.bottom-right,
+    .model-image.left {
+      display: none;
+    }
+
+    .hero-search {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .search-input-wrapper {
+      padding: 10px 15px;
+      width: 100%;
+    }
+
+    .hero-headline {
+      font-size: 42.07px;
+      letter-spacing: 0%;
+      max-width: 300px;
+    }
+
+    .hero-headline span {
+      font-size: 68.59px;
+      letter-spacing: -2%;
+    }
+
+    .magic_word {
+      font-size: 36.88px;
+      top: 30%;
+      padding: 2px 12px;
+    }
+
+    .main-image-mobile {
+      max-width: 90%;
+      margin: 0 auto;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-cta {
+      padding: 15px 103px;
+      font-size: 18px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      margin: 30px 0 0;
+    }
+
+    .hero-cta:after {
+      height: 50px;
+    }
+  }
+</style>

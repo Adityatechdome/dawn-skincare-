@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(shopify --version)",
+      "Bash(shopify theme *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "Bash(cd /tmp)",
+      "Bash(unzip -q \"C:/Users/AdityaJain/Downloads/bridgeton-handoff.zip\")",
+      "Bash(unzip -oq \"C:/Users/AdityaJain/Downloads/bridgeton-handoff.zip\")",
+      "Read(//c/Users/AdityaJain/Downloads/**)",
+      "Bash(unzip -q bridgeton-handoff.zip)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Initial commit: Luxury skincare Shopify landing page with 12 modular sections *)"
+    ]
+  }
+}

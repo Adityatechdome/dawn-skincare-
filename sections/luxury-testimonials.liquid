@@ -1,0 +1,238 @@
+<section class="luxury-testimonials">
+  <div class="testimonials-header">
+    <h2>{{ section.settings.section_title }}</h2>
+  </div>
+
+  <div class="testimonials-grid" id="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-text">"{{ section.settings.testimonial_1_text }}"</p>
+      <p class="testimonial-author">{{ section.settings.testimonial_1_author }}</p>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"{{ section.settings.testimonial_2_text }}"</p>
+      <p class="testimonial-author">{{ section.settings.testimonial_2_author }}</p>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"{{ section.settings.testimonial_3_text }}"</p>
+      <p class="testimonial-author">{{ section.settings.testimonial_3_author }}</p>
+    </div>
+  </div>
+
+  <div class="carousel-controls" id="carousel-controls" style="display: none;">
+    <button class="carousel-btn prev" onclick="prevTestimonial()">❮</button>
+    <button class="carousel-btn next" onclick="nextTestimonial()">❯</button>
+  </div>
+</section>
+
+<style>
+  .luxury-testimonials {
+    padding: 80px 56px;
+    background: #F8F1E7;
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .testimonials-header h2 {
+    font-family: "Italiana", serif;
+    font-size: 54px;
+    color: #2A2438;
+    margin: 0;
+    letter-spacing: 0.08em;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1320px;
+    margin: 0 auto 40px;
+  }
+
+  .testimonial-card {
+    background: white;
+    border: 1px solid rgba(184, 148, 90, 0.2);
+    padding: 40px;
+    box-sizing: border-box;
+  }
+
+  .testimonial-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 24px;
+    color: #2A2438;
+    margin: 0 0 30px 0;
+    line-height: 1.8;
+  }
+
+  .testimonial-author {
+    font-family: "Pinyon Script", cursive;
+    font-size: 24px;
+    color: #B8945A;
+    margin: 0;
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .carousel-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #B8945A;
+    background: transparent;
+    color: #B8945A;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-btn:hover {
+    background: #B8945A;
+    color: white;
+  }
+
+  @media (max-width: 1000px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .luxury-testimonials {
+      padding: 40px 20px;
+    }
+
+    .testimonials-header h2 {
+      font-size: 36px;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      overflow: hidden;
+      margin: 0 auto 40px;
+    }
+
+    .testimonial-card {
+      padding: 20px;
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+    }
+
+    #carousel-controls {
+      display: flex !important;
+    }
+
+    .testimonials-grid {
+      display: flex;
+      overflow: hidden;
+    }
+  }
+</style>
+
+<script>
+  let currentTestimonial = 0;
+  let isMobileCarousel = false;
+
+  function initTestimonials() {
+    const isMobile = window.innerWidth <= 768;
+    const grid = document.getElementById('testimonials-grid');
+    const controls = document.getElementById('carousel-controls');
+
+    if (isMobile) {
+      isMobileCarousel = true;
+      grid.style.display = 'flex';
+      controls.style.display = 'flex';
+    } else {
+      isMobileCarousel = false;
+      grid.style.display = 'grid';
+      controls.style.display = 'none';
+    }
+  }
+
+  function showTestimonial(n) {
+    const grid = document.getElementById('testimonials-grid');
+    const testimonials = grid.querySelectorAll('.testimonial-card');
+
+    if (isMobileCarousel) {
+      currentTestimonial = Math.max(0, Math.min(n, testimonials.length - 1));
+      grid.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+    }
+  }
+
+  function nextTestimonial() {
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    if (isMobileCarousel) {
+      currentTestimonial = Math.min(currentTestimonial + 1, testimonials.length - 1);
+      showTestimonial(currentTestimonial);
+    }
+  }
+
+  function prevTestimonial() {
+    if (isMobileCarousel) {
+      currentTestimonial = Math.max(currentTestimonial - 1, 0);
+      showTestimonial(currentTestimonial);
+    }
+  }
+
+  initTestimonials();
+  window.addEventListener('resize', initTestimonials);
+</script>
+
+{% schema %}
+{
+  "name": "Luxury Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_text",
+      "label": "Testimonial 1 Text",
+      "default": "The best skincare I have ever used. My skin has never looked better!"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_author",
+      "label": "Testimonial 1 Author",
+      "default": "Sarah Johnson"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_text",
+      "label": "Testimonial 2 Text",
+      "default": "Absolutely luxurious and effective. Worth every penny!"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_author",
+      "label": "Testimonial 2 Author",
+      "default": "Emily Williams"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_text",
+      "label": "Testimonial 3 Text",
+      "default": "I love the elegant packaging and the wonderful results. Highly recommended!"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_author",
+      "label": "Testimonial 3 Author",
+      "default": "Jessica Brown"
+    }
+  ]
+}
+{% endschema %}

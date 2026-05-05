@@ -1,0 +1,162 @@
+{% schema %}
+{
+  "name": "Feature Icons Bar",
+  "tag": "section",
+  "class": "feature-icons-bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Vegan Friendly"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Icons Bar",
+      "category": "Image",
+      "blocks": [{ "type": "feature" }, { "type": "feature" }, { "type": "feature" }, { "type": "feature" }]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="feature-icons-wrapper" style="background-color: {{ section.settings.background_color }};">
+  <div class="feature-icons-container marquee-track">
+    {% for block in section.blocks %}
+      <div class="feature-item" {{ block.shopify_attributes }}>
+        {% if block.settings.icon %}
+          <img
+            src="{{ block.settings.icon | image_url: width: 48 }}"
+            alt="{{ block.settings.label }}"
+            loading="lazy"
+            class="feature-icon"
+          >
+        {% endif %}
+        <span class="feature-label" style="color: {{ section.settings.text_color }};">
+          {{ block.settings.label }}
+        </span>
+      </div>
+    {% endfor %}
+    <!-- duplicate content for seamless loop -->
+    {% for block in section.blocks %}
+      <div class="feature-item duplicate" {{ block.shopify_attributes }}>
+        {% if block.settings.icon %}
+          <img
+            src="{{ block.settings.icon | image_url: width: 48 }}"
+            alt="{{ block.settings.label }}"
+            loading="lazy"
+            class="feature-icon"
+          >
+        {% endif %}
+        <span class="feature-label" style="color: {{ section.settings.text_color }};">
+          {{ block.settings.label }}
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .feature-icons-wrapper {
+    width: 100%;
+    padding: 18px 0;
+    overflow: hidden; /* prevent scrollbars during marquee */
+  }
+
+  .feature-icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .feature-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .feature-label {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  @media (max-width: 1000px) {
+    .feature-icons-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .feature-icons-container {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 40px;
+      width: max-content;
+      animation: marquee-scroll 25s linear infinite;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    .feature-item {
+      flex-direction: column;
+      gap: 5px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+    }
+
+    .feature-label {
+      font-size: 12px;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  }
+</style>

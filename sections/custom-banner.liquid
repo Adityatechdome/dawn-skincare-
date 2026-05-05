@@ -1,0 +1,106 @@
+<section class="custom-banner">
+  <div class="banner-wrapper">
+    {% if section.settings.banner_image != blank or section.settings.banner_image_moible != blank%}
+      <img
+        src="{{ section.settings.banner_image | image_url: width: 2000 }}"
+        alt="{{ section.settings.banner_heading | escape }}"
+        class="banner-image image_desktop"
+        loading="lazy"
+      >
+      <img
+        src="{{ section.settings.banner_image_mobile | image_url: width: 1200 }}"
+        alt="{{ section.settings.banner_heading | escape }}"
+        class="banner-image image_mobile"
+        loading="lazy"
+      >
+    {% else %}
+      <div class="banner-placeholder">
+        <span>Banner Placeholder</span>
+      </div>
+    {% endif %}
+  </div>
+</section>
+<style>
+  .custom-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #f2f3ec;
+  }
+
+  .banner-wrapper {
+    position: relative;
+    text-align: center;
+  }
+
+  .banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .banner-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 570px;
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 142px;
+    line-height: 142px;
+    letter-spacing: 0%;
+    color: #b0b0a8;
+  }
+
+  .banner-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .image_mobile{
+    display:none;
+  }
+
+  @media (max-width: 600px) {
+    .banner-placeholder {
+      font-size: 50px;
+      line-height: 100%;
+    }
+
+    .image_desktop{
+      display:none;
+    }
+
+    .image_mobile{
+      display:block;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_mobile",
+      "label": "Banner Image Mobile"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,293 @@
+{%- comment -%}
+  Custom Cart Drawer - Matches the design from the provided screenshots
+{%- endcomment -%}
+
+<script
+  src="{{ 'cart-drawer.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<script
+  src="{{ 'custom-cart-drawer.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<cart-drawer-component
+  class="custom-cart-drawer"
+  {{ block.shopify_attributes }}
+  {% if settings.auto_open_cart_drawer %}
+    auto-open
+  {% endif %}
+>
+  <button
+    class="button header-actions__action button-unstyled icon cart-icon"
+    on:click="/open"
+    aria-haspopup="dialog"
+    aria-label="{{ 'accessibility.cart' | t }}"
+    aria-describedby="cart-bubble-text"
+    data-testid="cart-drawer-trigger"
+  >
+    <img
+      src="https://cdn.shopify.com/s/files/1/0949/2319/4641/files/shopping-cart.png?v=1767806122&width=35&format=webp"
+      srcset="https://cdn.shopify.com/s/files/1/0949/2319/4641/files/shopping-cart.png?v=1767806122&width=35&format=webp 1x, https://cdn.shopify.com/s/files/1/0949/2319/4641/files/shopping-cart.png?v=1767806122&width=70&format=webp 2x"
+      alt="Cart"
+      loading="lazy"
+      decoding="async"
+      width="35"
+      height="35"
+    >
+  </button>
+
+  <dialog
+    ref="dialog"
+    class="custom-cart-drawer__dialog dialog-modal dialog-drawer dialog-drawer--right{% if cart.empty? %} custom-cart-drawer--empty{% endif %}"
+    aria-labelledby="{% if cart.empty? %}custom-cart-drawer-heading-empty{% else %}custom-cart-drawer-heading{% endif %}"
+    scroll-lock
+  >
+    <div class="custom-cart-drawer__inner">
+      <cart-items-component
+        class="cart-items-component"
+        data-section-id="{{ section.id }}"
+      >
+        {%- comment -%} Header Section {%- endcomment -%}
+        <div class="custom-cart-drawer__header">
+          <h2
+            class="custom-cart-drawer__heading"
+            id="{% if cart.empty? %}custom-cart-drawer-heading-empty{% else %}custom-cart-drawer-heading{% endif %}"
+          >
+            My cart • {{ cart.item_count }}
+          </h2>
+
+          <button
+            ref="closeButton"
+            on:click="cart-drawer-component/close"
+            class="button custom-cart-drawer__close-button button-unstyled"
+            aria-label="{{ 'actions.close_dialog' | t }}"
+          >
+            <span class="svg-wrapper">
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </span>
+          </button>
+        </div>
+
+        {%- if cart.empty? -%}
+          {%- comment -%} Empty Cart State {%- endcomment -%}
+          <div class="custom-cart-drawer__content custom-cart-drawer__content--empty">
+            <div class="custom-cart-drawer__empty-state">
+              <div class="custom-cart-drawer__empty-icon">
+                {{- 'icon-cart.svg' | inline_asset_content -}}
+              </div>
+              <p class="custom-cart-drawer__empty-text">Your cart is empty</p>
+            </div>
+          </div>
+        {%- else -%}
+          {%- comment -%} Cart Content {%- endcomment -%}
+          <div class="custom-cart-drawer__content">
+            <div class="custom-cart-drawer__items">
+              {% render 'custom-cart-products' %}
+              <div class="custom-cart-drawer__recommendations">
+                  {% for block in section.blocks %}
+                    {% if block.type == 'recommendations' %}
+                      {% render 'custom-cart-recommendations', block: block %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+            </div>
+
+            {%- comment -%} Product Recommendations Carousel {%- endcomment -%}
+            
+
+            {%- comment -%} Summary Section {%- endcomment -%}
+            <div class="custom-cart-drawer__summary">
+              {% render 'custom-cart-summary' %}
+            </div>
+          </div>
+        {%- endif -%}
+      </cart-items-component>
+    </div>
+  </dialog>
+</cart-drawer-component>
+
+{% stylesheet %}
+  .custom-cart-drawer .button-unstyled {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .custom-cart-drawer .icon.cart-icon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+  }
+
+  .custom-cart-drawer .icon.cart-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .custom-cart-drawer__dialog {
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+    max-height: 100vh;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-cart-drawer__dialog {
+      max-width: 480px;
+    }
+  }
+
+  /* Override the slideInRight animation for proper right-side entry */
+  .custom-cart-drawer__dialog[open] {
+    animation: customSlideInRight var(--animation-speed, 0.3s) var(--animation-easing, ease) forwards;
+  }
+
+  .custom-cart-drawer__dialog.dialog-closing {
+    animation: customSlideOutRight var(--animation-speed, 0.3s) var(--animation-easing, ease) forwards;
+  }
+
+  @keyframes customSlideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes customSlideOutRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  .custom-cart-drawer__inner {
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .custom-cart-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .custom-cart-drawer__heading {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    color: #000;
+  }
+
+  .custom-cart-drawer__close-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .custom-cart-drawer__close-button .svg-wrapper {
+    width: 24px;
+    height: 24px;
+  }
+
+  .custom-cart-drawer__content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .custom-cart-drawer__content--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custom-cart-drawer__empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+  }
+
+  .custom-cart-drawer__empty-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .custom-cart-drawer__empty-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .custom-cart-drawer__empty-text {
+    font-size: 18px;
+    color: #000;
+    margin: 0;
+  }
+
+  .custom-cart-drawer__items {
+    flex: 1;
+    padding: 24px 8px;
+    overflow-y: auto;
+  }
+
+  .custom-cart-drawer__recommendations {
+    padding: 0 8px;
+  }
+
+  .custom-cart-drawer__summary {
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    padding: 24px;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
+{% endstylesheet %}

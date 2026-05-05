@@ -1,0 +1,523 @@
+{{ 'dawn-product-info.css' | asset_url | stylesheet_tag }}
+
+<script>
+  // Set product-specific discount code from metafield
+  {% if product.metafields.custom.bogo_discount_code %}
+    window.productDiscountCode = '{{ product.metafields.custom.bogo_discount_code }}';
+    console.log('Product:', '{{ product.title }}');
+    console.log('Discount code from metafield:', window.productDiscountCode);
+  {% else %}
+    window.productDiscountCode = 'Off10';
+    console.log('Product:', '{{ product.title }}');
+    console.log('No metafield found, using default:', window.productDiscountCode);
+  {% endif %}
+</script>
+
+{% schema %}
+{
+  "name": "Combo Product Info",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review_card",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "profile_image",
+          "label": "Profile Image"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "Two years in, and this watch still looks as fresh as the day I unboxed it. I wear it every day, taking calls while working 300 feet in the air."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Combo Product Info",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="product-info-section">
+  <div class="product-info-container">
+    {% render 'breadcrumbs' %}
+    <div class="product-layout">
+      <div class="product-images">
+        
+        <!-- Desktop carousel -->
+        <div class="desktop-gallery">
+          <div class="carousel-container">
+            <div class="carousel-thumbnails-wrapper">
+              <div class="carousel-thumbnails">
+                {% for image in product.images %}
+                  <div class="carousel-thumb {% if forloop.first %}active{% endif %}" data-image="{{ image | image_url: width: 800 }}" data-index="{{ forloop.index0 }}">
+                    <img
+                      src="{{ image | image_url: width: 100 }}"
+                      alt="{{ image.alt | escape }}"
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                      decoding="async"
+                      fetchpriority="low"
+                    >
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="carousel-main">
+              {{
+                product.images.first
+                | image_url: width: 800
+                | image_tag:
+                  id: 'carouselMainImage',
+                  alt: product.title,
+                  loading: 'eager',
+                  decoding: 'async',
+                  fetchpriority: 'high',
+                  widths: '320, 480, 640, 800',
+                  sizes: '(min-width: 901px) 50vw, 100vw',
+                  width: 800,
+                  height: 800
+              }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile gallery -->
+        <div class="mobile-gallery">
+          <div class="mobile-carousel-container">
+            <div class="carousel-main" id="mobileCarouselMain">
+              {{
+                product.images.first
+                | image_url: width: 800
+                | image_tag:
+                  id: 'mobileCarouselMainImage',
+                  alt: product.title,
+                  loading: 'eager',
+                  decoding: 'async',
+                  fetchpriority: 'high',
+                  widths: '320, 480, 640, 800',
+                  sizes: '100vw',
+                  width: 800,
+                  height: 800
+              }}
+            </div>
+            <div class="carousel-thumbnails-wrapper-mobile">
+              <div class="carousel-thumbnails-mobile">
+                {% for image in product.images %}
+                  <div class="carousel-thumb-mobile {% if forloop.first %}active{% endif %}" data-image="{{ image | image_url: width: 800 }}" data-index="{{ forloop.index0 }}">
+                    <img
+                      src="{{ image | image_url: width: 100 }}"
+                      alt="{{ image.alt | escape }}"
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                      decoding="async"
+                      fetchpriority="low"
+                    >
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-content">
+        <div class="top-content">
+          <div class="title-wrap">
+            <h1 class="product-title">{{ product.title }}</h1>
+            <div class="title-icons">
+              <button class="share-icon" id="shareButton" aria-label="Share product">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.5002 14.9991C15.9999 14.9989 15.5047 15.0992 15.0438 15.2939C14.5829 15.4885 14.1658 15.7737 13.8171 16.1325L9.49522 13.3547C9.83519 12.4829 9.83519 11.5153 9.49522 10.6435L13.8171 7.86566C14.4663 8.53065 15.3392 8.9309 16.2668 8.98881C17.1943 9.04672 18.1103 8.75818 18.8371 8.17911C19.564 7.60004 20.0499 6.77171 20.2007 5.85471C20.3516 4.93771 20.1565 3.99737 19.6534 3.21601C19.1503 2.43464 18.375 1.86792 17.4778 1.6257C16.5806 1.38349 15.6254 1.48306 14.7975 1.90509C13.9695 2.32712 13.3277 3.04155 12.9966 3.90987C12.6655 4.77819 12.6685 5.73854 13.0052 6.60472L8.68335 9.38253C8.16291 8.84823 7.49496 8.48126 6.76489 8.32854C6.03481 8.17583 5.27578 8.24429 4.58481 8.52519C3.89385 8.80609 3.30235 9.28666 2.88592 9.90547C2.4695 10.5243 2.24707 11.2532 2.24707 11.9991C2.24707 12.745 2.4695 13.4739 2.88592 14.0927C3.30235 14.7115 3.89385 15.1921 4.58481 15.473C5.27578 15.7539 6.03481 15.8224 6.76489 15.6697C7.49496 15.5169 8.16291 15.15 8.68335 14.6157L13.0052 17.3935C12.7157 18.1402 12.6729 18.96 12.883 19.7329C13.0931 20.5058 13.5451 21.191 14.1729 21.6884C14.8006 22.1858 15.5712 22.4691 16.3716 22.4968C17.172 22.5246 17.9603 22.2954 18.621 21.8427C19.2818 21.3901 19.7802 20.7378 20.0434 19.9813C20.3066 19.2249 20.3206 18.4041 20.0836 17.6391C19.8465 16.8741 19.3707 16.205 18.7259 15.73C18.0811 15.2549 17.3011 14.9988 16.5002 14.9991ZM16.5002 2.9991C16.9452 2.9991 17.3802 3.13106 17.7503 3.37829C18.1203 3.62552 18.4087 3.97693 18.579 4.38806C18.7493 4.79919 18.7938 5.25159 18.707 5.68805C18.6202 6.12451 18.4059 6.52542 18.0912 6.84009C17.7765 7.15476 17.3756 7.36905 16.9392 7.45586C16.5027 7.54268 16.0503 7.49812 15.6392 7.32783C15.2281 7.15753 14.8767 6.86914 14.6294 6.49913C14.3822 6.12912 14.2502 5.69411 14.2502 5.2491C14.2502 4.65236 14.4873 4.08006 14.9092 3.65811C15.3312 3.23615 15.9035 2.9991 16.5002 2.9991ZM6.00023 14.2491C5.55522 14.2491 5.1202 14.1171 4.75019 13.8699C4.38018 13.6227 4.09179 13.2713 3.9215 12.8601C3.7512 12.449 3.70664 11.9966 3.79346 11.5601C3.88028 11.1237 4.09457 10.7228 4.40924 10.4081C4.7239 10.0934 5.12481 9.87915 5.56127 9.79233C5.99773 9.70551 6.45013 9.75007 6.86126 9.92037C7.2724 10.0907 7.6238 10.3791 7.87103 10.7491C8.11827 11.1191 8.25023 11.5541 8.25023 11.9991C8.25023 12.5958 8.01317 13.1681 7.59122 13.5901C7.16926 14.012 6.59696 14.2491 6.00023 14.2491ZM16.5002 20.9991C16.0552 20.9991 15.6202 20.8671 15.2502 20.6199C14.8802 20.3727 14.5918 20.0213 14.4215 19.6101C14.2512 19.199 14.2066 18.7466 14.2935 18.3101C14.3803 17.8737 14.5946 17.4728 14.9092 17.1581C15.2239 16.8434 15.6248 16.6291 16.0613 16.5423C16.4977 16.4555 16.9501 16.5001 17.3613 16.6704C17.7724 16.8407 18.1238 17.1291 18.371 17.4991C18.6183 17.8691 18.7502 18.3041 18.7502 18.7491C18.7502 19.3458 18.5132 19.9181 18.0912 20.3401C17.6693 20.762 17.097 20.9991 16.5002 20.9991Z" fill="#1E1E1E"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Combo Products List -->
+          {% assign combo_products_meta = product.metafields.custom.combo_products %}
+          {% if combo_products_meta %}
+            <div class="combo-contains-section">
+              <p class="combo-contains-label">Combo contains:</p>
+              <div class="combo-products-list">
+                {% if combo_products_meta.type == 'list.product_reference' %}
+                  {% for combo_product in combo_products_meta.value %}
+                    <div class="combo-product-item">
+                      <span class="combo-product-name">{{ combo_product.title }}</span>
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  {% assign combo_product_handles = combo_products_meta.value %}
+                  {% for handle in combo_product_handles %}
+                    {% assign combo_product = all_products[handle] %}
+                    {% if combo_product %}
+                      <div class="combo-product-item">
+                        <span class="combo-product-name">{{ combo_product.title }}</span>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+          
+          {% comment %} <p class="product-size">{{ product.selected_or_first_available_variant.title }}</p> {% endcomment %}
+
+          <div
+            class="rating-wrap"
+            role="button"
+            tabindex="0"
+            aria-label="Go to reviews"
+          >
+            {% comment %} <div class="product-rating">
+              <svg width="70" height="14" viewBox="0 0 70 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 0L8.5716 4.83688H13.6574L9.5429 7.82624L11.1145 12.6631L7 9.67376L2.8855 12.6631L4.4571 7.82624L0.342604 4.83688H5.4284L7 0Z" fill="#1E1E1E"/>
+                <path d="M21 0L22.5716 4.83688H27.6574L23.5429 7.82624L25.1145 12.6631L21 9.67376L16.8855 12.6631L18.4571 7.82624L14.3426 4.83688H19.4284L21 0Z" fill="#1E1E1E"/>
+                <path d="M35 0L36.5716 4.83688H41.6574L37.5429 7.82624L39.1145 12.6631L35 9.67376L30.8855 12.6631L32.4571 7.82624L28.3426 4.83688H33.4284L35 0Z" fill="#1E1E1E"/>
+                <path d="M49 0L50.5716 4.83688H55.6574L51.5429 7.82624L53.1145 12.6631L49 9.67376L44.8855 12.6631L46.4571 7.82624L42.3426 4.83688H47.4284L49 0Z" fill="#1E1E1E"/>
+                <path d="M63 0L64.5716 4.83688H69.6574L65.5429 7.82624L67.1145 12.6631L63 9.67376L58.8855 12.6631L60.4571 7.82624L56.3426 4.83688H61.4284L63 0Z" fill="#D9D9D9"/>
+              </svg>
+              <span class="review-count">4.1 | 3 reviews</span>
+            </div> {% endcomment %}
+            <!-- Judge.me Star Rating -->
+            <div class="rating_stars">
+                      {%- assign rating = product.metafields.reviews.rating.value -%}
+                      {%- for i in (1..5) -%}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fbcd0a">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      {%- endfor -%}
+                    </div>
+                    <span class="rating_text">
+                      {{- rating }} | {{ product.metafields.reviews.rating_count }} Reviews</span
+                    >
+            {% if product.metafields.custom.promo_message %}
+              <div class="promo-banner">{{ product.metafields.custom.promo_message }}</div>
+            {% endif %}
+          </div>
+          <div class="product-prices">
+            <p class="price">{{ product.price | money_without_trailing_zeros }}</p>
+            <p class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</p>
+            {% if product.compare_at_price > product.price %}
+              {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+              <span class="pdp-save-badge">Save {{ discount_percentage }}%</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="description-content">
+          <h3 class="key-features-title">Key Features</h3>
+          <ul class="key-features-list">
+            {% for feature in product.metafields.custom.key_features.value %}
+              <li>{{ feature }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="product-form-content">
+          <!-- Buy 1 vs Buy 1 Get 1 Free Selector -->
+          {% if section.blocks.size > 0 %}
+            <div class="pdp-review-module">
+              {% for block in section.blocks %}
+                <div class="pdp-review-card{% if block.settings.profile_image == blank %} no-image{% endif %}" {{ block.shopify_attributes }}>
+                  {% if block.settings.profile_image != blank %}
+                    <div class="pdp-review-avatar">
+                      {{
+                        block.settings.profile_image
+                        | image_url: width: 160
+                        | image_tag:
+                          alt: 'Review image',
+                          loading: 'lazy',
+                          widths: '80, 120, 160',
+                          sizes: '(max-width: 750px) 72px, 96px',
+                          width: 96,
+                          height: 96
+                      }}
+                    </div>
+                  {% endif %}
+                  <div class="pdp-review-content-card">
+                    <p class="pdp-review-title">What customer say</p>
+                    {% if block.settings.review_text != blank %}
+                      <p class="pdp-review-copy">&ldquo;{{ block.settings.review_text }}&rdquo;</p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="action-container">
+            <form method="post" action="{{ routes.cart_add_url }}" class="product-form combo-product-form" id="product-form" data-product-id="{{ product.id }}">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="add-to-cart">Add to cart</button>
+              <div class="bar-icon">
+                <svg width="1" height="48" viewBox="0 0 1 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="1" height="48" rx="0.5" fill="#1A432E"/>
+                </svg>
+              </div>
+              
+
+              <div class="quantity-box">
+                <button type="button" class="qty-btn minus">−</button>
+                <input type="number" name="quantity" value="1" min="1" class="quantity-input" id="quantity-input">
+                <button type="button" class="qty-btn plus">+</button>
+              </div>
+            </form>
+            
+            <button type="button" class="buy-now-btn" id="buyNowBtn">Buy Now</button>
+            
+            <div class="guarantee-badge-wrap">
+              <div class="assurance-badge trust-badge-item">
+                <span class="trust-badge-icon">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0949/2319/4641/files/secure_payment.png?v=1773825545"
+                    alt=""
+                    width="52"
+                    height="52"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </span>
+                <span class="trust-badge-text">Secure checkout with the payments methods</span>
+              </div>
+              <div class="guarantee-badge trust-badge-item">
+                <span class="trust-badge-icon">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0949/2319/4641/files/free-shipping.png?v=1773825611"
+                    alt=""
+                    width="52"
+                    height="52"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </span>
+                <span class="trust-badge-text">Easy Returns</span>
+              </div>
+              <div class="guarantee-badge trust-badge-item">
+                <span class="trust-badge-icon">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0949/2319/4641/files/date_time.png?v=1773833437"
+                    alt=""
+                    width="52"
+                    height="52"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </span>
+                <span class="trust-badge-text">Ships in 3-4 business days</span>
+              </div>
+            </div>
+          </div>
+          <ul class="details-button-group">
+            <li class="details-button active" data-tab="details">Details</li>
+            <li class="details-button" data-tab="packaging">How to Use</li>
+            <li class="details-button" data-tab="shipping">Ingredients </li>
+            <li class="details-button" data-tab="faq">FAQ</li>
+          </ul>
+        </div>
+
+        <div class="product-tabs">
+          <div class="tab-content" id="details-tab">
+            <div class="product-description">{{ product.description }}</div>
+            <span class="read-toggle">Read more.</span>
+          </div>
+
+          <div class="tab-content" id="packaging-tab" style="display:none;">
+              <ul>
+                {% for instruction in product.metafields.custom.usage_instructions.value %}
+                  <li>{{ instruction }}</li>
+                {% endfor %}
+              </ul>
+          </div>
+
+          <div class="tab-content" id="shipping-tab" style="display:none;">
+              <ul class="ingredients-list">
+                {% for ingredient in product.metafields.custom.ingredients.value %}
+                  <li>{{ ingredient }}</li>
+                {% endfor %}
+              </ul>
+              <span class="ingredients-read-toggle">Read more..</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky Add to Cart Bar -->
+<div class="sticky-atc-bar" id="stickyAtcBar">
+  <div class="sticky-atc-container">
+    <div class="sticky-atc-product-info">
+      <img src="{{ product.images.first | image_url: width: 60 }}" alt="{{ product.title }}" class="sticky-atc-image">
+      <div class="sticky-atc-details">
+        <h3 class="sticky-atc-title">{{ product.title }}</h3>
+        <p
+          class="sticky-atc-price"
+          data-base-price="{{ product.price }}"
+          data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+          data-money-format="{{ shop.money_format | escape }}"
+        >
+          {{ product.price | money_without_trailing_zeros }}
+        </p>
+      </div>
+    </div>
+    <div class="sticky-atc-actions">
+      <div class="sticky-quantity-box">
+        <button type="button" class="sticky-qty-btn minus">−</button>
+        <input type="number" value="1" min="1" class="sticky-quantity-input" id="sticky-quantity-input">
+        <button type="button" class="sticky-qty-btn plus">+</button>
+      </div>
+      <button type="button" class="sticky-add-to-cart" id="stickyAddToCart">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Description read more toggle
+    const toggleBtn = document.querySelector('.read-toggle');
+    const description = document.querySelector('.product-description');
+
+    if (toggleBtn && description) {
+      toggleBtn.addEventListener('click', function () {
+        description.classList.toggle('expanded');
+        toggleBtn.textContent = description.classList.contains('expanded') ? 'Read less..' : 'Read more..';
+      });
+    }
+
+    // Ingredients read more toggle
+    const ingredientsToggleBtn = document.querySelector('.ingredients-read-toggle');
+    const ingredientsList = document.querySelector('.ingredients-list');
+
+    if (ingredientsToggleBtn && ingredientsList) {
+      ingredientsToggleBtn.addEventListener('click', function () {
+        ingredientsList.classList.toggle('expanded');
+        ingredientsToggleBtn.textContent = ingredientsList.classList.contains('expanded') ? 'Read less..' : 'Read more..';
+      });
+    }
+
+    // Combo Product Form Handler
+    const comboProductForm = document.querySelector('.combo-product-form');
+    if (comboProductForm) {
+      comboProductForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton ? submitButton.textContent : 'Add to cart';
+        const quantityInput = this.querySelector('.quantity-input');
+        const variantId = this.querySelector('input[name="id"]').value;
+        const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+        
+        if (submitButton) {
+          submitButton.textContent = 'Adding...';
+          submitButton.disabled = true;
+        }
+        
+        try {
+          const formData = new FormData();
+          formData.append('id', variantId);
+          formData.append('quantity', quantity);
+          
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData
+          });
+          
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.description || 'Failed to add to cart');
+          }
+          
+          if (submitButton) {
+            submitButton.textContent = 'Added!';
+          }
+          
+          // Open cart drawer
+          const cartDrawer = document.querySelector('cart-drawer-component');
+          if (cartDrawer && typeof cartDrawer.open === 'function') {
+            cartDrawer.open();
+          }
+          
+          // Refresh cart content
+          if (typeof window.refreshCartContent === 'function') {
+            await window.refreshCartContent();
+          }
+          
+          // Reset button after 2 seconds
+          setTimeout(() => {
+            if (submitButton) {
+              submitButton.textContent = originalText;
+              submitButton.disabled = false;
+            }
+          }, 2000);
+          
+        } catch (error) {
+          console.error('Add to cart error:', error);
+          if (submitButton) {
+            submitButton.textContent = error.message.includes('stock') ? 'Out of stock' : 'Error';
+            setTimeout(() => {
+              submitButton.textContent = originalText;
+              submitButton.disabled = false;
+            }, 2000);
+          }
+        }
+      });
+    }
+
+    // Buy Now Button Handler
+    const buyNowBtn = document.getElementById('buyNowBtn');
+    if (buyNowBtn) {
+      buyNowBtn.addEventListener('click', async function() {
+        const comboProductForm = document.querySelector('.combo-product-form');
+        if (!comboProductForm) return;
+        
+        const originalText = this.textContent;
+        const quantityInput = comboProductForm.querySelector('.quantity-input');
+        const variantId = comboProductForm.querySelector('input[name="id"]').value;
+        const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+        
+        this.textContent = 'Processing...';
+        this.disabled = true;
+        
+        try {
+          const formData = new FormData();
+          formData.append('id', variantId);
+          formData.append('quantity', quantity);
+          
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData
+          });
+          
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.description || 'Failed to add to cart');
+          }
+          
+          // Redirect to checkout
+          window.location.href = '/checkout';
+          
+        } catch (error) {
+          console.error('Buy now error:', error);
+          this.textContent = error.message.includes('stock') ? 'Out of stock' : 'Error';
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.disabled = false;
+          }, 2000);
+        }
+      });
+    }
+  });
+</script>
+<script src="{{ 'dawn-product-info.js' | asset_url }}" defer></script>

@@ -1,0 +1,408 @@
+<section class="shop-by-category-section" data-section-id="{{ section.id }}">
+  <div class="shop-by-category-wrapper">
+    <!-- Header -->
+    <div class="shop-by-category-header">
+      <h2 class="shop-by-category-title">{{ section.settings.title }}</h2>
+      {% if section.settings.description %}
+        <p class="shop-by-category-description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Categories Swiper -->
+    <div class="swiper category-swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% assign collection = collections[block.settings.collection] %}
+          {% if collection %}
+            <div class="swiper-slide">
+              <a href="{{ collection.url }}" class="category-card">
+                <div class="category-image-wrapper">
+                  {% if block.settings.image %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 500
+                      | image_tag:
+                        alt: block.settings.title,
+                        loading: 'lazy',
+                        class: 'category-image',
+                        widths: '240, 320, 434, 500',
+                        sizes: '(max-width: 640px) 67vw, (max-width: 1024px) 50vw, 434px',
+                        width: block.settings.image.width,
+                        height: block.settings.image.height
+                    }}
+                  {% elsif collection.image %}
+                    {{
+                      collection.image
+                      | image_url: width: 500
+                      | image_tag:
+                        alt: collection.title,
+                        loading: 'lazy',
+                        class: 'category-image',
+                        widths: '240, 320, 434, 500',
+                        sizes: '(max-width: 640px) 67vw, (max-width: 1024px) 50vw, 434px',
+                        width: collection.image.width,
+                        height: collection.image.height
+                    }}
+                  {% else %}
+                    <div class="category-image-placeholder">
+                      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" fill="currentColor"/>
+                      </svg>
+                    </div>
+                  {% endif %}
+                  <div class="category-overlay"></div>
+                </div>
+
+                <div class="category-content">
+                  <h3 class="category-title">{{ block.settings.title | default: collection.title }}</h3>
+                  {% if block.settings.subtitle %}
+                    <p class="category-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="swiper-progress">
+      <div class="swiper-progress-bar" data-bar-id="category-{{ section.id }}"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiperEl = document.querySelector('[data-section-id="{{ section.id }}"] .category-swiper');
+    if (!swiperEl) return;
+
+    const progressBar = document.querySelector('[data-bar-id="category-{{ section.id }}"]');
+
+    const swiper = new Swiper(swiperEl, {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      breakpoints: {
+        320: {
+          slidesPerView: 1.5,
+          spaceBetween: 16
+        },
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 24
+        }
+      },
+      on: {
+        init: function () {
+          updateProgress(this, progressBar);
+        },
+        slideChange: function () {
+          updateProgress(this, progressBar);
+        },
+        resize: function () {
+          updateProgress(this, progressBar);
+        }
+      }
+    });
+
+    function updateProgress(swiperInstance, barEl) {
+      if (!swiperInstance || !barEl) return;
+
+      const swiperRect = swiperInstance.el.getBoundingClientRect();
+      const totalSlides = swiperInstance.slides.length;
+      let visibleSlides = 0;
+
+      swiperInstance.slides.forEach((slide) => {
+        const slideRect = slide.getBoundingClientRect();
+        const isFullyVisible =
+          slideRect.left >= swiperRect.left && slideRect.right <= swiperRect.right && slideRect.width > 0;
+
+        if (isFullyVisible) {
+          visibleSlides++;
+        }
+      });
+
+      // If all slides are visible, hide the progress bar
+      if (visibleSlides >= totalSlides) {
+        barEl.parentElement.style.display = 'none';
+        return;
+      }
+
+      barEl.parentElement.style.display = 'block';
+
+      // Calculate progress based on visible + scrolled slides
+      const viewedSlides = swiperInstance.activeIndex + visibleSlides;
+      const progressRatio = Math.min(viewedSlides / totalSlides, 1);
+      barEl.style.width = `${Math.round(progressRatio * 100)}%`;
+    }
+  });
+</script>
+
+{% stylesheet %}
+  .shop-by-category-section {
+    padding: 60px 32px;
+    background-color: #eeeae1;
+  }
+
+  .shop-by-category-wrapper {
+    max-width: 1340px;
+    margin: 0 auto;
+  }
+
+  .shop-by-category-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .shop-by-category-title {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 48px;
+    letter-spacing: 0%;
+    margin: 0 0 16px 0;
+    color: #333333;
+  }
+
+  .shop-by-category-description {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -1%;
+    color: #666666;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .category-swiper {
+    overflow: visible;
+  }
+
+  .category-swiper .swiper-wrapper {
+    display: flex;
+  }
+
+  .category-swiper .swiper-slide {
+    width: auto;
+    height: auto;
+  }
+
+  .swiper-progress {
+    position: relative;
+    height: 2px;
+    background: #cdcbc0;
+    margin-top: 32px;
+    overflow: hidden;
+  }
+
+  .swiper-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #333333;
+    transition: width 0.3s ease;
+  }
+
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    width: 100%;
+  }
+
+  .category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .category-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+
+  .category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .category-card:hover .category-image {
+    transform: scale(1.08);
+  }
+
+  .category-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%);
+    color: #cccccc;
+  }
+
+  .category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+  }
+
+  .category-card:hover .category-overlay {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .category-content {
+    padding: 15px 16px;
+    background-color: #333;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .category-title {
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -1%;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  .category-subtitle {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -1%;
+    color: #fff;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 1024px) {
+    .shop-by-category-title {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .shop-by-category-section {
+      padding: 40px 16px;
+    }
+
+    .shop-by-category-header {
+      margin-bottom: 20px;
+    }
+
+    .shop-by-category-title {
+      font-size: 28px;
+      line-height: 32px;
+      margin-bottom: 12px;
+    }
+
+    .shop-by-category-description {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .category-content {
+      padding: 10px;
+    }
+
+    .category-title {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    .swiper-progress {
+      margin-top: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Browse our collections by category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "info": "Leave empty to use collection title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Category Subtitle"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image",
+          "info": "Leave empty to use collection image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Category",
+      "category": "Collections",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

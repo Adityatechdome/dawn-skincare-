@@ -1,0 +1,72 @@
+<div class="blog-card">
+  <a href="{{ article.url }}">
+    <div class="blog-img">
+      {% if article.image %}
+        <img
+          src="{{ article.image | image_url: width: 600 }}"
+          alt="{{ article.title }}"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+  </a>
+  <div class="blog-content">
+    <div class="blog-text-wrap">
+      <p class="blog-tag">{{ article.tags }}</p>
+      <h3 class="blog-title">{{ article.title }}</h3>
+    </div>
+  </div>
+</div>
+<style>
+  .blog-card {
+    max-width: 342px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .blog-img {
+    width: 100%;
+    max-height: 288px;
+  }
+
+  .blog-img img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 342/288;
+  }
+
+  .blog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .blog-content p {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 2%;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+    color: #858585;
+  }
+
+  .blog-content .blog-title {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -2%;
+    margin: 0;
+    color: #333333;
+  }
+
+  @media (max-width: 600px){
+    .blog-card{
+      max-width: 255px;
+    }
+  }
+</style>

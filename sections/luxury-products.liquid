@@ -1,0 +1,205 @@
+<section class="luxury-products">
+  <div class="products-header">
+    <h2>{{ section.settings.section_title }}</h2>
+    <p>{{ section.settings.section_subtitle }}</p>
+  </div>
+
+  <div class="product-showcase">
+    <div class="product-image-wrapper">
+      {% if section.settings.product_image %}
+        <img src="{{ section.settings.product_image | image_url: width: 600 }}" alt="{{ section.settings.product_name }}" class="product-main-image">
+      {% else %}
+        <div class="product-image-placeholder">Product Image</div>
+      {% endif %}
+    </div>
+
+    <div class="product-details">
+      <h3 class="product-title">{{ section.settings.product_name }}</h3>
+      <p class="product-description">{{ section.settings.product_description }}</p>
+      <p class="product-price">{{ section.settings.product_price }}</p>
+      <a href="{{ section.settings.product_link }}" class="product-btn">{{ section.settings.cta_text }}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .luxury-products {
+    padding: 80px 56px;
+    background: #F8F1E7;
+  }
+
+  .products-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .products-header h2 {
+    font-family: "Italiana", serif;
+    font-size: 54px;
+    color: #2A2438;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.08em;
+  }
+
+  .products-header p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    color: #5B4A7A;
+    margin: 0;
+  }
+
+  .product-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .product-image-wrapper {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: white;
+    border: 1px solid rgba(184, 148, 90, 0.2);
+  }
+
+  .product-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8E7AAB;
+    font-family: "Inter", sans-serif;
+    background: #EFE4D2;
+  }
+
+  .product-details {
+    padding: 40px;
+  }
+
+  .product-title {
+    font-family: "Italiana", serif;
+    font-size: 48px;
+    color: #2A2438;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.08em;
+  }
+
+  .product-description {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    color: #5B4A7A;
+    line-height: 1.8;
+    margin: 0 0 20px 0;
+  }
+
+  .product-price {
+    font-family: "Italiana", serif;
+    font-size: 32px;
+    color: #B8945A;
+    margin: 0 0 30px 0;
+  }
+
+  .product-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    background: #B8945A;
+    color: white;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    border: 2px solid #B8945A;
+    transition: all 0.3s ease;
+  }
+
+  .product-btn:hover {
+    background: transparent;
+    color: #B8945A;
+  }
+
+  @media (max-width: 768px) {
+    .luxury-products {
+      padding: 40px 20px;
+    }
+
+    .product-showcase {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .products-header h2 {
+      font-size: 36px;
+    }
+
+    .product-title {
+      font-size: 32px;
+    }
+
+    .product-details {
+      padding: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Our Signature Collection"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Handpicked products for radiant, luxurious skin"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Product Name",
+      "default": "Royal Cream Luxe"
+    },
+    {
+      "type": "textarea",
+      "id": "product_description",
+      "label": "Product Description",
+      "default": "Our signature cream infused with the finest botanicals. Whipped at low temperature, layered like petit fours. Experience luxury in every application."
+    },
+    {
+      "type": "text",
+      "id": "product_price",
+      "label": "Product Price",
+      "default": "$222"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "url",
+      "id": "product_link",
+      "label": "Product Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    }
+  ]
+}
+{% endschema %}

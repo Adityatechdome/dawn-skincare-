@@ -1,0 +1,93 @@
+<section class="luxury-story">
+  <div class="story-container">
+    <div class="story-content">
+      <h2>{{ section.settings.story_title }}</h2>
+      <p>{{ section.settings.story_text }}</p>
+      <p class="story-signature">{{ section.settings.story_signature }}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .luxury-story {
+    padding: 80px 56px;
+    background: #FBF6EE;
+  }
+
+  .story-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .story-content {
+    border-left: 4px solid #B8945A;
+    padding-left: 40px;
+  }
+
+  .story-content h2 {
+    font-family: "Italiana", serif;
+    font-size: 48px;
+    color: #2A2438;
+    margin: 0 0 30px 0;
+    letter-spacing: 0.08em;
+  }
+
+  .story-content p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    color: #2A2438;
+    line-height: 1.8;
+    margin: 0 0 20px 0;
+  }
+
+  .story-signature {
+    font-family: "Pinyon Script", cursive;
+    font-size: 32px;
+    color: #B8945A;
+    margin: 40px 0 0 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .luxury-story {
+      padding: 40px 20px;
+    }
+
+    .story-content {
+      padding-left: 20px;
+    }
+
+    .story-content h2 {
+      font-size: 32px;
+    }
+
+    .story-content p {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "story_title",
+      "label": "Story Title",
+      "default": "Our Journey"
+    },
+    {
+      "type": "textarea",
+      "id": "story_text",
+      "label": "Story Text",
+      "default": "Founded in the heart of luxury, our brand combines ancient botanical wisdom with modern skincare science. Every product is crafted with intention, infused with the finest ingredients from around the world. We believe that true beauty comes from within, and our mission is to help you achieve radiant, healthy skin that reflects your inner glow."
+    },
+    {
+      "type": "text",
+      "id": "story_signature",
+      "label": "Founder Signature",
+      "default": "With love, The Founder"
+    }
+  ]
+}
+{% endschema %}

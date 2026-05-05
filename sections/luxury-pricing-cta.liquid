@@ -1,0 +1,204 @@
+<section class="luxury-pricing-cta">
+  <div class="pricing-wrapper">
+    <div class="pricing-image-side">
+      {% if section.settings.product_image %}
+        <img src="{{ section.settings.product_image | image_url: width: 500 }}" alt="{{ section.settings.title }}" class="pricing-image">
+      {% else %}
+        <div class="pricing-image-placeholder">Product Image</div>
+      {% endif %}
+    </div>
+
+    <div class="pricing-content-side">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="pricing-box">
+        <p class="original-price"><s>{{ section.settings.original_price }}</s></p>
+        <p class="sale-price">{{ section.settings.sale_price }}</p>
+        <p class="discount-badge">{{ section.settings.discount_text }}</p>
+      </div>
+      <a href="{{ section.settings.cta_link }}" class="pricing-cta">{{ section.settings.cta_text }}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .luxury-pricing-cta {
+    padding: 80px 56px;
+    background: linear-gradient(135deg, #E4D9EE 0%, #C9B8DC 100%);
+  }
+
+  .pricing-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .pricing-image-side {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    border: 12px solid #B8945A;
+    box-shadow:
+      inset 0 0 30px rgba(184, 148, 90, 0.1),
+      0 0 30px rgba(184, 148, 90, 0.2);
+    background: white;
+  }
+
+  .pricing-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pricing-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #FBF6EE, #EFE4D2);
+    color: #8E7AAB;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+  }
+
+  .pricing-content-side {
+    text-align: left;
+  }
+
+  .pricing-content-side h2 {
+    font-family: "Italiana", serif;
+    font-size: 48px;
+    color: #2A2438;
+    margin: 0 0 40px 0;
+    letter-spacing: 0.08em;
+  }
+
+  .pricing-box {
+    background: white;
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(184, 148, 90, 0.2);
+  }
+
+  .original-price {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 24px;
+    color: #8E7AAB;
+    margin: 0 0 10px 0;
+  }
+
+  .sale-price {
+    font-family: "Italiana", serif;
+    font-size: 56px;
+    color: #B8945A;
+    margin: 0;
+  }
+
+  .discount-badge {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: #E8C9CC;
+    background: #B07A82;
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .pricing-cta {
+    display: inline-block;
+    padding: 16px 48px;
+    background: #B8945A;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    border: 2px solid #B8945A;
+    transition: all 0.3s ease;
+  }
+
+  .pricing-cta:hover {
+    background: transparent;
+    color: #B8945A;
+  }
+
+  @media (max-width: 1000px) {
+    .pricing-wrapper {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .pricing-content-side h2 {
+      font-size: 36px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .luxury-pricing-cta {
+      padding: 40px 20px;
+    }
+
+    .pricing-wrapper {
+      gap: 30px;
+    }
+
+    .pricing-content-side h2 {
+      font-size: 32px;
+    }
+
+    .sale-price {
+      font-size: 40px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Pricing CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Limited Time Offer"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "text",
+      "id": "original_price",
+      "label": "Original Price",
+      "default": "$222"
+    },
+    {
+      "type": "text",
+      "id": "sale_price",
+      "label": "Sale Price",
+      "default": "$111"
+    },
+    {
+      "type": "text",
+      "id": "discount_text",
+      "label": "Discount Text",
+      "default": "50% OFF"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Claim Your Offer"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}

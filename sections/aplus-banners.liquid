@@ -1,0 +1,101 @@
+{% schema %}
+  {
+    "name": "A+ Banners",
+    "tag": "section",
+    "class": "section-aplus-banners",
+    "settings": [
+      {
+        "type": "header",
+        "content": "A+ Banners"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 0
+      }
+    ],
+    "presets": [
+      {
+        "name": "A+ Banners"
+      }
+    ]
+  }
+{% endschema %}
+
+{% style %}
+  .section-aplus-banners {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .aplus-banners-section {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .aplus-banners-section {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .aplus-banners-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .aplus-banner-item {
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .aplus-banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+{% endstyle %}
+
+{% if product.metafields.custom.a_banners != blank %}
+  <div class="aplus-banners-section">
+    <div class="aplus-banners-container">
+      {% for banner in product.metafields.custom.a_banners.value %}
+        <div class="aplus-banner-item">
+          {{
+            banner
+            | image_url: width: 3000
+            | image_tag:
+              loading: 'lazy',
+              class: 'aplus-banner-image',
+              widths: '360, 535, 750, 990, 1200, 1340, 1500, 1920, 2400, 3000',
+              sizes: '(min-width: 1340px) 1340px, 100vw'
+          }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,206 @@
+{% schema %}
+{
+  "name": "Body Care Feature",
+  "tag": "section",
+  "class": "body-care-feature",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image_mobile",
+      "label": "Feature Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Revitalize Your Body"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Effective Ingredients for Visible Results"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Our body products are rich in highly effective ingredients, achieve visible results, firm the skin and leave it feeling soft and supple. Fine textures that are quickly absorbed, non-greasy and in no way inferior to facial care. It’s time to give our body the same attention as our face."
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Body Care Feature",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="body-care-feature-section">
+  <div class="body-care-image">
+    {% if section.settings.feature_image %}
+      <img
+        src="{{ section.settings.feature_image | image_url: width: 800 }}"
+        alt="Body Care Feature"
+        loading="lazy"
+        class="care-desktop"
+      >
+    {% endif %}
+    {% if section.settings.feature_image_mobile %}
+      <img
+        src="{{ section.settings.feature_image_mobile | image_url: width: 800 }}"
+        alt="Body Care Feature"
+        loading="lazy"
+        class="care-mobile"
+      >
+    {% endif %}
+  </div>
+  <div class="body-care-overlay">
+    <div class="body-care-text">
+      <h2 class="body-care-heading">{{ section.settings.heading }}</h2>
+      <h3 class="body-care-subheading">{{ section.settings.subheading }}</h3>
+      <p class="body-care-description">{{ section.settings.description }}</p>
+    </div>
+    <a href="{{ section.settings.cta_link }}" class="body-care-cta"
+      ><span>Discover More</span>
+      <span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_136_1849)">
+          <path d="M3.75 12H20.25" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.5 5.25L20.25 12L13.5 18.75" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_136_1849">
+          <rect width="24" height="24" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg></span
+    ></a>
+  </div>
+</section>
+<style>
+  .body-care-feature-section {
+    background-color: #f5f0e9;
+    position: relative;
+  }
+
+  .body-care-overlay {
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .body-care-heading {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -1%;
+    margin: 0 0 15px;
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  .body-care-subheading {
+    font-family: Valky;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: 0%;
+    margin: 0 0 15px;
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  .body-care-description {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    letter-spacing: 0%;
+    margin: 0;
+    color: #fff;
+  }
+
+  .body-care-cta {
+    padding: 19px 23px;
+    max-width: 210px;
+    width: 100%;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23.8px;
+    letter-spacing: -1%;
+    border: 1px solid #fff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .body-care-image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .care-mobile{
+    display:none;
+  }
+
+  @media (max-width: 1000px) and (min-width: 601px){
+    .body-care-image{
+      width: 100%;
+      height: 500px;
+    }
+
+    .body-care-image img{
+      width: 100%;
+      height: 100%;
+      object-fit:cover;
+      object-position:top;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .body-care-overlay {
+      padding: 32px 25px;
+      position: absolute;
+      transform: none;
+      top: 0;
+      left: unset;
+    }
+
+    .body-care-subheading{
+      font-size:30px;
+    }
+
+    .care-mobile{
+      display:block;
+    }
+
+    .care-desktop{
+      display:none;
+    }
+  }
+</style>

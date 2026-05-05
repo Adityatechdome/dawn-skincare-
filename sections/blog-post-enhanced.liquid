@@ -1,0 +1,441 @@
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section color-{{ section.settings.color_scheme }}">
+  <article class="blog-post-enhanced">
+    <!-- Hero Section -->
+    <div class="blog-post-enhanced__hero">
+      {% if article.image %}
+        <div class="blog-post-enhanced__featured-image">
+          <img
+            src="{{ article.image | image_url: width: 1200 }}"
+            alt="{{ article.image.alt | escape }}"
+            loading="lazy"
+            width="1200"
+            height="675"
+          />
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Header Section -->
+    <div class="blog-post-enhanced__header">
+      <div class="blog-post-enhanced__header-content">
+        <h1 class="blog-post-enhanced__title">{{ article.title }}</h1>
+        
+        <div class="blog-post-enhanced__meta">
+          <span class="blog-post-enhanced__date">
+            {{ article.published_at | date: "%B %d, %Y" }}
+          </span>
+          {% if article.author %}
+            <span class="blog-post-enhanced__separator">•</span>
+            <span class="blog-post-enhanced__author">By {{ article.author }}</span>
+          {% endif %}
+          {% if article.tags.size > 0 %}
+            <span class="blog-post-enhanced__separator">•</span>
+            <div class="blog-post-enhanced__tags">
+              {% for tag in article.tags %}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-post-enhanced__tag">
+                  {{ tag }}
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        {% if article.excerpt %}
+          <p class="blog-post-enhanced__excerpt">{{ article.excerpt }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="blog-post-enhanced__content">
+      <div class="blog-post-enhanced__body">
+        {{ article.content }}
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="blog-post-enhanced__sidebar">
+        <!-- Share Section -->
+        <div class="blog-post-enhanced__share">
+          <h3 class="blog-post-enhanced__share-title">Share This Post</h3>
+          <div class="blog-post-enhanced__share-buttons">
+            <a 
+              href="https://www.facebook.com/sharer/sharer.php?u={{ article.url | absolute_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blog-post-enhanced__share-btn blog-post-enhanced__share-btn--facebook"
+              title="Share on Facebook"
+            >
+              Facebook
+            </a>
+            <a 
+              href="https://twitter.com/intent/tweet?url={{ article.url | absolute_url }}&text={{ article.title | url_encode }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blog-post-enhanced__share-btn blog-post-enhanced__share-btn--twitter"
+              title="Share on Twitter"
+            >
+              Twitter
+            </a>
+            <a 
+              href="https://www.linkedin.com/sharing/share-offsite/?url={{ article.url | absolute_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blog-post-enhanced__share-btn blog-post-enhanced__share-btn--linkedin"
+              title="Share on LinkedIn"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Related Posts -->
+        {% if blog.articles.size > 1 %}
+          <div class="blog-post-enhanced__related">
+            <h3 class="blog-post-enhanced__related-title">Related Posts</h3>
+            <div class="blog-post-enhanced__related-list">
+              {% for post in blog.articles limit: 3 %}
+                {% unless post.handle == article.handle %}
+                  <a href="{{ post.url }}" class="blog-post-enhanced__related-item">
+                    <span class="blog-post-enhanced__related-item-title">{{ post.title }}</span>
+                    <span class="blog-post-enhanced__related-item-date">{{ post.published_at | date: "%b %d, %Y" }}</span>
+                  </a>
+                {% endunless %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </aside>
+    </div>
+
+
+
+    <!-- Navigation -->
+    <div class="blog-post-enhanced__navigation">
+      {% if article.previous_article %}
+        <a href="{{ article.previous_article.url }}" class="blog-post-enhanced__nav-link blog-post-enhanced__nav-link--prev">
+          <span class="blog-post-enhanced__nav-label">← Previous Post</span>
+          <span class="blog-post-enhanced__nav-title">{{ article.previous_article.title }}</span>
+        </a>
+      {% endif %}
+
+      {% if article.next_article %}
+        <a href="{{ article.next_article.url }}" class="blog-post-enhanced__nav-link blog-post-enhanced__nav-link--next">
+          <span class="blog-post-enhanced__nav-label">Next Post →</span>
+          <span class="blog-post-enhanced__nav-title">{{ article.next_article.title }}</span>
+        </a>
+      {% endif %}
+    </div>
+  </article>
+</div>
+
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
+
+{% stylesheet %}
+  .blog-post-enhanced {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+  }
+
+  /* Hero Section */
+  .blog-post-enhanced__hero {
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .blog-post-enhanced__featured-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: rgb(var(--color-foreground-rgb) / 0.05);
+  }
+
+  .blog-post-enhanced__featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Header Section */
+  .blog-post-enhanced__header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+  }
+
+  .blog-post-enhanced__header-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .blog-post-enhanced__title {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--color-foreground);
+    line-height: 1.2;
+  }
+
+  .blog-post-enhanced__meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-post-enhanced__separator {
+    color: rgb(var(--color-foreground-rgb) / 0.3);
+  }
+
+  .blog-post-enhanced__tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .blog-post-enhanced__tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: rgb(var(--color-foreground-rgb) / 0.08);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .blog-post-enhanced__tag:hover {
+    background-color: rgb(var(--color-foreground-rgb) / 0.15);
+  }
+
+  .blog-post-enhanced__excerpt {
+    font-size: 1.1rem;
+    color: rgb(var(--color-foreground-rgb) / 0.7);
+    margin: 0;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* Content Section */
+  .blog-post-enhanced__content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .blog-post-enhanced__body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgb(var(--color-foreground-rgb) / 0.8);
+  }
+
+  .blog-post-enhanced__body h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: var(--color-foreground);
+  }
+
+  .blog-post-enhanced__body h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--color-foreground);
+  }
+
+  .blog-post-enhanced__body p {
+    margin: 0 0 1.5rem 0;
+  }
+
+  .blog-post-enhanced__body ul,
+  .blog-post-enhanced__body ol {
+    margin: 0 0 1.5rem 1.5rem;
+  }
+
+  .blog-post-enhanced__body li {
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-post-enhanced__body img {
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+  }
+
+  /* Sidebar */
+  .blog-post-enhanced__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .blog-post-enhanced__share,
+  .blog-post-enhanced__related {
+    padding: 1.5rem;
+    background-color: rgb(var(--color-foreground-rgb) / 0.03);
+    border-radius: 8px;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+  }
+
+  .blog-post-enhanced__share-title,
+  .blog-post-enhanced__related-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--color-foreground);
+  }
+
+  .blog-post-enhanced__share-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .blog-post-enhanced__share-btn {
+    display: block;
+    padding: 0.75rem 1rem;
+    background-color: rgb(var(--color-foreground-rgb) / 0.08);
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.15);
+    border-radius: 6px;
+    color: var(--color-foreground);
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .blog-post-enhanced__share-btn:hover {
+    background-color: rgb(var(--color-foreground-rgb) / 0.15);
+    border-color: rgb(var(--color-foreground-rgb) / 0.3);
+  }
+
+  .blog-post-enhanced__related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .blog-post-enhanced__related-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    background-color: rgb(var(--color-foreground-rgb) / 0.05);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .blog-post-enhanced__related-item:hover {
+    background-color: rgb(var(--color-foreground-rgb) / 0.1);
+  }
+
+  .blog-post-enhanced__related-item-title {
+    font-weight: 500;
+    color: var(--color-foreground);
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .blog-post-enhanced__related-item-date {
+    font-size: 0.8rem;
+    color: rgb(var(--color-foreground-rgb) / 0.5);
+    margin-top: 0.25rem;
+  }
+
+
+
+  /* Navigation */
+  .blog-post-enhanced__navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+  }
+
+  .blog-post-enhanced__nav-link {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: rgb(var(--color-foreground-rgb) / 0.03);
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-foreground);
+    transition: all 0.3s ease;
+  }
+
+  .blog-post-enhanced__nav-link:hover {
+    background-color: rgb(var(--color-foreground-rgb) / 0.08);
+    border-color: rgb(var(--color-foreground-rgb) / 0.3);
+    transform: translateY(-2px);
+  }
+
+  .blog-post-enhanced__nav-label {
+    font-size: 0.85rem;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-post-enhanced__nav-title {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .blog-post-enhanced__nav-link--next {
+    text-align: right;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .blog-post-enhanced {
+      padding: 2rem 1rem;
+    }
+
+    .blog-post-enhanced__content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .blog-post-enhanced__title {
+      font-size: 1.5rem;
+    }
+
+    .blog-post-enhanced__navigation {
+      grid-template-columns: 1fr;
+    }
+
+    .blog-post-enhanced__nav-link--next {
+      text-align: left;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Blog Post Enhanced",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

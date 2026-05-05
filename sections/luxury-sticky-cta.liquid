@@ -1,0 +1,169 @@
+<section class="luxury-sticky-cta" id="sticky-cta">
+  <div class="sticky-cta-content">
+    <div>
+      <h3>{{ section.settings.cta_title }}</h3>
+      <p>{{ section.settings.cta_subtitle }}</p>
+    </div>
+    <a href="{{ section.settings.cta_link }}" class="sticky-cta-btn">{{ section.settings.cta_text }}</a>
+  </div>
+  <button class="sticky-close" onclick="closeStickyCTA()">&times;</button>
+</section>
+
+<style>
+  .luxury-sticky-cta {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150px);
+    max-width: 600px;
+    width: 90%;
+    background: rgba(61, 49, 88, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(217, 186, 130, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .luxury-sticky-cta.visible {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .sticky-cta-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .sticky-cta-content h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    color: #D9BA82;
+    margin: 0 0 5px 0;
+  }
+
+  .sticky-cta-content p {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: #C8D4E3;
+    margin: 0;
+  }
+
+  .sticky-cta-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #B8945A;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .sticky-cta-btn:hover {
+    background: #D9BA82;
+    transform: translateY(-2px);
+  }
+
+  .sticky-close {
+    background: none;
+    border: none;
+    color: #D9BA82;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+  }
+
+  .sticky-close:hover {
+    color: #B8945A;
+  }
+
+  @media (max-width: 768px) {
+    .luxury-sticky-cta {
+      bottom: 20px;
+      width: calc(100% - 40px);
+      padding: 20px 25px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .sticky-cta-content {
+      width: 100%;
+      gap: 15px;
+    }
+
+    .sticky-cta-btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .sticky-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      margin-left: 0;
+    }
+  }
+</style>
+
+<script>
+  function closeStickyCTA() {
+    document.getElementById('sticky-cta').classList.remove('visible');
+    sessionStorage.setItem('stickyCTAClosed', 'true');
+  }
+
+  window.addEventListener('scroll', function() {
+    const stickyCTA = document.getElementById('sticky-cta');
+    const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+    if (scrollPercentage > 50 && !sessionStorage.getItem('stickyCTAClosed')) {
+      stickyCTA.classList.add('visible');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Luxury Sticky CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "Title",
+      "default": "Ready to Transform Your Skin?"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtitle",
+      "label": "Subtitle",
+      "default": "Get your royal collection today"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}

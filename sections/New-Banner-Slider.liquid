@@ -1,0 +1,266 @@
+{% schema %}
+{
+  "name": "BS Banner Slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed (seconds)",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show dots",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Slide Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BS Banner Slider"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="bs-slider-{{ section.id }}">
+  <div class="bs-slider-wrapper">
+    {% for block in section.blocks %}
+      <div class="bs-slide" {{ block.shopify_attributes }}>
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}">
+        {% endif %}
+
+        <picture>
+          {% if block.settings.mobile_image != blank %}
+            <source media="(max-width: 768px)" srcset="{{ block.settings.mobile_image | image_url }}">
+          {% endif %}
+          <img
+            src="{{ block.settings.desktop_image | image_url }}"
+            loading="lazy"
+            class="bs-slide-img"
+          >
+        </picture>
+
+        {% if block.settings.link != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.blocks.size > 1 %}
+    <!-- Arrows -->
+    <button class="bs-arrow bs-prev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" class="bs-arrow-icon">
+        <path d="m5 12l-.354-.354l-.353.354l.353.354zm12 .5a.5.5 0 0 0 0-1zM8.646 7.646l-4 4l.708.708l4-4zm-4 4.708l4 4l.708-.708l-4-4zM5 12.5h12v-1H5z"/>
+      </svg>
+    </button>
+
+    <button class="bs-arrow bs-next" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" class="bs-arrow-icon">
+        <path d="m18 12l.354-.354l.353.354l-.353.354zm-12 .5a.5.5 0 0 1 0-1zm8.354-4.854l4 4l-.708.708l-4-4zm4 4.708l-4 4l-.708-.708l4-4zM18 12.5H6v-1h12z"/>
+      </svg>
+    </button>
+  {% endif %}
+
+  {% if section.settings.show_dots and section.blocks.size > 1 %}
+    <div class="bs-dots">
+      {% for block in section.blocks %}
+        <span class="bs-dot" data-index="{{ forloop.index0 }}"></span>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<style>
+    .bs-slider-{{ section.id }} {
+      position: relative;
+      overflow: hidden;
+      margin-top: -30px;
+    }
+
+    .bs-slider-{{ section.id }} .bs-slider-wrapper {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .bs-slider-{{ section.id }} .bs-slide {
+      min-width: 100%;
+    }
+
+    .bs-slider-{{ section.id }} .bs-slide-img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Arrows */
+   .bs-slider-{{ section.id }} .bs-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.7);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease;
+  }
+
+  .bs-slider-{{ section.id }} .bs-arrow:hover {
+    background: rgba(255,255,255,1);
+  }
+
+  .bs-slider-{{ section.id }} .bs-arrow-icon {
+    width: 20px;
+    height: 20px;
+    fill: #000;
+  }
+
+  .bs-slider-{{ section.id }} .bs-prev {
+    left: 12px;
+  }
+
+  .bs-slider-{{ section.id }} .bs-next {
+    right: 12px;
+  }
+
+    /* Dots */
+    .bs-slider-{{ section.id }} .bs-dots {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .bs-slider-{{ section.id }} .bs-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+      background: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .bs-slider-{{ section.id }} .bs-dot.active {
+      background: #000;
+    }
+    .bs-slider-{{ section.id }} .bs-slide-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .bs-slider-{{ section.id }} .bs-slide-img {
+        height: auto; /* adjust based on your design */
+      }
+      .bs-slider-{{ section.id }} .bs-arrow {
+        width: 24px;
+        height: 24px;
+      }
+      .bs-slider-{{ section.id }} .bs-arrow-icon{
+        width: 24px;
+        height: 24px;
+      }
+       .bs-slider-{{ section.id }} {
+        margin-top: 0;
+     }
+    }
+</style>
+
+<script>
+(function(){
+  const slider = document.querySelector(".bs-slider-{{ section.id }}");
+  if (!slider) return;
+
+  const wrapper = slider.querySelector(".bs-slider-wrapper");
+  const slides = slider.querySelectorAll(".bs-slide");
+  const dots = slider.querySelectorAll(".bs-dot");
+
+  let index = 0;
+  const total = slides.length;
+  const autoplay = {{ section.settings.autoplay }};
+  const speed = {{ section.settings.autoplay_speed }} * 1000;
+  let interval;
+
+  function updateSlider() {
+    wrapper.style.transform = `translateX(-${index * 100}%)`;
+
+    dots.forEach(dot => dot.classList.remove("active"));
+    if (dots[index]) dots[index].classList.add("active");
+  }
+
+  function nextSlide() {
+    index = (index + 1) % total;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + total) % total;
+    updateSlider();
+  }
+
+  if (slider.querySelector(".bs-next")) {
+    slider.querySelector(".bs-next").addEventListener("click", nextSlide);
+    slider.querySelector(".bs-prev").addEventListener("click", prevSlide);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener("click", function(){
+      index = parseInt(this.dataset.index);
+      updateSlider();
+    });
+  });
+
+  if (autoplay && total > 1) {
+    interval = setInterval(nextSlide, speed);
+    slider.addEventListener("mouseenter", () => clearInterval(interval));
+    slider.addEventListener("mouseleave", () => {
+      interval = setInterval(nextSlide, speed);
+    });
+  }
+
+  updateSlider();
+})();
+</script>
