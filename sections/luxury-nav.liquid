@@ -1,97 +1,326 @@
-{%- comment -%}
-  LEARNING NOTE:
-  This is a Shopify section file. Think of it as a reusable "block" you can add to pages.
-  - Everything between {%- and -%} is Liquid code (Shopify's templating language)
-  - Everything between {{ and }} is a variable (gets replaced with actual content)
-  - Everything else is HTML (the structure of the page)
-{%- endcomment -%}
-
-<nav class="luxury-nav">
-  {%- comment -%} This is the header with logo and menu {%- endcomment -%}
-  <div class="nav-container">
-    {%- comment -%} Logo / Brand name {%- endcomment -%}
-    <div class="nav-brand">
-      <h1>{{ section.settings.brand_name }}</h1>
+<section class="luxury-nav" style="--nav-bg: {{ section.settings.background_color }}; --nav-text: {{ section.settings.text_color }}; --nav-padding: {{ section.settings.padding_vertical }}px {{ section.settings.padding_horizontal }}px; --nav-height: {{ section.settings.height }}px;">
+  <div class="nav-container" style="max-width: {{ section.settings.max_width }}px;">
+    <div class="nav-logo" style="font-size: {{ section.settings.logo_size }}px; color: {{ section.settings.logo_color }};">
+      {{ section.settings.logo_text }}
     </div>
 
-    {%- comment -%} Shopping cart icon (placeholder) {%- endcomment -%}
-    <div class="nav-cart">
-      <a href="/cart" title="Shopping Cart">
-        🛒 Cart
-      </a>
+    <nav class="nav-menu" style="gap: {{ section.settings.menu_gap }}px;">
+      {% for link in section.blocks %}
+        <a href="{{ link.settings.link }}" style="color: {{ link.settings.text_color }}; font-size: {{ link.settings.font_size }}px; padding: {{ link.settings.padding }}px;">{{ link.settings.label }}</a>
+      {% endfor %}
+    </nav>
+
+    {% if section.settings.show_icons %}
+    <div class="nav-icons" style="gap: {{ section.settings.icons_gap }}px;">
+      <a href="{{ section.settings.search_link }}" style="font-size: {{ section.settings.icon_size }}px; color: {{ section.settings.icon_color }};">🔍</a>
+      <a href="{{ section.settings.cart_link }}" style="font-size: {{ section.settings.icon_size }}px; color: {{ section.settings.icon_color }};">🛍️</a>
     </div>
+    {% endif %}
   </div>
-</nav>
-
-{%- comment -%}
-  STYLING: This creates the visual appearance
-  Everything between <style> and </style> is CSS
-{%- endcomment -%}
+</section>
 
 <style>
-  /* Navigation Container */
   .luxury-nav {
-    position: fixed;
+    background: var(--nav-bg, #F8F1E7);
+    padding: var(--nav-padding, 20px 56px);
+    position: {{ section.settings.position }};
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: rgba(248, 241, 231, 0.7);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(184, 148, 90, 0.18);
-    padding: 18px 56px;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: {{ section.settings.border_width }}px solid {{ section.settings.border_color }};
   }
 
   .nav-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
+    align-items: center;
     margin: 0 auto;
   }
 
-  /* Brand Name Styling */
-  .nav-brand h1 {
+  .nav-logo {
     font-family: "Italiana", serif;
-    font-size: 22px;
-    letter-spacing: 0.32em;
-    color: #2A2438;
-    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.08em;
   }
 
-  /* Cart Link */
-  .nav-cart a {
-    color: #2A2438;
+  .nav-menu {
+    display: flex;
+    list-style: none;
+  }
+
+  .nav-menu a {
     text-decoration: none;
-    font-size: 14px;
+    transition: opacity 0.3s ease;
+    font-family: "{{ section.settings.menu_font }}";
   }
 
-  /* Mobile Responsive */
-  @media (max-width: 480px) {
+  .nav-menu a:hover {
+    opacity: 0.7;
+  }
+
+  .nav-icons {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
     .luxury-nav {
-      padding: 12px 24px;
+      padding: {{ section.settings.padding_vertical_mobile }}px {{ section.settings.padding_horizontal_mobile }}px;
     }
 
-    .nav-brand h1 {
-      font-size: 18px;
+    .nav-menu {
+      display: none;
     }
   }
 </style>
-
-{%- comment -%}
-  SCHEMA: This tells Shopify what settings to show in the admin
-  Users can change these values without editing code!
-{%- endcomment -%}
 
 {% schema %}
 {
   "name": "Luxury Navigation",
   "settings": [
     {
+      "type": "heading",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        { "value": "relative", "label": "Relative" },
+        { "value": "fixed", "label": "Fixed" },
+        { "value": "sticky", "label": "Sticky" }
+      ],
+      "default": "fixed"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Navigation Height",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "label": "Max Width",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Vertical",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Horizontal",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Vertical (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Horizontal (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "heading",
+      "content": "Logo Settings"
+    },
+    {
       "type": "text",
-      "id": "brand_name",
-      "label": "Brand Name",
-      "default": "Dawn Skincare"
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "DAWN"
+    },
+    {
+      "type": "range",
+      "id": "logo_size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Logo Font Size",
+      "default": 22
+    },
+    {
+      "type": "color",
+      "id": "logo_color",
+      "label": "Logo Color",
+      "default": "#2A2438"
+    },
+    {
+      "type": "heading",
+      "content": "Menu Settings"
+    },
+    {
+      "type": "text",
+      "id": "menu_font",
+      "label": "Menu Font",
+      "default": "Inter"
+    },
+    {
+      "type": "range",
+      "id": "menu_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Menu Gap",
+      "default": 40
+    },
+    {
+      "type": "heading",
+      "content": "Colors & Borders"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F8F1E7"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#2A2438"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#B8945A"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 1
+    },
+    {
+      "type": "heading",
+      "content": "Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icons",
+      "label": "Show Icons",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#2A2438"
+    },
+    {
+      "type": "range",
+      "id": "icons_gap",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Icons Gap",
+      "default": 20
+    },
+    {
+      "type": "url",
+      "id": "search_link",
+      "label": "Search Link"
+    },
+    {
+      "type": "url",
+      "id": "cart_link",
+      "label": "Cart Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_item",
+      "name": "Menu Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Menu Item"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#2A2438"
+        },
+        {
+          "type": "range",
+          "id": "padding",
+          "min": 0,
+          "max": 20,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding",
+          "default": 8
+        }
+      ]
     }
   ]
 }
