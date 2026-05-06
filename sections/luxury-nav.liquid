@@ -32,17 +32,47 @@
 
       <!-- SEARCH -->
       <a href="/search" class="luxury-icon">
-        🔍
+        {% if section.settings.search_icon != blank %}
+          <img
+            src="{{ section.settings.search_icon | image_url }}"
+            alt="Search"
+            class="luxury-custom-icon"
+            width="24"
+            height="24"
+          >
+        {% else %}
+          🔍
+        {% endif %}
       </a>
 
       <!-- ACCOUNT -->
       <a href="/account" class="luxury-icon">
-        👤
+        {% if section.settings.account_icon != blank %}
+          <img
+            src="{{ section.settings.account_icon | image_url }}"
+            alt="Account"
+            class="luxury-custom-icon"
+            width="24"
+            height="24"
+          >
+        {% else %}
+          👤
+        {% endif %}
       </a>
 
       <!-- CART -->
       <a href="/cart" class="luxury-icon">
-        🛒
+        {% if section.settings.cart_icon != blank %}
+          <img
+            src="{{ section.settings.cart_icon | image_url }}"
+            alt="Cart"
+            class="luxury-custom-icon"
+            width="24"
+            height="24"
+          >
+        {% else %}
+          🛒
+        {% endif %}
       </a>
 
       <!-- MOBILE MENU -->
@@ -147,10 +177,20 @@
   color: {{ section.settings.icon_color }};
   font-size: 18px;
   transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .luxury-icon:hover {
   opacity: 0.7;
+}
+
+.luxury-custom-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
 }
 
 .mobile-menu-toggle {
@@ -272,6 +312,25 @@ function toggleDrawer() {
       "type": "link_list",
       "id": "menu",
       "label": "Main Menu"
+    },
+    {
+      "type": "header",
+      "content": "Custom Icons"
+    },
+    {
+      "type": "image_picker",
+      "id": "search_icon",
+      "label": "Search Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "account_icon",
+      "label": "Account Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "cart_icon",
+      "label": "Cart Icon"
     },
     {
       "type": "select",
