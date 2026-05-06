@@ -115,252 +115,90 @@
   align-items: center;
 }
 
-/* LEFT */
+<!-- LEFT IMAGE -->
+<div class="luxury-products-visual">
 
-.luxury-products-copy {
-  position: relative;
-}
+  <div class="luxury-product-shell">
 
-.luxury-products-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+    {% if section.settings.product_image != blank %}
 
-  margin-bottom: 24px;
+      <img
+        src="{{ section.settings.product_image | image_url: width: 1200 }}"
+        alt="{{ section.settings.product_name }}"
+        class="luxury-product-image"
+        width="1200"
+        height="1500"
+      >
 
-  position: relative;
+    {% else %}
 
-  color: #8C6F3F;
+      <div class="luxury-product-placeholder">
 
-  font-family: "Inter", sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-}
+        <div class="luxury-product-placeholder-label">
+          PRODUCT IMAGE · LUXURY SKINCARE<br>
+          editorial lighting · premium packaging
+        </div>
 
-.luxury-products-eyebrow::before {
-  content: "";
-  width: 28px;
-  height: 1px;
-  background: #B8945A;
-}
+      </div>
 
-.luxury-products-title {
-  font-family: "Italiana", serif;
-  font-size: clamp(48px, 6vw, 88px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+    {% endif %}
 
-  color: #2A2438;
+  </div>
 
-  margin-bottom: 26px;
-}
+</div>
 
-.luxury-products-subtitle {
-  max-width: 520px;
+<!-- RIGHT CONTENT -->
+<div class="luxury-products-copy">
 
-  margin-bottom: 50px;
+  <div class="luxury-products-eyebrow">
+    Signature Collection
+  </div>
 
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-size: 24px;
-  line-height: 1.5;
+  <h2 class="luxury-products-title">
+    {{ section.settings.section_title }}
+  </h2>
 
-  color: rgba(42,36,56,0.78);
-}
+  <p class="luxury-products-subtitle">
+    {{ section.settings.section_subtitle }}
+  </p>
 
-/* PRODUCT CARD */
+  <div class="luxury-product-card">
 
-.luxury-product-card {
-  padding: 40px;
+    <h3 class="luxury-product-name">
+      {{ section.settings.product_name }}
+    </h3>
 
-  border: 1px solid rgba(184,148,90,0.18);
-  border-radius: 32px;
+    <p class="luxury-product-description">
+      {{ section.settings.product_description }}
+    </p>
 
-  backdrop-filter: blur(10px);
+    <!-- BUTTON + PRICE -->
+    <div class="luxury-product-bottom">
 
-  background: rgba(255,255,255,0.35);
+      <a
+        href="{{ section.settings.product_link }}"
+        class="luxury-product-btn"
+      >
 
-  box-shadow:
-    0 30px 80px rgba(91,74,122,0.08);
-}
+        <span>
+          {{ section.settings.cta_text }}
+        </span>
 
-.luxury-product-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z" fill="#D9BA82"/>
+        </svg>
 
-  margin-bottom: 26px;
-}
+      </a>
 
-.luxury-product-meta h3 {
-  font-family: "Italiana", serif;
-  font-size: 42px;
-  line-height: 1;
+      <div class="luxury-product-price">
+        {{ section.settings.product_price }}
+      </div>
 
-  color: #2A2438;
-}
+    </div>
 
-.luxury-product-price {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  </div>
 
-  color: #8C6F3F;
-
-  padding: 10px 14px;
-
-  border-radius: 999px;
-
-  border: 1px solid rgba(184,148,90,0.24);
-
-  background: rgba(255,255,255,0.45);
-}
-
-.luxury-product-description {
-  margin-bottom: 34px;
-
-  font-family: "Cormorant Garamond", serif;
-  font-size: 22px;
-  line-height: 1.7;
-
-  color: rgba(42,36,56,0.78);
-}
-
-.luxury-product-btn {
-  position: relative;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 18px 34px;
-
-  border-radius: 999px;
-
-  overflow: hidden;
-
-  background: #2A2438;
-  color: #F8F1E7;
-
-  text-decoration: none;
-
-  font-family: "Inter", sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-
-  box-shadow:
-    0 12px 32px -16px rgba(42,36,56,0.4);
-}
-
-.luxury-product-btn::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at center,
-    rgba(217,186,130,0.5) 0%,
-    transparent 60%);
-
-  opacity: 0;
-
-  transition: 0.3s ease;
-}
-
-.luxury-product-btn:hover {
-  background: #5B4A7A;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 16px 40px -12px rgba(91,74,122,0.45);
-}
-
-.luxury-product-btn:hover::after {
-  opacity: 1;
-}
-
-/* RIGHT */
-
-.luxury-products-visual {
-  position: relative;
-}
-
-.luxury-product-shell {
-  position: relative;
-
-  width: 100%;
-  aspect-ratio: 4 / 5;
-
-  overflow: hidden;
-
-  border-radius:
-    50% 50% 12px 12px /
-    14% 14% 6% 6%;
-
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.4), transparent 60%),
-    linear-gradient(180deg, #E4D9EE 0%, #C9B8DC 60%, #8E7AAB 100%);
-
-  box-shadow:
-    inset 0 -40px 80px rgba(91,74,122,0.25),
-    0 60px 120px -40px rgba(91,74,122,0.4);
-}
-
-.luxury-product-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.luxury-product-placeholder {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 40px;
-
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(184,148,90,0.06) 0 14px,
-      rgba(184,148,90,0.12) 14px 28px
-    ),
-    linear-gradient(135deg, #E4D9EE, #EFE4D2);
-}
-
-.luxury-product-placeholder-label {
-  max-width: 80%;
-
-  padding: 8px 14px;
-
-  border-radius: 2px;
-  border: 1px solid rgba(184,148,90,0.4);
-
-  background: rgba(248,241,231,0.85);
-
-  text-align: center;
-
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  line-height: 1.8;
-
-  color: #8C6F3F;
+</div>
 }
 
 /* RESPONSIVE */
