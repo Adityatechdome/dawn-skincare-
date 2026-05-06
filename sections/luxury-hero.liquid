@@ -1,56 +1,87 @@
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Pinyon+Script&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
 <section class="luxury-hero">
 
-  <!-- BACKGROUND IMAGE -->
-  {% if section.settings.hero_image != blank %}
-    <div class="luxury-hero-bg">
-      <img
-        src="{{ section.settings.hero_image | image_url: width: 2000 }}"
-        alt="Hero Image"
-        width="2000"
-        height="1200"
-      >
-    </div>
-  {% endif %}
+  <!-- PARTICLES -->
+  <div class="luxury-particles">
+    {% for i in (1..14) %}
+      <span class="particle particle-{{ i }}"></span>
+    {% endfor %}
+  </div>
 
-  <!-- OVERLAY -->
-  <div class="luxury-hero-overlay"></div>
+  <div class="luxury-hero-grid">
 
-  <!-- CONTENT -->
-  <div class="luxury-hero-content">
+    <!-- LEFT -->
+    <div class="luxury-hero-copy">
 
-    <p class="luxury-hero-subheadline">
-      {{ section.settings.subheadline }}
-    </p>
+      <!-- EYEBROW -->
+      <div class="luxury-eyebrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M5 18L3 8L8 12L12 5L16 12L21 8L19 18H5Z" stroke="#8C6F3F" stroke-width="1.2"/>
+        </svg>
 
-    <h1 class="luxury-hero-headline">
-      {{ section.settings.headline }}
-    </h1>
+        <span>
+          {{ section.settings.eyebrow_text }}
+        </span>
+      </div>
 
-    {% if section.settings.cta_text != blank %}
-      <a
-        href="{{ section.settings.cta_link }}"
-        class="luxury-hero-btn"
-      >
-        {{ section.settings.cta_text }}
+      <!-- HEADLINE -->
+      <h1 class="luxury-hero-heading reveal">
+        {{ section.settings.heading_line_1 }}
+
+        <em>
+          {{ section.settings.heading_line_2 }}
+        </em>
+      </h1>
+
+      <!-- SUBHEAD -->
+      <div class="luxury-hero-subhead reveal">
+        {{ section.settings.subheadline }}
+      </div>
+
+      <!-- CTA -->
+      <a href="{{ section.settings.cta_link }}" class="luxury-hero-btn reveal">
+
+        <span>
+          {{ section.settings.cta_text }}
+        </span>
+
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z" fill="#D9BA82"/>
+        </svg>
+
       </a>
-    {% endif %}
 
-    <!-- STATS -->
-    <div class="luxury-hero-stats">
+    </div>
 
-      <div class="luxury-stat">
-        <h3>{{ section.settings.stat_1_number }}</h3>
-        <p>{{ section.settings.stat_1_label }}</p>
-      </div>
+    <!-- RIGHT -->
+    <div class="luxury-hero-visual">
 
-      <div class="luxury-stat">
-        <h3>{{ section.settings.stat_2_number }}</h3>
-        <p>{{ section.settings.stat_2_label }}</p>
-      </div>
+      <div class="luxury-cake-shell">
 
-      <div class="luxury-stat">
-        <h3>{{ section.settings.stat_3_number }}</h3>
-        <p>{{ section.settings.stat_3_label }}</p>
+        {% if section.settings.hero_image != blank %}
+
+          <img
+            src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+            alt="Hero"
+            class="luxury-hero-image"
+            width="1200"
+            height="1500"
+          >
+
+        {% else %}
+
+          <div class="luxury-placeholder">
+
+            <div class="luxury-placeholder-label">
+              HERO IMAGE · LAVENDER LAYER CAKE<br>
+              top-down editorial · soft window light · marble surface
+            </div>
+
+          </div>
+
+        {% endif %}
+
       </div>
 
     </div>
@@ -62,124 +93,368 @@
 <style>
 .luxury-hero {
   position: relative;
-  width: 100%;
   min-height: 100vh;
   overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 120px 56px 80px;
+
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(228, 217, 238, 0.7) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(232, 201, 204, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, #FBF6EE, #F8F1E7 70%);
 }
 
-.luxury-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.luxury-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.luxury-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 2;
-}
-
-.luxury-hero-content {
+.luxury-hero-grid {
   position: relative;
   z-index: 3;
 
-  max-width: 900px;
-  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
 
-  padding: 40px 20px;
-  text-align: center;
+  min-height: calc(100vh - 200px);
+
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 60px;
 }
 
-.luxury-hero-subheadline {
-  color: #D9BA82;
-  font-size: 16px;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
+/* PARTICLES */
+
+.luxury-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  bottom: -120px;
+
+  border-radius: 999px;
+
+  background:
+    radial-gradient(circle,
+    rgba(217,186,130,0.7),
+    transparent);
+
+  animation: floatUp linear infinite;
+}
+
+.particle-1 { left: 5%; width: 8px; height: 8px; animation-duration: 14s; animation-delay: 0s; }
+.particle-2 { left: 12%; width: 14px; height: 14px; animation-duration: 18s; animation-delay: 2s; }
+.particle-3 { left: 18%; width: 10px; height: 10px; animation-duration: 22s; animation-delay: 4s; }
+.particle-4 { left: 26%; width: 16px; height: 16px; animation-duration: 16s; animation-delay: 6s; }
+.particle-5 { left: 35%; width: 7px; height: 7px; animation-duration: 20s; animation-delay: 8s; }
+.particle-6 { left: 44%; width: 12px; height: 12px; animation-duration: 24s; animation-delay: 10s; }
+.particle-7 { left: 52%; width: 9px; height: 9px; animation-duration: 15s; animation-delay: 1s; }
+.particle-8 { left: 60%; width: 13px; height: 13px; animation-duration: 26s; animation-delay: 3s; }
+.particle-9 { left: 68%; width: 6px; height: 6px; animation-duration: 19s; animation-delay: 5s; }
+.particle-10 { left: 76%; width: 15px; height: 15px; animation-duration: 23s; animation-delay: 7s; }
+.particle-11 { left: 82%; width: 11px; height: 11px; animation-duration: 17s; animation-delay: 9s; }
+.particle-12 { left: 88%; width: 8px; height: 8px; animation-duration: 21s; animation-delay: 11s; }
+.particle-13 { left: 94%; width: 12px; height: 12px; animation-duration: 25s; animation-delay: 13s; }
+.particle-14 { left: 50%; width: 10px; height: 10px; animation-duration: 28s; animation-delay: 14s; }
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(40vh) translateX(40px);
+  }
+
+  100% {
+    transform: translateY(-10vh) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* LEFT */
+
+.luxury-hero-copy {
+  position: relative;
+  z-index: 3;
+}
+
+.luxury-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 28px;
+
+  position: relative;
+
+  color: #8C6F3F;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
 }
 
-.luxury-hero-headline {
-  color: #ffffff;
-  font-size: 72px;
-  line-height: 1.1;
-  margin-bottom: 28px;
-  font-weight: 600;
+.luxury-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: #B8945A;
+}
+
+.luxury-hero-heading {
+  font-family: "Italiana", serif;
+  font-size: clamp(56px, 8.5vw, 128px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: #2A2438;
+
+  margin-bottom: 32px;
+
+  text-wrap: pretty;
+}
+
+.luxury-hero-heading em {
+  display: block;
+
+  font-family: "Pinyon Script", cursive;
+  font-style: normal;
+
+  font-size: 0.95em;
+  line-height: 0.85;
+
+  color: #8C6F3F;
+}
+
+.luxury-hero-subhead {
+  max-width: 460px;
+
+  margin-bottom: 44px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
+
+  color: rgba(42,36,56,0.78);
 }
 
 .luxury-hero-btn {
+  position: relative;
+
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
 
-  padding: 14px 32px;
+  padding: 20px 36px;
 
-  background: #B8945A;
-  color: #ffffff;
+  border-radius: 999px;
+
+  background: #2A2438;
+  color: #F8F1E7;
 
   text-decoration: none;
-  border-radius: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  overflow: hidden;
+
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  box-shadow:
+    0 12px 32px -16px rgba(42, 36, 56, 0.4);
+}
+
+.luxury-hero-btn::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at center,
+    rgba(217,186,130,0.6) 0%,
+    transparent 60%);
+
+  opacity: 0;
 
   transition: 0.3s ease;
 }
 
 .luxury-hero-btn:hover {
-  opacity: 0.9;
+  background: #5B4A7A;
   transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 40px -12px rgba(91, 74, 122, 0.5);
 }
 
-.luxury-hero-stats {
-  margin-top: 60px;
+.luxury-hero-btn:hover::after {
+  opacity: 1;
+}
+
+/* RIGHT */
+
+.luxury-hero-visual {
+  position: relative;
+  z-index: 3;
+}
+
+.luxury-cake-shell {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  border-radius:
+    50% 50% 12px 12px /
+    14% 14% 6% 6%;
+
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.4), transparent 60%),
+    linear-gradient(180deg, #E4D9EE 0%, #C9B8DC 60%, #8E7AAB 100%);
+
+  box-shadow:
+    inset 0 -40px 80px rgba(91, 74, 122, 0.25),
+    0 60px 120px -40px rgba(91, 74, 122, 0.4);
+}
+
+.luxury-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.luxury-placeholder {
+  width: 100%;
+  height: 100%;
 
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 60px;
 
-  flex-wrap: wrap;
+  padding: 40px;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(184,148,90,0.06) 0 14px,
+      rgba(184,148,90,0.12) 14px 28px
+    ),
+    linear-gradient(135deg, #E4D9EE, #EFE4D2);
 }
 
-.luxury-stat h3 {
-  color: #ffffff;
-  font-size: 36px;
-  margin-bottom: 8px;
+.luxury-placeholder-label {
+  max-width: 80%;
+
+  padding: 8px 14px;
+
+  border-radius: 2px;
+  border: 1px solid rgba(184,148,90,0.4);
+
+  background: rgba(248,241,231,0.85);
+
+  text-align: center;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.8;
+
+  color: #8C6F3F;
 }
 
-.luxury-stat p {
-  color: #D9BA82;
-  font-size: 14px;
-  letter-spacing: 1px;
+/* REVEAL */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@media screen and (max-width: 768px) {
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 1000px) {
 
   .luxury-hero {
-    min-height: 85vh;
+    padding: 110px 24px 60px;
   }
 
-  .luxury-hero-headline {
-    font-size: 42px;
+  .luxury-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
-  .luxury-hero-stats {
-    gap: 30px;
+  .luxury-hero-copy {
+    text-align: center;
   }
 
-  .luxury-stat h3 {
-    font-size: 28px;
+  .luxury-eyebrow::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: #B8945A;
+  }
+
+  .luxury-hero-subhead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .luxury-hero-visual {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .luxury-particles {
+    display: none;
   }
 
 }
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const reveals = document.querySelectorAll(".reveal");
+
+  reveals.forEach((el, index) => {
+
+    setTimeout(() => {
+      el.classList.add("in");
+    }, index * 120);
+
+  });
+
+});
+</script>
 
 {% schema %}
 {
@@ -187,79 +462,51 @@
   "settings": [
     {
       "type": "header",
-      "content": "Content"
+      "content": "Hero Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "DAWN'S GLOW KIT — 2026"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading Line 1",
+      "default": "Fit for"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading Line 2",
+      "default": "Royal Skin."
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Indulge your skin in the luxury it deserves — a seven-piece ritual whipped from regency botanicals and clinical actives."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Shop the Glow"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "header",
+      "content": "Hero Image"
     },
     {
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero Image"
-    },
-    {
-      "type": "text",
-      "id": "headline",
-      "label": "Headline",
-      "default": "Royal Skincare Elegance"
-    },
-    {
-      "type": "text",
-      "id": "subheadline",
-      "label": "Subheadline",
-      "default": "Indulge in luxury"
-    },
-    {
-      "type": "header",
-      "content": "CTA"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Button Text",
-      "default": "Shop Now"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Button Link"
-    },
-    {
-      "type": "header",
-      "content": "Stats"
-    },
-    {
-      "type": "text",
-      "id": "stat_1_number",
-      "label": "Stat 1 Number",
-      "default": "50%"
-    },
-    {
-      "type": "text",
-      "id": "stat_1_label",
-      "label": "Stat 1 Label",
-      "default": "More Radiant"
-    },
-    {
-      "type": "text",
-      "id": "stat_2_number",
-      "label": "Stat 2 Number",
-      "default": "+7"
-    },
-    {
-      "type": "text",
-      "id": "stat_2_label",
-      "label": "Stat 2 Label",
-      "default": "Days Glow"
-    },
-    {
-      "type": "text",
-      "id": "stat_3_number",
-      "label": "Stat 3 Number",
-      "default": "100%"
-    },
-    {
-      "type": "text",
-      "id": "stat_3_label",
-      "label": "Stat 3 Label",
-      "default": "Natural"
     }
   ],
   "presets": [
