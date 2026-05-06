@@ -9,56 +9,128 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "heading": {
-          "type": "text",
-          "name": "Title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "page-content": {
-          "type": "page-content",
-          "settings": {},
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "heading",
-        "page-content"
-      ],
-      "disabled": true,
+    "luxury-nav": {
+      "type": "luxury-nav",
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "color_scheme": "",
-        "padding-block-start": 40,
-        "padding-block-end": 80
+        "logo_text": "Dawn"
       }
+    },
+    "luxury-hero": {
+      "type": "luxury-hero",
+      "settings": {
+        "headline": "Royal Skincare Elegance",
+        "subheadline": "Indulge in luxury",
+        "cta_text": "Shop Now",
+        "cta_link": "/collections/all",
+        "stat_1_number": "50%",
+        "stat_1_label": "More Radiant",
+        "stat_2_number": "+7",
+        "stat_2_label": "Days Glow",
+        "stat_3_number": "100%",
+        "stat_3_label": "Natural"
+      }
+    },
+    "luxury-marquee": {
+      "type": "luxury-marquee",
+      "settings": {
+        "marquee_text": "✨ Royal Elegance Meets Modern Skincare ✨"
+      }
+    },
+    "luxury-texture": {
+      "type": "luxury-texture",
+      "settings": {
+        "show_eyebrow": false,
+        "eyebrow_text": "04 / Sensorium",
+        "headline_text": "Softness",
+        "em_text": "you can feel",
+        "em_font_family": "Pinyon Script",
+        "em_font_size": 105,
+        "em_text_color": "#5B4A7A",
+        "show_subtitle": false,
+        "subtitle_text": "Whipped at low temperature, layered like petit fours. The texture is the proof."
+      }
+    },
+    "luxury-ribbon": {
+      "type": "luxury-ribbon",
+      "settings": {}
+    },
+    "luxury-products": {
+      "type": "luxury-products",
+      "settings": {
+        "section_title": "Our Signature Collection",
+        "section_subtitle": "Handpicked products for radiant, luxurious skin",
+        "product_name": "Royal Cream Luxe",
+        "product_description": "Our signature cream infused with the finest botanicals. Whipped at low temperature, layered like petit fours. Experience luxury in every application.",
+        "product_price": "$222",
+        "product_link": "/products/royal-cream-luxe",
+        "cta_text": "Shop Now"
+      }
+    },
+    "luxury-benefits": {
+      "type": "luxury-benefits",
+      "settings": {
+        "section_title": "Why Choose Dawn",
+        "benefit_1_icon": "✨",
+        "benefit_1_title": "Premium Ingredients",
+        "benefit_1_desc": "Sourced from the finest botanical gardens worldwide",
+        "benefit_2_icon": "👑",
+        "benefit_2_title": "Dermatologist Tested",
+        "benefit_2_desc": "Approved by leading skincare experts",
+        "benefit_3_icon": "🌸",
+        "benefit_3_title": "Cruelty Free",
+        "benefit_3_desc": "Never tested on animals, always ethical",
+        "benefit_4_icon": "💎",
+        "benefit_4_title": "Luxury Packaging",
+        "benefit_4_desc": "Beautiful presentation perfect for gifting",
+        "title_font_family": "Cormorant Garamond",
+        "title_font_size": 20,
+        "description_font_family": "Inter",
+        "description_font_size": 14
+      }
+    },
+    "luxury-testimonials": {
+      "type": "luxury-testimonials",
+      "settings": {
+        "section_title": "What Our Customers Say",
+        "testimonial_1_text": "Simply divine. My skin has never felt more radiant.",
+        "testimonial_1_author": "Margaret",
+        "testimonial_2_text": "A true luxury experience. Worth every penny.",
+        "testimonial_2_author": "Eleanor",
+        "testimonial_3_text": "The most elegant skincare I've ever used.",
+        "testimonial_3_author": "Victoria"
+      }
+    },
+    "luxury-story": {
+      "type": "luxury-story",
+      "settings": {}
+    },
+    "luxury-pricing-cta": {
+      "type": "luxury-pricing-cta",
+      "settings": {
+        "cta_text": "Experience luxury at an exceptional price. Discover the signature collection today."
+      }
+    },
+    "luxury-sticky-cta": {
+      "type": "luxury-sticky-cta",
+      "settings": {}
+    },
+    "luxury-footer": {
+      "type": "luxury-footer",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "luxury-nav",
+    "luxury-hero",
+    "luxury-marquee",
+    "luxury-texture",
+    "luxury-ribbon",
+    "luxury-products",
+    "luxury-benefits",
+    "luxury-testimonials",
+    "luxury-story",
+    "luxury-pricing-cta",
+    "luxury-sticky-cta",
+    "luxury-footer"
   ]
 }
