@@ -63,13 +63,40 @@
     align-items: center;
   }
 
+  @media (max-width: 1024px) {
+    .nav-menu {
+      gap: 20px;
+    }
+
+    .nav-menu a {
+      font-size: 12px !important;
+      padding: 6px !important;
+    }
+  }
+
   @media (max-width: 768px) {
     .luxury-nav {
       padding: {{ section.settings.padding_vertical_mobile }}px {{ section.settings.padding_horizontal_mobile }}px;
     }
 
+    .nav-container {
+      gap: 20px;
+    }
+
+    .nav-logo {
+      font-size: 16px !important;
+    }
+
     .nav-menu {
       display: none;
+    }
+
+    .nav-icons {
+      gap: 15px;
+    }
+
+    .nav-icons a {
+      font-size: 16px !important;
     }
   }
 </style>

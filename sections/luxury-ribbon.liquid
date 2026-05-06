@@ -47,14 +47,44 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .ribbon-track {
-      font-size: 14px;
-      gap: 40px;
+      font-size: 16px;
+      gap: 48px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ribbon {
+      padding: 10px 0;
+    }
+
+    .ribbon-track {
+      font-size: 12px;
+      gap: 32px;
     }
 
     .ribbon-track span {
-      gap: 40px;
+      gap: 32px;
+    }
+
+    .ribbon-track span::after {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ribbon {
+      padding: 8px 0;
+    }
+
+    .ribbon-track {
+      font-size: 11px;
+      gap: 24px;
+    }
+
+    .ribbon-track span {
+      gap: 24px;
     }
   }
 </style>

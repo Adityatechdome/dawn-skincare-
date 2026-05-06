@@ -170,7 +170,10 @@
     }
 
     .product-image-wrapper {
-      aspect-ratio: 1;
+      aspect-ratio: 3/4;
+      max-width: 300px;
+      margin: 0 auto;
+      border-width: 6px;
     }
 
     .product-title {
@@ -186,6 +189,56 @@
     .product-price {
       font-size: 24px;
       margin-bottom: 30px;
+    }
+
+    .product-btn {
+      padding: 14px 32px;
+      font-size: 11px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .luxury-products {
+      padding: 30px 16px;
+    }
+
+    .products-header {
+      margin-bottom: 30px;
+    }
+
+    .products-header h2 {
+      font-size: 28px;
+    }
+
+    .products-header p {
+      font-size: 12px;
+    }
+
+    .product-image-wrapper {
+      aspect-ratio: 3/4;
+      max-width: 240px;
+      border-width: 4px;
+    }
+
+    .product-title {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .product-description {
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .product-price {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .product-btn {
+      padding: 12px 24px;
     }
   }
 </style>
