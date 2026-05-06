@@ -1,168 +1,263 @@
-<section class="luxury-sticky-cta" id="sticky-cta">
-  <div class="sticky-cta-content">
-    <div>
-      <h3>{{ section.settings.cta_title }}</h3>
-      <p>{{ section.settings.cta_subtitle }}</p>
-    </div>
-    <a href="{{ section.settings.cta_link }}" class="sticky-cta-btn">{{ section.settings.cta_text }}</a>
+<section
+  id="sticky-cta-{{ section.id }}"
+  class="dawn-sticky-cta"
+  role="region"
+  aria-label="Promotion"
+>
+
+  <div class="sticky-cta-text">
+
+    <strong>
+      {{ section.settings.offer_text }}
+    </strong>
+
+    <span>
+      · {{ section.settings.offer_subtext }}
+    </span>
+
   </div>
-  <button class="sticky-close" onclick="closeStickyCTA()">&times;</button>
+
+  <button
+    class="sticky-cta-button"
+    type="button"
+    aria-label="Scroll to products section"
+  >
+    {{ section.settings.button_text }}
+  </button>
+
 </section>
 
 <style>
-  .luxury-sticky-cta {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%) translateY(150px);
-    max-width: 600px;
-    width: 90%;
-    background: rgba(61, 49, 88, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 14px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 99;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    border: 1px solid rgba(217, 186, 130, 0.3);
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+#sticky-cta-{{ section.id }}{
+  position: fixed;
+
+  bottom: 24px;
+  left: 50%;
+
+  transform:
+    translateX(-50%)
+    translateY(120%);
+
+  z-index: 90;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 12px 14px 12px 22px;
+
+  border-radius: 999px;
+
+  background: #2A2438;
+
+  color: #F8F1E7;
+
+  box-shadow:
+    0 20px 50px -12px rgba(0,0,0,0.4);
+
+  transition:
+    transform 0.5s cubic-bezier(0.2,0.8,0.2,1);
+
+  max-width: calc(100vw - 32px);
+}
+
+#sticky-cta-{{ section.id }}.show{
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+#sticky-cta-{{ section.id }} *{
+  box-sizing: border-box;
+}
+
+/* TEXT */
+
+.sticky-cta-text{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  white-space: nowrap;
+}
+
+.sticky-cta-text strong{
+  font-family: "Italiana", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+
+  letter-spacing: 0.05em;
+
+  color: #D9BA82;
+}
+
+.sticky-cta-text span{
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1;
+
+  color: #F8F1E7;
+}
+
+/* BUTTON */
+
+.sticky-cta-button{
+  appearance: none;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  padding: 12px 20px;
+
+  border-radius: 999px;
+
+  background: #D9BA82;
+
+  color: #2A2438;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sticky-cta-button:hover{
+  background: #F8F1E7;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 600px){
+
+  #sticky-cta-{{ section.id }}{
+    padding: 10px;
   }
 
-  .luxury-sticky-cta.visible {
-    transform: translateX(-50%) translateY(0);
+  .sticky-cta-text{
+    display: none;
   }
 
-  .sticky-cta-content {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 40px;
-    flex: 1;
-    flex-direction: column;
+  .sticky-cta-button{
+    padding: 12px 18px;
+
+    font-size: 10px;
   }
 
-  .sticky-cta-content h3 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 18px;
-    color: #D9BA82;
-    margin: 0 0 5px 0;
+}
+
+/* REDUCE MOTION */
+
+@media (prefers-reduced-motion: reduce){
+
+  #sticky-cta-{{ section.id }}{
+    transition: none;
   }
 
-  .sticky-cta-content p {
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    color: #C8D4E3;
-    margin: 0;
-  }
+}
 
-  .sticky-cta-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #B8945A;
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
-
-  .sticky-cta-btn:hover {
-    background: #D9BA82;
-    transform: translateY(-2px);
-  }
-
-  .sticky-close {
-    background: none;
-    border: none;
-    color: #D9BA82;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 0;
-    margin-left: 20px;
-    transition: color 0.3s ease;
-  }
-
-  .sticky-close:hover {
-    color: #B8945A;
-  }
-
-  @media (max-width: 768px) {
-    .luxury-sticky-cta {
-      bottom: 20px;
-      width: calc(100% - 40px);
-      padding: 18pxpx 25px;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .sticky-cta-content {
-      width: 100%;
-      gap: 15px;
-    }
-
-    .sticky-cta-btn {
-      width: 100%;
-      text-align: center;
-    }
-
-    .sticky-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      margin-left: 0;
-    }
-  }
 </style>
 
 <script>
-  function closeStickyCTA() {
-    document.getElementById('sticky-cta').classList.remove('visible');
-    sessionStorage.setItem('stickyCTAClosed', 'true');
+
+(function(){
+
+  const stickyCTA =
+    document.getElementById(
+      'sticky-cta-{{ section.id }}'
+    );
+
+  const button =
+    stickyCTA.querySelector(
+      '.sticky-cta-button'
+    );
+
+  function toggleStickyCTA(){
+
+    const threshold =
+      window.innerHeight * 0.8;
+
+    if(window.scrollY > threshold){
+
+      stickyCTA.classList.add('show');
+
+    }else{
+
+      stickyCTA.classList.remove('show');
+
+    }
+
   }
 
-  window.addEventListener('scroll', function() {
-    const stickyCTA = document.getElementById('sticky-cta');
-    const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  window.addEventListener(
+    'scroll',
+    toggleStickyCTA,
+    { passive: true }
+  );
 
-    if (scrollPercentage > 50 && !sessionStorage.getItem('stickyCTAClosed')) {
-      stickyCTA.classList.add('visible');
+  toggleStickyCTA();
+
+  button.addEventListener('click', function(){
+
+    const target =
+      document.querySelector('#products');
+
+    if(target){
+
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
     }
+
   });
+
+})();
+
 </script>
 
 {% schema %}
 {
-  "name": "Luxury Sticky CTA",
+  "name": "Sticky Pricing CTA",
+
   "settings": [
+
     {
       "type": "text",
-      "id": "cta_title",
-      "label": "Title",
-      "default": "Ready to Transform Your Skin?"
+      "id": "offer_text",
+      "label": "Offer Text",
+      "default": "50% OFF"
     },
+
     {
       "type": "text",
-      "id": "cta_subtitle",
-      "label": "Subtitle",
-      "default": "Get your royal collection today"
+      "id": "offer_subtext",
+      "label": "Offer Subtext",
+      "default": "Free BB Cream — today only"
     },
+
     {
       "type": "text",
-      "id": "cta_text",
+      "id": "button_text",
       "label": "Button Text",
-      "default": "Shop Now"
-    },
+      "default": "Shop the Glow"
+    }
+
+  ],
+
+  "presets": [
     {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Button Link"
+      "name": "Sticky Pricing CTA"
     }
   ]
 }
