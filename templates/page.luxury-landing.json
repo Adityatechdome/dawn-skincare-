@@ -12,8 +12,9 @@
     "luxury-nav": {
       "type": "luxury-nav",
       "settings": {
+        "logo_image": "shopify://shop_images/DAWN-LOGO_f1be56fb-a647-46af-b915-087261d2dc05.png",
         "logo_text": "Dawn",
-        "menu": "",
+        "menu": "main-menu",
         "search_icon": "shopify://shop_images/search.png",
         "account_icon": "shopify://shop_images/queen.png",
         "cart_icon": "shopify://shop_images/sell.png",
