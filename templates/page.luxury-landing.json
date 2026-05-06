@@ -182,7 +182,6 @@
     },
     "luxury-sticky-cta": {
       "type": "luxury-sticky-cta",
-      "disabled": true,
       "settings": {
         "cta_title": "Ready to Transform Your Skin?",
         "cta_subtitle": "Get your royal collection today",
