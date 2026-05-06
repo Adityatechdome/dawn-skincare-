@@ -1,237 +1,668 @@
-<section class="luxury-testimonials">
-  <div class="testimonials-header">
-    <h2>{{ section.settings.section_title }}</h2>
+<section id="testimonials-{{ section.id }}" class="royal-testimonials">
+
+  <div class="testimonials-inner">
+
+    <!-- HEADER -->
+
+    <div class="testimonials-header">
+
+      <div class="testimonials-eyebrow reveal">
+        <span>{{ section.settings.eyebrow }}</span>
+      </div>
+
+      <h2 class="testimonials-title reveal">
+        {{ section.settings.heading }}
+      </h2>
+
+      <p class="testimonials-subtitle reveal">
+        {{ section.settings.subtitle }}
+      </p>
+
+    </div>
+
+    <!-- GRID -->
+
+    <div class="testimonials-grid">
+
+      <!-- CARD 1 -->
+
+      <div class="testimonial-card reveal card-1">
+
+        <div class="wax-seal">
+          <svg viewBox="0 0 56 56" width="56" height="56">
+            <defs>
+              <radialGradient id="ssg1" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#D9BA82"/>
+                <stop offset="100%" stop-color="#8C6F3F"/>
+              </radialGradient>
+            </defs>
+
+            <circle cx="28" cy="28" r="24" fill="url(#ssg1)"/>
+            <circle cx="28" cy="28" r="20" fill="none" stroke="rgba(0,0,0,0.2)"/>
+
+            <text
+              x="28"
+              y="35"
+              text-anchor="middle"
+              font-family="Italiana, serif"
+              font-size="22"
+              fill="rgba(0,0,0,0.45)"
+            >
+              {{ section.settings.initial_1 }}
+            </text>
+          </svg>
+        </div>
+
+        <div class="testimonial-stars">
+          ✦✦✦✦✦
+        </div>
+
+        <div class="testimonial-quote">
+          “{{ section.settings.quote_1 }}”
+        </div>
+
+        <div class="testimonial-meta">
+
+          <div class="testimonial-avatar">
+            {{ section.settings.initial_1 }}
+          </div>
+
+          <div class="testimonial-user">
+            <div class="testimonial-name">
+              {{ section.settings.name_1 }}
+            </div>
+
+            <div class="testimonial-location">
+              {{ section.settings.location_1 }} · VERIFIED
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="testimonial-card reveal card-2">
+
+        <div class="wax-seal">
+          <svg viewBox="0 0 56 56" width="56" height="56">
+            <defs>
+              <radialGradient id="ssg2" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#D9BA82"/>
+                <stop offset="100%" stop-color="#8C6F3F"/>
+              </radialGradient>
+            </defs>
+
+            <circle cx="28" cy="28" r="24" fill="url(#ssg2)"/>
+            <circle cx="28" cy="28" r="20" fill="none" stroke="rgba(0,0,0,0.2)"/>
+
+            <text
+              x="28"
+              y="35"
+              text-anchor="middle"
+              font-family="Italiana, serif"
+              font-size="22"
+              fill="rgba(0,0,0,0.45)"
+            >
+              {{ section.settings.initial_2 }}
+            </text>
+          </svg>
+        </div>
+
+        <div class="testimonial-stars">
+          ✦✦✦✦✦
+        </div>
+
+        <div class="testimonial-quote">
+          “{{ section.settings.quote_2 }}”
+        </div>
+
+        <div class="testimonial-meta">
+
+          <div class="testimonial-avatar">
+            {{ section.settings.initial_2 }}
+          </div>
+
+          <div class="testimonial-user">
+            <div class="testimonial-name">
+              {{ section.settings.name_2 }}
+            </div>
+
+            <div class="testimonial-location">
+              {{ section.settings.location_2 }} · VERIFIED
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="testimonial-card reveal card-3">
+
+        <div class="wax-seal">
+          <svg viewBox="0 0 56 56" width="56" height="56">
+            <defs>
+              <radialGradient id="ssg3" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#D9BA82"/>
+                <stop offset="100%" stop-color="#8C6F3F"/>
+              </radialGradient>
+            </defs>
+
+            <circle cx="28" cy="28" r="24" fill="url(#ssg3)"/>
+            <circle cx="28" cy="28" r="20" fill="none" stroke="rgba(0,0,0,0.2)"/>
+
+            <text
+              x="28"
+              y="35"
+              text-anchor="middle"
+              font-family="Italiana, serif"
+              font-size="22"
+              fill="rgba(0,0,0,0.45)"
+            >
+              {{ section.settings.initial_3 }}
+            </text>
+          </svg>
+        </div>
+
+        <div class="testimonial-stars">
+          ✦✦✦✦✦
+        </div>
+
+        <div class="testimonial-quote">
+          “{{ section.settings.quote_3 }}”
+        </div>
+
+        <div class="testimonial-meta">
+
+          <div class="testimonial-avatar">
+            {{ section.settings.initial_3 }}
+          </div>
+
+          <div class="testimonial-user">
+            <div class="testimonial-name">
+              {{ section.settings.name_3 }}
+            </div>
+
+            <div class="testimonial-location">
+              {{ section.settings.location_3 }} · VERIFIED
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="testimonials-grid" id="testimonials-grid">
-    <div class="testimonial-card">
-      <p class="testimonial-text">"{{ section.settings.testimonial_1_text }}"</p>
-      <p class="testimonial-author">{{ section.settings.testimonial_1_author }}</p>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-text">"{{ section.settings.testimonial_2_text }}"</p>
-      <p class="testimonial-author">{{ section.settings.testimonial_2_author }}</p>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-text">"{{ section.settings.testimonial_3_text }}"</p>
-      <p class="testimonial-author">{{ section.settings.testimonial_3_author }}</p>
-    </div>
-  </div>
-
-  <div class="carousel-controls" id="carousel-controls" style="display: none;">
-    <button class="carousel-btn prev" onclick="prevTestimonial()">❮</button>
-    <button class="carousel-btn next" onclick="nextTestimonial()">❯</button>
-  </div>
 </section>
 
 <style>
-  .luxury-testimonials {
-    padding: 80px 56px;
-    background: #F8F1E7;
+
+#testimonials-{{ section.id }}{
+  position: relative;
+
+  width: 100vw;
+  max-width: 100vw;
+
+  left: 50%;
+  right: 50%;
+
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  overflow: hidden;
+
+  background: #F8F1E7;
+
+  padding: 140px 56px;
+}
+
+#testimonials-{{ section.id }} *{
+  box-sizing: border-box;
+}
+
+.testimonials-inner{
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.testimonials-header{
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.testimonials-eyebrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin-bottom: 32px;
+}
+
+.testimonials-eyebrow::before,
+.testimonials-eyebrow::after{
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: #B8945A;
+  opacity: 0.6;
+}
+
+.testimonials-eyebrow span{
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #8C6F3F;
+}
+
+.testimonials-title{
+  max-width: 14ch;
+  margin: 0 auto 24px;
+
+  font-family: "Italiana", serif;
+  font-size: clamp(40px, 5.5vw, 84px);
+  line-height: 1;
+  font-weight: 400;
+
+  color: #2A2438;
+}
+
+.testimonials-subtitle{
+  max-width: 56ch;
+  margin: 0 auto;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.5;
+
+  color: rgba(42,36,56,0.72);
+}
+
+/* GRID */
+
+.testimonials-grid{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 28px;
+
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* CARD */
+
+.testimonial-card{
+  position: relative;
+
+  padding: 48px 36px 40px;
+
+  border: 1px solid rgba(184,148,90,0.20);
+
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 30px,
+      rgba(184,148,90,0.08) 30px 31px
+    ),
+    #FBF6EE;
+
+  box-shadow:
+    0 30px 60px -40px rgba(91,74,122,0.30);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.card-1{
+  transform: rotate(-1.2deg);
+}
+
+.card-2{
+  transform: rotate(0.6deg);
+}
+
+.card-3{
+  transform: rotate(-0.4deg);
+}
+
+.testimonial-card:hover,
+.testimonial-card.is-active{
+  transform: rotate(0deg) translateY(-4px);
+}
+
+/* WAX SEAL */
+
+.wax-seal{
+  position: absolute;
+  top: -16px;
+  right: 24px;
+}
+
+/* STARS */
+
+.testimonial-stars{
+  margin-bottom: 16px;
+
+  font-family: "Italiana", serif;
+  font-size: 18px;
+  letter-spacing: 0.3em;
+
+  color: #8C6F3F;
+}
+
+/* QUOTE */
+
+.testimonial-quote{
+  margin-bottom: 28px;
+
+  font-family: "Pinyon Script", cursive;
+  font-size: 28px;
+  line-height: 1.35;
+
+  color: #3D3158;
+
+  text-wrap: pretty;
+}
+
+/* META */
+
+.testimonial-meta{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.testimonial-avatar{
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #C9B8DC,
+      #E8C9CC
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Italiana", serif;
+  font-size: 18px;
+
+  color: #F8F1E7;
+}
+
+.testimonial-name{
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #2A2438;
+}
+
+.testimonial-location{
+  margin-top: 4px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+
+  opacity: 0.55;
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity: 0;
+  transform: translateY(40px);
+
+  animation: revealUp 0.9s cubic-bezier(0.2,0.8,0.2,1) forwards;
+}
+
+.card-1.reveal{
+  animation-delay: 0.1s;
+}
+
+.card-2.reveal{
+  animation-delay: 0.24s;
+}
+
+.card-3.reveal{
+  animation-delay: 0.38s;
+}
+
+@keyframes revealUp{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 999px){
+
+  .testimonials-grid{
+    grid-template-columns: repeat(2,1fr);
   }
 
-  .testimonials-header {
-    text-align: center;
-    margin-bottom: 60px;
+}
+
+@media screen and (max-width: 700px){
+
+  #testimonials-{{ section.id }}{
+    padding: 90px 24px;
   }
 
-  .testimonials-header h2 {
-    font-family: "Italiana", serif;
-    font-size: 54px;
-    color: #2A2438;
-    margin: 0;
-    letter-spacing: 0.08em;
+}
+
+@media screen and (max-width: 600px){
+
+  #testimonials-{{ section.id }}{
+    padding: 90px 16px;
   }
 
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 1320px;
-    margin: 0 auto 40px;
+  .testimonials-grid{
+    grid-template-columns: 1fr;
+
+    max-width: 480px;
   }
 
-  .testimonial-card {
-    background: white;
-    border: 1px solid rgba(184, 148, 90, 0.2);
-    padding: 40px;
-    box-sizing: border-box;
+  .card-1{
+    transform: rotate(-0.6deg);
   }
 
-  .testimonial-text {
-    font-family: "Cormorant Garamond", serif;
+  .card-2{
+    transform: rotate(0.4deg);
+  }
+
+  .card-3{
+    transform: rotate(-0.5deg);
+  }
+
+  .testimonial-card{
+    padding: 42px 24px 32px;
+  }
+
+  .testimonial-quote{
     font-size: 24px;
-    color: #2A2438;
-    margin: 0 0 30px 0;
-    line-height: 1.8;
   }
 
-  .testimonial-author {
-    font-family: "Pinyon Script", cursive;
-    font-size: 24px;
-    color: #B8945A;
-    margin: 0;
-  }
+}
 
-  .carousel-controls {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
+/* TOUCH */
 
-  .carousel-btn {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #B8945A;
-    background: transparent;
-    color: #B8945A;
-    font-size: 24px;
+@media (hover:none){
+
+  .testimonial-card{
     cursor: pointer;
-    transition: all 0.3s ease;
   }
 
-  .carousel-btn:hover {
-    background: #B8945A;
-    color: white;
-  }
+}
 
-  @media (max-width: 1000px) {
-    .testimonials-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .luxury-testimonials {
-      padding: 40px 20px;
-    }
-
-    .testimonials-header h2 {
-      font-size: 36px;
-    }
-
-    .testimonials-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      overflow: hidden;
-      margin: 0 auto 40px;
-    }
-
-    .testimonial-card {
-      padding: 20px;
-      min-width: 100%;
-      box-sizing: border-box;
-    }
-
-    .testimonial-text {
-      font-size: 16px;
-    }
-
-    #carousel-controls {
-      display: flex !important;
-    }
-
-    .testimonials-grid {
-      display: flex;
-      overflow: hidden;
-    }
-  }
 </style>
 
 <script>
-  let currentTestimonial = 0;
-  let isMobileCarousel = false;
 
-  function initTestimonials() {
-    const isMobile = window.innerWidth <= 768;
-    const grid = document.getElementById('testimonials-grid');
-    const controls = document.getElementById('carousel-controls');
+document.querySelectorAll('#testimonials-{{ section.id }} .testimonial-card')
+.forEach(card => {
 
-    if (isMobile) {
-      isMobileCarousel = true;
-      grid.style.display = 'flex';
-      controls.style.display = 'flex';
-    } else {
-      isMobileCarousel = false;
-      grid.style.display = 'grid';
-      controls.style.display = 'none';
-    }
-  }
+  card.addEventListener('click', () => {
+    card.classList.toggle('is-active');
+  });
 
-  function showTestimonial(n) {
-    const grid = document.getElementById('testimonials-grid');
-    const testimonials = grid.querySelectorAll('.testimonial-card');
+});
 
-    if (isMobileCarousel) {
-      currentTestimonial = Math.max(0, Math.min(n, testimonials.length - 1));
-      grid.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-    }
-  }
-
-  function nextTestimonial() {
-    const testimonials = document.querySelectorAll('.testimonial-card');
-    if (isMobileCarousel) {
-      currentTestimonial = Math.min(currentTestimonial + 1, testimonials.length - 1);
-      showTestimonial(currentTestimonial);
-    }
-  }
-
-  function prevTestimonial() {
-    if (isMobileCarousel) {
-      currentTestimonial = Math.max(currentTestimonial - 1, 0);
-      showTestimonial(currentTestimonial);
-    }
-  }
-
-  initTestimonials();
-  window.addEventListener('resize', initTestimonials);
 </script>
 
 {% schema %}
 {
-  "name": "Luxury Testimonials",
+  "name": "Royal Testimonials",
+
   "settings": [
+
     {
       "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
-      "default": "What Our Customers Say"
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "05 / Royal Reviews"
     },
+
     {
       "type": "text",
-      "id": "testimonial_1_text",
-      "label": "Testimonial 1 Text",
-      "default": "The best skincare I have ever used. My skin has never looked better!"
+      "id": "heading",
+      "label": "Heading",
+      "default": "Whispers from the Court."
     },
+
     {
-      "type": "text",
-      "id": "testimonial_1_author",
-      "label": "Testimonial 1 Author",
-      "default": "Sarah Johnson"
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "4.9 / 5 across 12,400 reviews — penned by hand, by women who know."
     },
+
     {
-      "type": "text",
-      "id": "testimonial_2_text",
-      "label": "Testimonial 2 Text",
-      "default": "Absolutely luxurious and effective. Worth every penny!"
+      "type": "header",
+      "content": "Review 1"
     },
+
     {
       "type": "text",
-      "id": "testimonial_2_author",
-      "label": "Testimonial 2 Author",
-      "default": "Emily Williams"
+      "id": "initial_1",
+      "label": "Initial",
+      "default": "A"
     },
+
     {
-      "type": "text",
-      "id": "testimonial_3_text",
-      "label": "Testimonial 3 Text",
-      "default": "I love the elegant packaging and the wonderful results. Highly recommended!"
+      "type": "textarea",
+      "id": "quote_1",
+      "label": "Quote",
+      "default": "It melts like silk into the skin. I have never touched a cream this elegant."
     },
+
     {
       "type": "text",
-      "id": "testimonial_3_author",
-      "label": "Testimonial 3 Author",
-      "default": "Jessica Brown"
+      "id": "name_1",
+      "label": "Name",
+      "default": "Amelia Rose"
+    },
+
+    {
+      "type": "text",
+      "id": "location_1",
+      "label": "Location",
+      "default": "London"
+    },
+
+    {
+      "type": "header",
+      "content": "Review 2"
+    },
+
+    {
+      "type": "text",
+      "id": "initial_2",
+      "label": "Initial",
+      "default": "E"
+    },
+
+    {
+      "type": "textarea",
+      "id": "quote_2",
+      "label": "Quote",
+      "default": "The glow feels candlelit. Even the ritual of opening the jar feels regal."
+    },
+
+    {
+      "type": "text",
+      "id": "name_2",
+      "label": "Name",
+      "default": "Elena Hart"
+    },
+
+    {
+      "type": "text",
+      "id": "location_2",
+      "label": "Location",
+      "default": "Paris"
+    },
+
+    {
+      "type": "header",
+      "content": "Review 3"
+    },
+
+    {
+      "type": "text",
+      "id": "initial_3",
+      "label": "Initial",
+      "default": "S"
+    },
+
+    {
+      "type": "textarea",
+      "id": "quote_3",
+      "label": "Quote",
+      "default": "My vanity finally feels complete. The texture is pure couture skincare."
+    },
+
+    {
+      "type": "text",
+      "id": "name_3",
+      "label": "Name",
+      "default": "Sophia Vale"
+    },
+
+    {
+      "type": "text",
+      "id": "location_3",
+      "label": "Location",
+      "default": "Milan"
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Royal Testimonials"
     }
   ]
 }
