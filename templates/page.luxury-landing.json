@@ -46,27 +46,6 @@
         "hero_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.15PM_1.jpg"
       }
     },
-    "luxury-marquee": {
-      "type": "luxury-marquee",
-      "disabled": true,
-      "settings": {
-        "marquee_text": "✨ Royal Elegance Meets Modern Skincare ✨"
-      }
-    },
-    "luxury-texture": {
-      "type": "luxury-texture",
-      "settings": {
-        "show_eyebrow": false,
-        "eyebrow_text": "",
-        "headline_text": "Softness",
-        "em_text": "you can feel",
-        "em_font_family": "Cormorant Garamond",
-        "em_font_size": 59,
-        "em_text_color": "#5b4a7a",
-        "show_subtitle": false,
-        "subtitle_text": "Whipped at low temperature, layered like petit fours. The texture is the proof."
-      }
-    },
     "luxury-ribbon": {
       "type": "luxury-ribbon",
       "settings": {
@@ -87,6 +66,32 @@
         "product_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.19PM_3.jpg",
         "product_link": "shopify://products/7-step-glow-repair-kit",
         "cta_text": "Shop Now"
+      }
+    },
+    "luxury-marquee": {
+      "type": "luxury-marquee",
+      "settings": {
+        "marquee_text": "✨ Royal Elegance Meets Modern Skincare ✨"
+      }
+    },
+    "luxury-texture": {
+      "type": "luxury-texture",
+      "settings": {
+        "show_eyebrow": false,
+        "eyebrow_text": "",
+        "headline_text": "Softness",
+        "em_text": "You can feel",
+        "em_font_family": "Pinyon Script",
+        "em_font_size": 63,
+        "em_text_color": "#5b4a7a",
+        "show_subtitle": false,
+        "subtitle_text": "Whipped at low temperature, layered like petit fours. The texture is the proof.",
+        "tile_1_title": "MACRO · CREAM SWIRL ON IVORY MARBLE",
+        "tile_1_caption": "piped frosting peak — top-down — soft diffused light",
+        "tile_2_title": "MACRO · FINGERTIP PRESS",
+        "tile_2_caption": "single fingertip dipping into cream — extreme close-up — backlit glow",
+        "tile_3_title": "EDITORIAL · CHEEK GLOW",
+        "tile_3_caption": "model in profile — diffused window light — golden hour key — barely-there cream highlight on cheekbone"
       }
     },
     "luxury-benefits": {
@@ -280,11 +285,11 @@
   "order": [
     "luxury-nav",
     "luxury-hero",
-    "luxury-marquee",
-    "luxury-texture",
     "luxury-ribbon",
     "luxury-products",
     "luxury-benefits",
+    "luxury-marquee",
+    "luxury-texture",
     "luxury-testimonials",
     "luxury-story",
     "luxury-pricing-cta",
