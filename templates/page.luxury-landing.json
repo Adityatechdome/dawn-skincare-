@@ -49,6 +49,7 @@
     "luxury-ribbon": {
       "type": "luxury-ribbon",
       "settings": {
+        "ribbon_logo": "shopify://shop_images/Lady-Whistledown-Logo-Vector_svg.png",
         "item_1_text": "Free BB Cream — Today Only",
         "item_2_text": "Glow Like Royalty",
         "item_3_text": "50% Off The Full Ritual",
@@ -62,7 +63,7 @@
         "section_subtitle": "Handpicked products for radiant, luxurious skin",
         "product_name": "Royal Cream Luxe",
         "product_description": "Our signature cream infused with the finest botanicals. Whipped at low temperature, layered like petit fours. Experience luxury in every application.",
-        "product_price": "$222",
+        "product_price": "$189",
         "product_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.19PM_3.jpg",
         "product_link": "shopify://products/7-step-glow-repair-kit",
         "cta_text": "Shop Now"
@@ -90,6 +91,7 @@
     },
     "luxury-marquee": {
       "type": "luxury-marquee",
+      "disabled": true,
       "settings": {
         "marquee_text": "✨ Royal Elegance Meets Modern Skincare"
       }
@@ -134,6 +136,16 @@
         "location_3": "Milan"
       }
     },
+    "luxury_ribbon_y8AY97": {
+      "type": "luxury-ribbon",
+      "settings": {
+        "ribbon_logo": "shopify://shop_images/Lady-Whistledown-Logo-Vector_svg.png",
+        "item_1_text": "Free BB Cream — Today Only",
+        "item_2_text": "Glow Like Royalty",
+        "item_3_text": "50% Off The Full Ritual",
+        "item_4_text": "Ships in Velvet, Always"
+      }
+    },
     "luxury-story": {
       "type": "luxury-story",
       "settings": {
@@ -154,8 +166,8 @@
         "title_line_1": "Your skin deserves",
         "title_line_2": "the crown.",
         "subtitle": "Seven jars. One ritual. One free BB Cream slipped into the box, with our compliments.",
-        "old_price": "$222",
-        "new_price": "$111",
+        "old_price": "$378",
+        "new_price": "$189",
         "price_tag": "+ Free BB Cream",
         "button_text": "Indulge Now",
         "button_link": "",
@@ -260,6 +272,7 @@
     "luxury-marquee",
     "luxury-texture",
     "luxury-testimonials",
+    "luxury_ribbon_y8AY97",
     "luxury-story",
     "luxury-pricing-cta",
     "luxury-sticky-cta",
