@@ -1,202 +1,409 @@
-<section class="section texture">
-  {% if section.settings.show_eyebrow %}
-    <div class="section-eyebrow reveal">
-      <span>{{ section.settings.eyebrow_text }}</span>
-    </div>
-  {% endif %}
-  <h2 class="texture-headline reveal">
-    {{ section.settings.headline_text }} <em style="font-family: {{ section.settings.em_font_family }}; font-size: {{ section.settings.em_font_size }}px; color: {{ section.settings.em_text_color }};">{{ section.settings.em_text }}</em>
-  </h2>
-  {% if section.settings.show_subtitle %}
-    <p class="section-sub reveal" style="margin-bottom: 60px;">
-      {{ section.settings.subtitle_text }}
-    </p>
-  {% endif %}
-  <div class="texture-grid">
-    <div class="texture-tile tall reveal ph">
-      <div class="cream-swirl">
-        <svg class="cream-swirl-glyph" viewBox="0 0 200 200" fill="none" stroke="#B07A82" stroke-width="1.2" opacity="0.5">
-          <path d="M100 100 m -60 0 a 60 60 0 1 1 120 0 a 50 50 0 1 0 -100 0 a 40 40 0 1 1 80 0 a 30 30 0 1 0 -60 0 a 20 20 0 1 1 40 0 a 10 10 0 1 0 -20 0" />
-          <path d="M100 100 m -75 -10 a 75 70 0 1 1 150 0" opacity="0.5" />
-        </svg>
-      </div>
-      <div class="ph-label" style="position: absolute;">
-        MACRO · CREAM SWIRL ON IVORY MARBLE<br/>
-        piped frosting peak — top-down — soft diffused light
-      </div>
-    </div>
-    <div class="texture-tile reveal ph" style="aspect-ratio: 4/5.4;">
-      <div style="
-        position: absolute; inset: 0;
-        background: radial-gradient(ellipse at 60% 40%, rgba(248,241,231,0.5), transparent 60%), linear-gradient(135deg, #E8C9CC, #C9B8DC)
-      "></div>
-      <div class="ph-label" style="position: absolute;">
-        MACRO · FINGERTIP PRESS<br/>
-        single fingertip dipping into cream — extreme close-up — backlit glow
-      </div>
-    </div>
-  </div>
+<section id="texture-{{ section.id }}" class="texture-section">
+  <div class="texture-inner">
 
-  <div class="texture-grid" style="margin-top: 24px;">
-    <div class="texture-tile wide reveal ph" style="grid-column: span 2; aspect-ratio: 16/7;">
-      <div style="
-        position: absolute; inset: 0;
-        background:
-          radial-gradient(ellipse at 20% 50%, rgba(232,201,204,0.7), transparent 60%),
-          radial-gradient(ellipse at 80% 50%, rgba(228,217,238,0.7), transparent 60%),
-          linear-gradient(90deg, #FBF6EE, #F8F1E7)
-      "></div>
-      <div class="ph-label" style="position: absolute;">
-        EDITORIAL · CHEEK GLOW<br/>
-        model in profile — diffused window light — golden hour key — barely-there cream highlight on cheekbone
+    {% if section.settings.show_eyebrow %}
+      <div class="texture-eyebrow reveal">
+        <span>{{ section.settings.eyebrow_text }}</span>
       </div>
+    {% endif %}
+
+    <h2 class="texture-headline reveal">
+      {{ section.settings.headline_text }}
+      <em>
+        {{ section.settings.em_text }}
+      </em>
+    </h2>
+
+    {% if section.settings.show_subtitle %}
+      <p class="texture-subtitle reveal">
+        {{ section.settings.subtitle_text }}
+      </p>
+    {% endif %}
+
+    <div class="texture-grid">
+      
+      <!-- TILE 1 -->
+      <div class="texture-tile tall reveal">
+
+        <div class="cream-swirl">
+          <svg class="cream-swirl-glyph" viewBox="0 0 200 200" fill="none" stroke="#B07A82" stroke-width="1.2" opacity="0.5">
+            <path d="M100 100 m -60 0 a 60 60 0 1 1 120 0 a 50 50 0 1 0 -100 0 a 40 40 0 1 1 80 0 a 30 30 0 1 0 -60 0 a 20 20 0 1 1 40 0 a 10 10 0 1 0 -20 0"/>
+            <path d="M100 100 m -75 -10 a 75 70 0 1 1 150 0" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <div class="texture-label">
+          <span>MACRO · CREAM SWIRL ON IVORY MARBLE</span>
+          <small>piped frosting peak — top-down — soft diffused light</small>
+        </div>
+
+      </div>
+
+      <!-- TILE 2 -->
+      <div class="texture-tile tall reveal">
+
+        <div class="finger-bg"></div>
+
+        <div class="texture-label">
+          <span>MACRO · FINGERTIP PRESS</span>
+          <small>single fingertip dipping into cream — extreme close-up — backlit glow</small>
+        </div>
+
+      </div>
+
     </div>
+
+    <!-- WIDE TILE -->
+    <div class="texture-grid texture-grid-bottom">
+
+      <div class="texture-tile wide reveal">
+
+        <div class="wide-bg"></div>
+
+        <div class="texture-label">
+          <span>EDITORIAL · CHEEK GLOW</span>
+          <small>model in profile — diffused window light — golden hour key — barely-there cream highlight on cheekbone</small>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </section>
 
 <style>
-  .texture {
-    background: linear-gradient(180deg, #FBF6EE 0%, #E4D9EE 100%);
-    position: relative;
-    overflow: hidden;
+
+#texture-{{ section.id }}{
+  position: relative;
+
+  width: 100vw;
+  max-width: 100vw;
+
+  left: 50%;
+  right: 50%;
+
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  overflow: hidden;
+
+  background: linear-gradient(
+    180deg,
+    #FBF6EE 0%,
+    #E4D9EE 100%
+  );
+
+  padding: 140px 56px;
+}
+
+#texture-{{ section.id }} *{
+  box-sizing:border-box;
+}
+
+.texture-inner{
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+}
+
+/* EYEBROW */
+
+.texture-eyebrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+
+  margin-bottom:32px;
+}
+
+.texture-eyebrow::before,
+.texture-eyebrow::after{
+  content:"";
+  width:36px;
+  height:1px;
+  background:#B8945A;
+  opacity:0.6;
+}
+
+.texture-eyebrow span{
+  font-family:Inter,sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+  color:#8C6F3F;
+}
+
+/* HEADLINE */
+
+.texture-headline{
+  max-width:16ch;
+  margin:80px auto 24px;
+
+  text-align:center;
+
+  font-family:"Italiana",serif;
+  font-size:clamp(48px,7vw,110px);
+  font-weight:400;
+  line-height:0.9;
+
+  color:#2A2438;
+}
+
+.texture-headline em{
+  display:inline;
+  font-style:normal;
+
+  font-family:{{ section.settings.em_font_family }};
+  font-size:{{ section.settings.em_font_size }}px;
+  color:{{ section.settings.em_text_color }};
+}
+
+/* SUBTITLE */
+
+.texture-subtitle{
+  max-width:56ch;
+  margin:0 auto 60px;
+
+  text-align:center;
+
+  font-family:"Cormorant Garamond",serif;
+  font-style:italic;
+  font-size:20px;
+  line-height:1.5;
+
+  color:rgba(42,36,56,0.72);
+}
+
+/* GRID */
+
+.texture-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+
+  max-width:1320px;
+  margin:0 auto;
+}
+
+.texture-grid-bottom{
+  margin-top:24px;
+}
+
+/* TILES */
+
+.texture-tile{
+  position:relative;
+  overflow:hidden;
+  border-radius:4px;
+}
+
+.texture-tile.tall{
+  aspect-ratio:4/5.4;
+}
+
+.texture-tile.wide{
+  grid-column:span 2;
+  aspect-ratio:16/7;
+}
+
+/* TILE BACKGROUNDS */
+
+.cream-swirl{
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse at 30% 40%,
+      #E8C9CC 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 60%,
+      #C9B8DC 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      135deg,
+      #FBF6EE,
+      #EFE4D2
+    );
+}
+
+.finger-bg{
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse at 60% 40%,
+      rgba(248,241,231,0.5),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      #E8C9CC,
+      #C9B8DC
+    );
+}
+
+.wide-bg{
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse at 20% 50%,
+      rgba(232,201,204,0.7),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 80% 50%,
+      rgba(228,217,238,0.7),
+      transparent 60%
+    ),
+    linear-gradient(
+      90deg,
+      #FBF6EE,
+      #F8F1E7
+    );
+}
+
+/* SWIRL */
+
+.cream-swirl-glyph{
+  position:absolute;
+  top:50%;
+  left:50%;
+
+  width:60%;
+
+  transform:translate(-50%,-50%);
+
+  animation:swirl-spin 24s linear infinite;
+
+  opacity:0.8;
+}
+
+@keyframes swirl-spin{
+  to{
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+}
+
+/* LABEL */
+
+.texture-label{
+  position:absolute;
+  left:50%;
+  bottom:24px;
+
+  transform:translateX(-50%);
+
+  background:rgba(248,241,231,0.85);
+
+  border:1px solid rgba(184,148,90,0.4);
+
+  border-radius:2px;
+
+  padding:8px 14px;
+
+  text-align:center;
+
+  backdrop-filter:blur(8px);
+}
+
+.texture-label span,
+.texture-label small{
+  display:block;
+
+  font-family:"JetBrains Mono",monospace;
+  text-transform:uppercase;
+
+  color:#8C6F3F;
+}
+
+.texture-label span{
+  font-size:10px;
+  letter-spacing:0.18em;
+  margin-bottom:4px;
+}
+
+.texture-label small{
+  font-size:10px;
+  letter-spacing:0.06em;
+  text-transform:none;
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+
+  animation:revealUp 0.9s cubic-bezier(0.2,0.8,0.2,1) forwards;
+}
+
+@keyframes revealUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width:900px){
+
+  .texture-grid{
+    grid-template-columns:1fr;
   }
 
-  .texture-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    max-width: 1320px;
-    margin: 0 auto;
+  .texture-tile.wide{
+    grid-column:span 1;
+    aspect-ratio:16/8;
   }
 
-  @media (max-width: 900px) {
-    .texture-grid {
-      grid-template-columns: 1fr;
-    }
+}
+
+@media screen and (max-width:700px){
+
+  #texture-{{ section.id }}{
+    padding:90px 24px;
   }
 
-  .texture-tile {
-    position: relative;
-    aspect-ratio: 4/5;
-    overflow: hidden;
-    border-radius: 4px;
+}
+
+@media screen and (max-width:600px){
+
+  #texture-{{ section.id }}{
+    padding:90px 16px;
   }
 
-  .texture-tile.tall {
-    aspect-ratio: 4/5.4;
+  .texture-headline{
+    margin:50px auto 20px;
+    line-height:1;
   }
 
-  .texture-tile.wide {
-    aspect-ratio: 4/3.2;
+  .texture-subtitle{
+    font-size:18px;
   }
 
-  .texture-headline {
-    font-family: "Italiana", serif;
-    font-size: clamp(48px, 7vw, 110px);
-    line-height: 0.9;
-    text-align: center;
-    margin: 80px auto 24px;
-    max-width: 16ch;
-    color: #2A2438;
+  .texture-label{
+    padding:6px 10px;
+    width:90%;
   }
 
-  .texture-headline em {
-    font-family: "Pinyon Script", cursive;
-    font-style: normal;
-    color: #5B4A7A;
-    font-size: 1.05em;
+  .texture-label span,
+  .texture-label small{
+    font-size:9px;
   }
 
-  .cream-swirl {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background:
-      radial-gradient(ellipse at 30% 40%, #E8C9CC 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 60%, #C9B8DC 0%, transparent 50%),
-      linear-gradient(135deg, #FBF6EE, #EFE4D2);
-  }
+}
 
-  .cream-swirl-glyph {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    animation: swirl-spin 24s linear infinite;
-    opacity: 0.8;
-  }
-
-  @keyframes swirl-spin {
-    to {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
-  }
-
-  @media (max-width: 900px) {
-    .texture-headline {
-      font-size: clamp(36px, 6vw, 80px);
-    }
-
-    .texture-tile {
-      aspect-ratio: 1;
-    }
-
-    .texture-tile.tall {
-      aspect-ratio: 1;
-    }
-
-    .texture-tile.wide {
-      aspect-ratio: 1;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .texture {
-      padding: 60px 20px;
-    }
-
-    .texture-headline {
-      font-size: clamp(28px, 5vw, 48px);
-      margin: 40px auto 24px;
-    }
-
-    .texture-headline em {
-      font-size: 0.9em;
-    }
-
-    .texture-grid {
-      gap: 16px;
-    }
-
-    .ph-label {
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .texture {
-      padding: 40px 16px;
-    }
-
-    .texture-headline {
-      font-size: clamp(24px, 4vw, 36px);
-      margin: 30px auto 20px;
-    }
-
-    .texture-grid {
-      gap: 12px;
-    }
-
-    .texture-tile {
-      border-radius: 2px;
-    }
-
-    .ph-label {
-      font-size: 10px;
-      padding: 8px;
-    }
-  }
 </style>
 
 {% schema %}
@@ -206,8 +413,8 @@
     {
       "type": "checkbox",
       "id": "show_eyebrow",
-      "label": "Show Section Eyebrow",
-      "default": false
+      "label": "Show Eyebrow",
+      "default": true
     },
     {
       "type": "text",
@@ -230,23 +437,35 @@
     {
       "type": "select",
       "id": "em_font_family",
-      "label": "Emphasized Text Font",
+      "label": "Emphasized Font",
       "options": [
-        { "value": "Pinyon Script", "label": "Pinyon Script" },
-        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
-        { "value": "Italiana", "label": "Italiana" },
-        { "value": "Inter", "label": "Inter" }
+        {
+          "value": "Pinyon Script",
+          "label": "Pinyon Script"
+        },
+        {
+          "value": "Cormorant Garamond",
+          "label": "Cormorant Garamond"
+        },
+        {
+          "value": "Italiana",
+          "label": "Italiana"
+        },
+        {
+          "value": "Inter",
+          "label": "Inter"
+        }
       ],
       "default": "Pinyon Script"
     },
     {
       "type": "range",
       "id": "em_font_size",
+      "label": "Emphasized Font Size",
       "min": 20,
       "max": 120,
       "step": 1,
       "unit": "px",
-      "label": "Emphasized Text Font Size",
       "default": 105
     },
     {
@@ -259,13 +478,18 @@
       "type": "checkbox",
       "id": "show_subtitle",
       "label": "Show Subtitle",
-      "default": false
+      "default": true
     },
     {
       "type": "textarea",
       "id": "subtitle_text",
       "label": "Subtitle Text",
       "default": "Whipped at low temperature, layered like petit fours. The texture is the proof."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Texture"
     }
   ]
 }
