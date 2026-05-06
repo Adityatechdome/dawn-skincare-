@@ -1,3 +1,59 @@
+<nav class="luxury-nav">
+  <div class="luxury-nav-inner">
+
+    <div class="luxury-logo">
+      {{ section.settings.logo_text }}
+    </div>
+
+    <div class="luxury-menu">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}">
+          {{ block.settings.label }}
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</nav>
+
+<style>
+.luxury-nav {
+  width: 100%;
+  background: {{ section.settings.background_color }};
+  border-bottom: {{ section.settings.border_width }}px solid {{ section.settings.border_color }};
+  position: {{ section.settings.position }};
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.luxury-nav-inner {
+  max-width: {{ section.settings.max_width }}px;
+  margin: 0 auto;
+  padding:
+    {{ section.settings.padding_vertical }}px
+    {{ section.settings.padding_horizontal }}px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.luxury-logo {
+  font-size: {{ section.settings.logo_size }}px;
+  color: {{ section.settings.logo_color }};
+}
+
+.luxury-menu {
+  display: flex;
+  gap: {{ section.settings.menu_gap }}px;
+}
+
+.luxury-menu a {
+  color: {{ section.settings.text_color }};
+  text-decoration: none;
+}
+</style>
 {% schema %}
 {
   "name": "Luxury Navigation",
