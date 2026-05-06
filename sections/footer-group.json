@@ -11,22 +11,6 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
-    "dawn_footer_T9NUje": {
-      "type": "dawn-footer",
-      "name": "Dynamic Footer",
-      "settings": {
-        "footer_logo": "shopify://shop_images/logo-black.png",
-        "copyright_text": "DAWN. 2026 KINS All rights reserved.",
-        "menu_products": "product-menu",
-        "menu_guides": "guides-menu",
-        "menu_service": "",
-        "menu_contact": "contact-menu",
-        "menu_bottom": "policy-menu",
-        "twitter_url": "",
-        "instagram_url": "https://www.instagram.com/dawn_skincare",
-        "facebook_url": "https://www.facebook.com/profile.php?id=61584319443827#"
-      }
-    },
     "footer_WnX4aJ": {
       "type": "footer",
       "blocks": {
@@ -240,7 +224,6 @@
     }
   },
   "order": [
-    "dawn_footer_T9NUje",
     "footer_WnX4aJ",
     "utilities"
   ]
