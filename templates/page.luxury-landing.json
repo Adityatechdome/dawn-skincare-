@@ -68,6 +68,26 @@
         "cta_text": "Shop Now"
       }
     },
+    "luxury-benefits": {
+      "type": "luxury-benefits",
+      "settings": {
+        "eyebrow_text": "03 / The Royal Treatment",
+        "section_title": "Why Choose Dawn",
+        "section_subtitle": "Every benefit pressed and sealed in wax — four virtues your skin will recognise within the fortnight.",
+        "benefit_1_initial": "H",
+        "benefit_1_title": "Premium Ingredients",
+        "benefit_1_desc": "Sourced from the finest botanical gardens worldwide",
+        "benefit_2_initial": "G",
+        "benefit_2_title": "Dermatologist Tested",
+        "benefit_2_desc": "Approved by leading skincare experts",
+        "benefit_3_initial": "S",
+        "benefit_3_title": "Cruelty Free",
+        "benefit_3_desc": "Never tested on animals, always ethical",
+        "benefit_4_initial": "C",
+        "benefit_4_title": "Luxury Packaging",
+        "benefit_4_desc": "Beautiful presentation perfect for gifting"
+      }
+    },
     "luxury-marquee": {
       "type": "luxury-marquee",
       "settings": {
@@ -94,36 +114,24 @@
         "tile_3_caption": "model in profile — diffused window light — golden hour key — barely-there cream highlight on cheekbone"
       }
     },
-    "luxury-benefits": {
-      "type": "luxury-benefits",
-      "settings": {
-        "eyebrow_text": "03 / The Royal Treatment",
-        "section_title": "Why Choose Dawn",
-        "section_subtitle": "Every benefit pressed and sealed in wax — four virtues your skin will recognise within the fortnight.",
-        "benefit_1_initial": "H",
-        "benefit_1_title": "Premium Ingredients",
-        "benefit_1_desc": "Sourced from the finest botanical gardens worldwide",
-        "benefit_2_initial": "G",
-        "benefit_2_title": "Dermatologist Tested",
-        "benefit_2_desc": "Approved by leading skincare experts",
-        "benefit_3_initial": "S",
-        "benefit_3_title": "Cruelty Free",
-        "benefit_3_desc": "Never tested on animals, always ethical",
-        "benefit_4_initial": "C",
-        "benefit_4_title": "Luxury Packaging",
-        "benefit_4_desc": "Beautiful presentation perfect for gifting"
-      }
-    },
     "luxury-testimonials": {
       "type": "luxury-testimonials",
       "settings": {
-        "section_title": "What Our Customers Say",
-        "testimonial_1_text": "Simply divine. My skin has never felt more radiant.",
-        "testimonial_1_author": "Margaret",
-        "testimonial_2_text": "A true luxury experience. Worth every penny.",
-        "testimonial_2_author": "Eleanor",
-        "testimonial_3_text": "The most elegant skincare I've ever used.",
-        "testimonial_3_author": "Victoria"
+        "eyebrow": "05 / Royal Reviews",
+        "heading": "Whispers from the Court.",
+        "subtitle": "4.9 / 5 across, 12,400 reviews — penned by hand, by women who know.",
+        "initial_1": "A",
+        "quote_1": "It melts like silk into the skin. I have never touched a cream this elegant.",
+        "name_1": "Amelia Rose",
+        "location_1": "London",
+        "initial_2": "E",
+        "quote_2": "The glow feels candlelit. Even the ritual of opening the jar feels regal.",
+        "name_2": "Elena Hart",
+        "location_2": "Paris",
+        "initial_3": "S",
+        "quote_3": "My vanity finally feels complete. The texture is pure couture skincare.",
+        "name_3": "Sophia Vale",
+        "location_3": "Milan"
       }
     },
     "luxury-story": {
