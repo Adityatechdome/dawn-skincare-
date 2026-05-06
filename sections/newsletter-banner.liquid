@@ -1,250 +1,781 @@
-<section class="newsletter">
-  <div class="newsletter-banner">
-    {% if section.settings.background_image != blank %}
-      <img
-        src="{{ section.settings.background_image | image_url: width: 1800 }}"
-        alt="Newsletter background"
-        class="newsletter-banner__bg banner_desktop"
-        loading="lazy"
-      >
-    {% endif %}
+<div
+  id="bridgerton-popup-{{ section.id }}"
+  class="bridgerton-popup-wrapper"
+  aria-hidden="true"
+>
 
-    {% if section.settings.background_image_mobile != blank %}
-      <img
-        src="{{ section.settings.background_image_mobile | image_url: width: 1200 }}"
-        alt="Newsletter background"
-        class="newsletter-banner__bg banner_mobile"
-        loading="lazy"
-      >
-    {% endif %}
+  <!-- BACKDROP -->
 
-    <div class="newsletter-banner__overlay">
-      <div class="newsletter-banner__content">
-        <h2 class="newsletter-banner__title">{{ section.settings.heading }}</h2>
-        <p class="newsletter-banner__subtitle">{{ section.settings.subheading }}</p>
+  <div class="bridgerton-popup-backdrop"></div>
 
-        <form
-          method="post"
-          action="{{ routes.newsletter_subscribe_url }}"
-          accept-charset="UTF-8"
-          class="newsletter-banner__form"
-        >
-          <input type="hidden" name="form_type" value="customer">
-          <input type="hidden" name="utf8" value="✓">
+  <!-- POPUP -->
 
-          <input
-            type="email"
-            name="contact[email]"
-            class="newsletter-banner__input"
-            placeholder="{{ section.settings.placeholder }}"
-            required
-          >
-          <button type="submit" class="newsletter-banner__button">
-            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.3965 10.9609L22.9808 10.9609L22.9808 19.5452" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10.96 22.9805L22.8606 11.0799" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </form>
+  <div
+    class="bridgerton-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bridgerton-popup-title"
+  >
+
+    <!-- CLOSE -->
+
+    <button
+      type="button"
+      class="bridgerton-popup-close"
+      aria-label="Close popup"
+    >
+      ×
+    </button>
+
+    <!-- CONTENT -->
+
+    <div class="bridgerton-popup-content">
+
+      <!-- EYEBROW -->
+
+      <div class="bridgerton-popup-eyebrow reveal">
+        <span>
+          {{ section.settings.eyebrow }}
+        </span>
       </div>
+
+      <!-- TITLE -->
+
+      <h2
+        id="bridgerton-popup-title"
+        class="bridgerton-popup-title reveal"
+      >
+
+        {{ section.settings.heading_line_1 }}
+
+        <em>
+          {{ section.settings.heading_line_2 }}
+        </em>
+
+      </h2>
+
+      <!-- SUBTITLE -->
+
+      <p class="bridgerton-popup-subtitle reveal">
+        {{ section.settings.subheading }}
+      </p>
+
+      <!-- FORM -->
+
+      {% form 'customer', class: 'bridgerton-popup-form reveal' %}
+
+        <input
+          type="hidden"
+          name="contact[tags]"
+          value="Bridgerton Newsletter"
+        >
+
+        <input
+          type="hidden"
+          name="customer[tags]"
+          value="Bridgerton Newsletter"
+        >
+
+        <input
+          type="email"
+          name="contact[email]"
+          class="bridgerton-popup-input"
+          placeholder="{{ section.settings.placeholder }}"
+          required
+          autocorrect="off"
+          autocapitalize="off"
+        >
+
+        <button
+          type="submit"
+          class="bridgerton-popup-button"
+        >
+
+          {{ section.settings.button_text }}
+
+        </button>
+
+      {% endform %}
+
+      <!-- MICRO NOTE -->
+
+      <div class="bridgerton-popup-note reveal">
+        {{ section.settings.note }}
+      </div>
+
     </div>
+
   </div>
-</section>
+
+</div>
 
 <style>
-  .newsletter {
-    background: #eeeae1;
-    text-align: center;
-    padding: 90px 135px;
+
+#bridgerton-popup-{{ section.id }}{
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.45s ease,
+    visibility 0.45s ease;
+}
+
+#bridgerton-popup-{{ section.id }}.show{
+  opacity: 1;
+  visibility: visible;
+}
+
+#bridgerton-popup-{{ section.id }} *{
+  box-sizing: border-box;
+}
+
+/* BACKDROP */
+
+.bridgerton-popup-backdrop{
+  position: absolute;
+  inset: 0;
+
+  background:
+    rgba(42,36,56,0.45);
+
+  backdrop-filter: blur(10px);
+}
+
+/* POPUP */
+
+.bridgerton-popup{
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 620px;
+
+  overflow: hidden;
+
+  border-radius: 32px;
+
+  border:
+    1px solid rgba(217,186,130,0.35);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(248,241,231,0.92),
+      rgba(239,228,210,0.88)
+    );
+
+  backdrop-filter: blur(24px);
+
+  box-shadow:
+    0 40px 120px -30px rgba(42,36,56,0.45);
+
+  padding:
+    72px 56px 56px;
+}
+
+/* GOLD GLOW */
+
+.bridgerton-popup::before{
+  content: "";
+
+  position: absolute;
+  top: -20%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 140%;
+  height: 240px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(217,186,130,0.20) 0%,
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* LUXURY BORDER */
+
+.bridgerton-popup::after{
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(217,186,130,0.28),
+      transparent,
+      rgba(217,186,130,0.28)
+    );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+
+  pointer-events: none;
+}
+
+/* CLOSE */
+
+.bridgerton-popup-close{
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,0.45);
+
+  backdrop-filter: blur(10px);
+
+  color: #5B4A7A;
+
+  font-size: 26px;
+  line-height: 1;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.bridgerton-popup-close:hover{
+  background:
+    rgba(255,255,255,0.82);
+
+  transform: rotate(90deg);
+}
+
+/* CONTENT */
+
+.bridgerton-popup-content{
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+}
+
+/* EYEBROW */
+
+.bridgerton-popup-eyebrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin-bottom: 28px;
+}
+
+.bridgerton-popup-eyebrow::before,
+.bridgerton-popup-eyebrow::after{
+  content: "";
+
+  width: 36px;
+  height: 1px;
+
+  background: #B8945A;
+
+  opacity: 0.6;
+}
+
+.bridgerton-popup-eyebrow span{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+
+  color: #8C6F3F;
+}
+
+/* TITLE */
+
+.bridgerton-popup-title{
+  margin: 0 0 18px;
+
+  font-family: "Italiana", serif;
+  font-size: clamp(44px,6vw,74px);
+  line-height: 0.95;
+  font-weight: 400;
+
+  color: #2A2438;
+}
+
+.bridgerton-popup-title em{
+  display: block;
+
+  margin-top: 6px;
+
+  font-family: "Pinyon Script", cursive;
+  font-style: normal;
+  font-size: 1.08em;
+
+  color: #8C6F3F;
+
+  text-transform: none !important;
+}
+
+/* SUBTITLE */
+
+.bridgerton-popup-subtitle{
+  max-width: 32ch;
+
+  margin:
+    0 auto 36px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
+
+  color:
+    rgba(42,36,56,0.78);
+}
+
+/* FORM */
+
+.bridgerton-popup-form{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 420px;
+
+  margin: 0 auto;
+}
+
+/* INPUT */
+
+.bridgerton-popup-input{
+  width: 100%;
+
+  border:
+    1px solid rgba(184,148,90,0.25);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.35);
+
+  backdrop-filter: blur(10px);
+
+  padding:
+    18px 24px;
+
+  outline: none;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+
+  color: #2A2438;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.bridgerton-popup-input::placeholder{
+  color:
+    rgba(42,36,56,0.5);
+}
+
+.bridgerton-popup-input:focus{
+  border-color:
+    rgba(184,148,90,0.6);
+
+  background:
+    rgba(255,255,255,0.55);
+}
+
+/* BUTTON */
+
+.bridgerton-popup-button{
+  position: relative;
+
+  overflow: hidden;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  border-radius: 999px;
+
+  padding:
+    20px 32px;
+
+  background:
+    #2A2438;
+
+  color:
+    #F8F1E7;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 18px 40px -18px rgba(42,36,56,0.45);
+
+  transition:
+    transform 0.3s cubic-bezier(0.2,0.8,0.2,1),
+    background 0.3s cubic-bezier(0.2,0.8,0.2,1),
+    box-shadow 0.3s cubic-bezier(0.2,0.8,0.2,1);
+}
+
+.bridgerton-popup-button::after{
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(217,186,130,0.55),
+      transparent 60%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.bridgerton-popup-button:hover{
+  transform: translateY(-2px);
+
+  background:
+    #5B4A7A;
+
+  box-shadow:
+    0 24px 50px -16px rgba(91,74,122,0.45);
+}
+
+.bridgerton-popup-button:hover::after{
+  opacity: 1;
+}
+
+/* NOTE */
+
+.bridgerton-popup-note{
+  margin-top: 24px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  color:
+    rgba(42,36,56,0.55);
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity: 0;
+
+  transform: translateY(24px);
+
+  animation:
+    popupReveal 0.9s cubic-bezier(0.2,0.8,0.2,1) forwards;
+}
+
+.bridgerton-popup-title{
+  animation-delay: 0.12s;
+}
+
+.bridgerton-popup-subtitle{
+  animation-delay: 0.24s;
+}
+
+.bridgerton-popup-form{
+  animation-delay: 0.36s;
+}
+
+.bridgerton-popup-note{
+  animation-delay: 0.48s;
+}
+
+@keyframes popupReveal{
+  to{
+    opacity: 1;
+    transform: translateY(0);
   }
-  .newsletter-banner {
-    position: relative;
-    overflow: hidden;
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 700px){
+
+  .bridgerton-popup{
+    padding:
+      64px 28px 36px;
+
+    border-radius: 28px;
   }
 
-  /* Background image */
-  .newsletter-banner__bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
+  .bridgerton-popup-title{
+    font-size:
+      clamp(38px,10vw,58px);
   }
 
-  .banner_mobile {
-    display: none;
+  .bridgerton-popup-subtitle{
+    font-size: 20px;
   }
 
-  /* Dark overlay on top of image */
-  .newsletter-banner__overlay {
-    position: relative;
-    z-index: 1;
-    padding: 80px 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+}
+
+@media screen and (max-width: 480px){
+
+  #bridgerton-popup-{{ section.id }}{
+    padding: 16px;
   }
 
-  .newsletter-banner__content {
-    max-width: 700px;
-    margin: 0 auto;
+  .bridgerton-popup{
+    padding:
+      56px 22px 30px;
   }
 
-  .newsletter-banner__title {
-    font-family: Recoleta;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 58px;
-    letter-spacing: 0%;
-    margin: 0 0 16px;
-    color: #fff;
-    text-transform: capitalize;
+  .bridgerton-popup-input{
+    padding:
+      16px 20px;
   }
 
-  .newsletter-banner__subtitle {
-    font-family: Roboto;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-align: center;
-    color: #fff;
-    margin: 0 0 48px;
+  .bridgerton-popup-button{
+    padding:
+      18px 24px;
+
+    font-size: 11px;
   }
 
-  .newsletter-banner__form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    border-radius: 50px;
-    overflow: hidden;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  .bridgerton-popup-note{
+    font-size: 9px;
+    line-height: 1.6;
   }
 
-  .newsletter-banner__input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 16px 20px;
-    font-family: Roboto;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0%;
-    border-radius: 50px 0 0 50px;
-  }
+}
 
-  .newsletter-banner__input::placeholder {
-    color: #98a2b3;
-  }
-
-  .newsletter-banner__button {
-    background: #1a432e;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    margin-right: 5px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  .newsletter-banner__button svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .newsletter-banner__button:hover {
-    background: #0d2f26;
-  }
-
-  @media (max-width: 1000px) {
-    .newsletter {
-      padding: 50px 0;
-    }
-
-    .banner_desktop {
-      display: none;
-    }
-
-    .banner_mobile {
-      display: block;
-    }
-
-    .newsletter-banner__overlay {
-      padding: 40px;
-    }
-
-    .newsletter-banner__title {
-      font-family: Valky;
-      font-weight: 400;
-      font-size: 36px;
-      line-height: 58px;
-      letter-spacing: 0%;
-      text-align: center;
-      margin: 0 0 16px;
-    }
-
-    .newsletter-banner__subtitle {
-      font-family: Roboto;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 28px;
-      letter-spacing: 0px;
-      text-align: center;
-      margin:0 0 48px;
-    }
-
-    .newsletter-banner__form {
-      max-width: 100%;
-    }
-  }
 </style>
+
+<script>
+
+(function(){
+
+  const popup =
+    document.getElementById(
+      'bridgerton-popup-{{ section.id }}'
+    );
+
+  const closeBtn =
+    popup.querySelector(
+      '.bridgerton-popup-close'
+    );
+
+  const STORAGE_KEY =
+    'dawn-bridgerton-popup';
+
+  const SEVEN_DAYS =
+    7 * 24 * 60 * 60 * 1000;
+
+  function shouldShowPopup(){
+
+    const stored =
+      localStorage.getItem(STORAGE_KEY);
+
+    if(!stored) return true;
+
+    const lastSeen =
+      parseInt(stored, 10);
+
+    return (
+      Date.now() - lastSeen
+    ) > SEVEN_DAYS;
+
+  }
+
+  function showPopup(){
+
+    if(!shouldShowPopup()) return;
+
+    popup.classList.add('show');
+
+    popup.setAttribute(
+      'aria-hidden',
+      'false'
+    );
+
+    document.body.style.overflow = 'hidden';
+
+  }
+
+  function closePopup(){
+
+    popup.classList.remove('show');
+
+    popup.setAttribute(
+      'aria-hidden',
+      'true'
+    );
+
+    document.body.style.overflow = '';
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      Date.now().toString()
+    );
+
+  }
+
+  let popupTriggered = false;
+
+  function handleScroll(){
+
+    if(popupTriggered) return;
+
+    if(
+      window.scrollY >
+      window.innerHeight * 0.45
+    ){
+
+      popupTriggered = true;
+
+      setTimeout(showPopup, 800);
+
+    }
+
+  }
+
+  window.addEventListener(
+    'scroll',
+    handleScroll,
+    { passive: true }
+  );
+
+  closeBtn.addEventListener(
+    'click',
+    closePopup
+  );
+
+  popup
+    .querySelector('.bridgerton-popup-backdrop')
+    .addEventListener(
+      'click',
+      closePopup
+    );
+
+  document.addEventListener(
+    'keydown',
+    function(event){
+
+      if(
+        event.key === 'Escape'
+      ){
+        closePopup();
+      }
+
+    }
+  );
+
+})();
+
+</script>
 
 {% schema %}
 {
-  "name": "Newsletter Banner (Image)",
+  "name": "Bridgerton Popup",
+
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image_mobile",
-      "label": "Background Image Mobile"
-    },
+
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Stay Connected, Stay Informed"
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE SOCIETY PAPERS"
     },
+
     {
       "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading Line 1",
+      "default": "A letter awaits"
+    },
+
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading Line 2",
+      "default": "your arrival."
+    },
+
+    {
+      "type": "textarea",
       "id": "subheading",
-      "label": "Subheading",
-      "default": "Subscribe to receive exclusive updates, tips, and promotions straight to your inbox. Join our community for expert advice and resources to support your care journey."
+      "label": "Subtitle",
+      "default": "Join Lady Bridgerton’s private correspondence for rituals, gifts, and whispers from the atelier."
     },
+
     {
       "type": "text",
       "id": "placeholder",
       "label": "Input Placeholder",
-      "default": "Enter your email address here"
+      "default": "Enter your correspondence address"
+    },
+
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Receive the Letter"
+    },
+
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Micro Note",
+      "default": "Private Atelier Notes · Seasonal Rituals · Early Access"
     }
+
   ],
+
   "presets": [
     {
-      "name": "Newsletter Banner"
+      "name": "Bridgerton Popup"
     }
   ]
 }
