@@ -1,236 +1,455 @@
-<section class="luxury-story" style="--story-border-color: {{ section.settings.border_color }}; --story-accent-color: {{ section.settings.accent_color }}; --story-title-font: {{ section.settings.title_font_family }}; --story-title-size: {{ section.settings.title_font_size }}px; --story-title-color: {{ section.settings.title_color }}; --story-text-font: {{ section.settings.text_font_family }}; --story-text-size: {{ section.settings.text_font_size }}px; --story-text-color: {{ section.settings.text_color }}; --story-signature-font: {{ section.settings.signature_font_family }}; --story-signature-size: {{ section.settings.signature_font_size }}px; --story-signature-color: {{ section.settings.signature_color }};">
-  <div class="story-container">
-    <div class="story-content">
-      <h2>{{ section.settings.story_title }}</h2>
-      <p>{{ section.settings.story_text }}</p>
-      <p class="story-signature">{{ section.settings.story_signature }}</p>
+<section id="story-{{ section.id }}" class="dawn-story">
+
+  <div class="story-inner">
+
+    <!-- HEADER -->
+
+    <div class="story-eyebrow reveal">
+      <span>{{ section.settings.eyebrow }}</span>
     </div>
+
+    <!-- LETTER -->
+
+    <div class="story-letter">
+
+      <!-- TITLE -->
+
+      <h3 class="story-title reveal">
+        {{ section.settings.title_line_1 }}
+
+        <em>
+          {{ section.settings.title_line_2 }}
+        </em>
+      </h3>
+
+      <!-- DATE -->
+
+      <div class="story-dateline reveal">
+        {{ section.settings.dateline }}
+      </div>
+
+      <!-- BODY -->
+
+      <div class="story-body">
+
+        <p class="reveal">
+          {{ section.settings.paragraph_1 }}
+        </p>
+
+        <p class="reveal">
+          {{ section.settings.paragraph_2 }}
+        </p>
+
+        <p class="reveal">
+          {{ section.settings.paragraph_3 }}
+        </p>
+
+      </div>
+
+      <!-- SIGNATURE -->
+
+      <div class="story-signature reveal">
+        {{ section.settings.signature }}
+      </div>
+
+    </div>
+
   </div>
+
 </section>
 
 <style>
-  .luxury-story {
-    padding: 80px 56px;
-    background: linear-gradient(135deg, #FBF6EE 0%, #F8F1E7 100%);
+
+#story-{{ section.id }}{
+  position: relative;
+
+  width: 100vw;
+  max-width: 100vw;
+
+  left: 50%;
+  right: 50%;
+
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #F8F1E7 0%,
+      #EFE4D2 100%
+    );
+
+  padding: 140px 56px;
+}
+
+#story-{{ section.id }} *{
+  box-sizing: border-box;
+}
+
+.story-inner{
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* EYEBROW */
+
+.story-eyebrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin-bottom: 80px;
+}
+
+.story-eyebrow::before,
+.story-eyebrow::after{
+  content: "";
+
+  width: 36px;
+  height: 1px;
+
+  background: #B8945A;
+
+  opacity: 0.6;
+}
+
+.story-eyebrow span{
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+
+  color: #8C6F3F;
+}
+
+/* LETTER */
+
+.story-letter{
+  position: relative;
+
+  max-width: 720px;
+
+  margin: 0 auto;
+
+  padding: 80px 80px 64px;
+
+  border: 1px solid rgba(184,148,90,0.25);
+
+  box-shadow:
+    0 60px 100px -50px rgba(91,74,122,0.30);
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255,255,255,0.5),
+      transparent 60%
+    ),
+    #FBF6EE;
+}
+
+/* FILIGREE */
+
+.story-letter::before,
+.story-letter::after{
+  content: "";
+
+  position: absolute;
+
+  width: 64px;
+  height: 64px;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  opacity: 0.9;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23B8945A' stroke-width='1'><path d='M2 2 Q 18 18 2 32 M 2 2 Q 18 18 32 2 M 14 14 Q 22 14 22 22 M 14 14 Q 22 14 14 22'/></svg>");
+}
+
+.story-letter::before{
+  top: 12px;
+  left: 12px;
+}
+
+.story-letter::after{
+  bottom: 12px;
+  right: 12px;
+
+  transform: rotate(180deg);
+}
+
+/* TITLE */
+
+.story-title{
+  margin: 0 0 12px;
+
+  text-align: center;
+
+  font-family: "Italiana", serif;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1;
+  font-weight: 400;
+
+  color: #2A2438;
+}
+
+.story-title em{
+  display: block;
+
+  margin-top: 6px;
+
+  font-family: "Pinyon Script", cursive;
+  font-style: normal;
+  font-size: 1.1em;
+
+  color: #8C6F3F;
+
+  text-transform: none !important;
+}
+
+/* DATE */
+
+.story-dateline{
+  margin-bottom: 40px;
+
+  text-align: center;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+
+  color: #8C6F3F;
+}
+
+/* BODY */
+
+.story-body p{
+  margin: 0 0 22px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 19px;
+  line-height: 1.65;
+
+  color: #2A2438;
+
+  text-wrap: pretty;
+}
+
+/* DROP CAP */
+
+.story-body p:first-of-type::first-letter{
+  float: left;
+
+  margin: 6px 10px 0 0;
+
+  font-family: "Italiana", serif;
+  font-size: 4em;
+  line-height: 0.85;
+
+  color: #8C6F3F;
+}
+
+.story-body p:not(:first-of-type)::first-letter{
+  float: none;
+
+  margin: 0;
+
+  font-size: 1em;
+
+  color: inherit;
+}
+
+/* SIGNATURE */
+
+.story-signature{
+  margin-top: 36px;
+
+  text-align: right;
+
+  font-family: "Pinyon Script", cursive;
+  font-size: 36px;
+
+  color: #5B4A7A;
+
+  text-transform: none !important;
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity: 0;
+
+  transform: translateY(40px);
+
+  animation:
+    storyReveal 0.9s cubic-bezier(0.2,0.8,0.2,1) forwards;
+}
+
+.story-title{
+  animation-delay: 0.1s;
+}
+
+.story-dateline{
+  animation-delay: 0.22s;
+}
+
+.story-body p:nth-child(1){
+  animation-delay: 0.34s;
+}
+
+.story-body p:nth-child(2){
+  animation-delay: 0.46s;
+}
+
+.story-body p:nth-child(3){
+  animation-delay: 0.58s;
+}
+
+.story-signature{
+  animation-delay: 0.7s;
+}
+
+@keyframes storyReveal{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 999px){
+
+  .story-letter{
+    padding: 64px 56px;
   }
 
-  .story-container {
-    max-width: 800px;
-    margin: 0 auto;
-    border: 2px solid var(--story-border-color, #B8945A);
-    border-radius: 8px;
-    padding: 60px 50px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 40px rgba(184, 148, 90, 0.1);
-    position: relative;
+  .story-letter::before,
+  .story-letter::after{
+    width: 48px;
+    height: 48px;
   }
 
-  .story-container::before {
-    content: "";
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    border: 1px solid var(--story-border-color, #B8945A);
-    border-radius: 4px;
-    opacity: 0.5;
-    pointer-events: none;
+}
+
+@media screen and (max-width: 700px){
+
+  #story-{{ section.id }}{
+    padding: 90px 24px;
   }
 
-  .story-content {
-    position: relative;
-    z-index: 1;
-    border-left: 3px solid var(--story-accent-color, #B8945A);
-    padding-left: 30px;
+  .story-letter{
+    padding: 56px 32px;
   }
 
-  .story-content h2 {
-    font-family: var(--story-title-font, "Italiana"), serif;
-    font-size: var(--story-title-size, 48px);
-    color: var(--story-title-color, #2A2438);
-    margin: 0 0 30px 0;
-    letter-spacing: 0.08em;
+  .story-letter::before,
+  .story-letter::after{
+    display: none;
   }
 
-  .story-content p {
-    font-family: var(--story-text-font, "Cormorant Garamond"), serif;
-    font-size: var(--story-text-size, 20px);
-    color: var(--story-text-color, #2A2438);
-    line-height: 1.8;
-    margin: 0 0 20px 0;
+  .story-body p:first-of-type::first-letter{
+    font-size: 3.4em;
   }
 
-  .story-signature {
-    font-family: var(--story-signature-font, "Pinyon Script"), cursive;
-    font-size: var(--story-signature-size, 32px);
-    color: var(--story-signature-color, #B8945A);
-    margin: 40px 0 0 0 !important;
+  .story-signature{
+    font-size: 28px;
   }
 
-  @media (max-width: 768px) {
-    .luxury-story {
-      padding: 40px 20px;
-    }
+}
 
-    .story-container {
-      padding: 40px 30px;
-      border-width: 1px;
-    }
+@media screen and (max-width: 480px){
 
-    .story-content {
-      padding-left: 20px;
-      border-left-width: 2px;
-    }
-
-    .story-content h2 {
-      font-size: 32px;
-    }
-
-    .story-content p {
-      font-size: 16px;
-    }
-
-    .story-signature {
-      font-size: 24px;
-    }
+  #story-{{ section.id }}{
+    padding: 90px 16px;
   }
+
+  .story-letter{
+    padding: 48px 24px;
+  }
+
+  .story-body p{
+    font-size: 18px;
+  }
+
+}
+
 </style>
 
 {% schema %}
 {
-  "name": "Luxury Story",
+  "name": "Founder Letter",
+
   "settings": [
-    {
-      "type": "header",
-      "content": "Content Settings"
-    },
+
     {
       "type": "text",
-      "id": "story_title",
-      "label": "Story Title",
-      "default": "Our Journey"
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "06 / The Letter"
     },
+
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "The secret behind"
+    },
+
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2",
+      "default": "the glow."
+    },
+
+    {
+      "type": "text",
+      "id": "dateline",
+      "label": "Dateline",
+      "default": "— Penned in the Atelier, Spring of 2026 —"
+    },
+
     {
       "type": "textarea",
-      "id": "story_text",
-      "label": "Story Text",
-      "default": "Founded in the heart of luxury, our brand combines ancient botanical wisdom with modern skincare science. Every product is crafted with intention, infused with the finest ingredients from around the world. We believe that true beauty comes from within, and our mission is to help you achieve radiant, healthy skin that reflects your inner glow."
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "Dearest reader, we built Dawn the way our grandmothers built rituals — slowly, on rosewood tables, with one hand on the kettle and the other on the cream. Skincare, we believed, should taste like the first hour of morning: warm, golden, certain."
     },
+
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "Each formula in the Glow Kit is whipped at low temperature, infused with botanicals from the gardens we trust, and pressed into glass we are not afraid to set on a marble dressing table. Nothing in this box is a stand-in for sleep, but every jar will love your skin like it has all the time in the world."
+    },
+
+    {
+      "type": "textarea",
+      "id": "paragraph_3",
+      "label": "Paragraph 3",
+      "default": "Half off, today only, because the first jar is always a leap of faith — and we would like the leap to be a small one."
+    },
+
     {
       "type": "text",
-      "id": "story_signature",
-      "label": "Founder Signature",
-      "default": "With love, The Founder"
-    },
+      "id": "signature",
+      "label": "Signature",
+      "default": "— The Atelier at Dawn"
+    }
+
+  ],
+
+  "presets": [
     {
-      "type": "header",
-      "content": "Border & Accent"
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Frame Border Color",
-      "default": "#B8945A"
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Left Accent Line Color",
-      "default": "#B8945A"
-    },
-    {
-      "type": "header",
-      "content": "Title Settings"
-    },
-    {
-      "type": "select",
-      "id": "title_font_family",
-      "label": "Title Font",
-      "options": [
-        { "value": "Italiana", "label": "Italiana" },
-        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
-        { "value": "Inter", "label": "Inter" }
-      ],
-      "default": "Italiana"
-    },
-    {
-      "type": "range",
-      "id": "title_font_size",
-      "min": 24,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "label": "Title Font Size",
-      "default": 48
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#2A2438"
-    },
-    {
-      "type": "header",
-      "content": "Body Text Settings"
-    },
-    {
-      "type": "select",
-      "id": "text_font_family",
-      "label": "Body Font",
-      "options": [
-        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
-        { "value": "Inter", "label": "Inter" },
-        { "value": "Italiana", "label": "Italiana" }
-      ],
-      "default": "Cormorant Garamond"
-    },
-    {
-      "type": "range",
-      "id": "text_font_size",
-      "min": 12,
-      "max": 32,
-      "step": 1,
-      "unit": "px",
-      "label": "Body Font Size",
-      "default": 20
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Body Text Color",
-      "default": "#2A2438"
-    },
-    {
-      "type": "header",
-      "content": "Signature Settings"
-    },
-    {
-      "type": "select",
-      "id": "signature_font_family",
-      "label": "Signature Font",
-      "options": [
-        { "value": "Pinyon Script", "label": "Pinyon Script" },
-        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
-        { "value": "Inter", "label": "Inter" }
-      ],
-      "default": "Pinyon Script"
-    },
-    {
-      "type": "range",
-      "id": "signature_font_size",
-      "min": 16,
-      "max": 48,
-      "step": 1,
-      "unit": "px",
-      "label": "Signature Font Size",
-      "default": 32
-    },
-    {
-      "type": "color",
-      "id": "signature_color",
-      "label": "Signature Color",
-      "default": "#B8945A"
+      "name": "Founder Letter"
     }
   ]
 }
