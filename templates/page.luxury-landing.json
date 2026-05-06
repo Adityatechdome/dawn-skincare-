@@ -137,20 +137,14 @@
     "luxury-story": {
       "type": "luxury-story",
       "settings": {
-        "story_title": "Our Journey",
-        "story_text": "Founded in the heart of luxury, our brand combines ancient botanical wisdom with modern skincare science. Every product is crafted with intention, infused with the finest ingredients from around the world. We believe that true beauty comes from within, and our mission is to help you achieve radiant, healthy skin that reflects your inner glow.",
-        "story_signature": "With love, The Founder",
-        "border_color": "#b8945a",
-        "accent_color": "#b8945a",
-        "title_font_family": "Italiana",
-        "title_font_size": 48,
-        "title_color": "#2a2438",
-        "text_font_family": "Cormorant Garamond",
-        "text_font_size": 20,
-        "text_color": "#2a2438",
-        "signature_font_family": "Pinyon Script",
-        "signature_font_size": 32,
-        "signature_color": "#b8945a"
+        "eyebrow": "06 / The Letter from Lady Whistledown",
+        "title_line_1": "The secret behind",
+        "title_line_2": "the glow.",
+        "dateline": "— Penned in the Atelier, Spring of 2026 —",
+        "paragraph_1": "Dearest Reader,\nIt has come to this Author's attention that a certain collection, the Dawn Glow Kit, has made its quiet debut in Society. One is told it was composed the way our grandmamas built their evening rituals: unhurried, upon rosewood tables, with one hand on the kettle and the other upon the cream. For skincare, Dear Reader, ought to feel as the first hour of morning feels, warm, gilded, and entirely without doubt.",
+        "paragraph_2": "Each formula has been whipped at the gentlest of temperatures, infused with botanicals from gardens whose reputations are beyond reproach, and pressed into glass so fine one would not blush to set it upon a marble dressing table. Nothing in this box is a substitute for a proper night's rest, even this Author cannot perform miracles. But every jar shall tend to your complexion with the sort of devotion one typically only receives from a suitor in his most desperate season.",
+        "paragraph_3": "And now, the truly delicious part, the price has been halved. Today only. For the Maker understands what this Author has long known: the first jar is always a leap of faith, and they would very much like that leap to be a small one. After all, Dear Reader, a lady who glows need not command anything but the room itself. Yours in luminance and scandal.",
+        "signature": "— Lady Whistledown."
       }
     },
     "luxury-pricing-cta": {
