@@ -239,13 +239,15 @@
 }
 
 .texture-headline em{
-  display: inline;
+  display: inline !important;
 
-  font-style: normal;
+  font-style: normal !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
 
-  font-family: {{ section.settings.em_font_family }};
-  font-size: {{ section.settings.em_font_size }}px;
-  color: {{ section.settings.em_text_color }};
+  font-family: {{ section.settings.em_font_family }} !important;
+  font-size: {{ section.settings.em_font_size }}px !important;
+  color: {{ section.settings.em_text_color }} !important;
 }
 
 /* SUBTITLE */
