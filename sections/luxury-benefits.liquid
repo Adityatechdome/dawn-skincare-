@@ -1,180 +1,313 @@
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Pinyon+Script&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
-<section id="products" class="luxury-products-section">
+<section id="benefits" class="section benefits">
+
+  <div class="benefits-glow"></div>
 
   <!-- HEADER -->
-  <div class="products-header reveal">
+  <div class="benefits-header reveal">
 
-    <div class="products-eyebrow">
-      02 / The Ritual
+    <div class="benefits-eyebrow">
+      {{ section.settings.eyebrow_text }}
     </div>
 
-    <h2 class="products-title">
-      Looks like dessert.<br>
-      Works like magic.
+    <h2 class="benefits-title">
+      {{ section.settings.section_title }}
     </h2>
 
-    <div class="products-subtitle">
-      Three jars from the dessert trolley — every formula whipped, infused,
-      and crowned by hand. Hover each to reveal the ritual within.
+    <div class="benefits-subtitle">
+      {{ section.settings.section_subtitle }}
     </div>
 
   </div>
 
   <!-- GRID -->
-  <div class="products-grid">
+  <div class="benefits-grid">
 
-    <!-- CARD 1 -->
-    <div class="product-card reveal">
+    <!-- BENEFIT 1 -->
+    <div class="benefit reveal">
 
-      <div class="product-flag">
-        Bestseller
+      <div class="seal">
+
+        <svg viewBox="0 0 140 140" width="140" height="140">
+
+          <defs>
+
+            <radialGradient id="seal-H" cx="35%" cy="30%">
+
+              <stop offset="0%" stop-color="#D9BA82"/>
+              <stop offset="50%" stop-color="#B8945A"/>
+              <stop offset="100%" stop-color="#6B5230"/>
+
+            </radialGradient>
+
+          </defs>
+
+          <path d="M70 10
+                   Q 60 12 50 18
+                   Q 30 22 20 38
+                   Q 8 50 12 70
+                   Q 8 90 24 110
+                   Q 30 130 50 128
+                   Q 70 138 90 128
+                   Q 110 130 116 110
+                   Q 132 90 128 70
+                   Q 132 50 120 38
+                   Q 110 22 90 18
+                   Q 80 12 70 10 Z"
+                fill="url(#seal-H)" />
+
+          <circle cx="70" cy="70" r="48"
+                  fill="none"
+                  stroke="rgba(0,0,0,0.18)"
+                  stroke-width="1" />
+
+          <circle cx="70" cy="70" r="44"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="0.8"
+                  stroke-dasharray="2 3" />
+
+          <text x="70" y="86"
+                text-anchor="middle"
+                font-family="Italiana, serif"
+                font-size="52"
+                fill="rgba(0,0,0,0.45)">
+            {{ section.settings.benefit_1_initial }}
+          </text>
+
+          <ellipse cx="50"
+                   cy="42"
+                   rx="22"
+                   ry="14"
+                   fill="rgba(255,255,255,0.18)" />
+
+        </svg>
+
       </div>
 
-      <div class="product-stage">
-
-        <!-- DESSERT -->
-        <div class="dessert-layer lavender-dessert">
-
-          <div class="stage-caption">
-            lavender frosting · 01
-          </div>
-
-        </div>
-
-        <!-- JAR -->
-        <div class="jar-layer lavender-jar">
-
-          <div class="jar-wordmark">
-            DAWN
-          </div>
-
-          <div class="jar-line lavender-line">
-            CAPSULE CREAM · 50ml
-          </div>
-
-        </div>
-
-      </div>
-
-      <h3 class="product-name">
-        Lavender Capsule Cream
+      <h3 class="benefit-name">
+        {{ section.settings.benefit_1_title }}
       </h3>
 
-      <div class="product-tagline">
-        TXA · Niacinamide · Hyaluronic
-      </div>
-
-      <div class="product-desc">
-        A glassy lavender frosting that brightens,
-        smooths and hydrates in one quiet sweep.
-      </div>
-
-      <div class="product-price">
-        <span class="was-price">$58</span>
-        <span class="now-price">$29</span>
+      <div class="benefit-desc">
+        {{ section.settings.benefit_1_desc }}
       </div>
 
     </div>
 
-    <!-- CARD 2 -->
-    <div class="product-card reveal">
+    <!-- BENEFIT 2 -->
+    <div class="benefit reveal">
 
-      <div class="product-flag">
-        New
+      <div class="seal">
+
+        <svg viewBox="0 0 140 140" width="140" height="140">
+
+          <defs>
+
+            <radialGradient id="seal-G" cx="35%" cy="30%">
+
+              <stop offset="0%" stop-color="#D9BA82"/>
+              <stop offset="50%" stop-color="#B8945A"/>
+              <stop offset="100%" stop-color="#6B5230"/>
+
+            </radialGradient>
+
+          </defs>
+
+          <path d="M70 10
+                   Q 60 12 50 18
+                   Q 30 22 20 38
+                   Q 8 50 12 70
+                   Q 8 90 24 110
+                   Q 30 130 50 128
+                   Q 70 138 90 128
+                   Q 110 130 116 110
+                   Q 132 90 128 70
+                   Q 132 50 120 38
+                   Q 110 22 90 18
+                   Q 80 12 70 10 Z"
+                fill="url(#seal-G)" />
+
+          <circle cx="70" cy="70" r="48"
+                  fill="none"
+                  stroke="rgba(0,0,0,0.18)"
+                  stroke-width="1" />
+
+          <circle cx="70" cy="70" r="44"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="0.8"
+                  stroke-dasharray="2 3" />
+
+          <text x="70" y="86"
+                text-anchor="middle"
+                font-family="Italiana, serif"
+                font-size="52"
+                fill="rgba(0,0,0,0.45)">
+            {{ section.settings.benefit_2_initial }}
+          </text>
+
+          <ellipse cx="50"
+                   cy="42"
+                   rx="22"
+                   ry="14"
+                   fill="rgba(255,255,255,0.18)" />
+
+        </svg>
+
       </div>
 
-      <div class="product-stage">
-
-        <div class="dessert-layer blueberry-dessert">
-
-          <div class="stage-caption light-caption">
-            blueberry tart · 02
-          </div>
-
-        </div>
-
-        <div class="jar-layer blueberry-jar">
-
-          <div class="jar-wordmark">
-            DAWN
-          </div>
-
-          <div class="jar-line blueberry-line">
-            BLUEBERRY SERUM · 30ml
-          </div>
-
-        </div>
-
-      </div>
-
-      <h3 class="product-name">
-        Blueberry Tart Serum
+      <h3 class="benefit-name">
+        {{ section.settings.benefit_2_title }}
       </h3>
 
-      <div class="product-tagline">
-        Vitamin C · Pro-Xylane · Squalane
-      </div>
-
-      <div class="product-desc">
-        A jam-deep brightening syrup pressed with
-        blueberry-ferment and crystal vitamin C.
-      </div>
-
-      <div class="product-price">
-        <span class="was-price">$64</span>
-        <span class="now-price">$32</span>
+      <div class="benefit-desc">
+        {{ section.settings.benefit_2_desc }}
       </div>
 
     </div>
 
-    <!-- CARD 3 -->
-    <div class="product-card reveal">
+    <!-- BENEFIT 3 -->
+    <div class="benefit reveal">
 
-      <div class="product-flag">
-        Limited
+      <div class="seal">
+
+        <svg viewBox="0 0 140 140" width="140" height="140">
+
+          <defs>
+
+            <radialGradient id="seal-S" cx="35%" cy="30%">
+
+              <stop offset="0%" stop-color="#D9BA82"/>
+              <stop offset="50%" stop-color="#B8945A"/>
+              <stop offset="100%" stop-color="#6B5230"/>
+
+            </radialGradient>
+
+          </defs>
+
+          <path d="M70 10
+                   Q 60 12 50 18
+                   Q 30 22 20 38
+                   Q 8 50 12 70
+                   Q 8 90 24 110
+                   Q 30 130 50 128
+                   Q 70 138 90 128
+                   Q 110 130 116 110
+                   Q 132 90 128 70
+                   Q 132 50 120 38
+                   Q 110 22 90 18
+                   Q 80 12 70 10 Z"
+                fill="url(#seal-S)" />
+
+          <circle cx="70" cy="70" r="48"
+                  fill="none"
+                  stroke="rgba(0,0,0,0.18)"
+                  stroke-width="1" />
+
+          <circle cx="70" cy="70" r="44"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="0.8"
+                  stroke-dasharray="2 3" />
+
+          <text x="70" y="86"
+                text-anchor="middle"
+                font-family="Italiana, serif"
+                font-size="52"
+                fill="rgba(0,0,0,0.45)">
+            {{ section.settings.benefit_3_initial }}
+          </text>
+
+          <ellipse cx="50"
+                   cy="42"
+                   rx="22"
+                   ry="14"
+                   fill="rgba(255,255,255,0.18)" />
+
+        </svg>
+
       </div>
 
-      <div class="product-stage">
-
-        <div class="dessert-layer rose-dessert">
-
-          <div class="stage-caption">
-            rose petit four · 03
-          </div>
-
-        </div>
-
-        <div class="jar-layer rose-jar">
-
-          <div class="jar-wordmark">
-            DAWN
-          </div>
-
-          <div class="jar-line rose-line">
-            NIGHT BALM · 50ml
-          </div>
-
-        </div>
-
-      </div>
-
-      <h3 class="product-name">
-        Rose Petit Four Balm
+      <h3 class="benefit-name">
+        {{ section.settings.benefit_3_title }}
       </h3>
 
-      <div class="product-tagline">
-        Omega-3 · Pro-Ceramide · Camellia
+      <div class="benefit-desc">
+        {{ section.settings.benefit_3_desc }}
       </div>
 
-      <div class="product-desc">
-        A whipped rose-cream petit four — the night cream
-        that rebuilds the barrier while you sleep.
+    </div>
+
+    <!-- BENEFIT 4 -->
+    <div class="benefit reveal">
+
+      <div class="seal">
+
+        <svg viewBox="0 0 140 140" width="140" height="140">
+
+          <defs>
+
+            <radialGradient id="seal-C" cx="35%" cy="30%">
+
+              <stop offset="0%" stop-color="#D9BA82"/>
+              <stop offset="50%" stop-color="#B8945A"/>
+              <stop offset="100%" stop-color="#6B5230"/>
+
+            </radialGradient>
+
+          </defs>
+
+          <path d="M70 10
+                   Q 60 12 50 18
+                   Q 30 22 20 38
+                   Q 8 50 12 70
+                   Q 8 90 24 110
+                   Q 30 130 50 128
+                   Q 70 138 90 128
+                   Q 110 130 116 110
+                   Q 132 90 128 70
+                   Q 132 50 120 38
+                   Q 110 22 90 18
+                   Q 80 12 70 10 Z"
+                fill="url(#seal-C)" />
+
+          <circle cx="70" cy="70" r="48"
+                  fill="none"
+                  stroke="rgba(0,0,0,0.18)"
+                  stroke-width="1" />
+
+          <circle cx="70" cy="70" r="44"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="0.8"
+                  stroke-dasharray="2 3" />
+
+          <text x="70" y="86"
+                text-anchor="middle"
+                font-family="Italiana, serif"
+                font-size="52"
+                fill="rgba(0,0,0,0.45)">
+            {{ section.settings.benefit_4_initial }}
+          </text>
+
+          <ellipse cx="50"
+                   cy="42"
+                   rx="22"
+                   ry="14"
+                   fill="rgba(255,255,255,0.18)" />
+
+        </svg>
+
       </div>
 
-      <div class="product-price">
-        <span class="was-price">$54</span>
-        <span class="now-price">$27</span>
+      <h3 class="benefit-name">
+        {{ section.settings.benefit_4_title }}
+      </h3>
+
+      <div class="benefit-desc">
+        {{ section.settings.benefit_4_desc }}
       </div>
 
     </div>
@@ -184,29 +317,49 @@
 </section>
 
 <style>
-.luxury-products-section {
+.section.benefits {
+  position: relative;
+  overflow: hidden;
+
   padding: 140px 56px;
 
+  background: #2A2438;
+  color: #F8F1E7;
+}
+
+.benefits-glow {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
   background:
-    linear-gradient(180deg,
-    #F8F1E7 0%,
-    #FBF6EE 100%);
+    radial-gradient(ellipse at 30% 0%,
+    rgba(91, 74, 122, 0.5) 0%,
+    transparent 60%),
+
+    radial-gradient(ellipse at 70% 100%,
+    rgba(184, 148, 90, 0.18) 0%,
+    transparent 60%);
 }
 
 /* HEADER */
 
-.products-header {
+.benefits-header {
+  position: relative;
+  z-index: 2;
+
   text-align: center;
-  max-width: 1000px;
-  margin: 0 auto 80px;
+
+  margin-bottom: 80px;
 }
 
-.products-eyebrow {
+.benefits-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 12px;
 
-  color: #8C6F3F;
+  color: #D9BA82;
 
   font-family: "Inter", sans-serif;
   font-size: 11px;
@@ -215,17 +368,17 @@
   text-transform: uppercase;
 }
 
-.products-eyebrow::before,
-.products-eyebrow::after {
+.benefits-eyebrow::before,
+.benefits-eyebrow::after {
   content: "";
 
   width: 36px;
   height: 1px;
 
-  background: #B8945A;
+  background: #D9BA82;
 }
 
-.products-title {
+.benefits-title {
   max-width: 14ch;
 
   margin: 24px auto 16px;
@@ -238,10 +391,10 @@
   line-height: 1;
   letter-spacing: -0.005em;
 
-  color: #2A2438;
+  color: #F8F1E7;
 }
 
-.products-subtitle {
+.benefits-subtitle {
   max-width: 56ch;
 
   margin: 0 auto;
@@ -251,251 +404,67 @@
   font-size: 20px;
   line-height: 1.5;
 
-  color: rgba(42,36,56,0.72);
+  color: rgba(248,241,231,0.72);
 }
 
 /* GRID */
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.benefits-grid {
+  position: relative;
+  z-index: 2;
 
-  gap: 36px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+
+  gap: 24px;
 
   max-width: 1280px;
   margin: 0 auto;
 }
 
-/* CARD */
+/* BENEFIT */
 
-.product-card {
-  position: relative;
-
-  overflow: hidden;
-
-  padding: 40px 32px;
-
-  background: #F8F1E7;
-
-  border: 1px solid rgba(184,148,90,0.20);
-
+.benefit {
   text-align: center;
 
-  cursor: pointer;
+  padding: 32px 24px 40px;
 
-  transition:
-    all 0.4s cubic-bezier(0.2,0.8,0.2,1);
-}
-
-.product-card:hover,
-.product-card.is-active {
-
-  border-color: #B8945A;
-
-  transform: translateY(-6px);
-
-  box-shadow:
-    0 30px 60px -30px rgba(91,74,122,0.30);
-}
-
-/* FLAG */
-
-.product-flag {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-
-  padding: 6px 10px;
-
-  border-radius: 2px;
-
-  background: #2A2438;
-  color: #D9BA82;
-
-  font-family: "Inter", sans-serif;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-}
-
-/* STAGE */
-
-.product-stage {
   position: relative;
-
-  aspect-ratio: 1;
-
-  margin-bottom: 28px;
 }
 
-.dessert-layer,
-.jar-layer {
-  position: absolute;
-  inset: 12%;
+.seal {
+  margin: 0 auto 28px;
 
-  border-radius: 50%;
+  width: 140px;
+  height: 140px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  filter:
+    drop-shadow(0 12px 24px rgba(0,0,0,0.35));
 
   transition:
-    all 0.7s cubic-bezier(0.2,0.8,0.2,1);
+    transform 0.5s cubic-bezier(0.2,0.8,0.2,1);
 }
 
-/* DESSERT */
-
-.dessert-layer {
-  opacity: 1;
-  transform: scale(1);
+.benefit:hover .seal {
+  transform:
+    rotate(-8deg)
+    scale(1.05);
 }
 
-.product-card:hover .dessert-layer,
-.product-card.is-active .dessert-layer {
-  opacity: 0;
-  transform: scale(1.10);
-}
-
-/* JAR */
-
-.jar-layer {
-  opacity: 0;
-  transform: scale(0.85);
-
-  border: 1px solid rgba(184,148,90,0.4);
-
-  box-shadow:
-    0 30px 60px -30px rgba(91,74,122,0.25);
-}
-
-.product-card:hover .jar-layer,
-.product-card.is-active .jar-layer {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* LAVENDER */
-
-.lavender-dessert {
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.7), transparent 55%),
-    linear-gradient(180deg, #E4D9EE, #C9B8DC 70%, #8E7AAB);
-
-  box-shadow:
-    inset 0 -20px 40px rgba(91,74,122,0.25),
-    0 30px 60px -30px rgba(91,74,122,0.4);
-}
-
-.lavender-jar {
-  background:
-    linear-gradient(180deg, #FBF6EE, #EFE4D2);
-}
-
-/* BLUEBERRY */
-
-.blueberry-dessert {
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.5), transparent 55%),
-    linear-gradient(180deg, #C8D4E3, #5B4A7A 60%, #3D3158);
-
-  box-shadow:
-    inset 0 -20px 40px rgba(61,49,88,0.4),
-    0 30px 60px -30px rgba(61,49,88,0.5);
-}
-
-.blueberry-jar {
-  background:
-    linear-gradient(180deg, #C8D4E3, #8E9FB7);
-}
-
-/* ROSE */
-
-.rose-dessert {
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.6), transparent 55%),
-    linear-gradient(180deg, #F4DDDF, #E8C9CC 60%, #B07A82);
-
-  box-shadow:
-    inset 0 -20px 40px rgba(176,122,130,0.3),
-    0 30px 60px -30px rgba(176,122,130,0.4);
-}
-
-.rose-jar {
-  background:
-    linear-gradient(180deg, #F4DDDF, #E8C9CC);
-}
-
-/* CAPTIONS */
-
-.stage-caption {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-
-  color: rgba(42,36,56,0.55);
-}
-
-.light-caption {
-  color: rgba(248,241,231,0.7);
-}
-
-.jar-wordmark {
-  margin-bottom: 4px;
-
-  font-family: "Italiana", serif;
-  font-size: 24px;
-  letter-spacing: 0.2em;
-
-  color: #2A2438;
-}
-
-.jar-line {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.lavender-line {
-  color: #8C6F3F;
-}
-
-.blueberry-line {
-  color: #3D3158;
-}
-
-.rose-line {
-  color: #B07A82;
-}
-
-/* TEXT */
-
-.product-name {
-  margin-bottom: 8px;
+.benefit-name {
+  margin-bottom: 12px;
 
   font-family: "Italiana", serif;
   font-size: 28px;
   line-height: 1.1;
 
-  color: #2A2438;
+  color: #F8F1E7;
 }
 
-.product-tagline {
-  margin-bottom: 20px;
+.benefit-desc {
+  max-width: 24ch;
 
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-
-  color: #8C6F3F;
-}
-
-.product-desc {
-  margin-bottom: 24px;
+  margin: 0 auto;
 
   text-wrap: pretty;
 
@@ -504,26 +473,7 @@
   font-size: 16px;
   line-height: 1.5;
 
-  color: rgba(42,36,56,0.7);
-}
-
-.product-price {
-  font-family: "Italiana", serif;
-}
-
-.was-price {
-  margin-right: 10px;
-
-  font-size: 16px;
-
-  opacity: 0.4;
-
-  text-decoration: line-through;
-}
-
-.now-price {
-  font-size: 24px;
-  color: #2A2438;
+  color: rgba(248,241,231,0.78);
 }
 
 /* REVEAL */
@@ -539,21 +489,19 @@
 
 .reveal.visible {
   opacity: 1;
-  transform: none;
+  transform: translateY(0);
 }
 
 /* RESPONSIVE */
 
-@media (max-width: 1000px) {
+@media (max-width: 999px) {
 
-  .luxury-products-section {
+  .section.benefits {
     padding: 120px 32px;
   }
 
-  .products-grid {
+  .benefits-grid {
     grid-template-columns: repeat(2,1fr);
-
-    gap: 20px;
 
     max-width: 720px;
   }
@@ -562,41 +510,30 @@
 
 @media (max-width: 600px) {
 
-  .luxury-products-section {
-    padding: 90px 16px;
+  .section.benefits {
+    padding: 90px 24px;
   }
 
-  .products-grid {
+  .benefits-grid {
     grid-template-columns: repeat(2,1fr);
 
-    gap: 14px;
+    gap: 18px;
 
     max-width: 100%;
   }
 
-  .product-card {
-    padding: 28px 16px;
+  .seal {
+    width: 110px;
+    height: 110px;
   }
 
-  .product-name {
-    font-size: 20px;
+  .seal svg {
+    width: 110px;
+    height: 110px;
   }
 
-  .product-tagline {
-    font-size: 9px;
-  }
-
-  .product-desc {
-    font-size: 14px;
-  }
-
-  .now-price {
-    font-size: 20px;
-  }
-
-  .product-flag {
-    font-size: 8px;
-    padding: 5px 8px;
+  .benefit-name {
+    font-size: 22px;
   }
 
 }
@@ -604,8 +541,6 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* REVEAL */
 
   const reveals = document.querySelectorAll(".reveal");
 
@@ -629,21 +564,128 @@ document.addEventListener("DOMContentLoaded", () => {
 
   reveals.forEach(el => observer.observe(el));
 
-  /* MOBILE TAP */
-
-  const cards = document.querySelectorAll(".product-card");
-
-  cards.forEach(card => {
-
-    card.addEventListener("click", () => {
-
-      if (window.innerWidth < 1000) {
-        card.classList.toggle("is-active");
-      }
-
-    });
-
-  });
-
 });
 </script>
+
+{% schema %}
+{
+  "name": "Royal Benefits",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "03 / The Royal Treatment"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Sealed by the Crown."
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Every benefit pressed and sealed in wax — four virtues your skin will recognise within the fortnight."
+    },
+
+    {
+      "type": "header",
+      "content": "Benefit 1"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_initial",
+      "label": "Initial",
+      "default": "H"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Title",
+      "default": "Deep Hydration"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_1_desc",
+      "label": "Description",
+      "default": "72-hour hyaluronic flood. Skin reads plump, dewy, well-rested."
+    },
+
+    {
+      "type": "header",
+      "content": "Benefit 2"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_initial",
+      "label": "Initial",
+      "default": "G"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Title",
+      "default": "Glow Boost"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_2_desc",
+      "label": "Description",
+      "default": "Vitamin C and TXA brighten the complexion to a candle-lit glow."
+    },
+
+    {
+      "type": "header",
+      "content": "Benefit 3"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_initial",
+      "label": "Initial",
+      "default": "S"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Title",
+      "default": "Skin Softness"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_3_desc",
+      "label": "Description",
+      "default": "Ceramides and squalane leave skin satin to the touch."
+    },
+
+    {
+      "type": "header",
+      "content": "Benefit 4"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_initial",
+      "label": "Initial",
+      "default": "C"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_title",
+      "label": "Title",
+      "default": "Court-Approved"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_4_desc",
+      "label": "Description",
+      "default": "Fragrance-free, ophth-tested, gentle enough for delicate skin."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Royal Benefits"
+    }
+  ]
+}
+{% endschema %}
