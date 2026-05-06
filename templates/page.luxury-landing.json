@@ -37,7 +37,7 @@
     "luxury-hero": {
       "type": "luxury-hero",
       "settings": {
-        "eyebrow_text": "DAWN'S GLOW KIT — 2026",
+        "eyebrow_text": "DAWN'S GLOW KIT  2026",
         "heading_line_1": "Fit for",
         "heading_line_2": "Royal Skin.",
         "subheadline": "Indulge in luxury",
@@ -246,6 +246,7 @@
         "subheading": "Join Lady Bridgerton’s private correspondence for rituals, gifts, and whispers from the atelier.",
         "placeholder": "Enter your E-mail address",
         "button_text": "Receive the Letter",
+        "success_message": "Your invitation has been accepted. Watch for correspondence from the atelier.",
         "note": "Private Atelier Notes · Seasonal Rituals · Early Access"
       }
     }
