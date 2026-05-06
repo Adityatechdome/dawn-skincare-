@@ -1,252 +1,11 @@
-<section class="luxury-products">
-  <div class="products-header">
-    <h2>{{ section.settings.section_title }}</h2>
-    <p>{{ section.settings.section_subtitle }}</p>
-  </div>
-
-  <div class="product-showcase">
-    <div class="product-image-wrapper">
-      {% if section.settings.product_image %}
-        <img src="{{ section.settings.product_image | image_url: width: 600 }}" alt="{{ section.settings.product_name }}" class="product-main-image">
-      {% else %}
-        <div class="product-image-placeholder">Product Image</div>
-      {% endif %}
-    </div>
-
-    <div class="product-details">
-      <h3 class="product-title">{{ section.settings.product_name }}</h3>
-      <p class="product-description">{{ section.settings.product_description }}</p>
-      <p class="product-price">{{ section.settings.product_price }}</p>
-      <a href="{{ section.settings.product_link }}" class="product-btn">{{ section.settings.cta_text }}</a>
-    </div>
-  </div>
-</section>
-
-<style>
-  .luxury-products {
-    padding: 80px 56px;
-    background: #F8F1E7;
-  }
-
-  .products-header {
-    text-align: center;
-    margin-bottom: 80px;
-  }
-
-  .products-header h2 {
-    font-family: "Italiana", serif;
-    font-size: 54px;
-    color: #2A2438;
-    margin: 0 0 16px 0;
-    letter-spacing: 0.08em;
-  }
-
-  .products-header p {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 18px;
-    color: #5B4A7A;
-    margin: 0;
-    font-weight: 300;
-  }
-
-  .product-showcase {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: center;
-  }
-
-  .product-image-wrapper {
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    background: white;
-    border: 8px solid #B8945A;
-    box-shadow: inset 0 0 30px rgba(184, 148, 90, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .product-main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .product-image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8E7AAB;
-    font-family: "Inter", sans-serif;
-    background: #EFE4D2;
-  }
-
-  .product-details {
-    padding: 0;
-  }
-
-  .product-title {
-    font-family: "Italiana", serif;
-    font-size: 64px;
-    color: #2A2438;
-    margin: 0 0 30px 0;
-    letter-spacing: 0.08em;
-    line-height: 1;
-  }
-
-  .product-description {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 16px;
-    color: #5B4A7A;
-    line-height: 1.9;
-    margin: 0 0 40px 0;
-  }
-
-  .product-price {
-    font-family: "Italiana", serif;
-    font-size: 28px;
-    color: #B8945A;
-    margin: 0 0 40px 0;
-    font-weight: 600;
-  }
-
-  .product-btn {
-    display: inline-block;
-    padding: 18px 50px;
-    background: #B8945A;
-    color: white;
-    text-decoration: none;
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    border: 2px solid #B8945A;
-    transition: all 0.3s ease;
-  }
-
-  .product-btn:hover {
-    background: transparent;
-    color: #B8945A;
-  }
-
-  @media (max-width: 1000px) {
-    .product-showcase {
-      grid-template-columns: 1fr;
-      gap: 60px;
-    }
-
-    .product-image-wrapper {
-      aspect-ratio: 1;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .product-title {
-      font-size: 48px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .luxury-products {
-      padding: 40px 20px;
-    }
-
-    .products-header {
-      margin-bottom: 50px;
-    }
-
-    .products-header h2 {
-      font-size: 36px;
-    }
-
-    .products-header p {
-      font-size: 14px;
-    }
-
-    .product-showcase {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .product-image-wrapper {
-      aspect-ratio: 3/4;
-      max-width: 300px;
-      margin: 0 auto;
-      border-width: 6px;
-    }
-
-    .product-title {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    .product-description {
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .product-price {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-
-    .product-btn {
-      padding: 14px 32px;
-      font-size: 11px;
-      width: 100%;
-      text-align: center;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .luxury-products {
-      padding: 30px 16px;
-    }
-
-    .products-header {
-      margin-bottom: 30px;
-    }
-
-    .products-header h2 {
-      font-size: 28px;
-    }
-
-    .products-header p {
-      font-size: 12px;
-    }
-
-    .product-image-wrapper {
-      aspect-ratio: 3/4;
-      max-width: 240px;
-      border-width: 4px;
-    }
-
-    .product-title {
-      font-size: 28px;
-      margin-bottom: 16px;
-    }
-
-    .product-description {
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
-
-    .product-price {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .product-btn {
-      padding: 12px 24px;
-    }
-  }
-</style>
-
 {% schema %}
 {
   "name": "Luxury Products",
   "settings": [
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
     {
       "type": "text",
       "id": "section_title",
@@ -258,6 +17,11 @@
       "id": "section_subtitle",
       "label": "Section Subtitle",
       "default": "Handpicked products for radiant, luxurious skin"
+    },
+
+    {
+      "type": "header",
+      "content": "Product Details"
     },
     {
       "type": "text",
@@ -277,6 +41,11 @@
       "label": "Product Price",
       "default": "$222"
     },
+
+    {
+      "type": "header",
+      "content": "Media & CTA"
+    },
     {
       "type": "image_picker",
       "id": "product_image",
@@ -292,6 +61,11 @@
       "id": "cta_text",
       "label": "Button Text",
       "default": "Shop Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Products"
     }
   ]
 }
