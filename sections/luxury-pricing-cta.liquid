@@ -1,203 +1,531 @@
+<section id="final-cta-{{ section.id }}" class="final-cta-section">
+
+  <!-- STAGE GLOW -->
+
+  <div class="final-cta-table"></div>
+
+  <div class="final-cta-inner">
+
+    <!-- EYEBROW -->
+
+    <div class="final-cta-eyebrow reveal">
+      <span>{{ section.settings.eyebrow }}</span>
+    </div>
+
+    <!-- TITLE -->
+
+    <h2 class="final-cta-title reveal">
+
+      {{ section.settings.title_line_1 }}
+
+      <em>
+        {{ section.settings.title_line_2 }}
+      </em>
+
+    </h2>
+
+    <!-- SUBTITLE -->
+
+    <p class="final-cta-subline reveal">
+      {{ section.settings.subtitle }}
+    </p>
+
+    <!-- PRICE CHIP -->
+
+    <div class="final-price-chip reveal">
+
+      <span class="price-was">
+        {{ section.settings.old_price }}
+      </span>
+
+      <span class="price-now">
+        {{ section.settings.new_price }}
+      </span>
+
+      <span class="price-tag">
+        {{ section.settings.price_tag }}
+      </span>
+
+    </div>
+
+    <!-- BUTTON -->
+
+    <a
+      href="{{ section.settings.button_link }}"
+      class="final-cta-button reveal"
+    >
+
+      {{ section.settings.button_text }}
+
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M12 2L14.9 9.1L22 12L14.9 14.9L12 22L9.1 14.9L2 12L9.1 9.1L12 2Z"
+          fill="#D9BA82"
+        />
+      </svg>
+
+    </a>
+
+    <!-- TRUST -->
+
+    <div class="final-cta-trust reveal">
+      {{ section.settings.trust_line }}
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+#final-cta-{{ section.id }}{
+  position: relative;
+
+  width: 100vw;
+  max-width: 100vw;
+
+  left: 50%;
+  right: 50%;
+
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  padding: 140px 56px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(91,74,122,0.4) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #E4D9EE 0%,
+      #C9B8DC 100%
+    );
+}
+
+#final-cta-{{ section.id }} *{
+  box-sizing: border-box;
+}
+
+/* TABLE GLOW */
+
+.final-cta-table{
+  position: absolute;
+
+  bottom: -20%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 140%;
+  height: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(184,148,90,0.3) 0%,
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* INNER */
+
+.final-cta-inner{
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+}
+
+/* EYEBROW */
+
+.final-cta-eyebrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin-bottom: 32px;
+}
+
+.final-cta-eyebrow::before,
+.final-cta-eyebrow::after{
+  content: "";
+
+  width: 36px;
+  height: 1px;
+
+  background: #B8945A;
+
+  opacity: 0.6;
+}
+
+.final-cta-eyebrow span{
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+
+  color: #8C6F3F;
+}
+
+/* TITLE */
+
+.final-cta-title{
+  margin: 0 0 20px;
+
+  font-family: "Italiana", serif;
+  font-size: clamp(56px, 8vw, 120px);
+  line-height: 0.95;
+  font-weight: 400;
+
+  color: #2A2438;
+}
+
+.final-cta-title em{
+  display: block;
+
+  margin-top: 8px;
+
+  font-family: "Pinyon Script", cursive;
+  font-style: normal;
+  font-size: 1.1em;
+
+  color: #8C6F3F;
+
+  text-transform: none !important;
+}
+
+/* SUBLINE */
+
+.final-cta-subline{
+  max-width: 44ch;
+
+  margin: 0 auto 44px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
+
+  color: rgba(42,36,56,0.75);
+}
+
+/* PRICE CHIP */
+
+.final-price-chip{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+
+  margin-bottom: 32px;
+
+  padding: 14px 28px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(184,148,90,0.4);
+
+  background: rgba(248,241,231,0.7);
+
+  backdrop-filter: blur(10px);
+}
+
+.price-was{
+  font-family: "Italiana", serif;
+  font-size: 22px;
+
+  opacity: 0.5;
+
+  text-decoration: line-through;
+
+  color: #2A2438;
+}
+
+.price-now{
+  font-family: "Italiana", serif;
+  font-size: 32px;
+
+  color: #8C6F3F;
+}
+
+.price-tag{
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  color: #B07A82;
+}
+
+/* BUTTON */
+
+.final-cta-button{
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  overflow: hidden;
+
+  padding: 22px 44px;
+
+  border-radius: 999px;
+
+  background: #2A2438;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: #F8F1E7;
+
+  box-shadow:
+    0 12px 32px -16px rgba(42,36,56,0.4);
+
+  transition:
+    background 0.3s cubic-bezier(0.2,0.8,0.2,1),
+    transform 0.3s cubic-bezier(0.2,0.8,0.2,1),
+    box-shadow 0.3s cubic-bezier(0.2,0.8,0.2,1);
+}
+
+.final-cta-button::after{
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(217,186,130,0.6) 0%,
+      transparent 60%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.final-cta-button:hover{
+  transform: translateY(-2px);
+
+  background: #5B4A7A;
+
+  box-shadow:
+    0 16px 40px -12px rgba(91,74,122,0.5);
+}
+
+.final-cta-button:hover::after{
+  opacity: 1;
+}
+
+.final-cta-button span,
+.final-cta-button svg{
+  position: relative;
+  z-index: 2;
+}
+
+/* TRUST */
+
+.final-cta-trust{
+  margin-top: 32px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+
+  opacity: 0.6;
+
+  color: #2A2438;
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity: 0;
+
+  transform: translateY(40px);
+
+  animation:
+    finalReveal 0.9s cubic-bezier(0.2,0.8,0.2,1) forwards;
+}
+
+.final-cta-title{
+  animation-delay: 0.14s;
+}
+
+.final-cta-subline{
+  animation-delay: 0.28s;
+}
+
+.final-price-chip{
+  animation-delay: 0.42s;
+}
+
+.final-cta-button{
+  animation-delay: 0.56s;
+}
+
+.final-cta-trust{
+  animation-delay: 0.7s;
+}
+
+@keyframes finalReveal{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 999px){
+
+  #final-cta-{{ section.id }}{
+    padding: 120px 32px;
+  }
+
+}
+
+@media screen and (max-width: 700px){
+
+  #final-cta-{{ section.id }}{
+    padding: 90px 20px;
+  }
+
+  .final-price-chip{
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 16px 24px;
+  }
+
+  .final-cta-button{
+    padding: 20px 32px;
+
+    font-size: 12px;
+  }
+
+}
+
+@media screen and (max-width: 480px){
+
+  #final-cta-{{ section.id }}{
+    padding: 90px 16px;
+  }
+
+}
+
+</style>
+
 {% schema %}
 {
-  "name": "Luxury Pricing CTA",
+  "name": "Final Luxury CTA",
+
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "product_image",
-      "label": "Product Image"
-    },
-    {
-      "type": "header",
-      "content": "Title Settings"
-    },
+
     {
       "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "Limited Time Offer"
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "07 / Take The Crown"
     },
-    {
-      "type": "range",
-      "id": "title_font_size",
-      "min": 24,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "label": "Title Font Size",
-      "default": 48
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#2A2438"
-    },
-    {
-      "type": "header",
-      "content": "Price Box Settings"
-    },
-    {
-      "type": "color",
-      "id": "box_background_color",
-      "label": "Box Background Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "range",
-      "id": "box_padding",
-      "min": 20,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "label": "Box Padding",
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Original Price Settings"
-    },
+
     {
       "type": "text",
-      "id": "original_price",
-      "label": "Original Price",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "Your skin deserves"
+    },
+
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2",
+      "default": "the crown."
+    },
+
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Seven jars. One ritual. One free BB Cream slipped into the box, with our compliments."
+    },
+
+    {
+      "type": "text",
+      "id": "old_price",
+      "label": "Old Price",
       "default": "$222"
     },
-    {
-      "type": "range",
-      "id": "original_price_font_size",
-      "min": 12,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Original Price Font Size",
-      "default": 24
-    },
-    {
-      "type": "color",
-      "id": "original_price_color",
-      "label": "Original Price Color",
-      "default": "#8E7AAB"
-    },
-    {
-      "type": "header",
-      "content": "Sale Price Settings"
-    },
+
     {
       "type": "text",
-      "id": "sale_price",
-      "label": "Sale Price",
+      "id": "new_price",
+      "label": "New Price",
       "default": "$111"
     },
-    {
-      "type": "range",
-      "id": "sale_price_font_size",
-      "min": 24,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "label": "Sale Price Font Size",
-      "default": 56
-    },
-    {
-      "type": "color",
-      "id": "sale_price_color",
-      "label": "Sale Price Color",
-      "default": "#B8945A"
-    },
-    {
-      "type": "header",
-      "content": "Discount Badge Settings"
-    },
+
     {
       "type": "text",
-      "id": "discount_text",
-      "label": "Discount Text",
-      "default": "50% OFF"
+      "id": "price_tag",
+      "label": "Price Tag",
+      "default": "+ Free BB Cream"
     },
-    {
-      "type": "color",
-      "id": "badge_background_color",
-      "label": "Badge Background Color",
-      "default": "#B07A82"
-    },
-    {
-      "type": "color",
-      "id": "badge_text_color",
-      "label": "Badge Text Color",
-      "default": "#E8C9CC"
-    },
-    {
-      "type": "range",
-      "id": "badge_font_size",
-      "min": 8,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Badge Font Size",
-      "default": 12
-    },
-    {
-      "type": "header",
-      "content": "Button Settings"
-    },
+
     {
       "type": "text",
-      "id": "cta_text",
+      "id": "button_text",
       "label": "Button Text",
-      "default": "Claim Your Offer"
+      "default": "Indulge Now"
     },
+
     {
       "type": "url",
-      "id": "cta_link",
+      "id": "button_link",
       "label": "Button Link"
     },
+
     {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "Button Background Color",
-      "default": "#B8945A"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "range",
-      "id": "button_font_size",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Font Size",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "button_padding_x",
-      "min": 20,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "label": "Button Horizontal Padding",
-      "default": 50   // ✅ FIXED
-    },
-    {
-      "type": "range",
-      "id": "button_padding_y",
-      "min": 8,
-      "max": 30,
-      "step": 2,
-      "unit": "px",
-      "label": "Button Vertical Padding",
-      "default": 16
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust Line",
+      "default": "Free Velvet Shipping · 30-Day Returns · Ships in 24h"
     }
+
   ],
+
   "presets": [
     {
-      "name": "Luxury Pricing CTA"
+      "name": "Final Luxury CTA"
     }
   ]
 }
