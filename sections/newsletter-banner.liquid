@@ -4,11 +4,7 @@
   aria-hidden="true"
 >
 
-  <!-- BACKDROP -->
-
   <div class="bridgerton-popup-backdrop"></div>
-
-  <!-- POPUP -->
 
   <div
     class="bridgerton-popup"
@@ -26,8 +22,6 @@
     >
       ×
     </button>
-
-    <!-- CONTENT -->
 
     <div class="bridgerton-popup-content">
 
@@ -64,6 +58,18 @@
 
       {% form 'customer', class: 'bridgerton-popup-form reveal' %}
 
+        {% if form.posted_successfully? %}
+          <div class="bridgerton-popup-success">
+            {{ section.settings.success_message }}
+          </div>
+        {% endif %}
+
+        {% if form.errors %}
+          <div class="bridgerton-popup-error">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
         <input
           type="hidden"
           name="contact[tags]"
@@ -97,7 +103,7 @@
 
       {% endform %}
 
-      <!-- MICRO NOTE -->
+      <!-- NOTE -->
 
       <div class="bridgerton-popup-note reveal">
         {{ section.settings.note }}
@@ -374,6 +380,56 @@
   max-width: 420px;
 
   margin: 0 auto;
+}
+
+/* SUCCESS */
+
+.bridgerton-popup-success{
+  margin-bottom: 18px;
+
+  padding: 14px 18px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(217,186,130,0.12);
+
+  border:
+    1px solid rgba(217,186,130,0.22);
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.5;
+
+  color: #5B4A7A;
+}
+
+/* ERROR */
+
+.bridgerton-popup-error{
+  margin-bottom: 18px;
+
+  padding: 14px 18px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(176,122,130,0.10);
+
+  border:
+    1px solid rgba(176,122,130,0.20);
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+
+  color: #7A4450;
+}
+
+.bridgerton-popup-error ul{
+  margin: 0;
+  padding-left: 18px;
 }
 
 /* INPUT */
@@ -712,6 +768,17 @@
     }
   );
 
+  {% if form.posted_successfully? %}
+
+    popup.classList.add('show');
+
+    popup.setAttribute(
+      'aria-hidden',
+      'false'
+    );
+
+  {% endif %}
+
 })();
 
 </script>
@@ -762,6 +829,13 @@
       "id": "button_text",
       "label": "Button Text",
       "default": "Receive the Letter"
+    },
+
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Your invitation has been accepted. Watch for correspondence from the atelier."
     },
 
     {
