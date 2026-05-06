@@ -288,79 +288,67 @@
 
 <style>
 
-/* ── GLOBAL RESET ── */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html,
-body {
+body{
   overflow-x: hidden;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
-/* ── SECTION ── */
+/* SECTION */
 
-.section.benefits {
+.section.benefits{
   position: relative;
 
-  overflow: hidden;
+  overflow: visible;
 
-  width: 100vw;
-  max-width: 100vw;
-  
-  margin: 0 !important;
-  padding: 110px 0;
+  width: 100%;
+
+  padding: 110px 32px;
 
   background: #3D3158;
 
   box-sizing: border-box;
 
   isolation: isolate;
-
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
 }
 
-/* ── SOLID BACKGROUND ── */
-
-.benefits-glow {
+/* Create purple background that extends beyond container */
+.section.benefits::before {
+  content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
+  left: -9999px;
+  right: -9999px;
+  background: #3D3158;
+  z-index: 0;
+  pointer-events: none;
+}
 
-  width: 100%;
-  height: 100%;
+/* SOLID BACKGROUND */
+
+.benefits-glow{
+  position: absolute;
+  inset: 0;
 
   background: #3D3158;
 
   pointer-events: none;
-
-  z-index: 0;
+  
+  z-index: 1;
 }
 
-/* ── HEADER ── */
+/* HEADER */
 
-.benefits-header {
+.benefits-header{
   position: relative;
   z-index: 2;
 
   text-align: center;
 
   margin-bottom: 90px;
-  
-  padding: 0 32px;
 }
 
-.benefits-eyebrow {
+.benefits-eyebrow{
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -376,7 +364,7 @@ body {
 }
 
 .benefits-eyebrow::before,
-.benefits-eyebrow::after {
+.benefits-eyebrow::after{
   content: "";
 
   width: 36px;
@@ -385,7 +373,7 @@ body {
   background: #D9BA82;
 }
 
-.benefits-title {
+.benefits-title{
   max-width: 14ch;
 
   margin: 24px auto 18px;
@@ -399,7 +387,7 @@ body {
   color: #F8F1E7;
 }
 
-.benefits-subtitle {
+.benefits-subtitle{
   max-width: 56ch;
 
   margin: 0 auto;
@@ -412,9 +400,9 @@ body {
   color: rgba(248,241,231,0.74);
 }
 
-/* ── GRID ── */
+/* GRID */
 
-.benefits-grid {
+.benefits-grid{
   position: relative;
   z-index: 2;
 
@@ -422,8 +410,6 @@ body {
   max-width: 1280px;
 
   margin: 0 auto;
-  
-  padding: 0 32px;
 
   display: grid;
   grid-template-columns: repeat(4, minmax(0,1fr));
@@ -434,9 +420,9 @@ body {
   gap: 40px;
 }
 
-/* ── BENEFIT ── */
+/* BENEFIT */
 
-.benefit {
+.benefit{
   width: 100%;
 
   display: flex;
@@ -448,9 +434,9 @@ body {
   padding: 20px 12px;
 }
 
-/* ── SEAL ── */
+/* SEAL */
 
-.seal {
+.seal{
   width: 140px;
   height: 140px;
 
@@ -463,15 +449,15 @@ body {
     transform 0.45s cubic-bezier(0.2,0.8,0.2,1);
 }
 
-.benefit:hover .seal {
+.benefit:hover .seal{
   transform:
     rotate(-6deg)
     scale(1.06);
 }
 
-/* ── TEXT ── */
+/* TEXT */
 
-.benefit-name {
+.benefit-name{
   margin-bottom: 14px;
 
   font-family: "Italiana", serif;
@@ -481,7 +467,7 @@ body {
   color: #F8F1E7;
 }
 
-.benefit-desc {
+.benefit-desc{
   max-width: 22ch;
 
   margin: 0 auto;
@@ -494,9 +480,9 @@ body {
   color: rgba(248,241,231,0.78);
 }
 
-/* ── REVEAL ── */
+/* REVEAL */
 
-.reveal {
+.reveal{
   opacity: 0;
 
   transform: translateY(30px);
@@ -506,59 +492,51 @@ body {
     transform 0.9s cubic-bezier(0.2,0.8,0.2,1);
 }
 
-.reveal.visible {
+.reveal.visible{
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── TABLET ── */
+/* TABLET */
 
-@media (max-width: 999px) {
+@media (max-width: 999px){
 
-  .section.benefits {
-    padding: 110px 0;
+  .section.benefits{
+    padding: 110px 32px;
   }
 
-  .benefits-grid {
+  .benefits-grid{
     grid-template-columns: repeat(2, minmax(0,1fr));
 
     gap: 30px;
-    
-    padding: 0 32px;
   }
 
 }
 
-/* ── MOBILE ── */
+/* MOBILE */
 
-@media (max-width: 600px) {
+@media (max-width: 600px){
 
-  .section.benefits {
-    padding: 90px 0;
-  }
-  
-  .benefits-header {
-    padding: 0 20px;
+  .section.benefits{
+    padding: 90px 20px;
   }
 
-  .benefits-grid {
+  .benefits-grid{
     grid-template-columns: repeat(2, minmax(0,1fr));
 
     gap: 20px;
-    
-    padding: 0 20px;
   }
 
-  .seal {
+  .seal{
     width: 110px;
     height: 110px;
   }
 
-  .benefit-name {
+  .benefit-name{
     font-size: 22px;
   }
 
-  .benefit-desc {
+  .benefit-desc{
     font-size: 15px;
   }
 
