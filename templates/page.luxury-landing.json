@@ -150,37 +150,24 @@
     "luxury-pricing-cta": {
       "type": "luxury-pricing-cta",
       "settings": {
-        "title": "Limited Time Offer",
-        "title_font_size": 48,
-        "title_color": "#2a2438",
-        "box_background_color": "#ffffff",
-        "box_padding": 40,
-        "original_price": "$222",
-        "original_price_font_size": 24,
-        "original_price_color": "#8e7aab",
-        "sale_price": "$111",
-        "sale_price_font_size": 56,
-        "sale_price_color": "#b8945a",
-        "discount_text": "50% OFF",
-        "badge_background_color": "#b07a82",
-        "badge_text_color": "#e8c9cc",
-        "badge_font_size": 12,
-        "cta_text": "Experience luxury at an exceptional price. Discover the signature collection today.",
-        "cta_link": "",
-        "button_background_color": "#b8945a",
-        "button_text_color": "#ffffff",
-        "button_font_size": 14,
-        "button_padding_x": 50,
-        "button_padding_y": 16
+        "eyebrow": "07 / Take The Crown",
+        "title_line_1": "Your skin deserves",
+        "title_line_2": "the crown.",
+        "subtitle": "Seven jars. One ritual. One free BB Cream slipped into the box, with our compliments.",
+        "old_price": "$222",
+        "new_price": "$111",
+        "price_tag": "+ Free BB Cream",
+        "button_text": "Indulge Now",
+        "button_link": "",
+        "trust_line": "Free Velvet Shipping · 30-Day Returns · Ships in 24h"
       }
     },
     "luxury-sticky-cta": {
       "type": "luxury-sticky-cta",
       "settings": {
-        "cta_title": "Ready to Transform Your Skin?",
-        "cta_subtitle": "Get your royal collection today",
-        "cta_text": "Shop Now",
-        "cta_link": "shopify://products/7-step-glow-repair-kit"
+        "offer_text": "50% OFF",
+        "offer_subtext": "Free BB Cream — today only",
+        "button_text": "Shop the Glow"
       }
     },
     "luxury-footer": {
@@ -252,7 +239,6 @@
       "block_order": [
         "ai_gen_block_6d369ca_dmq3an"
       ],
-      "disabled": true,
       "name": "Luxury- Email floater",
       "settings": {
         "content_direction": "column",
