@@ -9,14 +9,15 @@
           src="{{ section.settings.logo_image | image_url }}"
           alt="{{ shop.name }}"
           class="luxury-logo-image"
-          width="100"
-          height="100"
+          width="120"
+          height="120"
         >
       {% endif %}
 
       <div class="luxury-logo-text">
         {{ section.settings.logo_text }}
       </div>
+
     </div>
 
     <!-- DESKTOP MENU -->
@@ -26,7 +27,7 @@
       {% endfor %}
     </nav>
 
-    <!-- RIGHT ICONS -->
+    <!-- RIGHT -->
     <div class="luxury-icons">
 
       <!-- SEARCH -->
@@ -64,6 +65,14 @@
       <a href="{{ link.url }}">{{ link.title }}</a>
     {% endfor %}
 
+    <div class="mobile-drawer-icons">
+
+      <a href="/search">Search</a>
+      <a href="/account">Account</a>
+      <a href="/cart">Cart</a>
+
+    </div>
+
   </div>
 </header>
 
@@ -81,6 +90,7 @@
 .luxury-nav-inner {
   max-width: {{ section.settings.max_width }}px;
   margin: 0 auto;
+
   padding:
     {{ section.settings.padding_vertical }}px
     {{ section.settings.padding_horizontal }}px;
@@ -106,17 +116,24 @@
   font-size: {{ section.settings.logo_size }}px;
   color: {{ section.settings.logo_color }};
   font-weight: 600;
+  line-height: 1;
 }
 
 .luxury-menu {
   display: flex;
+  align-items: center;
   gap: {{ section.settings.menu_gap }}px;
 }
 
 .luxury-menu a {
-  color: {{ section.settings.text_color }};
   text-decoration: none;
+  color: {{ section.settings.text_color }};
   font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.luxury-menu a:hover {
+  opacity: 0.7;
 }
 
 .luxury-icons {
@@ -129,29 +146,38 @@
   text-decoration: none;
   color: {{ section.settings.icon_color }};
   font-size: 18px;
+  transition: 0.3s ease;
+}
+
+.luxury-icon:hover {
+  opacity: 0.7;
 }
 
 .mobile-menu-toggle {
   display: none;
-  background: transparent;
   border: none;
+  background: transparent;
   font-size: 24px;
   cursor: pointer;
+  color: {{ section.settings.icon_color }};
 }
 
 .mobile-drawer {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 280px;
+  width: 300px;
   height: 100vh;
   background: {{ section.settings.background_color }};
+  z-index: 99999;
+
   padding: 80px 30px;
+
   display: flex;
   flex-direction: column;
   gap: 24px;
+
   transition: 0.4s ease;
-  z-index: 9999;
 }
 
 .mobile-drawer.active {
@@ -168,10 +194,21 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  border: none;
+
   background: transparent;
+  border: none;
   font-size: 28px;
   cursor: pointer;
+  color: {{ section.settings.text_color }};
+}
+
+.mobile-drawer-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid {{ section.settings.border_color }};
 }
 
 @media screen and (max-width: 768px) {
@@ -185,17 +222,27 @@
   }
 
   .luxury-nav-inner {
+
     padding:
       {{ section.settings.padding_vertical_mobile }}px
       {{ section.settings.padding_horizontal_mobile }}px;
+
+  }
+
+  .luxury-logo-image {
+    width: 34px;
   }
 
   .luxury-logo-text {
     font-size: 18px;
   }
 
-  .luxury-logo-image {
-    width: 34px;
+  .luxury-icons {
+    gap: 12px;
+  }
+
+  .luxury-icon {
+    font-size: 16px;
   }
 }
 </style>
@@ -224,7 +271,7 @@ function toggleDrawer() {
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu"
+      "label": "Main Menu"
     },
     {
       "type": "select",
@@ -264,7 +311,7 @@ function toggleDrawer() {
       "step": 2,
       "unit": "px",
       "label": "Padding Vertical",
-      "default": 18
+      "default": 20
     },
     {
       "type": "range",
@@ -303,7 +350,7 @@ function toggleDrawer() {
       "max": 40,
       "step": 1,
       "unit": "px",
-      "label": "Logo Size",
+      "label": "Logo Text Size",
       "default": 22
     },
     {
