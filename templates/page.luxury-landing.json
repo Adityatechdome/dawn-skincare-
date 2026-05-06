@@ -9,182 +9,56 @@
  */
 {
   "sections": {
-    "luxury_nav": {
-      "type": "luxury-nav",
-      "settings": {
-        "brand_name": "Dawn Skincare"
-      }
-    },
-    "luxury_hero": {
-      "type": "luxury-hero",
-      "settings": {
-        "hero_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.19PM_2.jpg",
-        "headline": "Royal Skincare Elegance",
-        "subheadline": "Experience Luxury Beyond Compare",
-        "cta_text": "Discover Collection",
-        "cta_link": "/collections/all",
-        "stat_1_number": "50%",
-        "stat_1_label": "More Radiant",
-        "stat_2_number": "+7",
-        "stat_2_label": "Days Glow",
-        "stat_3_number": "100%",
-        "stat_3_label": "Natural"
-      }
-    },
-    "luxury_ribbon": {
-      "type": "luxury-ribbon",
-      "settings": {
-        "item_1_text": "Free BB Cream — Today Only",
-        "item_2_text": "Glow Like Royalty",
-        "item_3_text": "50% Off The Full Ritual",
-        "item_4_text": "Ships in Velvet, Always"
-      }
-    },
-    "luxury_marquee": {
-      "type": "luxury-marquee",
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
       "disabled": true,
       "settings": {
-        "marquee_text": "✨ Royal Elegance Meets Modern Skincare ✨"
-      }
-    },
-    "luxury_products": {
-      "type": "luxury-products",
-      "settings": {
-        "section_title": "Our Signature Collection",
-        "section_subtitle": "Handpicked products for radiant, luxurious skin",
-        "product_name": "Royal Cream Luxe",
-        "product_description": "Our signature cream infused with the finest botanicals. Whipped at low temperature, layered like petit fours. Experience luxury in every application.",
-        "product_price": "$222",
-        "product_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.15PM_1.jpg",
-        "product_link": "",
-        "cta_text": "Shop Now"
-      }
-    },
-    "luxury_benefits": {
-      "type": "luxury-benefits",
-      "settings": {
-        "section_title": "Why Choose Dawn",
-        "benefit_1_icon": "",
-        "benefit_1_title": "Premium Ingredients",
-        "benefit_1_desc": "Sourced from the finest botanical gardens worldwide",
-        "benefit_2_icon": "",
-        "benefit_2_title": "Dermatologist Tested",
-        "benefit_2_desc": "Approved by leading skincare experts",
-        "benefit_3_icon": "",
-        "benefit_3_title": "Cruelty Free",
-        "benefit_3_desc": "Never tested on animals, always ethical",
-        "benefit_4_icon": "",
-        "benefit_4_title": "Luxury Packaging",
-        "benefit_4_desc": "Beautiful presentation perfect for gifting",
-        "title_font_family": "Cormorant Garamond",
-        "title_font_size": 20,
-        "description_font_family": "Inter",
-        "description_font_size": 14
-      }
-    },
-    "luxury_texture": {
-      "type": "luxury-texture",
-      "settings": {
-        "show_eyebrow": false,
-        "eyebrow_text": "",
-        "headline_text": "Softness",
-        "em_text": "you can feel",
-        "em_font_family": "Italiana",
-        "em_font_size": 96,
-        "em_text_color": "#5b4a7a",
-        "show_subtitle": false,
-        "subtitle_text": ""
-      }
-    },
-    "luxury_testimonials": {
-      "type": "luxury-testimonials",
-      "settings": {
-        "section_title": "Stories From Our Clients",
-        "testimonial_1_text": "The best skincare I have ever used. My skin has never looked more radiant and luminous!",
-        "testimonial_1_author": "Sarah Johnson",
-        "testimonial_2_text": "Absolutely luxurious and effective. The packaging is stunning and the results are undeniable.",
-        "testimonial_2_author": "Emily Williams",
-        "testimonial_3_text": "I love the elegant presentation and the wonderful, visible results. Highly recommended!",
-        "testimonial_3_author": "Jessica Brown"
-      }
-    },
-    "luxury_story": {
-      "type": "luxury-story",
-      "settings": {
-        "story_title": "Our Story",
-        "story_text": "Founded in the heart of luxury, our brand combines ancient botanical wisdom with modern skincare science. Every product is crafted with intention, infused with the finest ingredients from around the world. We believe that true beauty comes from within, and our mission is to help you achieve radiant, healthy skin that reflects your inner glow.",
-        "story_signature": "With love, The Founder"
-      }
-    },
-    "luxury_pricing_cta": {
-      "type": "luxury-pricing-cta",
-      "settings": {
-        "title": "Limited Time Offer",
-        "product_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.19PM_3.jpg",
-        "original_price": "$222",
-        "sale_price": "$111",
-        "discount_text": "50% OFF",
-        "cta_text": "Claim Your Offer",
-        "cta_link": "/collections/all"
-      }
-    },
-    "luxury_sticky_cta": {
-      "type": "luxury-sticky-cta",
-      "settings": {
-        "cta_title": "Ready to Transform Your Skin?",
-        "cta_subtitle": "Get your royal collection today",
-        "cta_text": "Shop Now",
-        "cta_link": "shopify://products/7-step-glow-repair-kit"
-      }
-    },
-    "luxury_footer": {
-      "type": "luxury-footer",
-      "settings": {
-        "brand_name": "Dawn Skincare",
-        "brand_description": "Luxury skincare for the modern royal. Handcrafted botanical formulations for radiant, luminous skin.",
-        "shop_heading": "Shop",
-        "shop_link_1_text": "The Bundle",
-        "shop_link_1_url": "",
-        "shop_link_2_text": "Cleansers",
-        "shop_link_2_url": "",
-        "shop_link_3_text": "Serums",
-        "shop_link_3_url": "",
-        "shop_link_4_text": "Creams",
-        "shop_link_4_url": "",
-        "atelier_heading": "Atelier",
-        "atelier_link_1_text": "The Ritual",
-        "atelier_link_1_url": "",
-        "atelier_link_2_text": "Luxury Kits",
-        "atelier_link_2_url": "",
-        "atelier_link_3_text": "Gift Sets",
-        "atelier_link_3_url": "",
-        "court_heading": "The Court",
-        "court_link_1_text": "About",
-        "court_link_1_url": "",
-        "court_link_2_text": "Contact",
-        "court_link_2_url": "",
-        "court_link_3_text": "Reviews",
-        "court_link_3_url": "",
-        "copyright_text": "© 2024 Dawn Skincare. All rights reserved.",
-        "privacy_text": "Privacy",
-        "privacy_link": "",
-        "terms_text": "Terms",
-        "terms_link": ""
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
       }
     }
   },
   "order": [
-    "luxury_nav",
-    "luxury_hero",
-    "luxury_ribbon",
-    "luxury_marquee",
-    "luxury_products",
-    "luxury_benefits",
-    "luxury_texture",
-    "luxury_testimonials",
-    "luxury_story",
-    "luxury_pricing_cta",
-    "luxury_sticky_cta",
-    "luxury_footer"
+    "main"
   ]
 }
