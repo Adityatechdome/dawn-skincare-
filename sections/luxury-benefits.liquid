@@ -1,285 +1,649 @@
-<section class="luxury-benefits" style="--title-font: {{ section.settings.title_font_family }}; --title-size: {{ section.settings.title_font_size }}px; --desc-font: {{ section.settings.description_font_family }}; --desc-size: {{ section.settings.description_font_size }}px;">
-  <div class="benefits-header">
-    <h2>{{ section.settings.section_title }}</h2>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Pinyon+Script&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<section id="products" class="luxury-products-section">
+
+  <!-- HEADER -->
+  <div class="products-header reveal">
+
+    <div class="products-eyebrow">
+      02 / The Ritual
+    </div>
+
+    <h2 class="products-title">
+      Looks like dessert.<br>
+      Works like magic.
+    </h2>
+
+    <div class="products-subtitle">
+      Three jars from the dessert trolley — every formula whipped, infused,
+      and crowned by hand. Hover each to reveal the ritual within.
+    </div>
+
   </div>
 
-  <div class="benefits-grid">
-    <div class="benefit-card">
-      <div class="benefit-icon">{{ section.settings.benefit_1_icon }}</div>
-      <h3>{{ section.settings.benefit_1_title }}</h3>
-      <p>{{ section.settings.benefit_1_desc }}</p>
+  <!-- GRID -->
+  <div class="products-grid">
+
+    <!-- CARD 1 -->
+    <div class="product-card reveal">
+
+      <div class="product-flag">
+        Bestseller
+      </div>
+
+      <div class="product-stage">
+
+        <!-- DESSERT -->
+        <div class="dessert-layer lavender-dessert">
+
+          <div class="stage-caption">
+            lavender frosting · 01
+          </div>
+
+        </div>
+
+        <!-- JAR -->
+        <div class="jar-layer lavender-jar">
+
+          <div class="jar-wordmark">
+            DAWN
+          </div>
+
+          <div class="jar-line lavender-line">
+            CAPSULE CREAM · 50ml
+          </div>
+
+        </div>
+
+      </div>
+
+      <h3 class="product-name">
+        Lavender Capsule Cream
+      </h3>
+
+      <div class="product-tagline">
+        TXA · Niacinamide · Hyaluronic
+      </div>
+
+      <div class="product-desc">
+        A glassy lavender frosting that brightens,
+        smooths and hydrates in one quiet sweep.
+      </div>
+
+      <div class="product-price">
+        <span class="was-price">$58</span>
+        <span class="now-price">$29</span>
+      </div>
+
     </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">{{ section.settings.benefit_2_icon }}</div>
-      <h3>{{ section.settings.benefit_2_title }}</h3>
-      <p>{{ section.settings.benefit_2_desc }}</p>
+
+    <!-- CARD 2 -->
+    <div class="product-card reveal">
+
+      <div class="product-flag">
+        New
+      </div>
+
+      <div class="product-stage">
+
+        <div class="dessert-layer blueberry-dessert">
+
+          <div class="stage-caption light-caption">
+            blueberry tart · 02
+          </div>
+
+        </div>
+
+        <div class="jar-layer blueberry-jar">
+
+          <div class="jar-wordmark">
+            DAWN
+          </div>
+
+          <div class="jar-line blueberry-line">
+            BLUEBERRY SERUM · 30ml
+          </div>
+
+        </div>
+
+      </div>
+
+      <h3 class="product-name">
+        Blueberry Tart Serum
+      </h3>
+
+      <div class="product-tagline">
+        Vitamin C · Pro-Xylane · Squalane
+      </div>
+
+      <div class="product-desc">
+        A jam-deep brightening syrup pressed with
+        blueberry-ferment and crystal vitamin C.
+      </div>
+
+      <div class="product-price">
+        <span class="was-price">$64</span>
+        <span class="now-price">$32</span>
+      </div>
+
     </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">{{ section.settings.benefit_3_icon }}</div>
-      <h3>{{ section.settings.benefit_3_title }}</h3>
-      <p>{{ section.settings.benefit_3_desc }}</p>
+
+    <!-- CARD 3 -->
+    <div class="product-card reveal">
+
+      <div class="product-flag">
+        Limited
+      </div>
+
+      <div class="product-stage">
+
+        <div class="dessert-layer rose-dessert">
+
+          <div class="stage-caption">
+            rose petit four · 03
+          </div>
+
+        </div>
+
+        <div class="jar-layer rose-jar">
+
+          <div class="jar-wordmark">
+            DAWN
+          </div>
+
+          <div class="jar-line rose-line">
+            NIGHT BALM · 50ml
+          </div>
+
+        </div>
+
+      </div>
+
+      <h3 class="product-name">
+        Rose Petit Four Balm
+      </h3>
+
+      <div class="product-tagline">
+        Omega-3 · Pro-Ceramide · Camellia
+      </div>
+
+      <div class="product-desc">
+        A whipped rose-cream petit four — the night cream
+        that rebuilds the barrier while you sleep.
+      </div>
+
+      <div class="product-price">
+        <span class="was-price">$54</span>
+        <span class="now-price">$27</span>
+      </div>
+
     </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">{{ section.settings.benefit_4_icon }}</div>
-      <h3>{{ section.settings.benefit_4_title }}</h3>
-      <p>{{ section.settings.benefit_4_desc }}</p>
-    </div>
+
   </div>
+
 </section>
 
 <style>
-  .luxury-benefits {
-    padding: 80px 56px;
-    background: #3D3158;
+.luxury-products-section {
+  padding: 140px 56px;
+
+  background:
+    linear-gradient(180deg,
+    #F8F1E7 0%,
+    #FBF6EE 100%);
+}
+
+/* HEADER */
+
+.products-header {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto 80px;
+}
+
+.products-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #8C6F3F;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.products-eyebrow::before,
+.products-eyebrow::after {
+  content: "";
+
+  width: 36px;
+  height: 1px;
+
+  background: #B8945A;
+}
+
+.products-title {
+  max-width: 14ch;
+
+  margin: 24px auto 16px;
+
+  text-wrap: pretty;
+
+  font-family: "Italiana", serif;
+  font-size: clamp(40px, 5.5vw, 84px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.005em;
+
+  color: #2A2438;
+}
+
+.products-subtitle {
+  max-width: 56ch;
+
+  margin: 0 auto;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.5;
+
+  color: rgba(42,36,56,0.72);
+}
+
+/* GRID */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 36px;
+
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* CARD */
+
+.product-card {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 40px 32px;
+
+  background: #F8F1E7;
+
+  border: 1px solid rgba(184,148,90,0.20);
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    all 0.4s cubic-bezier(0.2,0.8,0.2,1);
+}
+
+.product-card:hover,
+.product-card.is-active {
+
+  border-color: #B8945A;
+
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 30px 60px -30px rgba(91,74,122,0.30);
+}
+
+/* FLAG */
+
+.product-flag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  padding: 6px 10px;
+
+  border-radius: 2px;
+
+  background: #2A2438;
+  color: #D9BA82;
+
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+}
+
+/* STAGE */
+
+.product-stage {
+  position: relative;
+
+  aspect-ratio: 1;
+
+  margin-bottom: 28px;
+}
+
+.dessert-layer,
+.jar-layer {
+  position: absolute;
+  inset: 12%;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  transition:
+    all 0.7s cubic-bezier(0.2,0.8,0.2,1);
+}
+
+/* DESSERT */
+
+.dessert-layer {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.product-card:hover .dessert-layer,
+.product-card.is-active .dessert-layer {
+  opacity: 0;
+  transform: scale(1.10);
+}
+
+/* JAR */
+
+.jar-layer {
+  opacity: 0;
+  transform: scale(0.85);
+
+  border: 1px solid rgba(184,148,90,0.4);
+
+  box-shadow:
+    0 30px 60px -30px rgba(91,74,122,0.25);
+}
+
+.product-card:hover .jar-layer,
+.product-card.is-active .jar-layer {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* LAVENDER */
+
+.lavender-dessert {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.7), transparent 55%),
+    linear-gradient(180deg, #E4D9EE, #C9B8DC 70%, #8E7AAB);
+
+  box-shadow:
+    inset 0 -20px 40px rgba(91,74,122,0.25),
+    0 30px 60px -30px rgba(91,74,122,0.4);
+}
+
+.lavender-jar {
+  background:
+    linear-gradient(180deg, #FBF6EE, #EFE4D2);
+}
+
+/* BLUEBERRY */
+
+.blueberry-dessert {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.5), transparent 55%),
+    linear-gradient(180deg, #C8D4E3, #5B4A7A 60%, #3D3158);
+
+  box-shadow:
+    inset 0 -20px 40px rgba(61,49,88,0.4),
+    0 30px 60px -30px rgba(61,49,88,0.5);
+}
+
+.blueberry-jar {
+  background:
+    linear-gradient(180deg, #C8D4E3, #8E9FB7);
+}
+
+/* ROSE */
+
+.rose-dessert {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.6), transparent 55%),
+    linear-gradient(180deg, #F4DDDF, #E8C9CC 60%, #B07A82);
+
+  box-shadow:
+    inset 0 -20px 40px rgba(176,122,130,0.3),
+    0 30px 60px -30px rgba(176,122,130,0.4);
+}
+
+.rose-jar {
+  background:
+    linear-gradient(180deg, #F4DDDF, #E8C9CC);
+}
+
+/* CAPTIONS */
+
+.stage-caption {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  color: rgba(42,36,56,0.55);
+}
+
+.light-caption {
+  color: rgba(248,241,231,0.7);
+}
+
+.jar-wordmark {
+  margin-bottom: 4px;
+
+  font-family: "Italiana", serif;
+  font-size: 24px;
+  letter-spacing: 0.2em;
+
+  color: #2A2438;
+}
+
+.jar-line {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.lavender-line {
+  color: #8C6F3F;
+}
+
+.blueberry-line {
+  color: #3D3158;
+}
+
+.rose-line {
+  color: #B07A82;
+}
+
+/* TEXT */
+
+.product-name {
+  margin-bottom: 8px;
+
+  font-family: "Italiana", serif;
+  font-size: 28px;
+  line-height: 1.1;
+
+  color: #2A2438;
+}
+
+.product-tagline {
+  margin-bottom: 20px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  color: #8C6F3F;
+}
+
+.product-desc {
+  margin-bottom: 24px;
+
+  text-wrap: pretty;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+
+  color: rgba(42,36,56,0.7);
+}
+
+.product-price {
+  font-family: "Italiana", serif;
+}
+
+.was-price {
+  margin-right: 10px;
+
+  font-size: 16px;
+
+  opacity: 0.4;
+
+  text-decoration: line-through;
+}
+
+.now-price {
+  font-size: 24px;
+  color: #2A2438;
+}
+
+/* REVEAL */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+
+  transition:
+    opacity 0.9s cubic-bezier(0.2,0.8,0.2,1),
+    transform 0.9s cubic-bezier(0.2,0.8,0.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+  .luxury-products-section {
+    padding: 120px 32px;
   }
 
-  .benefits-header {
-    text-align: center;
-    margin-bottom: 60px;
+  .products-grid {
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 20px;
+
+    max-width: 720px;
   }
 
-  .benefits-header h2 {
-    font-family: "Italiana", serif;
-    font-size: 54px;
-    color: #D9BA82;
-    margin: 0;
-    letter-spacing: 0.08em;
+}
+
+@media (max-width: 600px) {
+
+  .luxury-products-section {
+    padding: 90px 16px;
   }
 
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
+  .products-grid {
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 14px;
+
+    max-width: 100%;
   }
 
-  .benefit-card {
-    background: rgba(248, 241, 231, 0.05);
-    border: 1px solid rgba(217, 186, 130, 0.2);
-    padding: 40px 20px;
-    text-align: center;
+  .product-card {
+    padding: 28px 16px;
   }
 
-  .benefit-icon {
-    font-size: 48px;
-    margin-bottom: 20px;
+  .product-name {
+    font-size: 20px;
   }
 
-  .benefit-card h3 {
-    font-family: var(--title-font, "Cormorant Garamond"), serif;
-    font-size: var(--title-size, 20px);
-    color: #D9BA82;
-    margin: 0 0 15px 0;
+  .product-tagline {
+    font-size: 9px;
   }
 
-  .benefit-card p {
-    font-family: var(--desc-font, "Inter"), sans-serif;
-    font-size: var(--desc-size, 14px);
-    color: #C8D4E3;
-    margin: 0;
-    line-height: 1.6;
+  .product-desc {
+    font-size: 14px;
   }
 
-  @media (max-width: 1024px) {
-    .benefits-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .now-price {
+    font-size: 20px;
   }
 
-  @media (max-width: 768px) {
-    .luxury-benefits {
-      padding: 40px 20px;
-    }
-
-    .benefits-header {
-      margin-bottom: 40px;
-    }
-
-    .benefits-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .benefits-header h2 {
-      font-size: 36px;
-    }
-
-    .benefit-card {
-      padding: 30px 15px;
-    }
-
-    .benefit-icon {
-      font-size: 36px;
-      margin-bottom: 15px;
-    }
-
-    .benefit-card h3 {
-      font-size: 16px;
-      margin: 0 0 12px 0;
-    }
-
-    .benefit-card p {
-      font-size: 12px;
-    }
+  .product-flag {
+    font-size: 8px;
+    padding: 5px 8px;
   }
 
-  @media (max-width: 480px) {
-    .luxury-benefits {
-      padding: 30px 16px;
-    }
-
-    .benefits-header {
-      margin-bottom: 30px;
-    }
-
-    .benefits-header h2 {
-      font-size: 28px;
-    }
-
-    .benefit-card {
-      padding: 20px 12px;
-    }
-
-    .benefit-icon {
-      font-size: 32px;
-    }
-
-    .benefit-card h3 {
-      font-size: 14px;
-    }
-
-    .benefit-card p {
-      font-size: 11px;
-      line-height: 1.5;
-    }
-  }
+}
 </style>
 
-{% schema %}
-{
-  "name": "Luxury Benefits",
-  "settings": [
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
-      "default": "Why Choose Dawn"
-    },
-    {
-      "type": "text",
-      "id": "benefit_1_icon",
-      "label": "Benefit 1 Icon",
-      "default": "✨"
-    },
-    {
-      "type": "text",
-      "id": "benefit_1_title",
-      "label": "Benefit 1 Title",
-      "default": "Premium Ingredients"
-    },
-    {
-      "type": "text",
-      "id": "benefit_1_desc",
-      "label": "Benefit 1 Description",
-      "default": "Sourced from the finest botanical gardens worldwide"
-    },
-    {
-      "type": "text",
-      "id": "benefit_2_icon",
-      "label": "Benefit 2 Icon",
-      "default": "👑"
-    },
-    {
-      "type": "text",
-      "id": "benefit_2_title",
-      "label": "Benefit 2 Title",
-      "default": "Dermatologist Tested"
-    },
-    {
-      "type": "text",
-      "id": "benefit_2_desc",
-      "label": "Benefit 2 Description",
-      "default": "Approved by leading skincare experts"
-    },
-    {
-      "type": "text",
-      "id": "benefit_3_icon",
-      "label": "Benefit 3 Icon",
-      "default": "🌸"
-    },
-    {
-      "type": "text",
-      "id": "benefit_3_title",
-      "label": "Benefit 3 Title",
-      "default": "Cruelty Free"
-    },
-    {
-      "type": "text",
-      "id": "benefit_3_desc",
-      "label": "Benefit 3 Description",
-      "default": "Never tested on animals, always ethical"
-    },
-    {
-      "type": "text",
-      "id": "benefit_4_icon",
-      "label": "Benefit 4 Icon",
-      "default": "💎"
-    },
-    {
-      "type": "text",
-      "id": "benefit_4_title",
-      "label": "Benefit 4 Title",
-      "default": "Luxury Packaging"
-    },
-    {
-      "type": "text",
-      "id": "benefit_4_desc",
-      "label": "Benefit 4 Description",
-      "default": "Beautiful presentation perfect for gifting"
-    },
-    {
-      "type": "select",
-      "id": "title_font_family",
-      "label": "Title Font Family",
-      "options": [
-        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
-        { "value": "Italiana", "label": "Italiana" },
-        { "value": "Inter", "label": "Inter" }
-      ],
-      "default": "Cormorant Garamond"
-    },
-    {
-      "type": "range",
-      "id": "title_font_size",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "label": "Title Font Size",
-      "default": 20
-    },
-    {
-      "type": "select",
-      "id": "description_font_family",
-      "label": "Description Font Family",
-      "options": [
-        { "value": "Inter", "label": "Inter" },
-        { "value": "Cormorant Garamond", "label": "Cormorant Garamond" },
-        { "value": "Italiana", "label": "Italiana" }
-      ],
-      "default": "Inter"
-    },
-    {
-      "type": "range",
-      "id": "description_font_size",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Description Font Size",
-      "default": 14
-    }
-  ]
-}
-{% endschema %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* REVEAL */
+
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry, index) => {
+
+      if (entry.isIntersecting) {
+
+        setTimeout(() => {
+          entry.target.classList.add("visible");
+        }, index * 120);
+
+      }
+
+    });
+
+  }, {
+    threshold: 0.12
+  });
+
+  reveals.forEach(el => observer.observe(el));
+
+  /* MOBILE TAP */
+
+  const cards = document.querySelectorAll(".product-card");
+
+  cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+      if (window.innerWidth < 1000) {
+        card.classList.toggle("is-active");
+      }
+
+    });
+
+  });
+
+});
+</script>
