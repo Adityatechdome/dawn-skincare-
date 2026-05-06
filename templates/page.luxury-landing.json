@@ -88,23 +88,6 @@
         "subtitle_text": "Whipped at low temperature, layered like petit fours. The texture is the proof."
       }
     },
-    "luxury_hero_ktmQpB": {
-      "type": "luxury-hero",
-      "name": "Luxury Hero",
-      "settings": {
-        "hero_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.19PM_2.jpg",
-        "headline": "Royal Skincare Elegance",
-        "subheadline": "Indulge in luxury",
-        "cta_text": "Shop Now",
-        "cta_link": "shopify://products/7-step-glow-repair-kit",
-        "stat_1_number": "50%",
-        "stat_1_label": "More Radiant",
-        "stat_2_number": "+7",
-        "stat_2_label": "Days Glow",
-        "stat_3_number": "100%",
-        "stat_3_label": "Natural"
-      }
-    },
     "luxury-ribbon": {
       "type": "luxury-ribbon",
       "settings": {
@@ -257,7 +240,6 @@
     "luxury-hero",
     "luxury-marquee",
     "luxury-texture",
-    "luxury_hero_ktmQpB",
     "luxury-ribbon",
     "luxury-products",
     "luxury-benefits",
