@@ -11,44 +11,26 @@
   "sections": {
     "luxury-nav": {
       "type": "luxury-nav",
-      "blocks": {
-        "menu_item_XYMqMG": {
-          "type": "menu_item",
-          "settings": {
-            "label": "Menu Item",
-            "link": "",
-            "font_size": 14,
-            "text_color": "#2a2438",
-            "padding": 8
-          }
-        }
-      },
-      "block_order": [
-        "menu_item_XYMqMG"
-      ],
       "settings": {
+        "logo_text": "Dawn",
+        "menu": "",
+        "search_icon": "shopify://shop_images/search.png",
+        "account_icon": "shopify://shop_images/queen.png",
+        "cart_icon": "shopify://shop_images/sell.png",
         "position": "fixed",
-        "height": 80,
         "max_width": 1400,
         "padding_vertical": 20,
         "padding_horizontal": 55,
         "padding_vertical_mobile": 15,
         "padding_horizontal_mobile": 20,
-        "logo_text": "Dawn",
         "logo_size": 22,
         "logo_color": "#2a2438",
-        "menu_font": "Inter",
         "menu_gap": 40,
         "background_color": "#f8f1e7",
         "text_color": "#2a2438",
         "border_color": "#b8945a",
         "border_width": 1,
-        "show_icons": true,
-        "icon_size": 20,
-        "icon_color": "#2a2438",
-        "icons_gap": 20,
-        "search_link": "",
-        "cart_link": ""
+        "icon_color": "#2a2438"
       }
     },
     "luxury-hero": {
@@ -261,7 +243,7 @@
             "button_hover_color": "#780406",
             "button_border_radius": 8,
             "success_color": "#008060",
-            "error_color": "#D82C0D"
+            "error_color": "#d82c0d"
           },
           "blocks": {}
         }
