@@ -1,3 +1,186 @@
+<section class="luxury-hero">
+
+  <!-- BACKGROUND IMAGE -->
+  {% if section.settings.hero_image != blank %}
+    <div class="luxury-hero-bg">
+      <img
+        src="{{ section.settings.hero_image | image_url: width: 2000 }}"
+        alt="Hero Image"
+        width="2000"
+        height="1200"
+      >
+    </div>
+  {% endif %}
+
+  <!-- OVERLAY -->
+  <div class="luxury-hero-overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="luxury-hero-content">
+
+    <p class="luxury-hero-subheadline">
+      {{ section.settings.subheadline }}
+    </p>
+
+    <h1 class="luxury-hero-headline">
+      {{ section.settings.headline }}
+    </h1>
+
+    {% if section.settings.cta_text != blank %}
+      <a
+        href="{{ section.settings.cta_link }}"
+        class="luxury-hero-btn"
+      >
+        {{ section.settings.cta_text }}
+      </a>
+    {% endif %}
+
+    <!-- STATS -->
+    <div class="luxury-hero-stats">
+
+      <div class="luxury-stat">
+        <h3>{{ section.settings.stat_1_number }}</h3>
+        <p>{{ section.settings.stat_1_label }}</p>
+      </div>
+
+      <div class="luxury-stat">
+        <h3>{{ section.settings.stat_2_number }}</h3>
+        <p>{{ section.settings.stat_2_label }}</p>
+      </div>
+
+      <div class="luxury-stat">
+        <h3>{{ section.settings.stat_3_number }}</h3>
+        <p>{{ section.settings.stat_3_label }}</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+.luxury-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.luxury-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.luxury-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.luxury-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 2;
+}
+
+.luxury-hero-content {
+  position: relative;
+  z-index: 3;
+
+  max-width: 900px;
+  width: 100%;
+
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.luxury-hero-subheadline {
+  color: #D9BA82;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.luxury-hero-headline {
+  color: #ffffff;
+  font-size: 72px;
+  line-height: 1.1;
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+
+.luxury-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 32px;
+
+  background: #B8945A;
+  color: #ffffff;
+
+  text-decoration: none;
+  border-radius: 4px;
+
+  transition: 0.3s ease;
+}
+
+.luxury-hero-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.luxury-hero-stats {
+  margin-top: 60px;
+
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+
+  flex-wrap: wrap;
+}
+
+.luxury-stat h3 {
+  color: #ffffff;
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.luxury-stat p {
+  color: #D9BA82;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .luxury-hero {
+    min-height: 85vh;
+  }
+
+  .luxury-hero-headline {
+    font-size: 42px;
+  }
+
+  .luxury-hero-stats {
+    gap: 30px;
+  }
+
+  .luxury-stat h3 {
+    font-size: 28px;
+  }
+
+}
+</style>
+
 {% schema %}
 {
   "name": "Luxury Hero",
@@ -23,7 +206,6 @@
       "label": "Subheadline",
       "default": "Indulge in luxury"
     },
-
     {
       "type": "header",
       "content": "CTA"
@@ -39,7 +221,6 @@
       "id": "cta_link",
       "label": "Button Link"
     },
-
     {
       "type": "header",
       "content": "Stats"
