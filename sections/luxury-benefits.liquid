@@ -288,9 +288,44 @@
 
 <style>
 
+/* ======================================
+   FULL WIDTH SHOPIFY FIX
+====================================== */
+
+#shopify-section-{{ section.id }}{
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  background: #3D3158 !important;
+}
+
+/* REMOVE THEME WRAPPERS */
+
+#shopify-section-{{ section.id }} .page-width,
+#shopify-section-{{ section.id }} .page-width-desktop,
+#shopify-section-{{ section.id }} .container,
+#shopify-section-{{ section.id }} .content-container,
+#shopify-section-{{ section.id }} .section-inner,
+#shopify-section-{{ section.id }} .shopify-section{
+  max-width: 100% !important;
+
+  margin: 0 !important;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* GLOBAL */
+
 html,
 body{
   overflow-x: hidden;
+  background: #3D3158;
 }
 
 /* SECTION */
@@ -298,9 +333,9 @@ body{
 .section.benefits{
   position: relative;
 
-  overflow: hidden;
-
   width: 100%;
+
+  overflow: hidden;
 
   padding: 110px 32px;
 
@@ -311,7 +346,7 @@ body{
   isolation: isolate;
 }
 
-/* SOLID BACKGROUND */
+/* BACKGROUND */
 
 .benefits-glow{
   position: absolute;
@@ -427,8 +462,7 @@ body{
 
   margin-bottom: 30px;
 
-  filter:
-    drop-shadow(0 12px 28px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,0.35));
 
   transition:
     transform 0.45s cubic-bezier(0.2,0.8,0.2,1);
@@ -485,10 +519,6 @@ body{
 /* TABLET */
 
 @media (max-width: 999px){
-
-  .section.benefits{
-    padding: 110px 32px;
-  }
 
   .benefits-grid{
     grid-template-columns: repeat(2, minmax(0,1fr));
@@ -558,126 +588,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
-
-{% schema %}
-{
-  "name": "Royal Benefits",
-  "settings": [
-    {
-      "type": "text",
-      "id": "eyebrow_text",
-      "label": "Eyebrow Text",
-      "default": "03 / The Royal Treatment"
-    },
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
-      "default": "Why Choose Dawn?"
-    },
-    {
-      "type": "textarea",
-      "id": "section_subtitle",
-      "label": "Section Subtitle",
-      "default": "Every benefit pressed and sealed in wax — four virtues your skin will recognise within the fortnight."
-    },
-
-    {
-      "type": "header",
-      "content": "Benefit 1"
-    },
-    {
-      "type": "text",
-      "id": "benefit_1_initial",
-      "label": "Initial",
-      "default": "H"
-    },
-    {
-      "type": "text",
-      "id": "benefit_1_title",
-      "label": "Title",
-      "default": "Deep Hydration"
-    },
-    {
-      "type": "textarea",
-      "id": "benefit_1_desc",
-      "label": "Description",
-      "default": "72-hour hyaluronic flood. Skin reads plump, dewy, well-rested."
-    },
-
-    {
-      "type": "header",
-      "content": "Benefit 2"
-    },
-    {
-      "type": "text",
-      "id": "benefit_2_initial",
-      "label": "Initial",
-      "default": "G"
-    },
-    {
-      "type": "text",
-      "id": "benefit_2_title",
-      "label": "Title",
-      "default": "Glow Boost"
-    },
-    {
-      "type": "textarea",
-      "id": "benefit_2_desc",
-      "label": "Description",
-      "default": "Vitamin C and TXA brighten the complexion to a candle-lit glow."
-    },
-
-    {
-      "type": "header",
-      "content": "Benefit 3"
-    },
-    {
-      "type": "text",
-      "id": "benefit_3_initial",
-      "label": "Initial",
-      "default": "S"
-    },
-    {
-      "type": "text",
-      "id": "benefit_3_title",
-      "label": "Title",
-      "default": "Skin Softness"
-    },
-    {
-      "type": "textarea",
-      "id": "benefit_3_desc",
-      "label": "Description",
-      "default": "Ceramides and squalane leave skin satin to the touch."
-    },
-
-    {
-      "type": "header",
-      "content": "Benefit 4"
-    },
-    {
-      "type": "text",
-      "id": "benefit_4_initial",
-      "label": "Initial",
-      "default": "C"
-    },
-    {
-      "type": "text",
-      "id": "benefit_4_title",
-      "label": "Title",
-      "default": "Court-Approved"
-    },
-    {
-      "type": "textarea",
-      "id": "benefit_4_desc",
-      "label": "Description",
-      "default": "Fragrance-free, ophth-tested, gentle enough for delicate skin."
-    }
-  ],
-  "presets": [
-    {
-      "name": "Royal Benefits"
-    }
-  ]
-}
-{% endschema %}
