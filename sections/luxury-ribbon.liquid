@@ -1,121 +1,238 @@
 <section class="ribbon" id="ribbon">
+
   <div class="ribbon-track">
+
     {% for i in (1..3) %}
+
       <span>{{ section.settings.item_1_text }}</span>
+
       <span>{{ section.settings.item_2_text }}</span>
+
       <span>{{ section.settings.item_3_text }}</span>
+
       <span>{{ section.settings.item_4_text }}</span>
+
     {% endfor %}
+
   </div>
+
 </section>
 
 <style>
-  .ribbon {
-    background: #3D3158;
-    color: #D9BA82;
-    padding: 14px 0;
-    overflow: hidden;
-    position: relative;
+
+#ribbon{
+  position: relative;
+
+  width: 100vw;
+  max-width: 100vw;
+
+  left: 50%;
+  right: 50%;
+
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  overflow: hidden;
+
+  background: #3D3158;
+
+  padding: 14px 0;
+}
+
+#ribbon *{
+  box-sizing: border-box;
+}
+
+/* TRACK */
+
+.ribbon-track{
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  gap: 56px;
+
+  white-space: nowrap;
+
+  animation:
+    ribbon-scroll 40s linear infinite;
+
+  font-family: "Italiana", serif;
+  font-size: 18px;
+  font-weight: 400;
+
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: #D9BA82;
+}
+
+/* ITEM */
+
+.ribbon-track span{
+  display: inline-flex;
+  align-items: center;
+
+  gap: 56px;
+
+  flex-shrink: 0;
+}
+
+/* LOGO */
+
+.ribbon-track span::after{
+  content: "";
+
+  width: 28px;
+  height: 28px;
+
+  display: inline-block;
+
+  background-image:
+    url('{{ section.settings.ribbon_logo | image_url: width: 120 }}');
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  flex-shrink: 0;
+
+  opacity: 0.95;
+
+  filter:
+    drop-shadow(
+      0 0 6px rgba(217,186,130,0.15)
+    );
+}
+
+/* ANIMATION */
+
+@keyframes ribbon-scroll{
+
+  from{
+    transform: translateX(0);
   }
 
-  .ribbon-track {
-    display: flex;
-    gap: 56px;
-    white-space: nowrap;
-    animation: ribbon 40s linear infinite;
-    font-family: "Italiana", serif;
-    font-size: 18px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+  to{
+    transform: translateX(-50%);
   }
 
-  .ribbon-track span {
-    display: inline-flex;
-    align-items: center;
-    gap: 56px;
+}
+
+/* TABLET */
+
+@media screen and (max-width: 1024px){
+
+  .ribbon-track{
+    font-size: 16px;
+
+    gap: 48px;
   }
 
-  .ribbon-track span::after {
-    content: "❦";
-    color: #B8945A;
-    font-size: 22px;
+  .ribbon-track span{
+    gap: 48px;
   }
 
-  @keyframes ribbon {
-    to {
-      transform: translateX(-50%);
-    }
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 768px){
+
+  #ribbon{
+    padding: 10px 0;
   }
 
-  @media (max-width: 1024px) {
-    .ribbon-track {
-      font-size: 16px;
-      gap: 48px;
-    }
+  .ribbon-track{
+    font-size: 12px;
+
+    gap: 32px;
   }
 
-  @media (max-width: 768px) {
-    .ribbon {
-      padding: 10px 0;
-    }
-
-    .ribbon-track {
-      font-size: 12px;
-      gap: 32px;
-    }
-
-    .ribbon-track span {
-      gap: 32px;
-    }
-
-    .ribbon-track span::after {
-      font-size: 16px;
-    }
+  .ribbon-track span{
+    gap: 32px;
   }
 
-  @media (max-width: 480px) {
-    .ribbon {
-      padding: 8px 0;
-    }
-
-    .ribbon-track {
-      font-size: 11px;
-      gap: 24px;
-    }
-
-    .ribbon-track span {
-      gap: 24px;
-    }
+  .ribbon-track span::after{
+    width: 18px;
+    height: 18px;
   }
+
+}
+
+/* SMALL MOBILE */
+
+@media screen and (max-width: 480px){
+
+  #ribbon{
+    padding: 8px 0;
+  }
+
+  .ribbon-track{
+    font-size: 11px;
+
+    gap: 24px;
+  }
+
+  .ribbon-track span{
+    gap: 24px;
+  }
+
+  .ribbon-track span::after{
+    width: 16px;
+    height: 16px;
+  }
+
+}
+
 </style>
 
 {% schema %}
 {
   "name": "Luxury Ribbon",
+
   "settings": [
+
+    {
+      "type": "image_picker",
+      "id": "ribbon_logo",
+      "label": "Ribbon Logo"
+    },
+
     {
       "type": "text",
       "id": "item_1_text",
       "label": "Marquee Item 1",
       "default": "Free BB Cream — Today Only"
     },
+
     {
       "type": "text",
       "id": "item_2_text",
       "label": "Marquee Item 2",
       "default": "Glow Like Royalty"
     },
+
     {
       "type": "text",
       "id": "item_3_text",
       "label": "Marquee Item 3",
       "default": "50% Off The Full Ritual"
     },
+
     {
       "type": "text",
       "id": "item_4_text",
       "label": "Marquee Item 4",
       "default": "Ships in Velvet, Always"
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Luxury Ribbon"
     }
   ]
 }
