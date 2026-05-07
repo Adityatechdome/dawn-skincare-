@@ -1,1 +1,268 @@
-{"sections":{"new_banner_slider_44j7nY":{"type":"New-Banner-Slider","blocks":{"slide_RkcpHn":{"type":"slide","settings":{"desktop_image":"shopify:\/\/shop_images\/Banner-01-New.jpg","link":"https:\/\/dawnskincare.shop\/products\/radiance-glow-kit"}},"slide_praf6W":{"type":"slide","settings":{"desktop_image":"shopify:\/\/shop_images\/Banner-02.png","link":"https:\/\/dawnskincare.shop\/products\/barrier-repair-kit"}},"slide_k7nEzT":{"type":"slide","settings":{"desktop_image":"shopify:\/\/shop_images\/Banner-03.png","link":"https:\/\/dawnskincare.shop\/products\/radiance-glow-kit"}},"slide_KXUdT8":{"type":"slide","settings":{"desktop_image":"shopify:\/\/shop_images\/Banner-04.png","link":"https:\/\/dawnskincare.shop\/products\/barrier-repair-kit"}}},"block_order":["slide_RkcpHn","slide_praf6W","slide_k7nEzT","slide_KXUdT8"],"name":"BS Banner Slider","settings":{"autoplay":true,"autoplay_speed":5,"show_dots":true}},"hero_banner_HWGDN7":{"type":"hero-banner","disabled":true,"name":"Hero Banner","settings":{"image":"shopify:\/\/shop_images\/Hero_Banner_01.png","image_mobile":"shopify:\/\/shop_images\/SHOP_NOW-3.png","link":"https:\/\/dawnskincare.shop\/collections\/all","padding_top":0,"padding_bottom":0}},"shop_by_category_JrHCh6":{"type":"shop-by-category","blocks":{"category_K9TQQL":{"type":"category","settings":{"collection":"moisturizers","title":"","subtitle":"","image":"shopify:\/\/shop_images\/Omega-3_2.png"}},"category_xRA4Rg":{"type":"category","settings":{"collection":"eye-cream","title":"","subtitle":"","image":"shopify:\/\/shop_images\/proxylene-2.png"}},"category_BfzDtM":{"type":"category","settings":{"collection":"serums","title":"","subtitle":"","image":"shopify:\/\/shop_images\/1.png"}}},"block_order":["category_K9TQQL","category_xRA4Rg","category_BfzDtM"],"name":"Shop by Category","settings":{"title":"Shop by Category","description":""}},"dawn_product_carousel_ibX7dt":{"type":"dawn-product-carousel","name":"Dawn Product Carousel","settings":{"collection":"sample","headline":"","subheadline":"Oil-Free Radiance & Glow","description":""}},"complete_ritual_bundle_wwm9kD":{"type":"complete-ritual-bundle","name":"Complete Ritual Bundle","settings":{"bundle_title":"Complete Ritual","products":["omega-3-advance-night-cream","repair-serum","sos","txa-niacinamide-capsule-cream"],"bundle_label":"ADD TO CART"}},"natural_skincare_zR6RKP":{"type":"natural-skincare","name":"Natural Skincare Hero","settings":{"headline":"Nature’s genius is limitless; we transform it into indulgent rituals crafted for exceptional skin.","subheadline":"THE FUTURE OF NATURAL SKINCARE"}},"dawn_faq_dyfQiw":{"type":"dawn-faq","blocks":{"faq_item_XfYLx4":{"type":"faq_item","settings":{"question":"Are your products suitable for all skin types?","answer":"Yes. Each formula is thoughtfully crafted with gentle, dermatologist-tested ingredients to ensure compatibility with all skin types — including sensitive, dry, combination, and mature skin."}},"faq_item_e49C6f":{"type":"faq_item","settings":{"question":"Are your products cruelty-free?","answer":"Absolutely. We are committed to ethical beauty and do not test on animals at any stage of product development."}},"faq_item_tf774A":{"type":"faq_item","settings":{"question":"When will I start seeing visible results?","answer":"Most customers begin to notice improved hydration, radiance, and smoother texture within 7–14 days of consistent use, while deeper benefits such as reduced fine lines and improved firmness become more noticeable over 4–6 weeks."}},"faq_item_aEAjcF":{"type":"faq_item","settings":{"question":"Can I layer your products with other skincare brands?","answer":"Yes. Our formulations are designed to integrate seamlessly into any routine. For optimal results, layer lighter serums first, followed by creams or oils, and always finish with sunscreen during daytime use."}},"faq_item_TBcA7r":{"type":"faq_item","settings":{"question":"Are your products safe for sensitive skin?","answer":"Yes. Our products are formulated with soothing botanical extracts, non-irritating actives, and balanced concentrations to minimize sensitivity. However, we always recommend a patch test when introducing a new product."}},"faq_item_xE4PQd":{"type":"faq_item","settings":{"question":"What is the best order to follow in my skincare routine?","answer":"A refined and effective routine follows this sequence:\nCleanser → Toner → Serum → Treatment (Capsule creams\/oils) → Moisturizer → Sunscreen (AM only)\nThis ensures your skin receives maximum nourishment and protection."}}},"block_order":["faq_item_XfYLx4","faq_item_e49C6f","faq_item_tf774A","faq_item_aEAjcF","faq_item_TBcA7r","faq_item_xE4PQd"],"name":"FAQ","settings":{"headline":"Want to know more?"}},"feel_inspired_gallery_Fc9qHe":{"type":"feel-inspired-gallery","name":"Feel Inspired Gallery","settings":{"headline":"Feel Inspired","description":"Share how you use our products for a chance to be featured. Tag @lumera or upload your photo.","gallery_link":"","image_1":"shopify:\/\/shop_images\/spa-facial-treatment.jpg","image_2":"shopify:\/\/shop_images\/image2.png","image_3":"shopify:\/\/shop_images\/woman-holds-a-jade-face-massager-to-her-face.jpg","image_4":"shopify:\/\/shop_images\/BB_4.png","image_5":"shopify:\/\/shop_images\/image5.png","image_6":"shopify:\/\/shop_images\/3_bfbbfdbf-5290-418a-8d29-a26553776d72.png","more_link":"shopify:\/\/blogs\/skin-care","more_label":"More"}},"dawn_blog_carousel_km4daT":{"type":"dawn-blog-carousel","name":"Dawn Blog Carousel","settings":{"blogs":"skin-care","headline":"Insights into Health and Well-being","subheadline":"Our Journal","description":""}}},"order":["new_banner_slider_44j7nY","hero_banner_HWGDN7","shop_by_category_JrHCh6","dawn_product_carousel_ibX7dt","complete_ritual_bundle_wwm9kD","natural_skincare_zR6RKP","dawn_faq_dyfQiw","feel_inspired_gallery_Fc9qHe","dawn_blog_carousel_km4daT"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "luxury_nav_ehr4AC": {
+      "type": "luxury-nav",
+      "name": "Luxury Navigation",
+      "settings": {
+        "logo_image": "shopify://shop_images/DAWN-LOGO.png",
+        "logo_text": "DAWN",
+        "menu": "",
+        "search_icon": "shopify://shop_images/search.png",
+        "account_icon": "shopify://shop_images/queen.png",
+        "cart_icon": "shopify://shop_images/sell.png",
+        "position": "fixed",
+        "max_width": 1400,
+        "padding_vertical": 20,
+        "padding_horizontal": 40,
+        "padding_vertical_mobile": 14,
+        "padding_horizontal_mobile": 20,
+        "logo_size": 22,
+        "logo_color": "#2A2438",
+        "menu_gap": 32,
+        "background_color": "#F8F1E7",
+        "text_color": "#2A2438",
+        "border_color": "#B8945A",
+        "border_width": 1,
+        "icon_color": "#2A2438"
+      }
+    },
+    "new_banner_slider_44j7nY": {
+      "type": "New-Banner-Slider",
+      "blocks": {
+        "slide_RkcpHn": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Banner-01-New.jpg",
+            "link": "https://dawnskincare.shop/products/radiance-glow-kit"
+          }
+        },
+        "slide_praf6W": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Banner-02.png",
+            "link": "https://dawnskincare.shop/products/barrier-repair-kit"
+          }
+        },
+        "slide_k7nEzT": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Banner-03.png",
+            "link": "https://dawnskincare.shop/products/radiance-glow-kit"
+          }
+        },
+        "slide_KXUdT8": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Banner-04.png",
+            "link": "https://dawnskincare.shop/products/barrier-repair-kit"
+          }
+        }
+      },
+      "block_order": [
+        "slide_RkcpHn",
+        "slide_praf6W",
+        "slide_k7nEzT",
+        "slide_KXUdT8"
+      ],
+      "name": "BS Banner Slider",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_dots": true
+      }
+    },
+    "hero_banner_HWGDN7": {
+      "type": "hero-banner",
+      "disabled": true,
+      "name": "Hero Banner",
+      "settings": {
+        "image": "shopify://shop_images/Hero_Banner_01.png",
+        "image_mobile": "shopify://shop_images/SHOP_NOW-3.png",
+        "link": "https://dawnskincare.shop/collections/all",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "shop_by_category_JrHCh6": {
+      "type": "shop-by-category",
+      "blocks": {
+        "category_K9TQQL": {
+          "type": "category",
+          "settings": {
+            "collection": "moisturizers",
+            "title": "",
+            "subtitle": "",
+            "image": "shopify://shop_images/Omega-3_2.png"
+          }
+        },
+        "category_xRA4Rg": {
+          "type": "category",
+          "settings": {
+            "collection": "eye-cream",
+            "title": "",
+            "subtitle": "",
+            "image": "shopify://shop_images/proxylene-2.png"
+          }
+        },
+        "category_BfzDtM": {
+          "type": "category",
+          "settings": {
+            "collection": "serums",
+            "title": "",
+            "subtitle": "",
+            "image": "shopify://shop_images/1.png"
+          }
+        }
+      },
+      "block_order": [
+        "category_K9TQQL",
+        "category_xRA4Rg",
+        "category_BfzDtM"
+      ],
+      "name": "Shop by Category",
+      "settings": {
+        "title": "Shop by Category",
+        "description": ""
+      }
+    },
+    "dawn_product_carousel_ibX7dt": {
+      "type": "dawn-product-carousel",
+      "name": "Dawn Product Carousel",
+      "settings": {
+        "collection": "sample",
+        "headline": "",
+        "subheadline": "Oil-Free Radiance & Glow",
+        "description": ""
+      }
+    },
+    "complete_ritual_bundle_wwm9kD": {
+      "type": "complete-ritual-bundle",
+      "name": "Complete Ritual Bundle",
+      "settings": {
+        "bundle_title": "Complete Ritual",
+        "products": [
+          "omega-3-advance-night-cream",
+          "repair-serum",
+          "sos",
+          "txa-niacinamide-capsule-cream"
+        ],
+        "bundle_label": "ADD TO CART"
+      }
+    },
+    "natural_skincare_zR6RKP": {
+      "type": "natural-skincare",
+      "name": "Natural Skincare Hero",
+      "settings": {
+        "headline": "Nature’s genius is limitless; we transform it into indulgent rituals crafted for exceptional skin.",
+        "subheadline": "THE FUTURE OF NATURAL SKINCARE"
+      }
+    },
+    "dawn_faq_dyfQiw": {
+      "type": "dawn-faq",
+      "blocks": {
+        "faq_item_XfYLx4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products suitable for all skin types?",
+            "answer": "Yes. Each formula is thoughtfully crafted with gentle, dermatologist-tested ingredients to ensure compatibility with all skin types — including sensitive, dry, combination, and mature skin."
+          }
+        },
+        "faq_item_e49C6f": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products cruelty-free?",
+            "answer": "Absolutely. We are committed to ethical beauty and do not test on animals at any stage of product development."
+          }
+        },
+        "faq_item_tf774A": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will I start seeing visible results?",
+            "answer": "Most customers begin to notice improved hydration, radiance, and smoother texture within 7–14 days of consistent use, while deeper benefits such as reduced fine lines and improved firmness become more noticeable over 4–6 weeks."
+          }
+        },
+        "faq_item_aEAjcF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I layer your products with other skincare brands?",
+            "answer": "Yes. Our formulations are designed to integrate seamlessly into any routine. For optimal results, layer lighter serums first, followed by creams or oils, and always finish with sunscreen during daytime use."
+          }
+        },
+        "faq_item_TBcA7r": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products safe for sensitive skin?",
+            "answer": "Yes. Our products are formulated with soothing botanical extracts, non-irritating actives, and balanced concentrations to minimize sensitivity. However, we always recommend a patch test when introducing a new product."
+          }
+        },
+        "faq_item_xE4PQd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the best order to follow in my skincare routine?",
+            "answer": "A refined and effective routine follows this sequence:\nCleanser → Toner → Serum → Treatment (Capsule creams/oils) → Moisturizer → Sunscreen (AM only)\nThis ensures your skin receives maximum nourishment and protection."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_XfYLx4",
+        "faq_item_e49C6f",
+        "faq_item_tf774A",
+        "faq_item_aEAjcF",
+        "faq_item_TBcA7r",
+        "faq_item_xE4PQd"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "headline": "Want to know more?"
+      }
+    },
+    "feel_inspired_gallery_Fc9qHe": {
+      "type": "feel-inspired-gallery",
+      "name": "Feel Inspired Gallery",
+      "settings": {
+        "headline": "Feel Inspired",
+        "description": "Share how you use our products for a chance to be featured. Tag @lumera or upload your photo.",
+        "gallery_link": "",
+        "image_1": "shopify://shop_images/spa-facial-treatment.jpg",
+        "image_2": "shopify://shop_images/image2.png",
+        "image_3": "shopify://shop_images/woman-holds-a-jade-face-massager-to-her-face.jpg",
+        "image_4": "shopify://shop_images/BB_4.png",
+        "image_5": "shopify://shop_images/image5.png",
+        "image_6": "shopify://shop_images/3_bfbbfdbf-5290-418a-8d29-a26553776d72.png",
+        "more_link": "shopify://blogs/skin-care",
+        "more_label": "More"
+      }
+    },
+    "dawn_blog_carousel_km4daT": {
+      "type": "dawn-blog-carousel",
+      "name": "Dawn Blog Carousel",
+      "settings": {
+        "blogs": "skin-care",
+        "headline": "Insights into Health and Well-being",
+        "subheadline": "Our Journal",
+        "description": ""
+      }
+    }
+  },
+  "order": [
+    "luxury_nav_ehr4AC",
+    "new_banner_slider_44j7nY",
+    "hero_banner_HWGDN7",
+    "shop_by_category_JrHCh6",
+    "dawn_product_carousel_ibX7dt",
+    "complete_ritual_bundle_wwm9kD",
+    "natural_skincare_zR6RKP",
+    "dawn_faq_dyfQiw",
+    "feel_inspired_gallery_Fc9qHe",
+    "dawn_blog_carousel_km4daT"
+  ]
+}
