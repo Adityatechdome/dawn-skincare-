@@ -25,131 +25,66 @@
 
     <div class="texture-grid">
 
-      <!-- TILE 1 -->
+      {% for block in section.blocks %}
 
-      <div class="texture-tile tall reveal">
+        <div class="texture-card reveal">
 
-        {% if section.settings.tile_1_video != blank %}
+          <div class="texture-media">
 
-          {{
-            section.settings.tile_1_video
-            | video_tag:
-            autoplay: true,
-            loop: true,
-            muted: true,
-            controls: false,
-            playsinline: true,
-            class: 'texture-media'
-          }}
+            {% if block.settings.video != blank %}
 
-        {% elsif section.settings.tile_1_image != blank %}
+              {{
+                block.settings.video
+                | video_tag:
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false,
+                  playsinline: true,
+                  class: 'texture-video'
+              }}
 
-          <img
-            src="{{ section.settings.tile_1_image | image_url: width: 2200 }}"
-            alt=""
-            loading="lazy"
-            class="texture-media"
-          >
+            {% elsif block.settings.image != blank %}
 
-        {% else %}
+              <img
+                src="{{ block.settings.image | image_url: width: 1200 }}"
+                alt="{{ block.settings.title }}"
+                loading="lazy"
+                width="1200"
+                height="1400"
+              >
 
-          <div class="cream-swirl">
-            <svg class="cream-swirl-glyph" viewBox="0 0 200 200" fill="none" stroke="#B07A82" stroke-width="1.2" opacity="0.5">
-              <path d="M100 100 m -60 0 a 60 60 0 1 1 120 0 a 50 50 0 1 0 -100 0 a 40 40 0 1 1 80 0 a 30 30 0 1 0 -60 0 a 20 20 0 1 1 40 0 a 10 10 0 1 0 -20 0"/>
-              <path d="M100 100 m -75 -10 a 75 70 0 1 1 150 0" opacity="0.5"/>
-            </svg>
+            {% endif %}
+
           </div>
 
-        {% endif %}
+          <div class="texture-overlay"></div>
 
-        <div class="texture-label">
-          <span>{{ section.settings.tile_1_title }}</span>
-          <small>{{ section.settings.tile_1_caption }}</small>
+          <div class="texture-content">
+
+            {% if block.settings.micro_text != blank %}
+              <div class="texture-micro">
+                {{ block.settings.micro_text }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.title != blank %}
+              <h3>
+                {{ block.settings.title }}
+              </h3>
+            {% endif %}
+
+            {% if block.settings.description != blank %}
+              <p>
+                {{ block.settings.description }}
+              </p>
+            {% endif %}
+
+          </div>
+
         </div>
 
-      </div>
-
-      <!-- TILE 2 -->
-
-      <div class="texture-tile tall reveal">
-
-        {% if section.settings.tile_2_video != blank %}
-
-          {{
-            section.settings.tile_2_video
-            | video_tag:
-            autoplay: true,
-            loop: true,
-            muted: true,
-            controls: false,
-            playsinline: true,
-            class: 'texture-media'
-          }}
-
-        {% elsif section.settings.tile_2_image != blank %}
-
-          <img
-            src="{{ section.settings.tile_2_image | image_url: width: 2200 }}"
-            alt=""
-            loading="lazy"
-            class="texture-media"
-          >
-
-        {% else %}
-
-          <div class="finger-bg"></div>
-
-        {% endif %}
-
-        <div class="texture-label">
-          <span>{{ section.settings.tile_2_title }}</span>
-          <small>{{ section.settings.tile_2_caption }}</small>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- BOTTOM GRID -->
-
-    <div class="texture-grid texture-grid-bottom">
-
-      <div class="texture-tile wide reveal">
-
-        {% if section.settings.tile_3_video != blank %}
-
-          {{
-            section.settings.tile_3_video
-            | video_tag:
-            autoplay: true,
-            loop: true,
-            muted: true,
-            controls: false,
-            playsinline: true,
-            class: 'texture-media'
-          }}
-
-        {% elsif section.settings.tile_3_image != blank %}
-
-          <img
-            src="{{ section.settings.tile_3_image | image_url: width: 2600 }}"
-            alt=""
-            loading="lazy"
-            class="texture-media"
-          >
-
-        {% else %}
-
-          <div class="wide-bg"></div>
-
-        {% endif %}
-
-        <div class="texture-label">
-          <span>{{ section.settings.tile_3_title }}</span>
-          <small>{{ section.settings.tile_3_caption }}</small>
-        </div>
-
-      </div>
+      {% endfor %}
 
     </div>
 
@@ -173,13 +108,9 @@
 
   overflow: hidden;
 
-  background: linear-gradient(
-    180deg,
-    #FBF6EE 0%,
-    #E4D9EE 100%
-  );
+  background: #3D3158;
 
-  padding: 140px 56px;
+  padding: 110px 32px;
 }
 
 #texture-{{ section.id }} *{
@@ -187,8 +118,12 @@
 }
 
 .texture-inner{
+  position: relative;
+  z-index: 2;
+
   width: 100%;
-  max-width: 1400px;
+  max-width: 1440px;
+
   margin: 0 auto;
 }
 
@@ -200,109 +135,115 @@
   justify-content: center;
   gap: 12px;
 
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .texture-eyebrow::before,
 .texture-eyebrow::after{
   content: "";
+
   width: 36px;
   height: 1px;
-  background: #B8945A;
-  opacity: 0.6;
+
+  background: rgba(217,186,130,0.5);
 }
 
 .texture-eyebrow span{
   font-family: "Inter", sans-serif;
   font-size: 11px;
   font-weight: 500;
+
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #8C6F3F;
+
+  color: #D9BA82;
 }
 
 /* HEADLINE */
 
 .texture-headline{
-  max-width: 16ch;
+  margin: 0 auto 22px;
 
-  margin: 80px auto 24px;
+  max-width: 10ch;
 
   text-align: center;
 
   font-family: "Italiana", serif;
-  font-size: clamp(48px, 7vw, 110px);
-  line-height: 0.9;
+  font-size: clamp(54px, 8vw, 120px);
+  line-height: 0.92;
   font-weight: 400;
 
-  color: #2A2438;
+  color: #F8F1E7;
 }
 
 .texture-headline em{
-  display: inline !important;
+  display: block;
 
-  font-style: normal !important;
-  text-transform: none !important;
-  letter-spacing: normal !important;
+  margin-top: 8px;
 
-  font-family: {{ section.settings.em_font_family }} !important;
-  font-size: {{ section.settings.em_font_size }}px !important;
-  color: {{ section.settings.em_text_color }} !important;
+  font-style: normal;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+
+  color: #D9BA82;
 }
 
 /* SUBTITLE */
 
 .texture-subtitle{
-  max-width: 56ch;
+  max-width: 700px;
 
-  margin: 0 auto 60px;
+  margin: 0 auto 70px;
 
   text-align: center;
 
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.5;
 
-  color: rgba(42,36,56,0.72);
+  color: rgba(248,241,231,0.72);
 }
 
 /* GRID */
 
 .texture-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0,1fr));
 
-  max-width: 1320px;
-
-  margin: 0 auto;
+  gap: 28px;
 }
 
-.texture-grid-bottom{
-  margin-top: 24px;
-}
+/* CARD */
 
-/* TILE */
-
-.texture-tile{
+.texture-card{
   position: relative;
 
   overflow: hidden;
 
-  border-radius: 4px;
+  min-height: 720px;
 
-  background: #F8F1E7;
+  border-radius: 34px;
+
+  background: rgba(255,255,255,0.04);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.22);
+
+  transition:
+    transform 0.5s cubic-bezier(0.2,0.8,0.2,1),
+    box-shadow 0.5s cubic-bezier(0.2,0.8,0.2,1);
 }
 
-.texture-tile.tall{
-  aspect-ratio: 4 / 5.4;
-}
+.texture-card:hover{
+  transform: translateY(-6px);
 
-.texture-tile.wide{
-  grid-column: span 2;
-
-  aspect-ratio: 16 / 7;
+  box-shadow:
+    0 34px 100px rgba(0,0,0,0.32);
 }
 
 /* MEDIA */
@@ -310,150 +251,88 @@
 .texture-media{
   position: absolute;
   inset: 0;
+}
 
+.texture-media img,
+.texture-media video{
   width: 100%;
   height: 100%;
 
   object-fit: cover;
 
   display: block;
+
+  transition:
+    transform 1.2s cubic-bezier(0.2,0.8,0.2,1);
 }
 
-/* FALLBACKS */
+.texture-card:hover img,
+.texture-card:hover video{
+  transform: scale(1.04);
+}
 
-.cream-swirl{
+/* OVERLAY */
+
+.texture-overlay{
   position: absolute;
   inset: 0;
 
   background:
-    radial-gradient(
-      ellipse at 30% 40%,
-      #E8C9CC 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 70% 60%,
-      #C9B8DC 0%,
-      transparent 50%
-    ),
     linear-gradient(
-      135deg,
-      #FBF6EE,
-      #EFE4D2
+      180deg,
+      rgba(0,0,0,0.02) 0%,
+      rgba(0,0,0,0.14) 40%,
+      rgba(15,10,20,0.82) 100%
     );
 }
 
-.finger-bg{
-  position: absolute;
-  inset: 0;
+/* CONTENT */
 
-  background:
-    radial-gradient(
-      ellipse at 60% 40%,
-      rgba(248,241,231,0.5),
-      transparent 60%
-    ),
-    linear-gradient(
-      135deg,
-      #E8C9CC,
-      #C9B8DC
-    );
-}
-
-.wide-bg{
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(
-      ellipse at 20% 50%,
-      rgba(232,201,204,0.7),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse at 80% 50%,
-      rgba(228,217,238,0.7),
-      transparent 60%
-    ),
-    linear-gradient(
-      90deg,
-      #FBF6EE,
-      #F8F1E7
-    );
-}
-
-/* SWIRL */
-
-.cream-swirl-glyph{
+.texture-content{
   position: absolute;
 
-  top: 50%;
-  left: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-  width: 60%;
+  z-index: 3;
 
-  transform: translate(-50%, -50%);
-
-  animation: swirl-spin 24s linear infinite;
-
-  opacity: 0.8;
+  padding: 40px;
 }
 
-@keyframes swirl-spin{
-  to{
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-/* LABEL */
-
-.texture-label{
-  position: absolute;
-
-  left: 50%;
-  bottom: 24px;
-
-  transform: translateX(-50%);
-
-  width: fit-content;
-  max-width: calc(100% - 40px);
-
-  text-align: center;
-
-  padding: 8px 14px;
-
-  border-radius: 2px;
-
-  border: 1px solid rgba(184,148,90,0.4);
-
-  background: rgba(248,241,231,0.85);
-
-  backdrop-filter: blur(8px);
-
-  z-index: 2;
-}
-
-.texture-label span{
-  display: block;
+.texture-micro{
+  margin-bottom: 14px;
 
   font-family: "JetBrains Mono", monospace;
   font-size: 10px;
-  letter-spacing: 0.18em;
+
+  letter-spacing: 0.28em;
   text-transform: uppercase;
 
-  color: #8C6F3F;
-
-  margin-bottom: 4px;
+  color: rgba(217,186,130,0.82);
 }
 
-.texture-label small{
-  display: block;
+.texture-content h3{
+  margin: 0 0 14px;
 
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
+  font-family: "Italiana", serif;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1;
+
+  color: #F8F1E7;
+}
+
+.texture-content p{
+  margin: 0;
+
+  max-width: 28ch;
+
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 22px;
   line-height: 1.5;
 
-  color: #8C6F3F;
+  color: rgba(248,241,231,0.75);
 }
 
 /* REVEAL */
@@ -463,10 +342,11 @@
 
   transform: translateY(40px);
 
-  animation: revealUp 0.9s cubic-bezier(0.2,0.8,0.2,1) forwards;
+  animation:
+    textureReveal 1s cubic-bezier(0.2,0.8,0.2,1) forwards;
 }
 
-@keyframes revealUp{
+@keyframes textureReveal{
   to{
     opacity: 1;
     transform: translateY(0);
@@ -475,15 +355,14 @@
 
 /* RESPONSIVE */
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 1100px){
 
   .texture-grid{
     grid-template-columns: 1fr;
   }
 
-  .texture-tile.wide{
-    grid-column: span 1;
-    aspect-ratio: 16 / 8;
+  .texture-card{
+    min-height: 680px;
   }
 
 }
@@ -491,222 +370,65 @@
 @media screen and (max-width: 700px){
 
   #texture-{{ section.id }}{
-    padding: 90px 24px;
+    padding: 90px 20px;
+  }
+
+  .texture-headline{
+    max-width: 100%;
+  }
+
+  .texture-subtitle{
+    font-size: 20px;
+
+    margin-bottom: 50px;
+  }
+
+  .texture-grid{
+    gap: 20px;
+  }
+
+  .texture-card{
+    min-height: 520px;
+
+    border-radius: 26px;
+  }
+
+  .texture-content{
+    padding: 26px;
+  }
+
+  .texture-content h3{
+    font-size: 34px;
+  }
+
+  .texture-content p{
+    font-size: 18px;
   }
 
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 480px){
 
   #texture-{{ section.id }}{
     padding: 90px 16px;
   }
 
-  .texture-headline{
-    margin: 50px auto 20px;
-    line-height: 1;
+  .texture-card{
+    min-height: 460px;
   }
 
-  .texture-subtitle{
-    font-size: 18px;
-  }
+  /* HIDE TEXT ON MOBILE */
 
-  .texture-label{
+  .texture-micro,
+  .texture-content h3,
+  .texture-content p{
     display: none;
+  }
+
+  .texture-content{
+    padding: 0;
   }
 
 }
 
 </style>
-
-{% schema %}
-{
-  "name": "Luxury Texture",
-  "settings": [
-
-    {
-      "type": "checkbox",
-      "id": "show_eyebrow",
-      "label": "Show Eyebrow",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "eyebrow_text",
-      "label": "Eyebrow Text",
-      "default": "04 / Sensorium"
-    },
-
-    {
-      "type": "text",
-      "id": "headline_text",
-      "label": "Headline Text",
-      "default": "Softness"
-    },
-
-    {
-      "type": "text",
-      "id": "em_text",
-      "label": "Emphasized Text",
-      "default": "you can feel"
-    },
-
-    {
-      "type": "select",
-      "id": "em_font_family",
-      "label": "Emphasized Font",
-      "options": [
-        {
-          "value": "Pinyon Script",
-          "label": "Pinyon Script"
-        },
-        {
-          "value": "Cormorant Garamond",
-          "label": "Cormorant Garamond"
-        },
-        {
-          "value": "Italiana",
-          "label": "Italiana"
-        },
-        {
-          "value": "Inter",
-          "label": "Inter"
-        }
-      ],
-      "default": "Pinyon Script"
-    },
-
-    {
-      "type": "range",
-      "id": "em_font_size",
-      "label": "Emphasized Font Size",
-      "min": 20,
-      "max": 120,
-      "step": 1,
-      "unit": "px",
-      "default": 105
-    },
-
-    {
-      "type": "color",
-      "id": "em_text_color",
-      "label": "Emphasized Text Color",
-      "default": "#5B4A7A"
-    },
-
-    {
-      "type": "checkbox",
-      "id": "show_subtitle",
-      "label": "Show Subtitle",
-      "default": true
-    },
-
-    {
-      "type": "textarea",
-      "id": "subtitle_text",
-      "label": "Subtitle Text",
-      "default": "Whipped at low temperature, layered like petit fours. The texture is the proof."
-    },
-
-    {
-      "type": "header",
-      "content": "Tile 1"
-    },
-
-    {
-      "type": "image_picker",
-      "id": "tile_1_image",
-      "label": "Tile 1 Image"
-    },
-
-    {
-      "type": "video",
-      "id": "tile_1_video",
-      "label": "Tile 1 Video"
-    },
-
-    {
-      "type": "text",
-      "id": "tile_1_title",
-      "label": "Tile 1 Title",
-      "default": "MACRO · CREAM SWIRL ON IVORY MARBLE"
-    },
-
-    {
-      "type": "textarea",
-      "id": "tile_1_caption",
-      "label": "Tile 1 Caption",
-      "default": "piped frosting peak — top-down — soft diffused light"
-    },
-
-    {
-      "type": "header",
-      "content": "Tile 2"
-    },
-
-    {
-      "type": "image_picker",
-      "id": "tile_2_image",
-      "label": "Tile 2 Image"
-    },
-
-    {
-      "type": "video",
-      "id": "tile_2_video",
-      "label": "Tile 2 Video"
-    },
-
-    {
-      "type": "text",
-      "id": "tile_2_title",
-      "label": "Tile 2 Title",
-      "default": "MACRO · FINGERTIP PRESS"
-    },
-
-    {
-      "type": "textarea",
-      "id": "tile_2_caption",
-      "label": "Tile 2 Caption",
-      "default": "single fingertip dipping into cream — extreme close-up — backlit glow"
-    },
-
-    {
-      "type": "header",
-      "content": "Tile 3"
-    },
-
-    {
-      "type": "image_picker",
-      "id": "tile_3_image",
-      "label": "Tile 3 Image"
-    },
-
-    {
-      "type": "video",
-      "id": "tile_3_video",
-      "label": "Tile 3 Video"
-    },
-
-    {
-      "type": "text",
-      "id": "tile_3_title",
-      "label": "Tile 3 Title",
-      "default": "EDITORIAL · CHEEK GLOW"
-    },
-
-    {
-      "type": "textarea",
-      "id": "tile_3_caption",
-      "label": "Tile 3 Caption",
-      "default": "model in profile — diffused window light — golden hour key — barely-there cream highlight on cheekbone"
-    }
-
-  ],
-
-  "presets": [
-    {
-      "name": "Luxury Texture"
-    }
-  ]
-}
-{% endschema %}
