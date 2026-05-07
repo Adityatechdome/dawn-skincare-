@@ -15,7 +15,7 @@
       "settings": {
         "logo_image": "shopify://shop_images/DAWN-LOGO.png",
         "logo_text": "DAWN",
-        "menu": "",
+        "menu": "main-menu",
         "search_icon": "shopify://shop_images/search.png",
         "account_icon": "shopify://shop_images/queen.png",
         "cart_icon": "shopify://shop_images/sell.png",
