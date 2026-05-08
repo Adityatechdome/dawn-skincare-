@@ -34,12 +34,12 @@
 
     <div class="final-price-chip reveal">
 
-      <span class="price-was">
-        {{ section.settings.old_price }}
-      </span>
-
       <span class="price-now">
         {{ section.settings.new_price }}
+      </span>
+
+      <span class="price-was">
+        {{ section.settings.old_price }}
       </span>
 
       <span class="price-tag">
@@ -50,26 +50,39 @@
 
     <!-- BUTTON -->
 
-    <a
-      href="{{ section.settings.button_link }}"
-      class="final-cta-button reveal"
+    <form
+      class="luxury-cta-form reveal"
+      data-product-form
     >
 
-      {{ section.settings.button_text }}
-
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill="none"
+      <input
+        type="hidden"
+        name="id"
+        value="{{ all_products[section.settings.product].selected_or_first_available_variant.id }}"
       >
-        <path
-          d="M12 2L14.9 9.1L22 12L14.9 14.9L12 22L9.1 14.9L2 12L9.1 9.1L12 2Z"
-          fill="#D9BA82"
-        />
-      </svg>
 
-    </a>
+      <button
+        type="submit"
+        class="final-cta-button"
+      >
+
+        {{ section.settings.button_text }}
+
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M12 2L14.9 9.1L22 12L14.9 14.9L12 22L9.1 14.9L2 12L9.1 9.1L12 2Z"
+            fill="#D9BA82"
+          />
+        </svg>
+
+      </button>
+
+    </form>
 
     <!-- TRUST -->
 
@@ -118,8 +131,6 @@
   box-sizing: border-box;
 }
 
-/* TABLE GLOW */
-
 .final-cta-table{
   position: absolute;
 
@@ -141,8 +152,6 @@
   pointer-events: none;
 }
 
-/* INNER */
-
 .final-cta-inner{
   position: relative;
   z-index: 2;
@@ -152,8 +161,6 @@
 
   margin: 0 auto;
 }
-
-/* EYEBROW */
 
 .final-cta-eyebrow{
   display: flex;
@@ -187,8 +194,6 @@
   color: #8C6F3F;
 }
 
-/* TITLE */
-
 .final-cta-title{
   margin: 0 0 20px;
 
@@ -214,8 +219,6 @@
   text-transform: none !important;
 }
 
-/* SUBLINE */
-
 .final-cta-subline{
   max-width: 44ch;
 
@@ -229,29 +232,53 @@
   color: rgba(42,36,56,0.75);
 }
 
-/* PRICE CHIP */
-
 .final-price-chip{
+  position: relative;
+
   display: inline-flex;
-  align-items: baseline;
-  gap: 14px;
+  align-items: center;
+  justify-content: center;
 
-  margin-bottom: 32px;
+  gap: 12px;
 
-  padding: 14px 28px;
+  overflow: hidden;
+
+  padding: 22px 44px;
 
   border-radius: 999px;
 
-  border: 1px solid rgba(184,148,90,0.4);
+  background: rgba(248,241,231,0.78);
 
-  background: rgba(248,241,231,0.7);
+  border: 1px solid rgba(184,148,90,0.28);
 
   backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 12px 32px -16px rgba(42,36,56,0.18);
+
+  min-height: 64px;
+
+  margin-bottom: 32px;
+}
+
+.price-now{
+  font-family: "Inter", sans-serif;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  color: #8C6F3F;
 }
 
 .price-was{
   font-family: "Inter", sans-serif;
-  font-size: 22px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  line-height: 1;
 
   opacity: 0.5;
 
@@ -260,31 +287,17 @@
   color: #2A2438;
 }
 
-.price-now{
- font-family: "Inter", sans-serif;
-
-  font-size: 28px;
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  color: #8C6F3F;
-}
-
 .price-tag{
   font-family: "Inter", sans-serif;
 
   font-size: 10px;
-
   font-weight: 600;
 
   letter-spacing: 0.14em;
+  text-transform: uppercase;
 
-  color: #8C6F3F;
+  color: #B07A82;
 }
-
-/* BUTTON */
 
 .final-cta-button{
   position: relative;
@@ -301,6 +314,10 @@
   border-radius: 999px;
 
   background: #2A2438;
+
+  border: none;
+
+  cursor: pointer;
 
   font-family: "Inter", sans-serif;
   font-size: 13px;
@@ -358,8 +375,6 @@
   z-index: 2;
 }
 
-/* TRUST */
-
 .final-cta-trust{
   margin-top: 32px;
 
@@ -373,8 +388,6 @@
 
   color: #2A2438;
 }
-
-/* REVEAL */
 
 .reveal{
   opacity: 0;
@@ -412,8 +425,6 @@
   }
 }
 
-/* RESPONSIVE */
-
 @media screen and (max-width: 999px){
 
   #final-cta-{{ section.id }}{
@@ -429,24 +440,15 @@
   }
 
   .final-price-chip{
-    flex-direction: column;
-    gap: 6px;
+    gap: 10px;
 
-    padding: 16px 24px;
-
-    border-radius: 26px;
+    padding: 18px 34px;
   }
 
   .final-cta-button{
     padding: 18px 34px;
 
-    min-height: 58px;
-
-    border-radius: 18px;
-
     font-size: 12px;
-
-    letter-spacing: 0.18em;
   }
 
 }
@@ -458,21 +460,72 @@
   }
 
   .final-price-chip{
-    width: auto;
+    width: 100%;
 
-    max-width: 290px;
+    max-width: 340px;
 
     margin-left: auto;
     margin-right: auto;
+  }
 
-    border-radius: 18px;
+  .luxury-cta-form{
+    width: 100%;
+  }
 
-    padding: 14px 18px;
+  .final-cta-button{
+    width: 100%;
+
+    max-width: 340px;
+
+    justify-content: center;
   }
 
 }
 
 </style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const form = document.querySelector('[data-product-form]');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    formData.append(
+      'sections',
+      'cart-drawer,cart-icon-bubble'
+    );
+
+    formData.append(
+      'sections_url',
+      window.location.pathname
+    );
+
+    const response = await fetch('/cart/add.js', {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json();
+
+    const cartDrawer = document.querySelector('cart-drawer');
+
+    if (cartDrawer && cartDrawer.renderContents) {
+      cartDrawer.renderContents(result);
+    }
+
+  });
+
+});
+
+</script>
 
 {% schema %}
 {
@@ -530,16 +583,16 @@
     },
 
     {
+      "type": "product",
+      "id": "product",
+      "label": "CTA Product"
+    },
+
+    {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
       "default": "Indulge Now"
-    },
-
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
     },
 
     {
@@ -558,3 +611,4 @@
   ]
 }
 {% endschema %}
+```
