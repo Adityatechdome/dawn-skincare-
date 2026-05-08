@@ -232,21 +232,30 @@
 /* PRICE CHIP */
 
 .final-price-chip{
+   position: relative;
+
   display: inline-flex;
-  align-items: baseline;
-  gap: 14px;
+  align-items: center;
+  justify-content: center;
 
-  margin-bottom: 32px;
+  gap: 12px;
 
-  padding: 14px 28px;
+  overflow: hidden;
+
+  padding: 22px 44px;
 
   border-radius: 999px;
 
-  border: 1px solid rgba(184,148,90,0.4);
+  background: rgba(248,241,231,0.78);
 
-  background: rgba(248,241,231,0.7);
+  border: 1px solid rgba(184,148,90,0.28);
 
   backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 12px 32px -16px rgba(42,36,56,0.18);
+
+  min-height: 64px;
 }
 
 .price-was{
