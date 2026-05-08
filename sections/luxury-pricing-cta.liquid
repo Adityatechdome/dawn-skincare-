@@ -1,3 +1,6 @@
+# luxury-pricing-cta.liquid
+
+```liquid
 <section id="final-cta-{{ section.id }}" class="final-cta-section">
 
   <!-- STAGE GLOW -->
@@ -369,6 +372,42 @@
   opacity: 1;
 }
 
+.final-cta-button.is-loading{
+  opacity: 0.7;
+
+  transform: scale(0.98);
+
+  pointer-events: none;
+}
+
+.final-cta-button.is-added{
+  background: #8C6F3F;
+
+  box-shadow:
+    0 18px 44px -12px rgba(184,148,90,0.45);
+
+  transform: translateY(-2px) scale(1.02);
+}
+
+.final-cta-button.is-added::before{
+  content: 'Added To Cart';
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #8C6F3F;
+
+  color: #F8F1E7;
+
+  z-index: 5;
+
+  letter-spacing: 0.18em;
+}
+
 .final-cta-button span,
 .final-cta-button svg{
   position: relative;
@@ -508,6 +547,10 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.pathname
     );
 
+    const button = form.querySelector('.final-cta-button');
+
+    button.classList.add('is-loading');
+
     const response = await fetch('/cart/add.js', {
       method: 'POST',
       body: formData
@@ -515,10 +558,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const result = await response.json();
 
+    button.classList.remove('is-loading');
+    button.classList.add('is-added');
+
+    setTimeout(() => {
+      button.classList.remove('is-added');
+    }, 1800);
+
     const cartDrawer = document.querySelector('cart-drawer');
 
     if (cartDrawer && cartDrawer.renderContents) {
       cartDrawer.renderContents(result);
+
+      setTimeout(() => {
+        cartDrawer.classList.add('animate', 'active');
+      }, 180);
     }
 
   });
