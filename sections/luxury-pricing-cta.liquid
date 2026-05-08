@@ -230,32 +230,38 @@
 }
 
 /* PRICE CHIP */
+
 .final-price-chip{
-  display: flex;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
 
-  flex-direction: row;
+  margin-bottom: 32px;
 
-  align-items: center;
-  justify-content: center;
+  padding: 14px 28px;
 
-  width: 100%;
+  border-radius: 999px;
 
-  max-width: 340px;
+  border: 1px solid rgba(184,148,90,0.4);
 
-  min-height: 58px;
+  background: rgba(248,241,231,0.7);
 
-  margin-left: auto;
-  margin-right: auto;
+  backdrop-filter: blur(10px);
+}
 
-  padding: 16px 24px;
+.price-was{
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
 
-  border-radius: 18px;
+  opacity: 0.5;
 
-  gap: 12px;
+  text-decoration: line-through;
+
+  color: #2A2438;
 }
 
 .price-now{
-  font-family: "Inter", sans-serif;
+ font-family: "Inter", sans-serif;
 
   font-size: 28px;
 
@@ -264,22 +270,6 @@
   line-height: 1;
 
   color: #8C6F3F;
-}
-
-.price-was{
-  font-family: "Inter", sans-serif;
-
-  font-size: 16px;
-
-  font-weight: 500;
-
-  line-height: 1;
-
-  opacity: 0.55;
-
-  text-decoration-thickness: 1.5px;
-
-  color: #2A2438;
 }
 
 .price-tag{
