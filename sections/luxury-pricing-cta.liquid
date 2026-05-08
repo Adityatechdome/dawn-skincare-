@@ -564,14 +564,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const cartDrawer = document.querySelector('cart-drawer');
 
-    if (cartDrawer && cartDrawer.renderContents) {
-      cartDrawer.renderContents(result);
+   if (cartDrawer && cartDrawer.renderContents) {
 
-      setTimeout(() => {
-        cartDrawer.classList.add('animate', 'active');
-      }, 180);
-    }
+  cartDrawer.renderContents({
+    sections: result.sections,
+    id: result.id
+  });
 
+  setTimeout(() => {
+
+    cartDrawer.open();
+
+  }, 220);
+
+}
   });
 
 });
