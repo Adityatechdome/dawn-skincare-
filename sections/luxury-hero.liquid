@@ -468,78 +468,60 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if(heroButton){
 
-    heroButton.addEventListener('click', async function(){
+    heroButton.addEventListener('click', async function(e){
+
+      e.preventDefault();
 
       const variantId =
         this.dataset.variantId;
 
       if(!variantId) return;
 
-      const buttonText =
-        this.querySelector('span');
+      const formData = new FormData();
 
-      const originalText =
-        buttonText.innerHTML;
+      formData.append('id', variantId);
 
-      buttonText.innerHTML =
-        'ADDING...';
+      formData.append(
+        'sections',
+        'cart-drawer,cart-icon-bubble'
+      );
+
+      formData.append(
+        'sections_url',
+        window.location.pathname
+      );
 
       try{
 
-        await fetch('/cart/add.js', {
+        const response = await fetch('/cart/add.js', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            items: [
-              {
-                id: variantId,
-                quantity: 1
-              }
-            ]
-          })
+          body: formData
         });
 
-        buttonText.innerHTML =
-          'ADDED ✓';
-
-        document.dispatchEvent(
-          new CustomEvent(
-            'cart:refresh',
-            { bubbles: true }
-          )
-        );
+        const result =
+          await response.json();
 
         const cartDrawer =
           document.querySelector('cart-drawer');
 
-        if(cartDrawer && typeof cartDrawer.open === 'function'){
+        if(cartDrawer && cartDrawer.renderContents){
 
-          cartDrawer.open();
+          cartDrawer.renderContents({
+            sections: result.sections,
+            id: result.id
+          });
+
+          setTimeout(() => {
+
+            cartDrawer.open();
+
+          }, 220);
 
         }
-
-        setTimeout(() => {
-
-          buttonText.innerHTML =
-            originalText;
-
-        }, 2000);
 
       }catch(error){
 
         console.error(error);
-
-        buttonText.innerHTML =
-          'TRY AGAIN';
-
-        setTimeout(() => {
-
-          buttonText.innerHTML =
-            originalText;
-
-        }, 2000);
 
       }
 
@@ -587,11 +569,6 @@ document.addEventListener("DOMContentLoaded", function() {
       "id": "cta_text",
       "label": "CTA Text",
       "default": "Shop the Glow"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "CTA Link"
     },
     {
       "type": "product",
