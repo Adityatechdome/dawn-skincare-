@@ -740,45 +740,44 @@
               'revision': '2024-02-15'
             },
 
-            body: JSON.stringify({
+body: JSON.stringify({
 
-              data: {
+  data: {
 
-                type: 'subscription',
+    type: "subscription",
 
-                attributes: {
+    attributes: {
 
-                  profile: {
-                    data: {
-                      type: 'profile',
-                      attributes: {
-                        email: email
-                      }
-                    }
-                  },
+      custom_source: "Dawn Luxury Popup",
 
-                  custom_source: 'Dawn Luxury Popup'
+      profile: {
+        email: email
+      }
 
-                },
+    },
 
-                relationships: {
+    relationships: {
 
-                  list: {
-                    data: {
-                      type: 'list',
-                      id: 'TwmpjE'
-                    }
-                  }
+      list: {
+        data: {
+          type: "list",
+          id: "TwmpjE"
+        }
+      }
 
-                }
+    }
 
-              }
+  }
 
-            })
+})
           }
         );
 
-        if(response.ok){
+       const result = await response.json();
+
+console.log(result);
+
+if(response.ok){
 
           successBox.classList.add('show');
 
