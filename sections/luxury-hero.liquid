@@ -548,25 +548,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
       try{
 
-        const response =
-          await fetch('/cart/add.js', {
+       const formData = new FormData();
 
-            method: 'POST',
+formData.append('id', variantId);
 
-            headers: {
-              'Content-Type': 'application/json'
-            },
+formData.append('quantity', 1);
 
-            body: JSON.stringify({
-              items: [
-                {
-                  id: variantId,
-                  quantity: 1
-                }
-              ]
-            })
+const response =
+  await fetch('/cart/add.js', {
 
-          });
+    method: 'POST',
+
+    body: formData
+
+  });
 
         if(!response.ok){
           throw new Error('Cart add failed');
