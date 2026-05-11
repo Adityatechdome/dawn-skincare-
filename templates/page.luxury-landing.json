@@ -42,7 +42,7 @@
         "heading_line_2": "Royal Skin.",
         "subheadline": "Indulge in luxury, where every detail is crafted to elevate your everyday ritual.",
         "cta_text": "Shop Now",
-        "cta_link": "/collections/all",
+        "cta_link": "shopify://products/7-step-glow-repair-kit",
         "hero_image": "shopify://shop_images/WhatsAppImage2026-05-01at7.14.15PM_1.jpg"
       }
     },
