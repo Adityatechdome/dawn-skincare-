@@ -40,7 +40,7 @@
     translateX(-50%)
     translateY(120%);
 
-  z-index: 90;
+  z-index: 999;
 
   display: inline-flex;
   align-items: center;
@@ -50,19 +50,19 @@
 
   border-radius: 999px;
 
-  background: #2A2438;
+  background: rgba(42,36,56,0.96);
 
   color: #F8F1E7;
 
   box-shadow:
-    0 20px 50px -12px rgba(0,0,0,0.4);
+    0 20px 50px -12px rgba(0,0,0,0.45);
+
+  backdrop-filter: blur(16px);
 
   transition:
     transform 0.5s cubic-bezier(0.2,0.8,0.2,1);
 
   max-width: calc(100vw - 32px);
-
-  backdrop-filter: blur(12px);
 }
 
 #sticky-cta-{{ section.id }}.show{
@@ -87,7 +87,6 @@
 
 .sticky-cta-text strong{
   font-family: "Italiana", serif;
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
 
@@ -99,8 +98,8 @@
 .sticky-cta-text span{
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
+
   font-size: 15px;
-  line-height: 1;
 
   color: #F8F1E7;
 }
@@ -114,7 +113,11 @@
 
   cursor: pointer;
 
-  padding: 12px 22px;
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 13px 24px;
 
   border-radius: 999px;
 
@@ -126,17 +129,13 @@
   font-size: 11px;
   font-weight: 600;
 
-  letter-spacing: 0.20em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 
   transition:
-    background 0.25s ease,
     transform 0.25s ease,
+    background 0.25s ease,
     box-shadow 0.25s ease;
-
-  position: relative;
-
-  overflow: hidden;
 }
 
 .sticky-cta-button:hover{
@@ -145,7 +144,7 @@
   transform: translateY(-2px);
 
   box-shadow:
-    0 10px 24px rgba(217,186,130,0.28);
+    0 10px 24px rgba(217,186,130,0.25);
 }
 
 .sticky-cta-button:active{
@@ -155,22 +154,21 @@
 .sticky-cta-button.loading{
   pointer-events: none;
 
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .sticky-cta-button.success{
   background: #F8F1E7;
-
-  color: #2A2438;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
 @media screen and (max-width: 600px){
 
   #sticky-cta-{{ section.id }}{
-    padding: 10px;
     bottom: 18px;
+
+    padding: 10px;
   }
 
   .sticky-cta-text{
@@ -178,14 +176,16 @@
   }
 
   .sticky-cta-button{
-    padding: 13px 20px;
+    width: 100%;
+
+    padding: 14px 20px;
 
     font-size: 10px;
   }
 
 }
 
-/* REDUCE MOTION */
+/* ACCESSIBILITY */
 
 @media (prefers-reduced-motion: reduce){
 
@@ -246,15 +246,18 @@
 
     if(!variantId) return;
 
-    const originalText =
-      this.innerHTML;
+    this.disabled = true;
 
     this.classList.add('loading');
 
     this.innerHTML =
-      'ADDING...';
+      'SECURING CHECKOUT...';
 
     try{
+
+      await fetch('/cart/clear.js', {
+        method: 'POST'
+      });
 
       await fetch('/cart/add.js', {
 
@@ -265,12 +268,8 @@
         },
 
         body: JSON.stringify({
-          items: [
-            {
-              id: variantId,
-              quantity: 1
-            }
-          ]
+          id: variantId,
+          quantity: 1
         })
 
       });
@@ -282,16 +281,14 @@
       this.innerHTML =
         'CHECKOUT →';
 
-      setTimeout(() => {
-
-        window.location.href =
-          '/checkout';
-
-      }, 500);
+      window.location.href =
+        '/checkout';
 
     }catch(error){
 
       console.error(error);
+
+      this.disabled = false;
 
       this.classList.remove('loading');
 
@@ -301,7 +298,7 @@
       setTimeout(() => {
 
         this.innerHTML =
-          originalText;
+          '{{ section.settings.button_text }}';
 
       }, 2000);
 
