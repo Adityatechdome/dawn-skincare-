@@ -380,6 +380,14 @@
 .luxury-product-btn:hover::after {
   opacity: 1;
 }
+.luxury-product-btn.loading{
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.luxury-product-btn.success{
+  background: #5B4A7A;
+}
 
 .luxury-product-price {
   display: inline-flex;
@@ -478,14 +486,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if(productButton){
 
+    let isProcessing = false;
+
     productButton.addEventListener('click', async function(e){
 
       e.preventDefault();
 
+      if(isProcessing) return;
+
+      isProcessing = true;
+
       const variantId =
         this.dataset.variantId;
 
-      if(!variantId) return;
+      if(!variantId){
+
+        isProcessing = false;
+        return;
+
+      }
 
       const buttonText =
         this.querySelector('span');
@@ -493,64 +512,58 @@ document.addEventListener("DOMContentLoaded", function() {
       const originalText =
         buttonText.innerHTML;
 
+      this.classList.add('loading');
+
       buttonText.innerHTML =
-        'ADDING...';
-
-      const formData = new FormData();
-
-      formData.append('id', variantId);
-
-      formData.append(
-        'sections',
-        'cart-drawer,cart-icon-bubble'
-      );
-
-      formData.append(
-        'sections_url',
-        window.location.pathname
-      );
+        'SECURING CHECKOUT...';
 
       try{
 
-        const response = await fetch('/cart/add.js', {
-          method: 'POST',
-          body: formData
-        });
+        const formData =
+          new FormData();
 
-        const result =
-          await response.json();
+        formData.append(
+          'id',
+          variantId
+        );
 
-        buttonText.innerHTML =
-          'ADDED ✓';
+        formData.append(
+          'quantity',
+          1
+        );
 
-        const cartDrawer =
-          document.querySelector('cart-drawer');
+        const response =
+          await fetch('/cart/add.js', {
 
-        if(cartDrawer && cartDrawer.renderContents){
+            method: 'POST',
 
-          cartDrawer.renderContents({
-            sections: result.sections,
-            id: result.id
+            body: formData
+
           });
 
-          setTimeout(() => {
-
-            cartDrawer.open();
-
-          }, 220);
-
+        if(!response.ok){
+          throw new Error('Cart add failed');
         }
 
-        setTimeout(() => {
+        this.classList.remove('loading');
 
-          buttonText.innerHTML =
-            originalText;
+        this.classList.add('success');
 
-        }, 2000);
+        buttonText.innerHTML =
+          'CHECKOUT →';
+
+        window.location.href =
+          '/checkout';
 
       }catch(error){
 
         console.error(error);
+
+        isProcessing = false;
+
+        this.classList.remove('loading');
+
+        this.classList.remove('success');
 
         buttonText.innerHTML =
           'TRY AGAIN';
