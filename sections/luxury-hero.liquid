@@ -40,7 +40,11 @@
       </div>
 
       <!-- CTA -->
-      <a href="{{ section.settings.cta_link }}" class="luxury-hero-btn reveal">
+      <button
+        class="luxury-hero-btn reveal"
+        type="button"
+        data-variant-id="{{ all_products[section.settings.cta_product].selected_or_first_available_variant.id }}"
+      >
 
         <span>
           {{ section.settings.cta_text }}
@@ -50,7 +54,7 @@
           <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z" fill="#D9BA82"/>
         </svg>
 
-      </a>
+      </button>
 
     </div>
 
@@ -260,6 +264,10 @@
 
   border-radius: 999px;
 
+  border: none;
+  outline: none;
+  cursor: pointer;
+
   background: #2A2438;
   color: #F8F1E7;
 
@@ -455,6 +463,90 @@ document.addEventListener("DOMContentLoaded", function() {
 
   });
 
+  const heroButton =
+    document.querySelector('.luxury-hero-btn');
+
+  if(heroButton){
+
+    heroButton.addEventListener('click', async function(){
+
+      const variantId =
+        this.dataset.variantId;
+
+      if(!variantId) return;
+
+      const buttonText =
+        this.querySelector('span');
+
+      const originalText =
+        buttonText.innerHTML;
+
+      buttonText.innerHTML =
+        'ADDING...';
+
+      try{
+
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            items: [
+              {
+                id: variantId,
+                quantity: 1
+              }
+            ]
+          })
+        });
+
+        buttonText.innerHTML =
+          'ADDED ✓';
+
+        document.dispatchEvent(
+          new CustomEvent(
+            'cart:refresh',
+            { bubbles: true }
+          )
+        );
+
+        const cartDrawer =
+          document.querySelector('cart-drawer');
+
+        if(cartDrawer && typeof cartDrawer.open === 'function'){
+
+          cartDrawer.open();
+
+        }
+
+        setTimeout(() => {
+
+          buttonText.innerHTML =
+            originalText;
+
+        }, 2000);
+
+      }catch(error){
+
+        console.error(error);
+
+        buttonText.innerHTML =
+          'TRY AGAIN';
+
+        setTimeout(() => {
+
+          buttonText.innerHTML =
+            originalText;
+
+        }, 2000);
+
+      }
+
+    });
+
+  }
+
 });
 </script>
 
@@ -500,6 +592,11 @@ document.addEventListener("DOMContentLoaded", function() {
       "type": "url",
       "id": "cta_link",
       "label": "CTA Link"
+    },
+    {
+      "type": "product",
+      "id": "cta_product",
+      "label": "CTA Product"
     },
     {
       "type": "header",
