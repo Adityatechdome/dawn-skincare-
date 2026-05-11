@@ -20,7 +20,7 @@
   <button
     class="sticky-cta-button"
     type="button"
-    aria-label="Add product to cart"
+    aria-label="Checkout now"
     data-variant-id="{{ all_products[section.settings.cta_product].selected_or_first_available_variant.id }}"
   >
     {{ section.settings.button_text }}
@@ -61,6 +61,8 @@
     transform 0.5s cubic-bezier(0.2,0.8,0.2,1);
 
   max-width: calc(100vw - 32px);
+
+  backdrop-filter: blur(12px);
 }
 
 #sticky-cta-{{ section.id }}.show{
@@ -112,7 +114,7 @@
 
   cursor: pointer;
 
-  padding: 12px 20px;
+  padding: 12px 22px;
 
   border-radius: 999px;
 
@@ -122,18 +124,44 @@
 
   font-family: "Inter", sans-serif;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
 
   letter-spacing: 0.20em;
   text-transform: uppercase;
 
   transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  position: relative;
+
+  overflow: hidden;
 }
 
 .sticky-cta-button:hover{
   background: #F8F1E7;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 24px rgba(217,186,130,0.28);
+}
+
+.sticky-cta-button:active{
+  transform: scale(0.98);
+}
+
+.sticky-cta-button.loading{
+  pointer-events: none;
+
+  opacity: 0.9;
+}
+
+.sticky-cta-button.success{
+  background: #F8F1E7;
+
+  color: #2A2438;
 }
 
 /* RESPONSIVE */
@@ -142,6 +170,7 @@
 
   #sticky-cta-{{ section.id }}{
     padding: 10px;
+    bottom: 18px;
   }
 
   .sticky-cta-text{
@@ -149,7 +178,7 @@
   }
 
   .sticky-cta-button{
-    padding: 12px 18px;
+    padding: 13px 20px;
 
     font-size: 10px;
   }
@@ -160,7 +189,8 @@
 
 @media (prefers-reduced-motion: reduce){
 
-  #sticky-cta-{{ section.id }}{
+  #sticky-cta-{{ section.id }},
+  .sticky-cta-button{
     transition: none;
   }
 
@@ -176,6 +206,8 @@
     document.getElementById(
       'sticky-cta-{{ section.id }}'
     );
+
+  if(!stickyCTA) return;
 
   const button =
     stickyCTA.querySelector(
@@ -217,16 +249,21 @@
     const originalText =
       this.innerHTML;
 
+    this.classList.add('loading');
+
     this.innerHTML =
       'ADDING...';
 
     try{
 
       await fetch('/cart/add.js', {
+
         method: 'POST',
+
         headers: {
           'Content-Type': 'application/json'
         },
+
         body: JSON.stringify({
           items: [
             {
@@ -235,39 +272,28 @@
             }
           ]
         })
+
       });
 
+      this.classList.remove('loading');
+
+      this.classList.add('success');
+
       this.innerHTML =
-        'ADDED ✓';
-
-      document.dispatchEvent(
-        new CustomEvent(
-          'cart:refresh',
-          { bubbles: true }
-        )
-      );
-
-      const cartDrawer =
-        document.querySelector(
-          'cart-drawer'
-        );
-
-      if(cartDrawer && typeof cartDrawer.open === 'function'){
-
-        cartDrawer.open();
-
-      }
+        'CHECKOUT →';
 
       setTimeout(() => {
 
-        this.innerHTML =
-          originalText;
+        window.location.href =
+          '/checkout';
 
-      }, 2000);
+      }, 500);
 
     }catch(error){
 
       console.error(error);
+
+      this.classList.remove('loading');
 
       this.innerHTML =
         'TRY AGAIN';
