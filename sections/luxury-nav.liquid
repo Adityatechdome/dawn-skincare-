@@ -230,7 +230,27 @@
 }
 
 .luxury-cart-count.bump{
-  transform: scale(1.35);
+  animation: luxuryCartPulse 0.45s ease;
+}
+
+@keyframes luxuryCartPulse {
+
+  0%{
+    transform: scale(1);
+  }
+
+  40%{
+    transform: scale(1.45);
+  }
+
+  70%{
+    transform: scale(0.92);
+  }
+
+  100%{
+    transform: scale(1);
+  }
+
 }
 
 .luxury-custom-icon {
@@ -356,16 +376,29 @@ document.addEventListener('DOMContentLoaded', function(){
 
       if(cartCount){
 
-        cartCount.innerHTML =
+        const previousCount =
+          parseInt(cartCount.innerText) || 0;
+
+        const newCount =
           cart.item_count;
 
-        cartCount.classList.add('bump');
+        cartCount.innerHTML = newCount;
 
-        setTimeout(() => {
+        if(newCount !== previousCount){
 
           cartCount.classList.remove('bump');
 
-        }, 300);
+          void cartCount.offsetWidth;
+
+          cartCount.classList.add('bump');
+
+          setTimeout(() => {
+
+            cartCount.classList.remove('bump');
+
+          }, 450);
+
+        }
 
       }
 
@@ -381,6 +414,42 @@ document.addEventListener('DOMContentLoaded', function(){
     'cart:updated',
     refreshCartCount
   );
+
+  document.body.addEventListener(
+    'submit',
+    async function(e){
+
+      const form =
+        e.target;
+
+      if(form.matches('form[action*="/cart/add"]')){
+
+        setTimeout(() => {
+
+          refreshCartCount();
+
+        }, 300);
+
+      }
+
+    },
+    true
+  );
+
+  document.body.addEventListener(
+    'click',
+    function(){
+
+      setTimeout(() => {
+
+        refreshCartCount();
+
+      }, 500);
+
+    }
+  );
+
+  refreshCartCount();
 
 });
 </script>
