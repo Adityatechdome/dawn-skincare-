@@ -1,5 +1,3 @@
-{% assign cta_product = all_products[section.settings.cta_product] %}
-
 <section
   id="sticky-cta-{{ section.id }}"
   class="dawn-sticky-cta"
@@ -19,18 +17,14 @@
 
   </div>
 
-  {% if cta_product != blank and cta_product.selected_or_first_available_variant != blank %}
-
-    <button
-      class="sticky-cta-button"
-      type="button"
-      aria-label="Add product to cart"
-      data-variant-id="{{ cta_product.selected_or_first_available_variant.id }}"
-    >
-      {{ section.settings.button_text }}
-    </button>
-
-  {% endif %}
+  <button
+    class="sticky-cta-button"
+    type="button"
+    aria-label="Add product to cart"
+    data-variant-id="{{ all_products[section.settings.cta_product].selected_or_first_available_variant.id }}"
+  >
+    {{ section.settings.button_text }}
+  </button>
 
 </section>
 
@@ -135,25 +129,11 @@
 
   transition:
     background 0.2s ease,
-    transform 0.2s ease,
-    opacity 0.2s ease;
-
-  position: relative;
-  overflow: hidden;
+    transform 0.2s ease;
 }
 
 .sticky-cta-button:hover{
   background: #F8F1E7;
-}
-
-.sticky-cta-button.loading{
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-.sticky-cta-button.added{
-  background: #F8F1E7;
-  transform: scale(1.03);
 }
 
 /* RESPONSIVE */
@@ -197,8 +177,6 @@
       'sticky-cta-{{ section.id }}'
     );
 
-  if(!stickyCTA) return;
-
   const button =
     stickyCTA.querySelector(
       '.sticky-cta-button'
@@ -229,111 +207,81 @@
 
   toggleStickyCTA();
 
-  if(button){
+  button.addEventListener('click', async function(){
 
-    button.addEventListener('click', async function(){
+    const variantId =
+      this.dataset.variantId;
 
-      const variantId =
-        this.dataset.variantId;
+    if(!variantId) return;
 
-      if(!variantId) return;
+    const originalText =
+      this.innerHTML;
 
-      const originalText =
-        this.innerHTML;
+    this.innerHTML =
+      'ADDING...';
 
-      this.classList.add('loading');
+    try{
+
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          items: [
+            {
+              id: variantId,
+              quantity: 1
+            }
+          ]
+        })
+      });
 
       this.innerHTML =
-        'ADDING...';
+        'ADDED ✓';
 
-      try{
+      document.dispatchEvent(
+        new CustomEvent(
+          'cart:refresh',
+          { bubbles: true }
+        )
+      );
 
-        const response = await fetch(
-          '/cart/add.js',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              items: [
-                {
-                  id: variantId,
-                  quantity: 1
-                }
-              ]
-            })
-          }
+      const cartDrawer =
+        document.querySelector(
+          'cart-drawer'
         );
 
-        if(!response.ok){
-          throw new Error('Cart error');
-        }
+      if(cartDrawer && typeof cartDrawer.open === 'function'){
 
-        this.classList.remove('loading');
-        this.classList.add('added');
-
-        this.innerHTML =
-          'ADDED ✓';
-
-        document.dispatchEvent(
-          new CustomEvent(
-            'cart:refresh',
-            {
-              bubbles: true
-            }
-          )
-        );
-
-        const cartDrawer =
-          document.querySelector(
-            'cart-drawer'
-          );
-
-        if(cartDrawer && typeof cartDrawer.open === 'function'){
-
-          cartDrawer.open();
-
-        }else{
-
-          document.dispatchEvent(
-            new CustomEvent(
-              'open:cart'
-            )
-          );
-
-        }
-
-        setTimeout(() => {
-
-          this.classList.remove('added');
-
-          this.innerHTML =
-            originalText;
-
-        }, 2200);
-
-      }catch(error){
-
-        console.error(error);
-
-        this.classList.remove('loading');
-
-        this.innerHTML =
-          'TRY AGAIN';
-
-        setTimeout(() => {
-
-          this.innerHTML =
-            originalText;
-
-        }, 2000);
+        cartDrawer.open();
 
       }
 
-    });
+      setTimeout(() => {
 
-  }
+        this.innerHTML =
+          originalText;
+
+      }, 2000);
+
+    }catch(error){
+
+      console.error(error);
+
+      this.innerHTML =
+        'TRY AGAIN';
+
+      setTimeout(() => {
+
+        this.innerHTML =
+          originalText;
+
+      }, 2000);
+
+    }
+
+  });
 
 })();
 
