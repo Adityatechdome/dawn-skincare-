@@ -174,8 +174,9 @@
       "type": "luxury-sticky-cta",
       "settings": {
         "offer_text": "50% OFF",
-        "offer_subtext": "Free BB Cream — today only",
-        "button_text": "Shop the Glow"
+        "offer_subtext": "Free BB Cream today only",
+        "button_text": "Shop the Glow",
+        "cta_product": "7-step-glow-repair-kit"
       }
     },
     "luxury-footer": {
