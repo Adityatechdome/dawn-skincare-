@@ -477,6 +477,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if(!variantId) return;
 
+      const buttonText =
+        this.querySelector('span');
+
+      const originalText =
+        buttonText.innerHTML;
+
+      buttonText.innerHTML =
+        'ADDING...';
+
       const formData = new FormData();
 
       formData.append('id', variantId);
@@ -501,6 +510,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const result =
           await response.json();
 
+        buttonText.innerHTML =
+          'ADDED ✓';
+
         const cartDrawer =
           document.querySelector('cart-drawer');
 
@@ -519,9 +531,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
+        setTimeout(() => {
+
+          buttonText.innerHTML =
+            originalText;
+
+        }, 2000);
+
       }catch(error){
 
         console.error(error);
+
+        buttonText.innerHTML =
+          'TRY AGAIN';
+
+        setTimeout(() => {
+
+          buttonText.innerHTML =
+            originalText;
+
+        }, 2000);
 
       }
 
