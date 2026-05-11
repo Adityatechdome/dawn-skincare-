@@ -13,8 +13,6 @@
     aria-labelledby="bridgerton-popup-title"
   >
 
-    <!-- CLOSE -->
-
     <button
       type="button"
       class="bridgerton-popup-close"
@@ -25,15 +23,11 @@
 
     <div class="bridgerton-popup-content">
 
-      <!-- EYEBROW -->
-
       <div class="bridgerton-popup-eyebrow reveal">
         <span>
           {{ section.settings.eyebrow }}
         </span>
       </div>
-
-      <!-- TITLE -->
 
       <h2
         id="bridgerton-popup-title"
@@ -48,43 +42,32 @@
 
       </h2>
 
-      <!-- SUBTITLE -->
-
       <p class="bridgerton-popup-subtitle reveal">
         {{ section.settings.subheading }}
       </p>
 
-      <!-- FORM -->
+      <!-- KLAVIYO FORM -->
 
-      {% form 'customer', class: 'bridgerton-popup-form reveal' %}
+      <form
+        class="bridgerton-popup-form reveal"
+        id="bridgerton-klaviyo-form-{{ section.id }}"
+      >
 
-        {% if form.posted_successfully? %}
-          <div class="bridgerton-popup-success">
-            {{ section.settings.success_message }}
-          </div>
-        {% endif %}
-
-        {% if form.errors %}
-          <div class="bridgerton-popup-error">
-            {{ form.errors | default_errors }}
-          </div>
-        {% endif %}
-
-        <input
-          type="hidden"
-          name="contact[tags]"
-          value="Bridgerton Newsletter"
+        <div
+          class="bridgerton-popup-success"
+          style="display:none;"
         >
+          {{ section.settings.success_message }}
+        </div>
 
-        <input
-          type="hidden"
-          name="customer[tags]"
-          value="Bridgerton Newsletter"
-        >
+        <div
+          class="bridgerton-popup-error"
+          style="display:none;"
+        ></div>
 
         <input
           type="email"
-          name="contact[email]"
+          name="email"
           class="bridgerton-popup-input"
           placeholder="{{ section.settings.placeholder }}"
           required
@@ -96,12 +79,21 @@
           type="submit"
           class="bridgerton-popup-button"
         >
-          {{ section.settings.button_text }}
+
+          <span class="btn-text">
+            {{ section.settings.button_text }}
+          </span>
+
+          <span
+            class="btn-loading"
+            style="display:none;"
+          >
+            Sending...
+          </span>
+
         </button>
 
-      {% endform %}
-
-      <!-- NOTE -->
+      </form>
 
       <div class="bridgerton-popup-note reveal">
         {{ section.settings.note }}
@@ -115,9 +107,7 @@
 
 <style>
 
-/* =========================================
-   REMOVE HOMEPAGE BLANK SPACE
-========================================= */
+/* REMOVE SECTION SPACE */
 
 #shopify-section-{{ section.id }}{
   position: absolute !important;
@@ -131,9 +121,7 @@
   overflow: hidden !important;
 }
 
-/* =========================================
-   POPUP WRAPPER
-========================================= */
+/* WRAPPER */
 
 #bridgerton-popup-{{ section.id }}{
   position: fixed;
@@ -164,9 +152,7 @@
   box-sizing: border-box;
 }
 
-/* =========================================
-   BACKDROP
-========================================= */
+/* BACKDROP */
 
 .bridgerton-popup-backdrop{
   position: absolute;
@@ -178,9 +164,7 @@
   backdrop-filter: blur(10px);
 }
 
-/* =========================================
-   POPUP
-========================================= */
+/* POPUP */
 
 .bridgerton-popup{
   position: relative;
@@ -212,8 +196,6 @@
     72px 56px 56px;
 }
 
-/* GOLD GLOW */
-
 .bridgerton-popup::before{
   content: "";
 
@@ -236,9 +218,7 @@
   pointer-events: none;
 }
 
-/* =========================================
-   CLOSE BUTTON
-========================================= */
+/* CLOSE */
 
 .bridgerton-popup-close{
   position: absolute;
@@ -278,9 +258,7 @@
   transform: rotate(90deg);
 }
 
-/* =========================================
-   CONTENT
-========================================= */
+/* CONTENT */
 
 .bridgerton-popup-content{
   position: relative;
@@ -289,9 +267,7 @@
   text-align: center;
 }
 
-/* =========================================
-   EYEBROW
-========================================= */
+/* EYEBROW */
 
 .bridgerton-popup-eyebrow{
   display: flex;
@@ -324,9 +300,7 @@
   color: #8C6F3F;
 }
 
-/* =========================================
-   TITLE
-========================================= */
+/* TITLE */
 
 .bridgerton-popup-title{
   margin: 0 0 18px;
@@ -349,13 +323,9 @@
   font-size: 1.08em;
 
   color: #8C6F3F;
-
-  text-transform: none;
 }
 
-/* =========================================
-   SUBTITLE
-========================================= */
+/* SUBTITLE */
 
 .bridgerton-popup-subtitle{
   max-width: 32ch;
@@ -372,9 +342,7 @@
     rgba(42,36,56,0.78);
 }
 
-/* =========================================
-   FORM
-========================================= */
+/* FORM */
 
 .bridgerton-popup-form{
   display: flex;
@@ -501,6 +469,11 @@
     #5B4A7A;
 }
 
+.bridgerton-popup-button.loading{
+  opacity: 0.8;
+  pointer-events: none;
+}
+
 /* NOTE */
 
 .bridgerton-popup-note{
@@ -516,9 +489,29 @@
     rgba(42,36,56,0.55);
 }
 
-/* =========================================
-   MOBILE
-========================================= */
+.bridgerton-popup-success.show,
+.bridgerton-popup-error.show{
+  display: block !important;
+
+  animation:
+    popupFade 0.5s ease;
+}
+
+@keyframes popupFade{
+
+  from{
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* MOBILE */
 
 @media screen and (max-width: 700px){
 
@@ -581,10 +574,38 @@
       '.bridgerton-popup-close'
     );
 
-  /* CHANGE THIS VERSION TO RETEST POPUP */
+  const form =
+    document.getElementById(
+      'bridgerton-klaviyo-form-{{ section.id }}'
+    );
+
+  const successBox =
+    form.querySelector(
+      '.bridgerton-popup-success'
+    );
+
+  const errorBox =
+    form.querySelector(
+      '.bridgerton-popup-error'
+    );
+
+  const submitBtn =
+    form.querySelector(
+      '.bridgerton-popup-button'
+    );
+
+  const btnText =
+    form.querySelector(
+      '.btn-text'
+    );
+
+  const btnLoading =
+    form.querySelector(
+      '.btn-loading'
+    );
 
   const STORAGE_KEY =
-    'dawn-bridgerton-popup-v2';
+    'dawn-bridgerton-popup-v3';
 
   const SEVEN_DAYS =
     7 * 24 * 60 * 60 * 1000;
@@ -679,25 +700,122 @@
     'keydown',
     function(event){
 
-      if(
-        event.key === 'Escape'
-      ){
+      if(event.key === 'Escape'){
         closePopup();
       }
 
     }
   );
 
-  {% if form.posted_successfully? %}
+  /* KLAVIYO SUBMIT */
 
-    popup.classList.add('show');
+  form.addEventListener(
+    'submit',
+    async function(event){
 
-    popup.setAttribute(
-      'aria-hidden',
-      'false'
-    );
+      event.preventDefault();
 
-  {% endif %}
+      const email =
+        form.email.value.trim();
+
+      successBox.classList.remove('show');
+      errorBox.classList.remove('show');
+
+      submitBtn.classList.add('loading');
+
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline-block';
+
+      try{
+
+        const response = await fetch(
+          'https://a.klaviyo.com/client/subscriptions/?company_id=TwmpjE',
+          {
+            method: 'POST',
+
+            headers: {
+              'Content-Type': 'application/json',
+              'revision': '2024-02-15'
+            },
+
+            body: JSON.stringify({
+
+              data: {
+
+                type: 'subscription',
+
+                attributes: {
+
+                  profile: {
+                    data: {
+                      type: 'profile',
+                      attributes: {
+                        email: email
+                      }
+                    }
+                  },
+
+                  custom_source: 'Dawn Luxury Popup'
+
+                },
+
+                relationships: {
+
+                  list: {
+                    data: {
+                      type: 'list',
+                      id: 'TwmpjE'
+                    }
+                  }
+
+                }
+
+              }
+
+            })
+          }
+        );
+
+        if(response.ok){
+
+          successBox.classList.add('show');
+
+          form.reset();
+
+          localStorage.setItem(
+            STORAGE_KEY,
+            Date.now().toString()
+          );
+
+          setTimeout(function(){
+            closePopup();
+          }, 2500);
+
+        }else{
+
+          errorBox.innerHTML =
+            'Something went wrong. Please try again.';
+
+          errorBox.classList.add('show');
+
+        }
+
+      }catch(error){
+
+        errorBox.innerHTML =
+          'Network error. Please try again.';
+
+        errorBox.classList.add('show');
+
+      }
+
+      submitBtn.classList.remove('loading');
+
+      btnText.style.display = 'inline-block';
+      btnLoading.style.display = 'none';
+
+    }
+  );
 
 })();
 
