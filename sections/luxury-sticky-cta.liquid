@@ -1,3 +1,5 @@
+{% assign cta_product = all_products[section.settings.cta_product] %}
+
 <section
   id="sticky-cta-{{ section.id }}"
   class="dawn-sticky-cta"
@@ -17,13 +19,18 @@
 
   </div>
 
-  <button
-    class="sticky-cta-button"
-    type="button"
-    aria-label="Scroll to products section"
-  >
-    {{ section.settings.button_text }}
-  </button>
+  {% if cta_product != blank and cta_product.selected_or_first_available_variant != blank %}
+
+    <button
+      class="sticky-cta-button"
+      type="button"
+      aria-label="Add product to cart"
+      data-variant-id="{{ cta_product.selected_or_first_available_variant.id }}"
+    >
+      {{ section.settings.button_text }}
+    </button>
+
+  {% endif %}
 
 </section>
 
@@ -128,11 +135,25 @@
 
   transition:
     background 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  position: relative;
+  overflow: hidden;
 }
 
 .sticky-cta-button:hover{
   background: #F8F1E7;
+}
+
+.sticky-cta-button.loading{
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.sticky-cta-button.added{
+  background: #F8F1E7;
+  transform: scale(1.03);
 }
 
 /* RESPONSIVE */
@@ -176,6 +197,8 @@
       'sticky-cta-{{ section.id }}'
     );
 
+  if(!stickyCTA) return;
+
   const button =
     stickyCTA.querySelector(
       '.sticky-cta-button'
@@ -206,21 +229,111 @@
 
   toggleStickyCTA();
 
-  button.addEventListener('click', function(){
+  if(button){
 
-    const target =
-      document.querySelector('#products');
+    button.addEventListener('click', async function(){
 
-    if(target){
+      const variantId =
+        this.dataset.variantId;
 
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      if(!variantId) return;
 
-    }
+      const originalText =
+        this.innerHTML;
 
-  });
+      this.classList.add('loading');
+
+      this.innerHTML =
+        'ADDING...';
+
+      try{
+
+        const response = await fetch(
+          '/cart/add.js',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: variantId,
+                  quantity: 1
+                }
+              ]
+            })
+          }
+        );
+
+        if(!response.ok){
+          throw new Error('Cart error');
+        }
+
+        this.classList.remove('loading');
+        this.classList.add('added');
+
+        this.innerHTML =
+          'ADDED ✓';
+
+        document.dispatchEvent(
+          new CustomEvent(
+            'cart:refresh',
+            {
+              bubbles: true
+            }
+          )
+        );
+
+        const cartDrawer =
+          document.querySelector(
+            'cart-drawer'
+          );
+
+        if(cartDrawer && typeof cartDrawer.open === 'function'){
+
+          cartDrawer.open();
+
+        }else{
+
+          document.dispatchEvent(
+            new CustomEvent(
+              'open:cart'
+            )
+          );
+
+        }
+
+        setTimeout(() => {
+
+          this.classList.remove('added');
+
+          this.innerHTML =
+            originalText;
+
+        }, 2200);
+
+      }catch(error){
+
+        console.error(error);
+
+        this.classList.remove('loading');
+
+        this.innerHTML =
+          'TRY AGAIN';
+
+        setTimeout(() => {
+
+          this.innerHTML =
+            originalText;
+
+        }, 2000);
+
+      }
+
+    });
+
+  }
 
 })();
 
@@ -251,6 +364,12 @@
       "id": "button_text",
       "label": "Button Text",
       "default": "Shop the Glow"
+    },
+
+    {
+      "type": "product",
+      "id": "cta_product",
+      "label": "CTA Product"
     }
 
   ],
