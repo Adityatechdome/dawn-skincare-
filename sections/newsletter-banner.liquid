@@ -48,52 +48,56 @@
 
       <!-- KLAVIYO FORM -->
 
-      <form
-        class="bridgerton-popup-form reveal"
-        id="bridgerton-klaviyo-form-{{ section.id }}"
-      >
+      {% form 'customer', class: 'bridgerton-popup-form reveal' %}
 
-        <div
-          class="bridgerton-popup-success"
-          style="display:none;"
-        >
-          {{ section.settings.success_message }}
-        </div>
+  {% if form.posted_successfully? %}
+    <div class="bridgerton-popup-success show">
+      {{ section.settings.success_message }}
+    </div>
+  {% endif %}
 
-        <div
-          class="bridgerton-popup-error"
-          style="display:none;"
-        ></div>
+  {% if form.errors %}
+    <div class="bridgerton-popup-error show">
+      {{ form.errors | default_errors }}
+    </div>
+  {% endif %}
 
-        <input
-          type="email"
-          name="email"
-          class="bridgerton-popup-input"
-          placeholder="{{ section.settings.placeholder }}"
-          required
-          autocorrect="off"
-          autocapitalize="off"
-        >
+  <input
+    type="hidden"
+    name="contact[tags]"
+    value="Dawn Newsletter"
+  >
 
-        <button
-          type="submit"
-          class="bridgerton-popup-button"
-        >
+  <input
+    type="hidden"
+    name="customer[tags]"
+    value="Dawn Newsletter"
+  >
 
-          <span class="btn-text">
-            {{ section.settings.button_text }}
-          </span>
+  <input
+    type="hidden"
+    name="contact[accepts_marketing]"
+    value="true"
+  >
 
-          <span
-            class="btn-loading"
-            style="display:none;"
-          >
-            Sending...
-          </span>
+  <input
+    type="email"
+    name="contact[email]"
+    class="bridgerton-popup-input"
+    placeholder="{{ section.settings.placeholder }}"
+    required
+    autocorrect="off"
+    autocapitalize="off"
+  >
 
-        </button>
+  <button
+    type="submit"
+    class="bridgerton-popup-button"
+  >
+    {{ section.settings.button_text }}
+  </button>
 
-      </form>
+{% endform %}
 
       <div class="bridgerton-popup-note reveal">
         {{ section.settings.note }}
@@ -709,36 +713,7 @@
     }
   );
 
-  /* KLAVIYO SUBMIT */
 
-  form.addEventListener(
-    'submit',
-    async function(event){
-
-      event.preventDefault();
-
-      const email =
-        form.email.value.trim();
-
-      successBox.classList.remove('show');
-      errorBox.classList.remove('show');
-
-      submitBtn.classList.add('loading');
-
-      btnText.style.display = 'none';
-      btnLoading.style.display = 'inline-block';
-
-      try{
-
-        const response = await fetch(
-          'https://a.klaviyo.com/client/subscriptions/?company_id=TwmpjE',
-          {
-            method: 'POST',
-
-            headers: {
-              'Content-Type': 'application/json',
-              'revision': '2024-02-15'
-            },
 
 body: JSON.stringify({
 
