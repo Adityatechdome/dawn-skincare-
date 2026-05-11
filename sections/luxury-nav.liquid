@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Pinyon+Script&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
 <header class="luxury-nav">
   <div class="luxury-nav-inner">
 
@@ -61,7 +63,8 @@
       </a>
 
       <!-- CART -->
-      <a href="/cart" class="luxury-icon">
+      <a href="/cart" class="luxury-icon luxury-cart-icon">
+
         {% if section.settings.cart_icon != blank %}
           <img
             src="{{ section.settings.cart_icon | image_url }}"
@@ -73,6 +76,11 @@
         {% else %}
           🛒
         {% endif %}
+
+        <span class="luxury-cart-count">
+          {{ cart.item_count }}
+        </span>
+
       </a>
 
       <!-- MOBILE MENU -->
@@ -186,6 +194,45 @@
   opacity: 0.7;
 }
 
+.luxury-cart-icon{
+  position: relative;
+}
+
+.luxury-cart-count{
+  position: absolute;
+
+  top: -8px;
+  right: -10px;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 5px;
+
+  border-radius: 999px;
+
+  background: #D9BA82;
+  color: #2A2438;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.luxury-cart-count.bump{
+  transform: scale(1.35);
+}
+
 .luxury-custom-icon {
   width: 20px;
   height: 20px;
@@ -291,6 +338,51 @@
 function toggleDrawer() {
   document.getElementById('mobileDrawer').classList.toggle('active');
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  const cartCount =
+    document.querySelector('.luxury-cart-count');
+
+  async function refreshCartCount(){
+
+    try{
+
+      const response =
+        await fetch('/cart.js');
+
+      const cart =
+        await response.json();
+
+      if(cartCount){
+
+        cartCount.innerHTML =
+          cart.item_count;
+
+        cartCount.classList.add('bump');
+
+        setTimeout(() => {
+
+          cartCount.classList.remove('bump');
+
+        }, 300);
+
+      }
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+
+  }
+
+  document.addEventListener(
+    'cart:updated',
+    refreshCartCount
+  );
+
+});
 </script>
 
 {% schema %}
