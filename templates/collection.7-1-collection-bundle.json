@@ -1,1 +1,234 @@
-{"sections":{"video_feature_MfKPkW":{"type":"video-feature","disabled":true,"name":"Video Feature","settings":{"cta_label":"DISCOVER ALL SKINCARE","cta_link":"shopify:\/\/pages\/contact"}},"hero_banner_9ndQQC":{"type":"hero-banner","name":"Hero Banner","settings":{"image":"shopify:\/\/shop_images\/Combos_Collection_page.png","link":"","padding_top":0,"padding_bottom":0}},"main":{"type":"main-collection","blocks":{"filters":{"type":"filters","static":true,"settings":{"enable_filtering":true,"filter_style":"horizontal","filter_width":"centered","text_label_case":"default","show_swatch_label":false,"show_filter_label":false,"enable_sorting":true,"enable_grid_density":false,"inherit_color_scheme":false,"color_scheme":"scheme-6","padding-block-start":8,"padding-block-end":8,"padding-inline-start":40,"padding-inline-end":40,"facets_margin_bottom":0,"facets_margin_right":0},"blocks":{}}},"settings":{"layout_type":"grid","product_card_size":"large","mobile_product_card_size":"small","enable_infinite_scroll":true,"products_per_page":24,"product_grid_width":"centered","full_width_on_mobile":false,"columns_gap_horizontal":20,"columns_gap_vertical":20,"padding-inline-start":0,"padding-inline-end":0,"color_scheme":"scheme-6","padding-block-start":30,"padding-block-end":30}},"skin_concern_RAQbL3":{"type":"skin-concern","blocks":{"concern_bundle_tWMhy9":{"type":"concern_bundle","settings":{"tag_label":"ANTI-AGING","tag_img":"shopify:\/\/shop_images\/Picture_concern-categ1_png.png","product_1":"cellular-protection-hand-cream","product_2":"gentle-balancing-toner","product_3":"lucent-facial-concentrate"}},"concern_bundle_jMYPBJ":{"type":"concern_bundle","settings":{"tag_label":"WRINKLES","tag_img":"shopify:\/\/shop_images\/Picture_concern-categ2_png.png","product_1":"cellular-protection-hand-cream","product_2":"gentle-balancing-toner","product_3":"sublime-replenishing-night-masque"}},"concern_bundle_MYDCJC":{"type":"concern_bundle","settings":{"tag_label":"DULLNESS","tag_img":"shopify:\/\/shop_images\/Picture_concern-categ3_png.png","product_1":"gentle-balancing-toner","product_2":"lucent-facial-concentrate","product_3":"sublime-replenishing-night-masque"}},"concern_bundle_HV9bKz":{"type":"concern_bundle","settings":{"tag_label":"HYDRATION","tag_img":"shopify:\/\/shop_images\/Picture_concern-categ4_png.png","product_1":"cellular-protection-hand-cream","product_2":"lucent-facial-concentrate","product_3":"sublime-replenishing-night-masque"}},"concern_bundle_HyizL9":{"type":"concern_bundle","settings":{"tag_label":"SKIN TONE","tag_img":"shopify:\/\/shop_images\/Picture_concern-categ5_png.png","product_1":"cellular-protection-hand-cream","product_2":"sublime-replenishing-night-masque","product_3":"lucent-facial-concentrate"}},"concern_product_fTGWWL":{"type":"concern_product","settings":{"tag_label":"cleanser","product_1":"cellular-protection-hand-cream"}},"concern_product_fQgpdg":{"type":"concern_product","settings":{"tag_label":"DAY CREAMS","product_1":"lucent-facial-concentrate"}},"concern_product_EpFBqJ":{"type":"concern_product","settings":{"tag_label":"EYE CARE","product_1":"sublime-replenishing-night-masque"}},"concern_product_p4tF9b":{"type":"concern_product","settings":{"tag_label":"SUN CARE","product_1":"gentle-balancing-toner"}},"concern_product_AgXzmL":{"type":"concern_product","settings":{"tag_label":"WRINKLES","product_1":"cellular-protection-hand-cream"}}},"block_order":["concern_bundle_tWMhy9","concern_bundle_jMYPBJ","concern_bundle_MYDCJC","concern_bundle_HV9bKz","concern_bundle_HyizL9","concern_product_fTGWWL","concern_product_fQgpdg","concern_product_EpFBqJ","concern_product_p4tF9b","concern_product_AgXzmL"],"disabled":true,"name":"Skin Concern Bundles","settings":{"heading":"SKINCARE FAVORITES","tag_header":"WHAT’S YOUR SKIN CONCERNS?","cta_label":"SHOP ALL SKINCARE","cta_link":""}},"collection_product_carousel_6QwcGY":{"type":"collection-product-carousel","disabled":true,"name":"Collection Carousel","settings":{"collection":"sample","headline":"Cleansers"}},"collection_product_carousel_aak4Qy":{"type":"collection-product-carousel","disabled":true,"name":"Collection Carousel","settings":{"collection":"sample","headline":"Day Creams"}},"collection_product_carousel_A7Dmp9":{"type":"collection-product-carousel","disabled":true,"name":"Collection Carousel","settings":{"collection":"sample","headline":"Eye Care"}},"dawn_blog_carousel_ChtGNf":{"type":"dawn-blog-carousel","disabled":true,"name":"Dawn Blog Carousel","settings":{"blogs":"skin-care","headline":"Insights into Health and Well-being","subheadline":"Our Journal","description":""}}},"order":["video_feature_MfKPkW","hero_banner_9ndQQC","main","skin_concern_RAQbL3","collection_product_carousel_6QwcGY","collection_product_carousel_aak4Qy","collection_product_carousel_A7Dmp9","dawn_blog_carousel_ChtGNf"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_feature_MfKPkW": {
+      "type": "video-feature",
+      "disabled": true,
+      "name": "Video Feature",
+      "settings": {
+        "cta_label": "DISCOVER ALL SKINCARE",
+        "cta_link": "shopify://pages/contact"
+      }
+    },
+    "hero_banner_9ndQQC": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "image": "shopify://shop_images/Combos_Collection_page.png",
+        "link": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "filters": {
+          "type": "filters",
+          "static": true,
+          "settings": {
+            "enable_filtering": true,
+            "filter_style": "horizontal",
+            "filter_width": "centered",
+            "text_label_case": "default",
+            "show_swatch_label": false,
+            "show_filter_label": false,
+            "enable_sorting": true,
+            "enable_grid_density": false,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-6",
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40,
+            "facets_margin_bottom": 0,
+            "facets_margin_right": 0
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "layout_type": "grid",
+        "product_card_size": "large",
+        "mobile_product_card_size": "small",
+        "enable_infinite_scroll": true,
+        "products_per_page": 24,
+        "product_grid_width": "centered",
+        "full_width_on_mobile": false,
+        "columns_gap_horizontal": 20,
+        "columns_gap_vertical": 20,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "color_scheme": "scheme-6",
+        "padding-block-start": 30,
+        "padding-block-end": 30
+      }
+    },
+    "skin_concern_RAQbL3": {
+      "type": "skin-concern",
+      "blocks": {
+        "concern_bundle_tWMhy9": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "ANTI-AGING",
+            "tag_img": "shopify://shop_images/Picture_concern-categ1_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "gentle-balancing-toner",
+            "product_3": "lucent-facial-concentrate"
+          }
+        },
+        "concern_bundle_jMYPBJ": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "WRINKLES",
+            "tag_img": "shopify://shop_images/Picture_concern-categ2_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "gentle-balancing-toner",
+            "product_3": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_bundle_MYDCJC": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "DULLNESS",
+            "tag_img": "shopify://shop_images/Picture_concern-categ3_png.png",
+            "product_1": "gentle-balancing-toner",
+            "product_2": "lucent-facial-concentrate",
+            "product_3": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_bundle_HV9bKz": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "HYDRATION",
+            "tag_img": "shopify://shop_images/Picture_concern-categ4_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "lucent-facial-concentrate",
+            "product_3": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_bundle_HyizL9": {
+          "type": "concern_bundle",
+          "settings": {
+            "tag_label": "SKIN TONE",
+            "tag_img": "shopify://shop_images/Picture_concern-categ5_png.png",
+            "product_1": "cellular-protection-hand-cream",
+            "product_2": "sublime-replenishing-night-masque",
+            "product_3": "lucent-facial-concentrate"
+          }
+        },
+        "concern_product_fTGWWL": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "cleanser",
+            "product_1": "cellular-protection-hand-cream"
+          }
+        },
+        "concern_product_fQgpdg": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "DAY CREAMS",
+            "product_1": "lucent-facial-concentrate"
+          }
+        },
+        "concern_product_EpFBqJ": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "EYE CARE",
+            "product_1": "sublime-replenishing-night-masque"
+          }
+        },
+        "concern_product_p4tF9b": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "SUN CARE",
+            "product_1": "gentle-balancing-toner"
+          }
+        },
+        "concern_product_AgXzmL": {
+          "type": "concern_product",
+          "settings": {
+            "tag_label": "WRINKLES",
+            "product_1": "cellular-protection-hand-cream"
+          }
+        }
+      },
+      "block_order": [
+        "concern_bundle_tWMhy9",
+        "concern_bundle_jMYPBJ",
+        "concern_bundle_MYDCJC",
+        "concern_bundle_HV9bKz",
+        "concern_bundle_HyizL9",
+        "concern_product_fTGWWL",
+        "concern_product_fQgpdg",
+        "concern_product_EpFBqJ",
+        "concern_product_p4tF9b",
+        "concern_product_AgXzmL"
+      ],
+      "disabled": true,
+      "name": "Skin Concern Bundles",
+      "settings": {
+        "heading": "SKINCARE FAVORITES",
+        "tag_header": "WHAT’S YOUR SKIN CONCERNS?",
+        "cta_label": "SHOP ALL SKINCARE",
+        "cta_link": ""
+      }
+    },
+    "collection_product_carousel_6QwcGY": {
+      "type": "collection-product-carousel",
+      "disabled": true,
+      "name": "Collection Carousel",
+      "settings": {
+        "collection": "sample",
+        "headline": "Cleansers"
+      }
+    },
+    "collection_product_carousel_aak4Qy": {
+      "type": "collection-product-carousel",
+      "disabled": true,
+      "name": "Collection Carousel",
+      "settings": {
+        "collection": "sample",
+        "headline": "Day Creams"
+      }
+    },
+    "collection_product_carousel_A7Dmp9": {
+      "type": "collection-product-carousel",
+      "disabled": true,
+      "name": "Collection Carousel",
+      "settings": {
+        "collection": "sample",
+        "headline": "Eye Care"
+      }
+    },
+    "dawn_blog_carousel_ChtGNf": {
+      "type": "dawn-blog-carousel",
+      "disabled": true,
+      "name": "Dawn Blog Carousel",
+      "settings": {
+        "blogs": "skin-care",
+        "headline": "Insights into Health and Well-being",
+        "subheadline": "Our Journal",
+        "description": ""
+      }
+    }
+  },
+  "order": [
+    "video_feature_MfKPkW",
+    "hero_banner_9ndQQC",
+    "main",
+    "skin_concern_RAQbL3",
+    "collection_product_carousel_6QwcGY",
+    "collection_product_carousel_aak4Qy",
+    "collection_product_carousel_A7Dmp9",
+    "dawn_blog_carousel_ChtGNf"
+  ]
+}

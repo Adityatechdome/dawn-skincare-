@@ -238,7 +238,13 @@ function initOfferSelector() {
           throw new Error(error.description || 'Failed to add to cart');
         }
 
-        // Open cart drawer after first item
+        // Dispatch cart:update so cart-items-component refreshes and drawer auto-opens
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: { data: { source: 'dawn-product-info', sections: {} } }
+        }));
+
+        // Open cart drawer directly as fallback
         const cartDrawer = document.querySelector('cart-drawer-component');
         if (cartDrawer && typeof cartDrawer.open === 'function') {
           cartDrawer.open();
@@ -276,6 +282,12 @@ function initOfferSelector() {
           throw new Error(error.description || 'Failed to add second item');
         }
 
+        // Dispatch cart:update so cart refreshes with both items
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: { data: { source: 'dawn-product-info', sections: {} } }
+        }));
+
         // Refresh cart to show both items
         if (typeof window.refreshCartContent === 'function') {
           await window.refreshCartContent();
@@ -285,7 +297,12 @@ function initOfferSelector() {
         await new Promise(resolve => setTimeout(resolve, 500));
         await applyDiscountCode(window.productDiscountCode || 'Off10');
 
-        // Final refresh to show discount applied
+        // Final dispatch + refresh to show discount applied
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: { data: { source: 'dawn-product-info', sections: {} } }
+        }));
+
         if (typeof window.refreshCartContent === 'function') {
           await window.refreshCartContent();
         }
@@ -312,13 +329,19 @@ function initOfferSelector() {
           submitButton.textContent = 'Added!';
         }
 
-        // Open cart drawer
+        // Dispatch cart:update event so cart-items-component and cart-drawer-component refresh
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: { data: { source: 'dawn-product-info', sections: {} } }
+        }));
+
+        // Open cart drawer directly as fallback (handles case where auto-open is disabled)
         const cartDrawer = document.querySelector('cart-drawer-component');
         if (cartDrawer && typeof cartDrawer.open === 'function') {
           cartDrawer.open();
         }
 
-        // Refresh cart content
+        // Refresh cart content as secondary fallback
         if (typeof window.refreshCartContent === 'function') {
           await window.refreshCartContent();
         }

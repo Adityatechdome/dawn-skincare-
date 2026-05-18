@@ -167,7 +167,7 @@ class ProductFormComponent extends Component {
     if (this.#timeout) clearTimeout(this.#timeout);
 
     // Check if the add to cart button is disabled and do an early return if it is
-    if (this.refs.addToCartButtonContainer?.refs.addToCartButton?.getAttribute('disabled') === 'true') return;
+    if (this.refs.addToCartButtonContainer?.refs.addToCartButton?.disabled) return;
 
     // Send the add to cart information to the cart
     const form = this.querySelector('form');
