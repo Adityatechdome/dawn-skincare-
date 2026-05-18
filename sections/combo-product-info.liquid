@@ -419,58 +419,86 @@
         const variantId = this.querySelector('input[name="id"]').value;
         const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
         
+        if (!variantId) {
+          console.error('[combo-atc] No variant ID — product may be sold out');
+          if (submitButton) {
+            submitButton.textContent = 'Out of stock';
+            setTimeout(() => {
+              submitButton.textContent = originalText;
+              submitButton.disabled = false;
+            }, 2000);
+          }
+          return;
+        }
+
         if (submitButton) {
           submitButton.textContent = 'Adding...';
           submitButton.disabled = true;
         }
-        
+
+        // Step 1: Add to cart (failures here show an error to user)
+        let addSuccess = false;
         try {
           const formData = new FormData();
           formData.append('id', variantId);
           formData.append('quantity', quantity);
-          
+
+          console.log('[combo-atc] adding variant', variantId, 'qty', quantity);
+
           const response = await fetch('/cart/add.js', {
             method: 'POST',
             body: formData
           });
-          
+
           if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.description || 'Failed to add to cart');
+            const errBody = await response.json();
+            console.error('[combo-atc] Shopify error:', errBody);
+            throw new Error(errBody.description || errBody.message || 'Failed to add to cart');
           }
-          
+
+          addSuccess = true;
+          if (submitButton) submitButton.textContent = 'Added!';
+
+        } catch (error) {
+          console.error('[combo-atc] add-to-cart failed:', error);
           if (submitButton) {
-            submitButton.textContent = 'Added!';
+            const isStockError = /stock|sold out|out of/i.test(error.message);
+            submitButton.textContent = isStockError ? 'Out of stock' : 'Error';
           }
-          
-          // Open cart drawer
-          const cartDrawer = document.querySelector('cart-drawer-component');
-          if (cartDrawer && typeof cartDrawer.open === 'function') {
-            cartDrawer.open();
-          }
-          
-          // Refresh cart content
-          if (typeof window.refreshCartContent === 'function') {
-            await window.refreshCartContent();
-          }
-          
-          // Reset button after 2 seconds
           setTimeout(() => {
             if (submitButton) {
               submitButton.textContent = originalText;
               submitButton.disabled = false;
             }
           }, 2000);
-          
-        } catch (error) {
-          console.error('Add to cart error:', error);
-          if (submitButton) {
-            submitButton.textContent = error.message.includes('stock') ? 'Out of stock' : 'Error';
-            setTimeout(() => {
+          return;
+        }
+
+        // Step 2: UI refresh — completely isolated from step 1, never shows Error
+        if (addSuccess) {
+          setTimeout(() => {
+            if (submitButton) {
               submitButton.textContent = originalText;
               submitButton.disabled = false;
-            }, 2000);
-          }
+            }
+          }, 2000);
+
+          // Open cart drawer
+          try {
+            const cartDrawer = document.querySelector('cart-drawer-component');
+            if (cartDrawer && typeof cartDrawer.open === 'function') {
+              cartDrawer.open();
+            }
+          } catch (_) {}
+
+          // Update cart item count badge without touching window.refreshCartContent
+          fetch('/cart.js')
+            .then(function(r) { return r.json(); })
+            .then(function(cart) {
+              var countEls = document.querySelectorAll('[data-cart-count], .cart-count, .cart-item-count');
+              countEls.forEach(function(el) { el.textContent = cart.item_count; });
+            })
+            .catch(function() {});
         }
       });
     }

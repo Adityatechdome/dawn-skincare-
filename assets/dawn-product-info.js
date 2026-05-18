@@ -162,6 +162,10 @@ function initOfferSelector() {
 
   if (!productForm) return;
   if (productForm.dataset.offerHandlerBound === 'true') return;
+
+  // Skip binding on pages that don't use the offer selector (e.g. combo product pages)
+  if (!document.getElementById('variant-select') || !document.getElementById('quantity-input')) return;
+
   productForm.dataset.offerHandlerBound = 'true';
 
   // Handle offer selection
@@ -251,9 +255,9 @@ function initOfferSelector() {
         }
 
         // Refresh cart to show first item
-        if (typeof window.refreshCartContent === 'function') {
-          await window.refreshCartContent();
-        }
+        // if (typeof window.refreshCartContent === 'function') {
+        //   await window.refreshCartContent();
+        // }
 
         // Update button to show progress
         if (submitButton) {
@@ -289,9 +293,9 @@ function initOfferSelector() {
         }));
 
         // Refresh cart to show both items
-        if (typeof window.refreshCartContent === 'function') {
-          await window.refreshCartContent();
-        }
+        // if (typeof window.refreshCartContent === 'function') {
+        //   await window.refreshCartContent();
+        // }
 
         // Apply BOGO discount code
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -303,9 +307,9 @@ function initOfferSelector() {
           detail: { data: { source: 'dawn-product-info', sections: {} } }
         }));
 
-        if (typeof window.refreshCartContent === 'function') {
-          await window.refreshCartContent();
-        }
+        // if (typeof window.refreshCartContent === 'function') {
+        //   await window.refreshCartContent();
+        // }
 
         // Update button to show success
         if (submitButton) {
@@ -342,9 +346,9 @@ function initOfferSelector() {
         }
 
         // Refresh cart content as secondary fallback
-        if (typeof window.refreshCartContent === 'function') {
-          await window.refreshCartContent();
-        }
+        // if (typeof window.refreshCartContent === 'function') {
+        //   await window.refreshCartContent();
+        // }
       }
 
       // Reset button after 2 seconds
